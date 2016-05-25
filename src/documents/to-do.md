@@ -1,28 +1,28 @@
 # TODO's
 
-We concentreren ons eerst op de algemene structuur en de backend java applicatie.
-
-# Algemeen
-[X] - globale applicatie plaat
-[X] - Eerste opzet projectstructuur
-[ ] - stories opstellen
-[ ] - scenario's opstellen
+# General
+[X] - full application picture - high level
+[X] - Project structure - high level
+[X] - add to GIT, add to Travis
+[X] - start writing WIKI pages (first translate all Dutch to English ;)
+[ ] - Epic's, userstories and scenarios
 
 # Backend
-[ ] - globale architectuur plaat backend
-[ ] - unit testen maken per onderdeel backend
-[ ] - bouwen core-backend (niet-core komt later)
+[ ] - application picture - high level
+[ ] - unit tests
+[ ] - build core-backend
 
 # Database
-[ ] - definitieve keuze database
-[ ] - unittesten / integratietesten maken backend - database
-[ ] - bouwen rest interface backend - database
+[ ] - database choice
+[ ] - application picture - high level
+[ ] - unit tests / integration tests
+[ ] - build interface backend - database
 
 # Frontend
-[ ] - definitieve keuze frontend
-[ ] - unittesten / integratietesten bouwen frontend - backend - database
-[ ] - bouwen rest interface frontend - backend
-[ ] - bouwen rest interface database - frontend
+[ ] - frontend choice
+[ ] - application picture - high level
+[ ] - unit tests / integration tests
+[ ] - build interface frontend - backend and database - frontend
 
-# Later
-[ ] - Output mogelijkheden
+# later ....
+[ ] - Output (pdf?)
