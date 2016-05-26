@@ -2,7 +2,7 @@
 
 **Epic opvoeren show**
 
-De administratie kan een show en showdetails opvoeren
+De administratie kan een show en showdetails opvoeren.
 
 **Deelnemer kan online dieren inschrijven**
 
@@ -40,7 +40,7 @@ Aan de hand van de bepaling prijzen en vervolgronden moet er tijdens de show aut
 
 De administratie moet voor en tijdens de show dieren en ringen handmatig kunnen wijzigen. Ook kan er aangegeven worden dat een dier niet aanwezig is of een dier uitgesloten is van deelname.
 
-**printen**
+**Output**
 
 De administratie moet ringlijsten en certificaten kunnen printen tijdens de show.
 
