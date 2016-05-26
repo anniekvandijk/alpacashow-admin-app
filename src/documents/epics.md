@@ -6,7 +6,7 @@ De administratie kan een show en showdetails opvoeren.
 
 **Deelnemer kan online dieren inschrijven**
 
-Een deelnemer kan zich inschrijven voor een show. Hij kan een minimum en maximum aantal dieren opvoeren, wijzigen en verwijderen. Op de inschrijvingen worden validaties uitgevoerd. Welke dieren hij heeft ingeschreven kan hij online raadplegen. De administratie kan deze deelnemer en dieren ook raadplegen, wijzigen en verwijderen. 
+Een deelnemer kan zich inschrijven voor een show. Hij kan een minimum en maximum aantal dieren opvoeren, wijzigen en verwijderen. Op de inschrijvingen worden validaties uitgevoerd. Welke dieren hij heeft ingeschreven kan hij raadplegen. De administratie kan deze deelnemer en dieren ook raadplegen, wijzigen en verwijderen. 
 
 **Administratie kan een lijst van deelnemers en dieren inlezen**
 
@@ -22,11 +22,11 @@ De administratie kan de volgorde van de showklassen handmatig bepalen, zodat die
 
 **Startnummers toekennen**
 
-Na sluiting van inschrijving worden aan de hand van de klasse/show volgorde startnummers toegekend aan de dieren. Deze mogen na toekenning niet meer gewijzigd worden.
+Na sluiting van inschrijving worden aan de hand van de klasse/show-volgorde startnummers toegekend aan de dieren. Deze mogen na toekenning niet meer gewijzigd worden.
 
 **Automatische indeling eerste ronde**
 
-Aan de hand van de showvolgorde kunnen er automatisch ringen per klasse worden bepaald voor de eerste ronde. Aan de ringen een minimum en maximum aantal dieren worden toegekend. Zijn er minder dieren in de klasse dan het minimum, dan worden er 2 of meer ringen samengevoegd tot het maximum is bereikt. Zijn er meer dieren, dan wordt een ring gesplits. 
+Aan de hand van de klasse/show-volgorde worden er automatisch ringen bepaald voor de eerste ronde. Aan de ringen wordt een minimum en maximum aantal dieren toegekend. Zijn er minder dieren in de klasse dan het minimum, dan worden er 2 of meer ringen samengevoegd tot het maximum is bereikt. Zijn er meer dieren, dan wordt een ring gesplits. 
 
 **Handmatig bepalen prijzen en vervolgronden**
 
@@ -44,5 +44,7 @@ De administratie moet voor en tijdens de show dieren en ringen handmatig kunnen 
 
 De administratie moet ringlijsten en certificaten kunnen printen tijdens de show.
 
+**Presentatie**
 
+Er moeten schermen beschikbaar zijn voor de deelnemers en administratie die het mogelijk maken om het overzicht te hebben over showgegevens, de deelnemers, dieren, klasse volgorde, ringen, vervolgringen, prijzen en output. Tevens moet het makkelijk zijn om zaken aan te passen.
 
