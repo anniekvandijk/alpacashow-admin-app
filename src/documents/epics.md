@@ -1,28 +1,28 @@
 # Epics
 
-**Epic opvoeren show**
+**Opvoeren show**
 
 De administratie kan een show en showdetails opvoeren.
 
 **Deelnemer kan online dieren inschrijven**
 
-Een deelnemer kan zich inschrijven voor een show. Hij kan een minimum en maximum aantal dieren opvoeren, wijzigen en verwijderen. Op de inschrijvingen worden validaties uitgevoerd.
+Een deelnemer kan zich inschrijven voor een show. Hij kan een minimum en maximum aantal dieren opvoeren, wijzigen en verwijderen. Op de inschrijvingen worden validaties uitgevoerd. Welke dieren hij heeft ingeschreven kan hij online raadplegen. De administratie kan deze deelnemer en dieren ook raadplegen, wijzigen en verwijderen. 
 
 **Administratie kan een lijst van deelnemers en dieren inlezen**
 
-De administratie kan een lijst met deelnemers en dieren inlezen. Deze wordt gevalideerd en in de database gezet.
+De administratie kan een lijst met deelnemers en dieren inlezen. Deze wordt gevalideerd en in de database gezet. De lijst met deelnemers en dieren kunnen geraadpleegd, gewijzigd en verwijderd worden. 
 
 **Automatische klassebepaling dieren**
 
-Als er via online inschrijving of inlezen van een lijst dieren worden aangemeld, dan worden de klasse van de dieren automatisch bepaald. Bij elke wijziging van een dier wordt de klasse herbepaald.
+Als er via online inschrijving of inlezen van een lijst dieren worden aangemeld, dan worden de klasse van de dieren automatisch bepaald aan de hand van de soort, de leeftijdsgroep, het geslacht en de kleur. De klasse moet altijd kloppen, dus bij elke wijziging van de kenmerken moet de klasse herbepaald worden.
 
 **Handmatig showvolgorde bepalen**
 
-De administratie kan de volgorde van de showklassen handmatig bepalen.
+De administratie kan de volgorde van de showklassen handmatig bepalen, zodat dieren in de juiste volgorde in de show worden gepresenteerd.
 
 **Startnummers toekennen**
 
-Na sluiting van inschrijving worden aan de hand van de showvolgorde startnummers toegekend aan de dieren. Deze mogen na toekenning niet meer gewijzigd worden.
+Na sluiting van inschrijving worden aan de hand van de klasse/show volgorde startnummers toegekend aan de dieren. Deze mogen na toekenning niet meer gewijzigd worden.
 
 **Automatische indeling eerste ronde**
 
