@@ -16,9 +16,9 @@ De administratie kan een lijst met deelnemers en dieren inlezen. Deze wordt geva
 
 Als er via online inschrijving of inlezen van een lijst dieren worden aangemeld, dan worden de klasse van de dieren automatisch bepaald. Bij elke wijziging van een dier wordt de klasse herbepaald.
 
-**showvolgorde bepalen**
+**Handmatig showvolgorde bepalen**
 
-De administratie kan de volgorde van de showklassen bepalen.
+De administratie kan de volgorde van de showklassen handmatig bepalen.
 
 **Startnummers toekennen**
 
