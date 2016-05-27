@@ -10,7 +10,7 @@ Als medewerker van de administratie wil ik dat de ingevoerde gegevens gecontrole
 
 Als medewerker van de administratie wil ik dat de gegevens worden opgeslagen, zodat deze later aangepast kunnen worden en gebruikt kunnen worden voor berekeningen.
 
->> integratietest
+> integratietest >
 
 **Scherm wijzigen showgegevens**
 
