@@ -4,7 +4,7 @@ Functionaliteit: Als medewerker van de administratie wil ik de gegevens van een 
 zodat deze gebruikt kunnen worden voor de show administratie.
 
 Scenario: Navigeren naar scherm voor opvoeren nieuwe show
-Stel ik ben als administratiemedewerker op het scherm 'showgegevens' # waar kom ik vandaan? > story, # autorisatie? > story
+Stel ik ben als administratiemedewerker op het scherm 'showgegevens' # todo: waar kom ik vandaan? > story, # todo: autorisatie? > story
 Als ik op de knop 'nieuwe show opvoeren' klik
 Dan verwacht ik dat ik in het scherm 'opvoeren showgegevens' kom
 
@@ -44,3 +44,5 @@ En ik druk op 'annuleren'
 En ik druk bij de melding 'weet u zeker dat u wilt annuleren' op ja
 Dan verwacht ik dat ik terug ga naar het scherm 'showgegevens'
 En verwacht ik op het scherm 'showgegevens' een melding 'showgegevens opvoeren geannuleerd'
+
+# todo: Datepicker om foute invoer te voorkomen.
