@@ -3,7 +3,7 @@
 **[Opvoeren show](stories/opvoeren-show.md)**
 
 
-De administratie kan een show en showdetails opvoeren. Deze kunnen ze raadplegen en wijzigen. Bij de opvoer worden er controles uitgevoerd op de juistheid van de invoer.
+De administratie kan een show en showdetails opvoeren. Deze gegevens kunnen geraadpleegd en gewijzigd worden. Bij de opvoer worden er controles uitgevoerd op de juistheid van de invoer.
 
 **[Deelnemer kan online dieren inschrijven](stories/deelnemer-dieren-inschrijven.md)**
 
