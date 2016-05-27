@@ -1,8 +1,6 @@
-Als medewerker van de administratie
-
-Wil ik de gegevens van een show kunnen invoeren op een scherm
-
-Zodat deze gebruikt kunnen worden voor de show administratie
+> Als medewerker van de administratie
+> Wil ik de gegevens van een show kunnen invoeren op een scherm
+> Zodat deze gebruikt kunnen worden voor de show administratie
 
 
 Als medewerker van de administratie
