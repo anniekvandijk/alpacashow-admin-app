@@ -1,6 +1,7 @@
 # language:nl
 
-Functionaliteit: Als medewerker van de administratie wil ik de gegevens van een show kunnen invoeren op een scherm, zodat deze gebruikt kunnen worden voor de show administratie.
+Functionaliteit: Als medewerker van de administratie wil ik de gegevens van een show kunnen invoeren op een scherm, 
+zodat deze gebruikt kunnen worden voor de show administratie.
 
 Scenario: Navigeren naar scherm voor opvoeren nieuwe show
 Stel ik ben als administratiemedewerker op het scherm 'showgegevens' # waar kom ik vandaan? > story, # autorisatie? > story
