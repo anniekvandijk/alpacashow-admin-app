@@ -17,6 +17,6 @@ En is het niet mogelijk om op de 'opslaan' knop te drukken
 
 # todo: veldlengte
 # todo: automatische correctie datum velden, datumkiezer? > toevoegen aan story?
-# todo: onjuiste invoer kan grotendeels naar unittesten
+# todo: onjuiste invoer kan (grotendeels) naar unittesten
 
 
