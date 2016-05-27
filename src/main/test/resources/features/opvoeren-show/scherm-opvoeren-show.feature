@@ -36,7 +36,6 @@ En ik druk op 'annuleren'
 En ik druk bij de melding 'weet u zeker dat u wilt annuleren' op nee
 Dan verwacht ik dat er geen wijzigingen op het scherm zijn
 
-
 Scenario: annuleren, ja
 Stel ik ben als administratiemedewerker op het scherm 'opvoeren showgegevens'
 Als ik alle showgegevens correct invoer
