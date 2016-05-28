@@ -10,7 +10,7 @@ Een deelnemer kan zich inschrijven voor een show. Hij kan een minimum en maximum
 
 **[Administratie kan een lijst van deelnemers en dieren inlezen](stories/administratie-lijst-deelnemers-dieren-inlezen.md)**
 
-De administratie kan een lijst met deelnemers en dieren inlezen. Deze wordt gevalideerd en in de database gezet. De lijst met deelnemers en dieren kunnen geraadpleegd, gewijzigd en verwijderd worden. Hiervoor zijn schermen beschikbaar.
+De administratie kan een lijst met deelnemers en dieren inlezen. Deze wordt gevalideerd en opgeslagen. De lijst met deelnemers en dieren kunnen geraadpleegd, gewijzigd en verwijderd worden. Hiervoor zijn schermen beschikbaar.
 
 **[Automatische klassebepaling dieren](stories/automatische-klassebepaling-dieren.md)**
 
