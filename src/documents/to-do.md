@@ -1,12 +1,12 @@
 # TODO's
 
 # General
-* [X] - full application picture - high level
-* [X] - project structure - high level
-* [X] - add to GIT, add to Travis
 * [X] - epics - as many as I can think of
-* [ ] - userstories - not all, start with one epic and finish some businessvalue first!
-* [ ] - Scenario's - same as userstories, not all at ones, things can change when first part of the software is released.
+* [X] - userstories - not all, start with one epic and finish some businessvalue first!
+* [X] - Scenario's - same as userstories, not all at ones, things can change when first part of the software is being developed
+* [X] - high level application picture > frontend - backend - database
+* [X] - high level project structure
+* [X] - add to GIT, add to Travis
 
 # Backend
 * [ ] - application picture - high level
@@ -26,4 +26,4 @@
 * [ ] - build interface frontend - backend and database - frontend
 
 # Later ....
-* [ ] - output (pdf?)
+* [ ] - More userstories, more scenarios, repeat making unittests, integration tests and building steps.
