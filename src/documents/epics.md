@@ -8,6 +8,8 @@ De administratie kan een show en showdetails opvoeren. Deze gegevens kunnen gera
 
 Een deelnemer kan zich inschrijven voor een show. Hij kan een minimum en maximum aantal dieren opvoeren, wijzigen en verwijderen. Op de inschrijvingen worden validaties uitgevoerd. Welke dieren hij heeft ingeschreven kan hij raadplegen. De administratie kan deze deelnemer en dieren ook raadplegen, wijzigen en verwijderen. Hiervoor zijn schermen beschikbaar.
 
+> doel is een applicatie voor de administratie, direct linken met inschrijvingen is een wens. Lagere prio.
+
 **[Administratie kan een lijst van deelnemers en dieren inlezen](stories/administratie-lijst-deelnemers-dieren-inlezen.md)**
 
 De administratie kan een lijst met deelnemers en dieren inlezen. Deze wordt gevalideerd en opgeslagen. De lijst met deelnemers en dieren kunnen geraadpleegd, gewijzigd en verwijderd worden. Hiervoor zijn schermen beschikbaar.
