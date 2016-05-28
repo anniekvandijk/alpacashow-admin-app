@@ -2,7 +2,6 @@
 
 **[Opvoeren show](stories/opvoeren-show.md)**
 
-
 De administratie kan een show en showdetails opvoeren. Deze gegevens kunnen geraadpleegd en gewijzigd worden. Bij de opvoer worden er controles uitgevoerd op de juistheid van de invoer.
 
 **[Deelnemer kan online dieren inschrijven](stories/deelnemer-dieren-inschrijven.md)**
@@ -48,4 +47,8 @@ De administratie moet ringlijsten en certificaten kunnen printen tijdens de show
 **[Presentatie](stories/presentatie.md)**
 
 Er moeten schermen beschikbaar zijn voor de deelnemers en administratie die het mogelijk maken om het overzicht te hebben over showgegevens, de deelnemers, dieren, klasse volgorde, ringen, vervolgringen, prijzen en output. Tevens moet het makkelijk zijn om zaken aan te passen.
+
+**Autorisatie**
+
+Nog uitwerken...
 

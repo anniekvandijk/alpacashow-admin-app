@@ -4,18 +4,18 @@ Functionaliteit: Als medewerker van de administratie wil ik de gegevens van een 
 zodat deze gebruikt kunnen worden voor de show administratie.
 
 Scenario: Navigeren naar scherm voor opvoeren nieuwe show
-Stel ik ben als administratiemedewerker op het scherm 'showgegevens' # todo: waar kom ik vandaan? > story, # todo: autorisatie? > story
+Stel ik ben als administratiemedewerker op het scherm 'showgegevens'
 Als ik op de knop 'nieuwe show opvoeren' klik
 Dan verwacht ik dat ik in het scherm 'opvoeren showgegevens' kom
 
 Scenario: invoer gegevens
 Stel ik ben als administratiemedewerker op het scherm 'opvoeren showgegevens'
 Dan verwacht ik dat ik de volgende gegevens kan opvoeren
- | Naam show |
- | Datum show |
+ | Naam show                   |
+ | Datum show                  |
  | Sluitingsdatum aanmeldingen |
- | Plaats show |
- | Jury |
+ | Plaats show                 |
+ | Jury                        |
 
 Scenario: melding bij opslaan correcte gegevens
 Stel ik ben als administratiemedewerker op het scherm 'opvoeren showgegevens'
