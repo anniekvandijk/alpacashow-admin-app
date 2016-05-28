@@ -16,7 +16,7 @@ De administratie kan een lijst met deelnemers en dieren inlezen. Deze wordt geva
 
 **[Automatische klassebepaling dieren](stories/automatische-klassebepaling-dieren.md)**
 
-Als er via online inschrijving of inlezen van een lijst dieren worden aangemeld, dan worden de klasse van de dieren automatisch bepaald aan de hand van de soort, de leeftijdsgroep, het geslacht en de kleur. De klasse moet altijd kloppen, dus bij elke wijziging van de kenmerken moet de klasse herbepaald worden. De klasse wordt hoort bij een individueel dier en wordt daarom bij de gegevens van een dier opgeslagen. Deze worden ook getoond op bij de gegevens van een dier.
+Als er via online inschrijving of inlezen van een lijst dieren worden aangemeld, dan worden de klasse van de dieren automatisch bepaald aan de hand van de soort, de leeftijdsgroep, het geslacht en de kleur. De klasse moet altijd kloppen, dus bij elke wijziging van de kenmerken moet de klasse herbepaald worden. De klasse hoort bij een individueel dier en wordt daarom bij de gegevens van een dier opgeslagen en getoond.
 
 **[Handmatig showvolgorde bepalen](stories/handmatig-showvolgorde-bepalen.md)**
 
