@@ -40,7 +40,7 @@ Aan de hand van de bepaling prijzen en vervolgronden moet er tijdens de show aut
 
 De administratie moet voor en tijdens de show dieren en ringen handmatig kunnen wijzigen. Ook kan er aangegeven worden dat een dier niet aanwezig is of een dier uitgesloten is van deelname. Als een dier door wijziging in een andere klasse terecht komt, dan moet dit dier verplaatst kunnen worden naar een andere ring of uitgesloten kunnen worden. Deze dieren moeten duidelijk zichtbaar zijn ( twijfelpunt, dit laatste zou ook automatisch kunnen, maar dat moet wel als aparte epic worden opgenomen dan).
 
-> todo: deze epic is niet ok, herzien en mogelijk splitsen in meerdere delen.
+> todo: deze epic is niet ok, herzien en mogelijk splitsen in meerdere delen. Hier mist ook nog het deel dat een ronde die is geweest niet meer kan wijzigen.
 
 **[Printen](stories/printen.md)**
 
