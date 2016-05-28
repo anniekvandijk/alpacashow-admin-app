@@ -11,11 +11,12 @@ Dan verwacht ik dat ik in het scherm 'opvoeren showgegevens' kom
 Scenario: invoer gegevens
 Stel ik ben als administratiemedewerker op het scherm 'opvoeren showgegevens'
 Dan verwacht ik dat ik de volgende gegevens kan opvoeren
- | Naam show                   |
- | Datum show                  |
- | Sluitingsdatum aanmeldingen |
- | Plaats show                 |
- | Jury                        |
+ | Naam show                           |
+ | Datum show                          |
+ | Sluitingsdatum aanmeldingen         |
+ | Plaats show                         |
+ | Jury                                |
+ | Maximum aantal dieren per deelnemer |
 
 Scenario: melding bij opslaan correcte gegevens
 Stel ik ben als administratiemedewerker op het scherm 'opvoeren showgegevens'
