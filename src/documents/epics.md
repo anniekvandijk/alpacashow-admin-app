@@ -2,27 +2,27 @@
 
 **[Opvoeren show](stories/opvoeren-show.md)**
 
-De administratie kan een show en showdetails opvoeren. Deze gegevens kunnen geraadpleegd en gewijzigd worden. Bij de opvoer worden er controles uitgevoerd op de juistheid van de invoer.
+De administratie kan een show en showdetails opvoeren. Deze gegevens kunnen geraadpleegd en gewijzigd worden. Hiervoor zijn schermen beschikbaar. Bij de opvoer worden er controles uitgevoerd op de juistheid van de invoer.
 
 **[Deelnemer kan online dieren inschrijven](stories/deelnemer-dieren-inschrijven.md)**
 
-Een deelnemer kan zich inschrijven voor een show. Hij kan een minimum en maximum aantal dieren opvoeren, wijzigen en verwijderen. Op de inschrijvingen worden validaties uitgevoerd. Welke dieren hij heeft ingeschreven kan hij raadplegen. De administratie kan deze deelnemer en dieren ook raadplegen, wijzigen en verwijderen. 
+Een deelnemer kan zich inschrijven voor een show. Hij kan een minimum en maximum aantal dieren opvoeren, wijzigen en verwijderen. Op de inschrijvingen worden validaties uitgevoerd. Welke dieren hij heeft ingeschreven kan hij raadplegen. De administratie kan deze deelnemer en dieren ook raadplegen, wijzigen en verwijderen. Hiervoor zijn schermen beschikbaar.
 
 **[Administratie kan een lijst van deelnemers en dieren inlezen](stories/administratie-lijst-deelnemers-dieren-inlezen.md)**
 
-De administratie kan een lijst met deelnemers en dieren inlezen. Deze wordt gevalideerd en in de database gezet. De lijst met deelnemers en dieren kunnen geraadpleegd, gewijzigd en verwijderd worden. 
+De administratie kan een lijst met deelnemers en dieren inlezen. Deze wordt gevalideerd en in de database gezet. De lijst met deelnemers en dieren kunnen geraadpleegd, gewijzigd en verwijderd worden. Hiervoor zijn schermen beschikbaar.
 
 **[Automatische klassebepaling dieren](stories/automatische-klassebepaling-dieren.md)**
 
-Als er via online inschrijving of inlezen van een lijst dieren worden aangemeld, dan worden de klasse van de dieren automatisch bepaald aan de hand van de soort, de leeftijdsgroep, het geslacht en de kleur. De klasse moet altijd kloppen, dus bij elke wijziging van de kenmerken moet de klasse herbepaald worden.
+Als er via online inschrijving of inlezen van een lijst dieren worden aangemeld, dan worden de klasse van de dieren automatisch bepaald aan de hand van de soort, de leeftijdsgroep, het geslacht en de kleur. De klasse moet altijd kloppen, dus bij elke wijziging van de kenmerken moet de klasse herbepaald worden. De klasse wordt hoort bij een individueel dier en wordt daarom bij de gegevens van een dier opgeslagen. Deze worden ook getoond op bij de gegevens van een dier.
 
 **[Handmatig showvolgorde bepalen](stories/handmatig-showvolgorde-bepalen.md)**
 
-De administratie kan de volgorde van de showklassen handmatig bepalen, zodat dieren in de juiste volgorde in de show worden gepresenteerd.
+De administratie kan de volgorde van de showklassen handmatig bepalen, zodat dieren in de juiste volgorde in de show worden gepresenteerd. Hiervoor is een scherm beschikbaar.
 
 **[Startnummers toekennen](stories/startnummers-toekennen.md)**
 
-Na sluiting van inschrijving worden aan de hand van de klasse/show-volgorde startnummers toegekend aan de dieren. Deze mogen na toekenning niet meer gewijzigd worden.
+Na sluiting van inschrijving worden aan de hand van de klasse/show-volgorde startnummers toegekend aan de dieren. Deze mogen na toekenning niet meer gewijzigd worden. 
 
 **[Automatische indeling eerste ronde](stories/automatische-indeling-eerste-ronde.md)**
 
@@ -46,9 +46,13 @@ De administratie moet ringlijsten en certificaten kunnen printen tijdens de show
 
 **[Presentatie](stories/presentatie.md)**
 
-Er moeten schermen beschikbaar zijn voor de deelnemers en administratie die het mogelijk maken om het overzicht te hebben over showgegevens, de deelnemers, dieren, klasse volgorde, ringen, vervolgringen, prijzen en output. Tevens moet het makkelijk zijn om zaken aan te passen.
+Er moeten schermen beschikbaar zijn voor de deelnemers en administratie die het mogelijk maken om het overzicht te hebben over showgegevens, de deelnemers, dieren, klasse volgorde, ringen, vervolgringen, prijzen en output. Tevens moet het makkelijk zijn om zaken aan te passen. > kan mogelijk voor het grootste deel bij andere epics worden uitgewerkt.
 
 **Autorisatie**
 
 Nog uitwerken...
+
+**Meerdere shows**
+
+Het moet mogelijk zijn om meerdere shows te kunnen opvoeren. Welke show actief is of niet kan aangegeven worden. Inschrijving van deelnemers, dieren, showvolgorde, ringen, prijzen en ronden kunnen per show worden aangegeven. 
 
