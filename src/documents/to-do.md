@@ -5,7 +5,7 @@
 * [X] - userstories - not all, start with one epic and finish some businessvalue first!
 * [X] - Scenario's (put into Cucumber automated test runs) - same as userstories, not all at one. 
 * [X] - high level application picture > frontend - backend - database
-* [X] - high level project structure
+* [X] - high level project structure > two module application
 * [X] - add to GIT, add to Travis
 
 # Backend
