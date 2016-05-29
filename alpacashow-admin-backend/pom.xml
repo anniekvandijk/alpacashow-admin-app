@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>alpacashow-admin-backend</artifactId>
-    <packaging>ear</packaging>
+    <packaging>jar</packaging>
 
 
 </project>
