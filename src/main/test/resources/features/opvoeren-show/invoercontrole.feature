@@ -3,6 +3,8 @@
 Functionaliteit: medewerker van de administratie wil ik dat de ingevoerde gegevens gecontroleerd worden op juistheid, 
 zodat er geen foute gegevens worden berekend en alle nodige gegevens aanwezig zijn.
 
+ # Controle zowel op het scherm als in de backend (stel dat de implementatie in een interface niet goed is, dan kan de applicatie dit afvangen)
+
  Abstract Scenario: validatie op verplicht veld
    Stel ik ben als administratiemedewerker op het scherm 'opvoeren showgegevens'
    Als ik in het veld '<Veld>' geen waarde invoer
