@@ -9,7 +9,7 @@
 * [X] - add to GIT, add to Travis
 
 # Backend
-* [ ] - application picture - high level
+* [X] - application picture - high level
 * [ ] - unit tests
 * [ ] - build core-backend
 
