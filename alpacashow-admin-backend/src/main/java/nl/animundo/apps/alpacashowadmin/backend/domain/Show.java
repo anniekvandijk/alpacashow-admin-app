@@ -23,6 +23,8 @@ public class Show {
 
     }
 
+    // TODO: vraag: zijn de setters nodig?
+
     public String getShowName() {
         return showName;
     }

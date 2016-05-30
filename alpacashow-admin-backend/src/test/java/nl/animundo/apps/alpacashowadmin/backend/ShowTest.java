@@ -24,7 +24,7 @@ public class ShowTest {
      ********************************/
 
     @Test
-    public void  newShow() {
+    public void newShow() {
 
         showName = "Test show";
         showDate = LocalDate.of(2016,5,1);
@@ -39,6 +39,31 @@ public class ShowTest {
         assertEquals(LocalDate.of(2016,1,1), show.getShowCloseDate());
         assertEquals("Surhuisterveen", show.getShowLocation());
         assertEquals("Test Judge", show.getShowJudge());
+    }
+
+    @Test
+    public void setShowFields() {
+
+        showName = "Test show";
+        showDate = LocalDate.of(2016,5,1);
+        showCloseDate = LocalDate.of(2016,1,1);
+        showLocation = "Surhuisterveen";
+        showJudge = "Test Judge";
+
+        Show show = new Show(showName, showDate, showCloseDate, showLocation, showJudge);
+
+        show.setShowName("Test show change");
+        show.setShowDate(LocalDate.of(2016,6,2));
+        show.setShowCloseDate(LocalDate.of(2016,7,12));
+        show.setShowLocation("Meppel");
+        show.setShowJudge("Test Judge change");
+
+        assertEquals("Test show change", show.getShowName());
+        assertEquals(LocalDate.of(2016,6,2), show.getShowDate());
+        assertEquals(LocalDate.of(2016,7,12), show.getShowCloseDate());
+        assertEquals("Meppel", show.getShowLocation());
+        assertEquals("Test Judge change", show.getShowJudge());
+
     }
 
     @Test
