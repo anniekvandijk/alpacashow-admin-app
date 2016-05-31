@@ -9,3 +9,10 @@
 .settings/
 .project
 .classpath
+
+#NodeJS
+*typings
+*node_modules
+*app/js/*
+*npm-debug.log
+
