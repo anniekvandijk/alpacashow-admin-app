@@ -1,8 +1,8 @@
-**[Scherm opvoeren show](../../main/test/resources/features/opvoeren-show/scherm-opvoeren-show.feature)**
+**[Scherm opvoeren show](../../alpacashow-admin-it/src/main/test/resources/features/integration-test/opvoeren-show/scherm-opvoeren-show.feature)**
 
 Als medewerker van de administratie wil ik de gegevens van een show kunnen invoeren op een scherm, zodat deze gebruikt kunnen worden voor de show administratie.
 
-**[Invoercontrole](../../main/test/resources/features/opvoeren-show/invoercontrole.feature)**
+**[Invoercontrole](../../alpacashow-admin-it/src/main/test/resources/features/integration-test/opvoeren-show/invoercontrole.feature)**
 
 Als medewerker van de administratie wil ik dat de ingevoerde gegevens gecontroleerd worden op juistheid, zodat er geen foute gegevens worden berekend en alle nodige gegevens aanwezig zijn.
 
