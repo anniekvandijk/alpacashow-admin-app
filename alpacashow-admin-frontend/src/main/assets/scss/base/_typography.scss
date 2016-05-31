@@ -1,0 +1,41 @@
+
+/* Fonts */
+
+// font family
+
+$font-family-main:            Verdana, Geneva, sans-serif;
+$font-family-second:          "France";
+
+// font size
+
+$size-heading1:               43px;
+$size-heading2:               28px;
+$size-heading3:               18px;
+$size-text-normal:            12px;
+
+body {
+  font-family: $font-family-main;
+  color: $default-text-color;
+  font-size: $size-text-normal;
+}
+
+h1, h2, h3 {
+  font-family: $font-family-second;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: $size-heading1;
+  border-bottom: $border-dotted;
+  color:$brand-first-color;
+}
+
+h2 {
+  font-size: $size-heading2;
+  color:$brand-second-color;
+}
+
+h3 {
+  font-size: $size-heading3;
+  color:$brand-first-light-color;
+}
