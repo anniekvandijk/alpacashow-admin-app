@@ -26,5 +26,5 @@ h2 {
 /* line 35, ../scss/base/_typography.scss */
 h3 {
   font-size: 18px;
-  color: #4969cc;
+  color: darken #263e89, 30%;
 }
