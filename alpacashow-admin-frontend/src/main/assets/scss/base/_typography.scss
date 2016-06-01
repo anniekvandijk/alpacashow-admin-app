@@ -4,7 +4,7 @@
 // font family
 
 $font-family-main:            Verdana, Geneva, sans-serif;
-$font-family-second:          "France";
+$font-family-second:          Arial;
 
 // font size
 
@@ -16,17 +16,14 @@ $size-text-normal:            12px;
 body {
   font-family: $font-family-main;
   color: $default-text-color;
-  font-size: $size-text-normal;
 }
 
 h1, h2, h3 {
   font-family: $font-family-second;
-  font-weight: normal;
 }
 
 h1 {
   font-size: $size-heading1;
-  border-bottom: $border-dotted;
   color:$brand-first-color;
 }
 

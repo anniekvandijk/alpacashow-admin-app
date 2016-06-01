@@ -16,3 +16,5 @@
 *app/js/*
 *npm-debug.log*
 
+#sass/scss
+*sass-cache
