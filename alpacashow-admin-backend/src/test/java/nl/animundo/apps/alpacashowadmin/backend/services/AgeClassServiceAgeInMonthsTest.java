@@ -33,7 +33,7 @@ public class AgeClassServiceAgeInMonthsTest {
 
         showDate = LocalDate.of(2016,5,15);
         dateOfBirth = LocalDate.of(2015, 11, 16);
-        assertEquals(0, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
+        assertEquals(5, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
     }
 
     @Test
