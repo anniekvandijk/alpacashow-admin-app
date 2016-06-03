@@ -1,9 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
 import org.junit.Test;
-
-import java.time.LocalDate;
-
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -19,67 +16,68 @@ public class AgeClassServiceAgeClassTest {
     // 72-...MATURE
 
     @Test
+    public void AgeClassLessThan0() {
+
+        int ageInMonths = -1;
+        AgeClassService.getAgeClass(ageInMonths);
+        assertEquals("Error!", AgeClassService.getAgeClass(ageInMonths));
+    }
+
+    @Test
     public void AgeClassLess0Months() {
 
         int ageInMonths = 0;
-        AgeClassService.setAgeInMonths(ageInMonths);
-        assertEquals("To young", AgeClassService.getAgeClass());
+        AgeClassService.getAgeClass(ageInMonths);
+        assertEquals("To young!", AgeClassService.getAgeClass(ageInMonths));
     }
 
     @Test
     public void AgeClass5Months() {
 
         int ageInMonths = 5;
-        AgeClassService.setAgeInMonths(ageInMonths);
-        assertEquals("To Joung", AgeClassService.getAgeClass());
+        assertEquals("To young!", AgeClassService.getAgeClass(ageInMonths));
     }
 
     @Test
     public void AgeClas6Months() {
 
         int ageInMonths = 6;
-        AgeClassService.setAgeInMonths(ageInMonths);
-        assertEquals("Junior", AgeClassService.getAgeClass());
+        assertEquals("Junior", AgeClassService.getAgeClass(ageInMonths));
     }
 
     @Test
     public void AgeClass11Months() {
 
         int ageInMonths = 11;
-        AgeClassService.setAgeInMonths(ageInMonths);
-        assertEquals("Junior", AgeClassService.getAgeClass());
+        assertEquals("Junior", AgeClassService.getAgeClass(ageInMonths));
     }
 
     @Test
     public void AgeClass12Months() {
 
         int ageInMonths = 12;
-        AgeClassService.setAgeInMonths(ageInMonths);
-        assertEquals("Intermediate", AgeClassService.getAgeClass());
+        assertEquals("Intermediate", AgeClassService.getAgeClass(ageInMonths));
     }
 
     @Test
     public void AgeClass23Months() {
 
         int ageInMonths = 23;
-        AgeClassService.setAgeInMonths(ageInMonths);
-        assertEquals("Intermediate", AgeClassService.getAgeClass());
+        assertEquals("Intermediate", AgeClassService.getAgeClass(ageInMonths));
     }
 
     @Test
     public void AgeClass24Months() {
 
         int ageInMonths = 24;
-        AgeClassService.setAgeInMonths(ageInMonths);
-        assertEquals("Adult", AgeClassService.getAgeClass());
+        assertEquals("Adult", AgeClassService.getAgeClass(ageInMonths));
     }
 
     @Test
     public void AgeClass47Months() {
 
         int ageInMonths = 47;
-        AgeClassService.setAgeInMonths(ageInMonths);
-        assertEquals("Adult", AgeClassService.getAgeClass());
+        assertEquals("Adult", AgeClassService.getAgeClass(ageInMonths));
 
     }
 
@@ -87,8 +85,7 @@ public class AgeClassServiceAgeClassTest {
     public void AgeClass48Months() {
 
         int ageInMonths = 48;
-        AgeClassService.setAgeInMonths(ageInMonths);
-        assertEquals("Senior", AgeClassService.getAgeClass());
+        assertEquals("Senior", AgeClassService.getAgeClass(ageInMonths));
 
     }
 
@@ -96,8 +93,7 @@ public class AgeClassServiceAgeClassTest {
     public void AgeClass71Months() {
 
         int ageInMonths = 71;
-        AgeClassService.setAgeInMonths(ageInMonths);
-        assertEquals("Senior", AgeClassService.getAgeClass());
+        assertEquals("Senior", AgeClassService.getAgeClass(ageInMonths));
 
     }
 
@@ -105,16 +101,14 @@ public class AgeClassServiceAgeClassTest {
     public void AgeClass72Months() {
 
         int ageInMonths = 72;
-        AgeClassService.setAgeInMonths(ageInMonths);
-        assertEquals("Mature", AgeClassService.getAgeClass());
+        assertEquals("Mature", AgeClassService.getAgeClass(ageInMonths));
     }
 
     @Test
     public void AgeClass101Months() {
 
         int ageInMonths = 101;
-        AgeClassService.setAgeInMonths(ageInMonths);
-        assertEquals("Mature", AgeClassService.getAgeClass());
+        assertEquals("Mature", AgeClassService.getAgeClass(ageInMonths));
 
     }
 }

@@ -13,74 +13,90 @@ public class AgeClassServiceAgeInMonthsTest {
     LocalDate dateOfBirth;
 
     @Test
-    public void AgeInMonths12MinusOneDay() {
+    public void AgeInMonthsBelow0() {
 
         showDate = LocalDate.of(2016,5,15);
         dateOfBirth = LocalDate.of(2016, 5, 16);
-        AgeClassService.calculateAgeInMonths(showDate, dateOfBirth);
-        assertEquals(11, AgeClassService.getAgeInMonths);
+        assertEquals(-1, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
+    }
+
+    @Test
+    public void AgeInMonths0() {
+
+        showDate = LocalDate.of(2016,5,15);
+        dateOfBirth = LocalDate.of(2016, 5, 15);
+        assertEquals(0, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
+    }
+
+    @Test
+    public void AgeInMonths6MinusOneDay() {
+
+        showDate = LocalDate.of(2016,5,15);
+        dateOfBirth = LocalDate.of(2015, 11, 16);
+        assertEquals(0, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
+    }
+
+    @Test
+    public void AgeInMonths12MinusOneDay() {
+
+        showDate = LocalDate.of(2016,5,15);
+        dateOfBirth = LocalDate.of(2015, 5, 16);
+        assertEquals(11, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths12() {
 
         showDate = LocalDate.of(2016,5,15);
-        dateOfBirth = LocalDate.of(2016,5,15);
-        AgeClassService.calculateAgeInMonths(showDate, dateOfBirth);
-        assertEquals(12, AgeClassService.getAgeInMonths);
+        dateOfBirth = LocalDate.of(2015,5,15);
+        assertEquals(12, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths12andOneDay() {
 
         showDate = LocalDate.of(2016,5,15);
-        dateOfBirth = LocalDate.of(2016,5,14);
-        AgeClassService.calculateAgeInMonths(showDate, dateOfBirth);
-        assertEquals(12, AgeClassService.getAgeInMonths);
+        dateOfBirth = LocalDate.of(2015,5,14);
+        assertEquals(12, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonthsJust12() {
 
         showDate = LocalDate.of(2016,4,30);
-        dateOfBirth = LocalDate.of(2016,5,15);
-        AgeClassService.calculateAgeInMonths(showDate, dateOfBirth);
-        assertEquals(12, AgeClassService.getAgeInMonths);
+        dateOfBirth = LocalDate.of(2015,5,15);
+        assertEquals(12, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonthsSchrikkeljaarShowDate12() {
 
         showDate = LocalDate.of(2016,2,29);
-        dateOfBirth = LocalDate.of(2016,2,28);
-        AgeClassService.calculateAgeInMonths(showDate, dateOfBirth);
-        assertEquals(12, AgeClassService.getAgeInMonths);
+        dateOfBirth = LocalDate.of(2015,2,28);
+        assertEquals(12, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonthsSchrikkeljaarShowDate11() {
 
         showDate = LocalDate.of(2016,2,29);
-        dateOfBirth = LocalDate.of(2016,3,1);
-        AgeClassService.calculateAgeInMonths(showDate, dateOfBirth);
-        assertEquals(12, AgeClassService.getAgeInMonths);
+        dateOfBirth = LocalDate.of(2015,3,1);
+        assertEquals(12, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonthsSchrikkeljaarDateOfBrth12() {
 
-        showDate = LocalDate.of(2016,3,30);
+        showDate = LocalDate.of(2017,3,30);
         dateOfBirth = LocalDate.of(2016,2,29);
-        AgeClassService.calculateAgeInMonths(showDate, dateOfBirth);
-        assertEquals(12, AgeClassService.getAgeInMonths);
+        assertEquals(12, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonthsSchrikkeljaarDateOfBrth11() {
 
-        showDate = LocalDate.of(2016,3,28);
+        showDate = LocalDate.of(201,3,28);
         dateOfBirth = LocalDate.of(2016,2,29);
-        AgeClassService.calculateAgeInMonths(showDate, dateOfBirth);
-        assertEquals(12, AgeClassService.getAgeInMonths);
+        assertEquals(12, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
     }
 }
