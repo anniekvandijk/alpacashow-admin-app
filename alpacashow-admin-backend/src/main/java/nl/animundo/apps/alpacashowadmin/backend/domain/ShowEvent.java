@@ -6,7 +6,7 @@ import java.time.*;
 /**
  * Created by Anniek van Dijk on 29-5-2016.
  */
-public class Show {
+public class ShowEvent {
 
     private String showName;
     private LocalDate showDate;
@@ -14,7 +14,7 @@ public class Show {
     private String showLocation;
     private String showJudge;
 
-    public Show (String showName, LocalDate showDate, LocalDate showCloseDate, String showLocation, String showJudge) {
+    public ShowEvent(String showName, LocalDate showDate, LocalDate showCloseDate, String showLocation, String showJudge) {
         this.showName = showName;
         this.showDate = showDate;
         this.showCloseDate = showCloseDate;

@@ -1,9 +1,9 @@
-package nl.animundo.apps.alpacashowadmin.backend;
+package nl.animundo.apps.alpacashowadmin.backend.services;
 
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
-public class ShowInputValidationTest {
+public class ShowEventInputValidationTest {
 
     /*********************************
      * SHOWNAME TESTS
