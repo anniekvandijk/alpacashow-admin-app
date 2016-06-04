@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Anniek van Dijk on 3-6-2016.
  */
-public class AnimalClassServiceColorCodeTest {
+public class AnimalClassCodeServiceColorCodeTest {
 
     @Test
     public void noColor() {
@@ -15,7 +15,7 @@ public class AnimalClassServiceColorCodeTest {
         // TODO How to create errormessage to return?
 
         String color = "";
-        assertEquals(-1, AnimalClassService.getColorCode(color));
+        assertEquals(-1, AnimalClassCodeService.getColorCode(color));
     }
 
     @Test
@@ -24,55 +24,55 @@ public class AnimalClassServiceColorCodeTest {
         // TODO How to create errormessage to return?
 
         String color = "Blue";
-        assertEquals(-1, AnimalClassService.getColorCode(color));
+        assertEquals(-1, AnimalClassCodeService.getColorCode(color));
     }
 
     @Test
     public void whiteColorCode() {
 
         String color = "White";
-        assertEquals(0, AnimalClassService.getColorCode(color));
+        assertEquals(0, AnimalClassCodeService.getColorCode(color));
     }
 
     @Test
     public void fawnColorCode() {
 
         String color = "Fawn";
-        assertEquals(1, AnimalClassService.getColorCode(color));
+        assertEquals(1, AnimalClassCodeService.getColorCode(color));
     }
 
     @Test
     public void brownColorCode() {
 
         String color = "Brown";
-        assertEquals(2, AnimalClassService.getColorCode(color));
+        assertEquals(2, AnimalClassCodeService.getColorCode(color));
     }
 
     @Test
     public void greyColorCode() {
 
         String color = "Grey";
-        assertEquals(3, AnimalClassService.getColorCode(color));
+        assertEquals(3, AnimalClassCodeService.getColorCode(color));
     }
 
     @Test
     public void blackColorCode() {
 
         String color = "Black";
-        assertEquals(4, AnimalClassService.getColorCode(color));
+        assertEquals(4, AnimalClassCodeService.getColorCode(color));
     }
 
     @Test
     public void fancyColorCode() {
 
         String color = "Fancy";
-        assertEquals(5, AnimalClassService.getColorCode(color));
+        assertEquals(5, AnimalClassCodeService.getColorCode(color));
     }
 
     @Test
     public void beigeColorCode() {
 
         String color = "Beige";
-        assertEquals(6, AnimalClassService.getColorCode(color));
+        assertEquals(6, AnimalClassCodeService.getColorCode(color));
     }
 }

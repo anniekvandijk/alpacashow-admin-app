@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Anniek van Dijk on 3-6-2016.
  */
-public class AnimalClassServiceBreedCodeTest {
+public class AnimalClassCodeServiceBreedCodeTest {
 
     // Huacaya = 1
     // Suri = 2
@@ -20,7 +20,7 @@ public class AnimalClassServiceBreedCodeTest {
         // TODO How to create errormessage to return?
 
         String breed = "";
-        assertEquals(-1, AnimalClassService.getBreedCode(breed));
+        assertEquals(-1, AnimalClassCodeService.getBreedCode(breed));
     }
 
     @Test
@@ -29,34 +29,34 @@ public class AnimalClassServiceBreedCodeTest {
         // TODO How to create errormessage to return?
 
         String breed = "Ezel";
-        assertEquals(-1, AnimalClassService.getBreedCode(breed));
+        assertEquals(-1, AnimalClassCodeService.getBreedCode(breed));
     }
 
     @Test
     public void huacayaBreedCode() {
 
         String breed = "Huacaya";
-        assertEquals(1, AnimalClassService.getBreedCode(breed));
+        assertEquals(1, AnimalClassCodeService.getBreedCode(breed));
     }
 
     @Test
     public void suriBreedCode() {
 
         String breed = "Suri";
-        assertEquals(2, AnimalClassService.getBreedCode(breed));
+        assertEquals(2, AnimalClassCodeService.getBreedCode(breed));
     }
 
     @Test
     public void huacayaFleeceBreedCode() {
 
         String breed = "Huacaya Fleece";
-        assertEquals(3, AnimalClassService.getBreedCode(breed));
+        assertEquals(3, AnimalClassCodeService.getBreedCode(breed));
     }
 
     @Test
     public void suriFleeceBreedCode() {
 
         String breed = "Suri Fleece";
-        assertEquals(4, AnimalClassService.getBreedCode(breed));
+        assertEquals(4, AnimalClassCodeService.getBreedCode(breed));
     }
 }
