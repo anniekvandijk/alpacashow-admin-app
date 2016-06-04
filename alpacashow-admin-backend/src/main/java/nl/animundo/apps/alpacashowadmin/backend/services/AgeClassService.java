@@ -18,28 +18,27 @@ public class AgeClassService {
 
         String ageClass = "";
 
-        if (ageInMonths < 0 ) {
-            return "Error!";
-        }
-        else if (ageInMonths >= 0 && ageInMonths < 6 ) {
+        if (ageInMonths >= 0 & ageInMonths < 6 ) {
             return "To young!";
         }
-        else if (ageInMonths >= 6 && ageInMonths < 12 ) {
+        else if (ageInMonths >= 6 & ageInMonths < 12 ) {
             return "Junior";
         }
-        else if (ageInMonths >= 12 && ageInMonths < 24 ) {
+        else if (ageInMonths >= 12 & ageInMonths < 24 ) {
             return "Intermediate";
         }
-        else if (ageInMonths >= 24 && ageInMonths < 48 ) {
+        else if (ageInMonths >= 24 & ageInMonths < 48 ) {
             return "Adult";
         }
-        else if (ageInMonths >= 48 && ageInMonths < 72) {
+        else if (ageInMonths >= 48 & ageInMonths < 72) {
             return "Senior";
         }
         else if (ageInMonths >= 72 ) {
             return "Mature";
         }
-        return ageClass;
+        else {
+            return "Error!";
+        }
     }
 
     public static long getAgeInMonths(LocalDate showDate, LocalDate dateOfBirth) {
