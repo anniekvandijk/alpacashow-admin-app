@@ -14,7 +14,6 @@ public class AgeClassServiceAgeClassTest {
     public void AgeClassLessThan0() {
 
         int ageInMonths = -1;
-        AgeClassService.getAgeClass(ageInMonths);
         assertEquals("Error!", AgeClassService.getAgeClass(ageInMonths));
     }
 
@@ -22,7 +21,6 @@ public class AgeClassServiceAgeClassTest {
     public void AgeClassLess0Months() {
 
         int ageInMonths = 0;
-        AgeClassService.getAgeClass(ageInMonths);
         assertEquals("To young!", AgeClassService.getAgeClass(ageInMonths));
     }
 
