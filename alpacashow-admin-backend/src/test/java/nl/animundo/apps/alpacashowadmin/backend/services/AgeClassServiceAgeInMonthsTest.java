@@ -12,11 +12,13 @@ public class AgeClassServiceAgeInMonthsTest {
     LocalDate showDate;
     LocalDate dateOfBirth;
 
+    // TODO input die niet mag
+
     @Test
     public void AgeInMonthsBelow0() {
 
         showDate = LocalDate.of(2016,5,15);
-        dateOfBirth = LocalDate.of(2016, 5, 16);
+        dateOfBirth = LocalDate.of(2016, 6, 15);
         assertEquals(-1, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
     }
 
@@ -29,11 +31,27 @@ public class AgeClassServiceAgeInMonthsTest {
     }
 
     @Test
+    public void AgeInMonthsAlso0() {
+
+        showDate = LocalDate.of(2016,5,15);
+        dateOfBirth = LocalDate.of(2016, 4, 16);
+        assertEquals(0, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
+    }
+
+    @Test
     public void AgeInMonths6MinusOneDay() {
 
         showDate = LocalDate.of(2016,5,15);
         dateOfBirth = LocalDate.of(2015, 11, 16);
         assertEquals(5, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
+    }
+
+    @Test
+    public void AgeInMonths18Months() {
+
+        showDate = LocalDate.of(2016,11,15);
+        dateOfBirth = LocalDate.of(2015, 5, 1);
+        assertEquals(18, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
     }
 
     @Test
@@ -63,7 +81,7 @@ public class AgeClassServiceAgeInMonthsTest {
     @Test
     public void AgeInMonthsJust12() {
 
-        showDate = LocalDate.of(2016,4,30);
+        showDate = LocalDate.of(2016,5,30);
         dateOfBirth = LocalDate.of(2015,5,15);
         assertEquals(12, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
     }
@@ -81,13 +99,13 @@ public class AgeClassServiceAgeInMonthsTest {
 
         showDate = LocalDate.of(2016,2,29);
         dateOfBirth = LocalDate.of(2015,3,1);
-        assertEquals(12, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
+        assertEquals(11, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonthsSchrikkeljaarDateOfBrth12() {
 
-        showDate = LocalDate.of(2017,3,30);
+        showDate = LocalDate.of(2017,3,1);
         dateOfBirth = LocalDate.of(2016,2,29);
         assertEquals(12, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
     }
@@ -95,8 +113,8 @@ public class AgeClassServiceAgeInMonthsTest {
     @Test
     public void AgeInMonthsSchrikkeljaarDateOfBrth11() {
 
-        showDate = LocalDate.of(201,3,28);
-        dateOfBirth = LocalDate.of(2016,2,29);
+        showDate = LocalDate.of(2017, 3, 28);
+        dateOfBirth = LocalDate.of(2016, 2, 29);
         assertEquals(12, AgeClassService.getAgeInMonths(showDate, dateOfBirth));
     }
 }

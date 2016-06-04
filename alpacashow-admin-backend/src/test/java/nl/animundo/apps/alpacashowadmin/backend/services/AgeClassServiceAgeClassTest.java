@@ -8,12 +8,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class AgeClassServiceAgeClassTest {
 
-    // Onder 6 maanden uitgesloten van deelname
-    // 6-11 maanden JUNIOR
-    // 12-23 maanden INTERMEDIATE
-    // 24-47 ADULT
-    // 48-71 SENIOR
-    // 72-...MATURE
+    // TODO Input die niet mag
 
     @Test
     public void AgeClassLessThan0() {
