@@ -8,5 +8,3 @@
 [![Build Status](https://travis-ci.org/anniekvandijk/alpacashow-admin-app.svg?branch=develop)](https://travis-ci.org/anniekvandijk/alpacashow-admin-app) [![Code Coverage](https://img.shields.io/codecov/c/github/anniekvandijk/alpacashow-admin-app/develop.svg)](https://codecov.io/github/anniekvandijk/alpacashow-admin-app?branch=develop)
 
 ***
-![alt application-sketch](https://github.com/anniekvandijk/alpacashow-admin-app/blob/develop/src/documents/application-sketch.png)
-

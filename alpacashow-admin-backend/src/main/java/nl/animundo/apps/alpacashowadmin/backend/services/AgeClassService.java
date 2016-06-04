@@ -13,6 +13,7 @@ public class AgeClassService {
     // TODO Error als ageInMonths onder de 0 komt.
     // TODO Melding te jong als ageInMonths onder de 6 komt.
     // TODO Een max stellen aan de leeftijd in maanden?
+    // TODO Kan ik hier een switch van maken?
 
     public static String getAgeClass(int ageInMonths) {
 
