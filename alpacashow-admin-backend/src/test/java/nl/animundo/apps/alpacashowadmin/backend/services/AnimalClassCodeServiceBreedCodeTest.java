@@ -4,7 +4,6 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -14,6 +13,18 @@ public class AnimalClassCodeServiceBreedCodeTest {
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
+
+//    TODO How to mock a non existing enum?
+
+//    @Test
+//    public void unknownBreed() {
+//
+//        exception.expect(IllegalArgumentException.class);
+//        exception.expectMessage("Soort onbekend");
+//
+//        Enum breed = Animal.breed.NOBREED;
+//        AnimalClassCodeService.getBreedCode(breed);
+//    }
 
     @Test
     public void huacayaBreedCode() {
