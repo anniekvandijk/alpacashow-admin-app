@@ -1,6 +1,8 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class AnimalClassCodeServiceFullClassCodeTest {
 
-    // TODO More unittests met foute waarden
+    // TODO vraag, foute waarden worden al getest in de diverse andere methoden, moet dat hier weer?
 
     @Test
     public void huacayaJuniorMaleWhiteClassCode() {

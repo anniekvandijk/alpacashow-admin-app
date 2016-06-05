@@ -1,6 +1,8 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,25 +26,29 @@ public class AnimalClassCodeServiceAgeSexCodeTest {
 //    AFST MALE	91
 //    GELDER	95
 
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
+
     @Test
     public void unknownSex() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Geslacht onbekend");
+
         String sex = "Gelder";
         String ageClass = "Junior";
-        assertEquals(-1, AnimalClassCodeService.getAgeSexCode(ageClass, sex));
+        AnimalClassCodeService.getAgeSexCode(ageClass, sex);
     }
 
     @Test
     public void unknownAgeClass() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Leeftijdsklasse kan niet bepaald worden");
+
         String sex = "Female";
         String ageClass = "Baby";
-        assertEquals(-1, AnimalClassCodeService.getAgeSexCode(ageClass, sex));
-    }
-
-    @Test
-    public void unknownSexAndAgeClass() {
-        String sex = "Gelder";
-        String ageClass = "Baby";
-        assertEquals(-1, AnimalClassCodeService.getAgeSexCode(ageClass, sex));
+        AnimalClassCodeService.getAgeSexCode(ageClass, sex);
     }
 
     @Test
@@ -97,7 +103,7 @@ public class AnimalClassCodeServiceAgeSexCodeTest {
     public void intermediateMaleCode() {
 
         String sex = "Male";
-        String ageClass = "Intermedeiate";
+        String ageClass = "Intermediate";
         assertEquals(3, AnimalClassCodeService.getAgeSexCode(ageClass, sex));
     }
 

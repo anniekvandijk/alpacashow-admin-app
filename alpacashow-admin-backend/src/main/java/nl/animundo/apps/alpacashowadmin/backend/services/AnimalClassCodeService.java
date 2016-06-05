@@ -18,7 +18,7 @@ public class AnimalClassCodeService {
 
     public static int getBreedCode(String breed) {
 
-        int breedCode = -1;
+        int breedCode;
         switch (breed) {
             case "Huacaya":
                 breedCode = 1;
@@ -33,20 +33,14 @@ public class AnimalClassCodeService {
                 breedCode = 4;
                 break;
             default:
-                //error
+                throw new IllegalArgumentException("Soort onbekend");
         }
         return breedCode;
     }
 
     public static int getAgeSexCode (String ageClass, String sex) {
 
-    // Niet geimplementeerd:
-    //    AFST FLEECE	40
-    //    AFST FEMALE	90
-    //    AFST MALE	91
-    //    GELDER	95
-
-        int ageSexCode = -1;
+        int ageSexCode;
 
         if ("Female".equals(sex)) {
             switch (ageClass) {
@@ -66,7 +60,7 @@ public class AnimalClassCodeService {
                     ageSexCode = 8;
                     break;
                 default:
-                    //error
+                    throw new IllegalArgumentException("Leeftijdsklasse kan niet bepaald worden");
             }
         }
         else if ("Male".equals(sex)) {
@@ -74,7 +68,7 @@ public class AnimalClassCodeService {
                 case "Junior":
                     ageSexCode = 1;
                     break;
-                case "Intermedeiate":
+                case "Intermediate":
                     ageSexCode = 3;
                     break;
                 case "Adult":
@@ -87,18 +81,18 @@ public class AnimalClassCodeService {
                     ageSexCode = 9;
                     break;
                 default:
-                    // error
+                    throw new IllegalArgumentException("Leeftijdsklasse kan niet bepaald worden");
             }
         }
         else {
-            // error
+            throw new IllegalArgumentException("Geslacht onbekend");
         }
         return ageSexCode;
     }
 
     public static int getColorCode(String color) {
 
-        int colorCode = -1;
+        int colorCode;
         switch (color) {
             case "White":
                 colorCode = 0;
@@ -122,22 +116,20 @@ public class AnimalClassCodeService {
                 colorCode = 6;
                 break;
             default:
-                //error
+                throw new IllegalArgumentException("Kleur onbekend");
         }
         return colorCode;
     }
-
-    // TODO Error als ageInMonths onder de 0 komt.
-    // TODO Melding te jong als ageInMonths onder de 6 komt.
-    // TODO Een max stellen aan de leeftijd in maanden?
-    // TODO Kan ik hier een switch van maken?
 
     public static String getAgeClass(int ageInMonths) {
 
         String ageClass = "";
 
-        if (ageInMonths >= 0 & ageInMonths < 6 ) {
-            return "To young!";
+        if (ageInMonths < 0 ) {
+            throw new IllegalArgumentException("Leeftijd onder de 0 maanden. Controleer de geboortedatum.");
+        }
+        else if (ageInMonths >= 0 & ageInMonths < 6 ) {
+            throw new IllegalArgumentException("Dieren onder de 6 maanden mogen niet deelnemen");
         }
         else if (ageInMonths >= 6 & ageInMonths < 12 ) {
             return "Junior";
@@ -154,9 +146,7 @@ public class AnimalClassCodeService {
         else if (ageInMonths >= 72 ) {
             return "Mature";
         }
-        else {
-            return "Error!";
-        }
+        return ageClass;
     }
 
     public static long getAgeInMonths(LocalDate showDate, LocalDate dateOfBirth) {

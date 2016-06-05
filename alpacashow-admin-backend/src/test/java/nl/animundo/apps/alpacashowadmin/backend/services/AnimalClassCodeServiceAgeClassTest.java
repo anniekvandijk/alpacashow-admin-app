@@ -1,6 +1,9 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -8,27 +11,37 @@ import static org.junit.Assert.assertEquals;
  */
 public class AnimalClassCodeServiceAgeClassTest {
 
-    // TODO Input die niet mag
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
 
     @Test
     public void AgeClassLessThan0() {
 
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Leeftijd onder de 0 maanden. Controleer de geboortedatum.");
+
         int ageInMonths = -1;
-        assertEquals("Error!", AnimalClassCodeService.getAgeClass(ageInMonths));
+        AnimalClassCodeService.getAgeClass(ageInMonths);
     }
 
     @Test
-    public void AgeClassLess0Months() {
+    public void AgeClass0Months() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Dieren onder de 6 maanden mogen niet deelnemen");
 
         int ageInMonths = 0;
-        assertEquals("To young!", AnimalClassCodeService.getAgeClass(ageInMonths));
+        AnimalClassCodeService.getAgeClass(ageInMonths);
     }
 
     @Test
     public void AgeClass5Months() {
 
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Dieren onder de 6 maanden mogen niet deelnemen");
+
         int ageInMonths = 5;
-        assertEquals("To young!", AnimalClassCodeService.getAgeClass(ageInMonths));
+        AnimalClassCodeService.getAgeClass(ageInMonths);
     }
 
     @Test

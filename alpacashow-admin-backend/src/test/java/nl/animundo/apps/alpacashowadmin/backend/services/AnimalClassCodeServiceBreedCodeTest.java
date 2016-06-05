@@ -1,6 +1,8 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,27 +11,27 @@ import static org.junit.Assert.assertEquals;
  */
 public class AnimalClassCodeServiceBreedCodeTest {
 
-    // Huacaya = 1
-    // Suri = 2
-    // Huacaya fleece = 3
-    // Suri Fleece = 4
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
 
     @Test
     public void noBreed() {
 
-        // TODO How to create errormessage to return?
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Soort onbekend");
 
         String breed = "";
-        assertEquals(-1, AnimalClassCodeService.getBreedCode(breed));
+        AnimalClassCodeService.getBreedCode(breed);
     }
 
     @Test
     public void unknownBreed() {
 
-        // TODO How to create errormessage to return?
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Soort onbekend");
 
         String breed = "Ezel";
-        assertEquals(-1, AnimalClassCodeService.getBreedCode(breed));
+        AnimalClassCodeService.getBreedCode(breed);
     }
 
     @Test

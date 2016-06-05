@@ -1,6 +1,8 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,22 +11,27 @@ import static org.junit.Assert.assertEquals;
  */
 public class AnimalClassCodeServiceColorCodeTest {
 
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
+
     @Test
     public void noColor() {
 
-        // TODO How to create errormessage to return?
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Kleur onbekend");
 
         String color = "";
-        assertEquals(-1, AnimalClassCodeService.getColorCode(color));
+        AnimalClassCodeService.getColorCode(color);
     }
 
     @Test
     public void unknownColor() {
 
-        // TODO How to create errormessage to return?
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Kleur onbekend");
 
         String color = "Blue";
-        assertEquals(-1, AnimalClassCodeService.getColorCode(color));
+        AnimalClassCodeService.getColorCode(color);
     }
 
     @Test

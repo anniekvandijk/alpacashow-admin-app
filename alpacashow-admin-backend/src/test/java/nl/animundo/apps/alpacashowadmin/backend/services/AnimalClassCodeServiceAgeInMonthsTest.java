@@ -12,8 +12,6 @@ public class AnimalClassCodeServiceAgeInMonthsTest {
     LocalDate showDate;
     LocalDate dateOfBirth;
 
-    // TODO input die niet mag
-
     @Test
     public void AgeInMonthsBelow0() {
 
