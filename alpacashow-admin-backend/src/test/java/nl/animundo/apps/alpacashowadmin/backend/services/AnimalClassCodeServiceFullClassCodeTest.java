@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Anniek van Dijk on 3-6-2016.
  */
-public class AnimalClassCodeTest {
+public class AnimalClassCodeServiceFullClassCodeTest {
 
     // TODO More unittests met foute waarden
 
