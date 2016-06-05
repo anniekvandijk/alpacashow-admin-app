@@ -19,9 +19,13 @@ public class ShowEventTest {
 
     // TODO: codecoverage set
 
-    /*********************************
-     * GENERAL TESTS
-     ********************************/
+    /** TODO Exception tests
+     *
+     * Alle velden zijn verplicht
+     * Shownaam mag niet meer dan 60 tekens zijn
+     *
+     */
+
 
     @Test
     public void newShowEvent() {
