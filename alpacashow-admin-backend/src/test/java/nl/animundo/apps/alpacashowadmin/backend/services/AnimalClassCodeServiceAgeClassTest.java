@@ -48,42 +48,42 @@ public class AnimalClassCodeServiceAgeClassTest {
     public void AgeClas6Months() {
 
         int ageInMonths = 6;
-        assertEquals("Junior", AnimalClassCodeService.getAgeClass(ageInMonths));
+        assertEquals("JUNIOR", AnimalClassCodeService.getAgeClass(ageInMonths));
     }
 
     @Test
     public void AgeClass11Months() {
 
         int ageInMonths = 11;
-        assertEquals("Junior", AnimalClassCodeService.getAgeClass(ageInMonths));
+        assertEquals("JUNIOR", AnimalClassCodeService.getAgeClass(ageInMonths));
     }
 
     @Test
     public void AgeClass12Months() {
 
         int ageInMonths = 12;
-        assertEquals("Intermediate", AnimalClassCodeService.getAgeClass(ageInMonths));
+        assertEquals("INTERMEDIATE", AnimalClassCodeService.getAgeClass(ageInMonths));
     }
 
     @Test
     public void AgeClass23Months() {
 
         int ageInMonths = 23;
-        assertEquals("Intermediate", AnimalClassCodeService.getAgeClass(ageInMonths));
+        assertEquals("INTERMEDIATE", AnimalClassCodeService.getAgeClass(ageInMonths));
     }
 
     @Test
     public void AgeClass24Months() {
 
         int ageInMonths = 24;
-        assertEquals("Adult", AnimalClassCodeService.getAgeClass(ageInMonths));
+        assertEquals("ADULT", AnimalClassCodeService.getAgeClass(ageInMonths));
     }
 
     @Test
     public void AgeClass47Months() {
 
         int ageInMonths = 47;
-        assertEquals("Adult", AnimalClassCodeService.getAgeClass(ageInMonths));
+        assertEquals("ADULT", AnimalClassCodeService.getAgeClass(ageInMonths));
 
     }
 
@@ -91,7 +91,7 @@ public class AnimalClassCodeServiceAgeClassTest {
     public void AgeClass48Months() {
 
         int ageInMonths = 48;
-        assertEquals("Senior", AnimalClassCodeService.getAgeClass(ageInMonths));
+        assertEquals("SENIOR", AnimalClassCodeService.getAgeClass(ageInMonths));
 
     }
 
@@ -99,7 +99,7 @@ public class AnimalClassCodeServiceAgeClassTest {
     public void AgeClass71Months() {
 
         int ageInMonths = 71;
-        assertEquals("Senior", AnimalClassCodeService.getAgeClass(ageInMonths));
+        assertEquals("SENIOR", AnimalClassCodeService.getAgeClass(ageInMonths));
 
     }
 
@@ -107,14 +107,14 @@ public class AnimalClassCodeServiceAgeClassTest {
     public void AgeClass72Months() {
 
         int ageInMonths = 72;
-        assertEquals("Mature", AnimalClassCodeService.getAgeClass(ageInMonths));
+        assertEquals("MATURE", AnimalClassCodeService.getAgeClass(ageInMonths));
     }
 
     @Test
     public void AgeClass101Months() {
 
         int ageInMonths = 101;
-        assertEquals("Mature", AnimalClassCodeService.getAgeClass(ageInMonths));
+        assertEquals("MATURE", AnimalClassCodeService.getAgeClass(ageInMonths));
 
     }
 }

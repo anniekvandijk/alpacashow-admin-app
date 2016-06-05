@@ -1,5 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
+import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -30,104 +31,82 @@ public class AnimalClassCodeServiceAgeSexCodeTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void unknownSex() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Geslacht onbekend");
-
-        String sex = "Gelder";
-        String ageClass = "Junior";
-        AnimalClassCodeService.getAgeSexCode(ageClass, sex);
-    }
-
-    @Test
-    public void unknownAgeClass() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Leeftijdsklasse kan niet bepaald worden");
-
-        String sex = "Female";
-        String ageClass = "Baby";
-        AnimalClassCodeService.getAgeSexCode(ageClass, sex);
-    }
-
-    @Test
     public void juniorFemaleCode() {
 
-        String sex = "Female";
-        String ageClass = "Junior";
+        Enum sex = Animal.sex.FEMALE;
+        Enum ageClass = AnimalClassCodeService.ageClass.JUNIOR;
         assertEquals(0, AnimalClassCodeService.getAgeSexCode(ageClass, sex));
     }
 
     @Test
     public void intermediateFemaleCode() {
 
-        String sex = "Female";
-        String ageClass = "Intermediate";
+        Enum sex = Animal.sex.FEMALE;
+        Enum ageClass = AnimalClassCodeService.ageClass.INTERMEDIATE;
         assertEquals(2, AnimalClassCodeService.getAgeSexCode(ageClass, sex));
     }
 
     @Test
     public void adultFemaleCode() {
 
-        String sex = "Female";
-        String ageClass = "Adult";
+        Enum sex = Animal.sex.FEMALE;
+        Enum ageClass = AnimalClassCodeService.ageClass.ADULT;
         assertEquals(4, AnimalClassCodeService.getAgeSexCode(ageClass, sex));
     }
 
     @Test
     public void seniorFemaleCode() {
 
-        String sex = "Female";
-        String ageClass = "Senior";
+        Enum sex = Animal.sex.FEMALE;
+        Enum ageClass = AnimalClassCodeService.ageClass.SENIOR;
         assertEquals(6, AnimalClassCodeService.getAgeSexCode(ageClass, sex));
     }
 
     @Test
     public void matureFemaleCode() {
 
-        String sex = "Female";
-        String ageClass = "Mature";
+        Enum sex = Animal.sex.FEMALE;
+        Enum ageClass = AnimalClassCodeService.ageClass.MATURE;
         assertEquals(8, AnimalClassCodeService.getAgeSexCode(ageClass, sex));
     }
 
     @Test
     public void juniorMaleCode() {
 
-        String sex = "Male";
-        String ageClass = "Junior";
+        Enum sex = Animal.sex.MALE;
+        Enum ageClass = AnimalClassCodeService.ageClass.JUNIOR;
         assertEquals(1, AnimalClassCodeService.getAgeSexCode(ageClass, sex));
     }
 
     @Test
     public void intermediateMaleCode() {
 
-        String sex = "Male";
-        String ageClass = "Intermediate";
+        Enum sex = Animal.sex.MALE;
+        Enum ageClass = AnimalClassCodeService.ageClass.INTERMEDIATE;
         assertEquals(3, AnimalClassCodeService.getAgeSexCode(ageClass, sex));
     }
 
     @Test
     public void adultMaleCode() {
 
-        String sex = "Male";
-        String ageClass = "Adult";
+        Enum sex = Animal.sex.MALE;
+        Enum ageClass = AnimalClassCodeService.ageClass.ADULT;
         assertEquals(5, AnimalClassCodeService.getAgeSexCode(ageClass, sex));
     }
 
     @Test
     public void seniorMaleCode() {
 
-        String sex = "Male";
-        String ageClass = "Senior";
+        Enum sex = Animal.sex.MALE;
+        Enum ageClass = AnimalClassCodeService.ageClass.SENIOR;
         assertEquals(7, AnimalClassCodeService.getAgeSexCode(ageClass, sex));
     }
 
     @Test
     public void matureMaleCode() {
 
-        String sex = "Male";
-        String ageClass = "Mature";
+        Enum sex = Animal.sex.MALE;
+        Enum ageClass = AnimalClassCodeService.ageClass.MATURE;
         assertEquals(9, AnimalClassCodeService.getAgeSexCode(ageClass, sex));
     }
 }

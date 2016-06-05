@@ -1,5 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
+import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -15,71 +16,51 @@ public class AnimalClassCodeServiceColorCodeTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void noColor() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Kleur onbekend");
-
-        String color = "";
-        AnimalClassCodeService.getColorCode(color);
-    }
-
-    @Test
-    public void unknownColor() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Kleur onbekend");
-
-        String color = "Blue";
-        AnimalClassCodeService.getColorCode(color);
-    }
-
-    @Test
     public void whiteColorCode() {
 
-        String color = "White";
+        Enum color = Animal.color.WHITE;
         assertEquals(0, AnimalClassCodeService.getColorCode(color));
     }
 
     @Test
     public void fawnColorCode() {
 
-        String color = "Fawn";
+        Enum color = Animal.color.FAWN;
         assertEquals(1, AnimalClassCodeService.getColorCode(color));
     }
 
     @Test
     public void brownColorCode() {
 
-        String color = "Brown";
+        Enum color = Animal.color.BROWN;
         assertEquals(2, AnimalClassCodeService.getColorCode(color));
     }
 
     @Test
     public void greyColorCode() {
 
-        String color = "Grey";
+        Enum color = Animal.color.GREY;
         assertEquals(3, AnimalClassCodeService.getColorCode(color));
     }
 
     @Test
     public void blackColorCode() {
 
-        String color = "Black";
+        Enum color = Animal.color.BLACK;
         assertEquals(4, AnimalClassCodeService.getColorCode(color));
     }
 
     @Test
     public void fancyColorCode() {
 
-        String color = "Fancy";
+        Enum color = Animal.color.FANCY;
         assertEquals(5, AnimalClassCodeService.getColorCode(color));
     }
 
     @Test
     public void beigeColorCode() {
 
-        String color = "Beige";
+        Enum color = Animal.color.BEIGE;
         assertEquals(6, AnimalClassCodeService.getColorCode(color));
     }
 }

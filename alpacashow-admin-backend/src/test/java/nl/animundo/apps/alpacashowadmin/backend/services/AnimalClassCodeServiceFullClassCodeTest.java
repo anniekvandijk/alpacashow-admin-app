@@ -1,5 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
+import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -16,70 +17,70 @@ public class AnimalClassCodeServiceFullClassCodeTest {
     @Test
     public void huacayaJuniorMaleWhiteClassCode() {
 
-        String breed = "Huacaya";
-        String ageClass = "Junior";
-        String sex = "Male";
-        String color = "White";
+        Enum breed = Animal.breed.HUACAYA;
+        Enum ageClass = AnimalClassCodeService.ageClass.JUNIOR;
+        Enum sex = Animal.sex.MALE;
+        Enum color = Animal.color.WHITE;
         assertEquals(110, AnimalClassCodeService.getAnimalClassCode(breed, ageClass, sex, color));
     }
 
     @Test
     public void suriIntermediateFemaleBeigeClassCode() {
 
-        String breed = "Suri";
-        String ageClass = "Intermediate";
-        String sex = "Female";
-        String color = "Beige";
+        Enum breed = Animal.breed.SURI;
+        Enum ageClass = AnimalClassCodeService.ageClass.INTERMEDIATE;
+        Enum sex = Animal.sex.FEMALE;
+        Enum color = Animal.color.BEIGE;
         assertEquals(226, AnimalClassCodeService.getAnimalClassCode(breed, ageClass, sex, color));
     }
 
     @Test
     public void huacayaFleeceSeniorMaleBrownClassCode() {
 
-        String breed = "Huacaya Fleece";
-        String ageClass = "Senior";
-        String sex = "Male";
-        String color = "Brown";
+        Enum breed = Animal.breed.HUACAYAFLEECE;
+        Enum ageClass = AnimalClassCodeService.ageClass.SENIOR;
+        Enum sex = Animal.sex.MALE;
+        Enum color = Animal.color.BROWN;
         assertEquals(372, AnimalClassCodeService.getAnimalClassCode(breed, ageClass, sex, color));
     }
 
     @Test
     public void suriFleeceAdultFemaleFawnClassCode() {
 
-        String breed = "Suri Fleece";
-        String ageClass = "Adult";
-        String sex = "Female";
-        String color = "Fawn";
+        Enum breed = Animal.breed.SURIFLEECE;
+        Enum ageClass = AnimalClassCodeService.ageClass.ADULT;
+        Enum sex = Animal.sex.FEMALE;
+        Enum color = Animal.color.FAWN;
         assertEquals(441, AnimalClassCodeService.getAnimalClassCode(breed, ageClass, sex, color));
     }
 
     @Test
     public void huacayaMatureMaleGreyClassCode() {
 
-        String breed = "Huacaya";
-        String ageClass = "Mature";
-        String sex = "Male";
-        String color = "Grey";
+        Enum breed = Animal.breed.HUACAYA;
+        Enum ageClass = AnimalClassCodeService.ageClass.MATURE;
+        Enum sex = Animal.sex.MALE;
+        Enum color = Animal.color.GREY;
         assertEquals(193, AnimalClassCodeService.getAnimalClassCode(breed, ageClass, sex, color));
     }
 
     @Test
     public void suriMatureMaleBlackClassCode() {
 
-        String breed = "Suri";
-        String ageClass = "Mature";
-        String sex = "Male";
-        String color = "Black";
+        Enum breed = Animal.breed.SURI;
+        Enum ageClass = AnimalClassCodeService.ageClass.MATURE;
+        Enum sex = Animal.sex.MALE;
+        Enum color = Animal.color.BLACK;
         assertEquals(294, AnimalClassCodeService.getAnimalClassCode(breed, ageClass, sex, color));
     }
 
     @Test
     public void huacayaFleeceSeniorFemaleFancyClassCode() {
 
-        String breed = "Huacaya Fleece";
-        String ageClass = "Senior";
-        String sex = "Female";
-        String color = "Fancy";
+        Enum breed = Animal.breed.HUACAYAFLEECE;
+        Enum ageClass = AnimalClassCodeService.ageClass.SENIOR;
+        Enum sex = Animal.sex.FEMALE;
+        Enum color = Animal.color.FANCY;
         assertEquals(365, AnimalClassCodeService.getAnimalClassCode(breed, ageClass, sex, color));
     }
 }
