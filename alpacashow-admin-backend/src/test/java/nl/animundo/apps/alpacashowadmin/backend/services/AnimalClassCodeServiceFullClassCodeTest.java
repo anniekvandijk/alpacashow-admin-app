@@ -14,6 +14,18 @@ public class AnimalClassCodeServiceFullClassCodeTest {
 
     // TODO vraag, foute waarden worden al getest in de diverse andere methoden, moet dat hier weer?
 
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
+
+    @Test
+    public void forbiddenInstanceOfClass() throws InstantiationException {
+
+        exception.expect(InstantiationException.class);
+        exception.expectMessage("Instances of this type are forbidden!");
+
+        AnimalClassCodeService animalClassCodeService = new AnimalClassCodeService();
+    }
+
     @Test
     public void huacayaJuniorMaleWhiteClassCode() {
 

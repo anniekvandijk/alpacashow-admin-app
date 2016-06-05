@@ -8,6 +8,8 @@ import java.time.*;
  */
 public class ShowEvent {
 
+    // TODO check input
+
     private String showName;
     private LocalDate showDate;
     private LocalDate showCloseDate;

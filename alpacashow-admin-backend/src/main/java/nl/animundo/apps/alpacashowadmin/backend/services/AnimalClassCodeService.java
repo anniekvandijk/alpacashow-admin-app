@@ -5,15 +5,16 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-import static nl.animundo.apps.alpacashowadmin.backend.domain.Animal.breed.*;
-import static nl.animundo.apps.alpacashowadmin.backend.domain.Animal.color.*;
-import static nl.animundo.apps.alpacashowadmin.backend.services.AnimalClassCodeService.ageClass.*;
-
 /**
  * Created by Anniek van Dijk on 4-6-2016.
  */
 
 public class AnimalClassCodeService {
+
+    protected AnimalClassCodeService() throws InstantiationException
+    {
+        throw new InstantiationException("Instances of this type are forbidden!");
+    }
 
     public static int getAnimalClassCode(Enum breed, Enum ageClass, Enum sex, Enum color) {
 
