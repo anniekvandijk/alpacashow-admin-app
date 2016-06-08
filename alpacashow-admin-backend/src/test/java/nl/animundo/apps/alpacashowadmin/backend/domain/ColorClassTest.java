@@ -1,6 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.ColorClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

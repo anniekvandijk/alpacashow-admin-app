@@ -1,17 +1,20 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import org.junit.*;
+import org.junit.rules.ExpectedException;
+
 import java.time.*;
+import java.util.Set;
+
 import static org.junit.Assert.*;
 
 public class ShowEventTest {
 
-    String showName;
-    LocalDate showDate;
-    LocalDate showCloseDate;
-    String showLocation;
-    String showJudge;
+    String name;
+    LocalDate date;
+    LocalDate closeDate;
+    String location;
+    String judge;
 
     int nrOfObjectsInClass = 0;
 
@@ -26,59 +29,117 @@ public class ShowEventTest {
      *
      */
 
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
 
     @Test
     public void newShowEvent() {
 
-        showName = "Test showEvent";
-        showDate = LocalDate.of(2016,5,1);
-        showCloseDate = LocalDate.of(2016,1,1);
-        showLocation = "Surhuisterveen";
-        showJudge = "Test Judge";
+        name = "Test showEvent";
+        date = LocalDate.of(2016,5,1);
+        closeDate = LocalDate.of(2016,1,1);
+        location = "Surhuisterveen";
+        judge = "Test Judge";
 
-        ShowEvent showEvent = new ShowEvent(showName, showDate, showCloseDate, showLocation, showJudge);
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
 
-        assertEquals("Test showEvent", showEvent.getShowName());
-        assertEquals(LocalDate.of(2016,5,1), showEvent.getShowDate());
-        assertEquals(LocalDate.of(2016,1,1), showEvent.getShowCloseDate());
-        assertEquals("Surhuisterveen", showEvent.getShowLocation());
-        assertEquals("Test Judge", showEvent.getShowJudge());
+        assertEquals("Test showEvent", showEvent.getName());
+        assertEquals(LocalDate.of(2016,5,1), showEvent.getDate());
+        assertEquals(LocalDate.of(2016,1,1), showEvent.getCloseDate());
+        assertEquals("Surhuisterveen", showEvent.getLocation());
+        assertEquals("Test Judge", showEvent.getJudge());
+    }
+
+    @Test
+    public void newShowEventWithShowTypes() {
+
+        // TODO At list for showTypes
+
+        name = "Test showEvent";
+        date = LocalDate.of(2016,5,1);
+        closeDate = LocalDate.of(2016,1,1);
+        location = "Surhuisterveen";
+        judge = "Test Judge";
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
+
+        assertEquals("Test showEvent", showEvent.getName());
+        assertEquals(LocalDate.of(2016,5,1), showEvent.getDate());
+        assertEquals(LocalDate.of(2016,1,1), showEvent.getCloseDate());
+        assertEquals("Surhuisterveen", showEvent.getLocation());
+        assertEquals("Test Judge", showEvent.getJudge());
+    }
+
+    @Test
+    public void showEventTrim() {
+
+        name = "Test showEvent  ";
+        date = LocalDate.of(2016,5,1);
+        closeDate = LocalDate.of(2016,1,1);
+        location = "  Surhuisterveen ";
+        judge = "   Test Judge";
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
+
+        assertEquals("Test showEvent", showEvent.getName());
+        assertEquals(LocalDate.of(2016,5,1), showEvent.getDate());
+        assertEquals(LocalDate.of(2016,1,1), showEvent.getCloseDate());
+        assertEquals("Surhuisterveen", showEvent.getLocation());
+        assertEquals("Test Judge", showEvent.getJudge());
+    }
+
+    @Test
+    public void showEventRequiredName() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Veld naam mag niet leeg zijn");
+
+        name = "";
+        date = LocalDate.of(2016,5,1);
+        closeDate = LocalDate.of(2016,1,1);
+        location = "Surhuisterveen";
+        judge = "Test Judge";
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
+    }
+
+    @Test
+    public void showEventRequiredLocation() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Veld locatie mag niet leeg zijn");
+
+        name = "Test showEvent";
+        date = LocalDate.of(2016,5,1);
+        closeDate = LocalDate.of(2016,1,1);
+        location = " ";
+        judge = "Test Judge";
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
     }
 
     @Test
     public void setShowEventFields() {
 
-        showName = "Test showEvent";
-        showDate = LocalDate.of(2016,5,1);
-        showCloseDate = LocalDate.of(2016,1,1);
-        showLocation = "Surhuisterveen";
-        showJudge = "Test Judge";
+        name = "Test showEvent";
+        date = LocalDate.of(2016,5,1);
+        closeDate = LocalDate.of(2016,1,1);
+        location = "Surhuisterveen";
+        judge = "Test Judge";
 
-        ShowEvent showEvent = new ShowEvent(showName, showDate, showCloseDate, showLocation, showJudge);
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
 
-        showEvent.setShowName("Test showEvent change");
-        showEvent.setShowDate(LocalDate.of(2016,6,2));
-        showEvent.setShowCloseDate(LocalDate.of(2016,7,12));
-        showEvent.setShowLocation("Meppel");
-        showEvent.setShowJudge("Test Judge change");
+        showEvent.setName("Test showEvent change");
+        showEvent.setDate(LocalDate.of(2016,6,2));
+        showEvent.setCloseDate(LocalDate.of(2016,7,12));
+        showEvent.setLocation("Meppel");
+        showEvent.setJudge("Test Judge change");
 
-        assertEquals("Test showEvent change", showEvent.getShowName());
-        assertEquals(LocalDate.of(2016,6,2), showEvent.getShowDate());
-        assertEquals(LocalDate.of(2016,7,12), showEvent.getShowCloseDate());
-        assertEquals("Meppel", showEvent.getShowLocation());
-        assertEquals("Test Judge change", showEvent.getShowJudge());
-
-    }
-
-    @Test
-    public void  noDuplicateShowEventObjects() {
-
-        // Er kunnen nooit meer objecten zijn dan 1 (voor nu)
-
-        ShowEvent showEvent = new ShowEvent(showName, showDate, showCloseDate, showLocation, showJudge);
-        ShowEvent showduplicate = new ShowEvent(showName, showDate, showCloseDate, showLocation, showJudge);
-
-        // TODO: Vraag: Hoe handig is het om deze objecten te tellen in een unittest?
+        assertEquals("Test showEvent change", showEvent.getName());
+        assertEquals(LocalDate.of(2016,6,2), showEvent.getDate());
+        assertEquals(LocalDate.of(2016,7,12), showEvent.getCloseDate());
+        assertEquals("Meppel", showEvent.getLocation());
+        assertEquals("Test Judge change", showEvent.getJudge());
 
     }
 }

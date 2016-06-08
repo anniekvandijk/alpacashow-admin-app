@@ -1,10 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.AgeClass;
-
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-
 /**
  * Created by Anniek van Dijk on 4-6-2016.
  */

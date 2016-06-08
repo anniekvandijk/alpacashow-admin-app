@@ -8,11 +8,21 @@ import java.time.temporal.ChronoUnit;
  */
 public enum AgeClass {
 
-    JUNIOR,
-    INTERMEDIATE,
-    ADULT,
-    SENIOR,
-    MATURE;
+    JUNIOR ("Junior"),
+    INTERMEDIATE ("Intermediate"),
+    ADULT ("Adult"),
+    SENIOR ("Senior"),
+    MATURE ("Mature");
+
+    private final String ageClassName;
+
+    AgeClass(String ageClassName) {
+        this.ageClassName = ageClassName;
+    }
+
+    public String getAgeClassName() {
+        return ageClassName;
+    }
 
     public static String getAgeClass(LocalDate showDate, LocalDate dateOfBirth) {
 

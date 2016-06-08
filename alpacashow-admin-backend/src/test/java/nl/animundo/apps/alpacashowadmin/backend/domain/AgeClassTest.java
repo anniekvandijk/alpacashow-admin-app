@@ -1,6 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.AgeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -17,6 +16,36 @@ public class AgeClassTest {
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
+
+    @Test
+    public void junior() {
+
+        assertEquals("Junior", AgeClass.JUNIOR.getAgeClassName());
+    }
+
+    @Test
+    public void intermediate() {
+
+        assertEquals("Intermediate", AgeClass.INTERMEDIATE.getAgeClassName());
+    }
+
+    @Test
+    public void adult() {
+
+        assertEquals("Adult", AgeClass.ADULT.getAgeClassName());
+    }
+
+    @Test
+    public void senior() {
+
+        assertEquals("Senior", AgeClass.SENIOR.getAgeClassName());
+    }
+
+    @Test
+    public void mature() {
+
+        assertEquals("Mature", AgeClass.MATURE.getAgeClassName());
+    }
 
     @Test
     public void AgeInMonthsBelow0() {
@@ -159,7 +188,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,11,15);
         dateOfBirth = LocalDate.of(2014, 12, 1);
         assertEquals(23, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("ADULT", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals("INTERMEDIATE", AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test

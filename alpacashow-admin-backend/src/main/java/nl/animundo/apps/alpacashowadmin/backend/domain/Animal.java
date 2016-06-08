@@ -5,7 +5,7 @@ package nl.animundo.apps.alpacashowadmin.backend.domain;
  */
 public class Animal {
 
-    /**
+    /*
      * Velden:
      * Naam
      * Type (breed)

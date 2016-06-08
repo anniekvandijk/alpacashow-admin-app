@@ -1,6 +1,8 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
 
+import nl.animundo.apps.alpacashowadmin.backend.services.InputValidationService;
+
 import java.time.*;
 
 /**
@@ -10,60 +12,64 @@ public class ShowEvent {
 
     // TODO check input
 
-    private String showName;
-    private LocalDate showDate;
-    private LocalDate showCloseDate;
-    private String showLocation;
-    private String showJudge;
+    private String name;
+    private LocalDate date;
+    private LocalDate closeDate;
+    private String location;
+    private String judge;
 
-    public ShowEvent(String showName, LocalDate showDate, LocalDate showCloseDate, String showLocation, String showJudge) {
-        this.showName = showName;
-        this.showDate = showDate;
-        this.showCloseDate = showCloseDate;
-        this.showLocation = showLocation;
-        this.showJudge = showJudge;
+    public ShowEvent(String name, LocalDate date, LocalDate closeDate, String location, String judge) {
+        this.name = name.trim();
+        this.date = date;
+        this.closeDate = closeDate;
+        this.location = location.trim();
+        this.judge = judge.trim();
 
+        InputValidationService.requiredFields(this.name, "naam");
+        InputValidationService.requiredFields(this.location, "locatie");
     }
 
     // TODO: vraag: zijn de setters nodig?
 
-    public String getShowName() {
-        return showName;
+    public String getName() {
+        return name;
     }
 
-    public void setShowName(String showName) {
-        this.showName = showName;
+    public void setName(String name) {
+        this.name = name.trim();
+        InputValidationService.requiredFields(this.name, "naam");
     }
 
-    public LocalDate getShowDate() {
-        return showDate;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setShowDate(LocalDate showDate) {
-        this.showDate = showDate;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public LocalDate getShowCloseDate() {
-        return showCloseDate;
+    public LocalDate getCloseDate() {
+        return closeDate;
     }
 
-    public void setShowCloseDate(LocalDate showCloseDate) {
-        this.showCloseDate = showCloseDate;
+    public void setCloseDate(LocalDate closeDate) {
+        this.closeDate = closeDate;
     }
 
-    public String getShowLocation() {
-        return showLocation;
+    public String getLocation() {
+        return location;
     }
 
-    public void setShowLocation(String showLocation) {
-        this.showLocation = showLocation;
+    public void setLocation(String location) {
+        this.location = location.trim();
+        InputValidationService.requiredFields(this.location, "locatie");
     }
 
-    public String getShowJudge() {
-        return showJudge;
+    public String getJudge() {
+        return judge;
     }
 
-    public void setShowJudge(String showJudge) {
-        this.showJudge = showJudge;
+    public void setJudge(String judge) {
+        this.judge = judge.trim();
     }
 }
