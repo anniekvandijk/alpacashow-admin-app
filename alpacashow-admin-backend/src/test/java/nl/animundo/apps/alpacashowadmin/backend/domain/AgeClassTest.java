@@ -101,6 +101,15 @@ public class AgeClassTest {
     }
 
     @Test
+    public void AgeInMonths7() {
+
+        showDate = LocalDate.of(2016,5,15);
+        dateOfBirth = LocalDate.of(2015, 10, 14);
+        assertEquals(7, AgeClass.getAgeInMonths(showDate, dateOfBirth));
+        assertEquals("JUNIOR", AgeClass.getAgeClass(showDate, dateOfBirth));
+    }
+
+    @Test
     public void AgeInMonths12MinusOneDay() {
 
         showDate = LocalDate.of(2016,5,15);
