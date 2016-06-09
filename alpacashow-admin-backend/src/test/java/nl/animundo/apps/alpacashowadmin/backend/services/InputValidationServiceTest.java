@@ -30,3 +30,4 @@ public class InputValidationServiceTest {
         String field = "";
         InputValidationService.requiredFields(field, "name");
 }
+}
