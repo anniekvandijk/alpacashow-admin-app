@@ -23,19 +23,8 @@ public class InputValidationServiceTest {
     public void fieldNotEmpty() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Veld veldnaam mag niet leeg zijn");
+        exception.expectMessage("Field name can not be empty");
 
         String field = "";
-        InputValidationService.requiredFields(field, "veldnaam");
-    }
-
-    @Test
-    public void fieldWithSpacesNotEmpty() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Veld veldnaam mag niet leeg zijn");
-
-        String field = "      ";
-        InputValidationService.requiredFields(field, "veldnaam");
-    }
+        InputValidationService.requiredFields(field, "name");
 }
