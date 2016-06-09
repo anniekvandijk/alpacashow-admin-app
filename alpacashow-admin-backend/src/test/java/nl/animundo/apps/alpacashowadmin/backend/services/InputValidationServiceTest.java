@@ -8,6 +8,8 @@ import static org.junit.Assert.assertTrue;
 
 public class InputValidationServiceTest {
 
+// TODO add test for null and not trimmed input
+
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
