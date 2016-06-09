@@ -19,6 +19,14 @@ public class AnimalClassCodeServiceTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
+    public void noInstanceTest() {
+
+//        reflection?
+//        exception.expect(InstantiationException.class);
+//        exception.expectMessage("Instances of this type are forbidden!");
+    }
+
+    @Test
     public void huacayaJuniorMaleWhiteClassCode() {
 
         int breedCode = BreedClass.HUACAYA.getBreedCode();
