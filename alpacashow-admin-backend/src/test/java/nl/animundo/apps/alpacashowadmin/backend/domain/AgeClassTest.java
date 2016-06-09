@@ -51,7 +51,7 @@ public class AgeClassTest {
     public void AgeInMonthsBelow0() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Leeftijd onder de 0 maanden. Controleer de geboortedatum.");
+        exception.expectMessage("Age below zero months. Check date of birth.");
 
         showDate = LocalDate.of(2016,5,15);
         dateOfBirth = LocalDate.of(2016, 6, 15);
@@ -62,7 +62,7 @@ public class AgeClassTest {
     public void AgeInMonths0() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Dieren onder de 6 maanden mogen niet deelnemen");
+        exception.expectMessage("Animals under the age of 6 can not participate");
 
         showDate = LocalDate.of(2016,5,15);
         dateOfBirth = LocalDate.of(2016, 5, 15);
@@ -73,7 +73,7 @@ public class AgeClassTest {
     public void AgeInMonthsAlso0() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Dieren onder de 6 maanden mogen niet deelnemen");
+        exception.expectMessage("Animals under the age of 6 can not participate");
 
         showDate = LocalDate.of(2016,5,15);
         dateOfBirth = LocalDate.of(2016, 4, 16);
@@ -84,7 +84,7 @@ public class AgeClassTest {
     public void AgeInMonths6MinusOneDay() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Dieren onder de 6 maanden mogen niet deelnemen");
+        exception.expectMessage("Animals under the age of 6 can not participate");
 
         showDate = LocalDate.of(2016,5,15);
         dateOfBirth = LocalDate.of(2015, 11, 16);

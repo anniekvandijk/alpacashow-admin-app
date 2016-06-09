@@ -30,6 +30,8 @@ public enum AgeClass {
 
         Enum ageClass = null;
 
+        // TODO Can we use LongSgtream? LongStream.range(6, 12);
+
         if (ageInMonths >= 6 & ageInMonths < 12) {
             ageClass = AgeClass.JUNIOR;
         } else if (ageInMonths >= 12 & ageInMonths < 24) {
@@ -49,10 +51,10 @@ public enum AgeClass {
         final long ageInMonths = ChronoUnit.MONTHS.between(dateOfBirth, showDate);
 
         if (ageInMonths < 0 ) {
-            throw new IllegalArgumentException("Leeftijd onder de 0 maanden. Controleer de geboortedatum.");
+            throw new IllegalArgumentException("Age below zero months. Check date of birth.");
         }
          else if (ageInMonths >= 0 & ageInMonths < 6) {
-            throw new IllegalArgumentException("Dieren onder de 6 maanden mogen niet deelnemen");
+            throw new IllegalArgumentException("Animals under the age of 6 can not participate");
         }
         else {
             return ageInMonths;
