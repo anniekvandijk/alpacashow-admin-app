@@ -181,6 +181,14 @@ public class AgeClassTest {
         assertEquals("INTERMEDIATE", AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
+    @Test
+    public void AgeInMonths13() {
+
+        showDate = LocalDate.of(2016,5,30);
+        dateOfBirth = LocalDate.of(2015,4,15);
+        assertEquals(13, AgeClass.getAgeInMonths(showDate, dateOfBirth));
+        assertEquals("INTERMEDIATE", AgeClass.getAgeClass(showDate, dateOfBirth));
+    }
 
     @Test
     public void AgeInMonths18Months() {
@@ -210,6 +218,15 @@ public class AgeClassTest {
     }
 
     @Test
+    public void AgeInMonths25() {
+
+        showDate = LocalDate.of(2016,11,15);
+        dateOfBirth = LocalDate.of(2014, 10, 14);
+        assertEquals(25, AgeClass.getAgeInMonths(showDate, dateOfBirth));
+        assertEquals("ADULT", AgeClass.getAgeClass(showDate, dateOfBirth));
+    }
+
+    @Test
     public void AgeInMonths47() {
 
         showDate = LocalDate.of(2016,11,15);
@@ -224,6 +241,15 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,11,15);
         dateOfBirth = LocalDate.of(2012, 11, 14);
         assertEquals(48, AgeClass.getAgeInMonths(showDate, dateOfBirth));
+        assertEquals("SENIOR", AgeClass.getAgeClass(showDate, dateOfBirth));
+    }
+
+    @Test
+    public void AgeInMonths49() {
+
+        showDate = LocalDate.of(2016,11,15);
+        dateOfBirth = LocalDate.of(2012, 10, 14);
+        assertEquals(49, AgeClass.getAgeInMonths(showDate, dateOfBirth));
         assertEquals("SENIOR", AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
