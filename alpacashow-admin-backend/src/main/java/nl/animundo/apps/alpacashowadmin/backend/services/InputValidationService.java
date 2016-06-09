@@ -11,13 +11,9 @@ public class InputValidationService {
 
     public static void requiredFields(String requiredField, String field) {
 
-        if ("".equals(requiredField.trim())) {
+        if ("".equals(requiredField)) {
 
-            throw new IllegalArgumentException("Veld " + field + " mag niet leeg zijn");
-
+            throw new IllegalArgumentException("Field " + field + " can not be empty");
         }
-
     }
-
-
 }

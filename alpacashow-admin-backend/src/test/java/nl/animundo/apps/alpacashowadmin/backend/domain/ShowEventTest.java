@@ -2,9 +2,7 @@ package nl.animundo.apps.alpacashowadmin.backend.domain;
 
 import org.junit.*;
 import org.junit.rules.ExpectedException;
-
 import java.time.*;
-import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -15,19 +13,6 @@ public class ShowEventTest {
     LocalDate closeDate;
     String location;
     String judge;
-
-    int nrOfObjectsInClass = 0;
-
-    // TODO: Create datehelper json date > jave date  and unittests for the datehelper
-
-    // TODO: codecoverage set
-
-    /** TODO Exception tests
-     *
-     * Alle velden zijn verplicht
-     * Shownaam mag niet meer dan 60 tekens zijn
-     *
-     */
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
@@ -89,8 +74,11 @@ public class ShowEventTest {
         assertEquals("Test Judge", showEvent.getJudge());
     }
 
-    @Test @Ignore
-    public void showEventNull() {
+    @Test
+    public void showNameNotNull() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field name can not be empty");
 
         name = null;
         date = LocalDate.of(2016,5,1);
@@ -98,20 +86,14 @@ public class ShowEventTest {
         location = "  Surhuisterveen ";
         judge = "   Test Judge";
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
-
-        assertEquals("Test showEvent", showEvent.getName());
-        assertEquals(LocalDate.of(2016,5,1), showEvent.getDate());
-        assertEquals(LocalDate.of(2016,1,1), showEvent.getCloseDate());
-        assertEquals("Surhuisterveen", showEvent.getLocation());
-        assertEquals("Test Judge", showEvent.getJudge());
+        new ShowEvent(name, date, closeDate, location, judge);
     }
 
     @Test
-    public void showEventRequiredName() {
+    public void showNameNotEmpty() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Veld naam mag niet leeg zijn");
+        exception.expectMessage("Field name can not be empty");
 
         name = "";
         date = LocalDate.of(2016,5,1);
@@ -119,14 +101,14 @@ public class ShowEventTest {
         location = "Surhuisterveen";
         judge = "Test Judge";
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
+        new ShowEvent(name, date, closeDate, location, judge);
     }
 
     @Test
-    public void showEventRequiredLocation() {
+    public void showLocationNotEmpty() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Veld locatie mag niet leeg zijn");
+        exception.expectMessage("Field location can not be empty");
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
@@ -134,7 +116,37 @@ public class ShowEventTest {
         location = " ";
         judge = "Test Judge";
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
+        new ShowEvent(name, date, closeDate, location, judge);
+    }
+
+    @Test
+    public void showLocationNotNull() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field location can not be empty");
+
+        name = "Test showEvent";
+        date = LocalDate.of(2016,5,1);
+        closeDate = LocalDate.of(2016,1,1);
+        location = null;
+        judge = "Test Judge";
+
+        new ShowEvent(name, date, closeDate, location, judge);
+    }
+
+    @Test
+    public void showJudgeNotNull() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field judge can not be empty");
+
+        name = "Test showEvent";
+        date = LocalDate.of(2016,5,1);
+        closeDate = LocalDate.of(2016,1,1);
+        location = "  Surhuisterveen ";
+        judge = null;
+
+        new ShowEvent(name, date, closeDate, location, judge);
     }
 
     @Test

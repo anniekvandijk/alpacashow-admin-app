@@ -10,8 +10,6 @@ import java.time.*;
  */
 public class ShowEvent {
 
-    // TODO check input
-
     private String name;
     private LocalDate date;
     private LocalDate closeDate;
@@ -20,16 +18,28 @@ public class ShowEvent {
 
     public ShowEvent(String name, LocalDate date, LocalDate closeDate, String location, String judge) {
 
-        // TODO Null and fix trim ()
+        if (null == name) {
+            throw new IllegalArgumentException("Field name can not be empty");
+        }
+        if (null == location) {
+            throw new IllegalArgumentException("Field location can not be empty");
+        }
+        if (null == judge) {
+            throw new IllegalArgumentException("Field judge can not be empty");
+        }
 
-        this.name = name.trim();
+        name = name.trim();
+        location = location.trim();
+        judge = judge.trim();
+
+        InputValidationService.requiredFields(name, "name");
+        InputValidationService.requiredFields(location, "location");
+
+        this.name = name;
         this.date = date;
         this.closeDate = closeDate;
-        this.location = location.trim();
-        this.judge = judge.trim();
-
-        InputValidationService.requiredFields(this.name, "naam");
-        InputValidationService.requiredFields(this.location, "locatie");
+        this.location = location;
+        this.judge = judge;
     }
 
     // TODO: vraag: zijn de setters nodig?
@@ -39,8 +49,16 @@ public class ShowEvent {
     }
 
     public void setName(String name) {
-        this.name = name.trim();
-        InputValidationService.requiredFields(this.name, "naam");
+
+        if (null == name) {
+            throw new IllegalArgumentException("Field name can not be empty");
+        }
+
+        name = name.trim();
+
+        InputValidationService.requiredFields(this.name, "name");
+
+        this.name = name;
     }
 
     public LocalDate getDate() {
@@ -64,8 +82,16 @@ public class ShowEvent {
     }
 
     public void setLocation(String location) {
-        this.location = location.trim();
-        InputValidationService.requiredFields(this.location, "locatie");
+
+        if (null == location) {
+            throw new IllegalArgumentException("Field location can not be empty");
+        }
+
+        location = location.trim();
+
+        InputValidationService.requiredFields(this.location, "location");
+
+        this.location = location;
     }
 
     public String getJudge() {
@@ -73,6 +99,12 @@ public class ShowEvent {
     }
 
     public void setJudge(String judge) {
-        this.judge = judge.trim();
+
+        if (null == judge) {
+            throw new IllegalArgumentException("Field judge can not be empty");
+        }
+        judge = judge.trim();
+
+        this.judge = judge;
     }
 }
