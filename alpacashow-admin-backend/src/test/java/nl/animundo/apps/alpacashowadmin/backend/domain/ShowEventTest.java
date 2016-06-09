@@ -70,10 +70,29 @@ public class ShowEventTest {
         assertEquals("Test Judge", showEvent.getJudge());
     }
 
+
     @Test
     public void showEventTrim() {
 
         name = "Test showEvent  ";
+        date = LocalDate.of(2016,5,1);
+        closeDate = LocalDate.of(2016,1,1);
+        location = "  Surhuisterveen ";
+        judge = "   Test Judge";
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
+
+        assertEquals("Test showEvent", showEvent.getName());
+        assertEquals(LocalDate.of(2016,5,1), showEvent.getDate());
+        assertEquals(LocalDate.of(2016,1,1), showEvent.getCloseDate());
+        assertEquals("Surhuisterveen", showEvent.getLocation());
+        assertEquals("Test Judge", showEvent.getJudge());
+    }
+
+    @Test @Ignore
+    public void showEventNull() {
+
+        name = null;
         date = LocalDate.of(2016,5,1);
         closeDate = LocalDate.of(2016,1,1);
         location = "  Surhuisterveen ";

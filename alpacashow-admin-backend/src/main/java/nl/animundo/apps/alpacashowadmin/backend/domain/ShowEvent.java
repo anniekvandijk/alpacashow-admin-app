@@ -19,6 +19,9 @@ public class ShowEvent {
     private String judge;
 
     public ShowEvent(String name, LocalDate date, LocalDate closeDate, String location, String judge) {
+
+        // TODO Null and fix trim ()
+
         this.name = name.trim();
         this.date = date;
         this.closeDate = closeDate;
