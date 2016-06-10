@@ -5,17 +5,6 @@ package nl.animundo.apps.alpacashowadmin.backend.domain;
  */
 public enum SexClass {
 
-    FEMALE ("Female"),
-    MALE ("Male");
-
-
-    private final String sex;
-
-    SexClass(String sex) {
-        this.sex = sex;
-    }
-
-    public String getSex() {
-        return sex;
-    }
+    FEMALE,
+    MALE;
 }

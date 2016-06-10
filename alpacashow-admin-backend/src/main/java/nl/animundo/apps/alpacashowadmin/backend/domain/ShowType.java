@@ -5,21 +5,10 @@ package nl.animundo.apps.alpacashowadmin.backend.domain;
  */
 public enum ShowType {
 
-    HALTERSHOW ("Haltershow"),
-    FLEECESHOW ("Fleeceshow"),
-    MALEPROGENYSHOW ("Male progeny show"),
-    FEMALEPROGENYSHOW ("Female progeny show");
-
-    private final String showType;
-
-    ShowType(String showType) {
-        this.showType = showType;
-    }
-
-    public String getShowType() {
-        return showType;
-    }
-
+    HALTERSHOW,
+    FLEECESHOW,
+    MALEPROGENYSHOW,
+    FEMALEPROGENYSHOW;
 }
 
 

@@ -5,21 +5,15 @@ package nl.animundo.apps.alpacashowadmin.backend.domain;
  */
 public enum BreedClass {
 
-    HUACAYA("Huacaya", 1),
-    SURI("Suri", 2),
-    HUACAYAFLEECE("Huacaya fleece", 3),
-    SURIFLEECE("Suri fleece", 4);
+    HUACAYA (1),
+    SURI (2),
+    HUACAYAFLEECE (3),
+    SURIFLEECE (4);
 
-    private final String breed;
     private final int breedCode;
 
-    BreedClass(String breed, int breedCode) {
-        this.breed = breed;
+    BreedClass(final int breedCode) {
         this.breedCode = breedCode;
-    }
-
-    public String getBreed() {
-        return breed;
     }
 
     public int getBreedCode() {

@@ -2,7 +2,6 @@ package nl.animundo.apps.alpacashowadmin.backend.domain;
 
 
 import nl.animundo.apps.alpacashowadmin.backend.services.InputValidationService;
-
 import java.time.*;
 
 /**

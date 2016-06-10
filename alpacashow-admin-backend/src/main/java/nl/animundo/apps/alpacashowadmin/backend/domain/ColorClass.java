@@ -15,7 +15,7 @@ public enum ColorClass {
 
     private final int colorCode;
 
-    ColorClass(int colorCode) {
+    ColorClass(final int colorCode) {
         this.colorCode = colorCode;
     }
 

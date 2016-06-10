@@ -12,7 +12,7 @@ public enum AgeClass {
     INTERMEDIATE (12, 24),
     ADULT (24, 48),
     SENIOR (48, 72),
-    MATURE (72, 1000);
+    MATURE (72, 600);
 
     private final int monthMin;
     private final int monthMax;
@@ -22,28 +22,31 @@ public enum AgeClass {
         this.monthMax = monthMax;
     }
 
-    public static AgeClass getAgeClass(final LocalDate showDate, final LocalDate dateOfBirth) {
+    public static AgeClass getAgeClassHaltershow(final LocalDate showDate, final LocalDate dateOfBirth) {
 
-        long ageInMonths = getAgeInMonths(showDate, dateOfBirth);
+        long ageInMonths = getAgeInMonthHaltershow(showDate, dateOfBirth);
+
+        if (ageInMonths >= 0 & ageInMonths < 6) {
+            throw new IllegalArgumentException("Animals under the age of 6 can not participate.");
+        }
+        if (ageInMonths >= 600 ) {
+            throw new IllegalArgumentException("Animal age to high. Check the date of birth.");
+        }
 
         for (AgeClass ageClass : AgeClass.values()) {
             if (ageInMonths >= ageClass.monthMin && ageInMonths < ageClass.monthMax) {
                 return ageClass;
             }
         }
-
         throw new RuntimeException("Unable to determen AgeClass, for given showDate '" + showDate + "' and dateOfBirth '" + dateOfBirth + "'");
     }
 
-    public static long getAgeInMonths(LocalDate showDate, LocalDate dateOfBirth) {
+    public static long getAgeInMonthHaltershow(final LocalDate showDate, final LocalDate dateOfBirth) {
 
         final long ageInMonths = ChronoUnit.MONTHS.between(dateOfBirth, showDate);
 
         if (ageInMonths < 0 ) {
             throw new IllegalArgumentException("Age below zero months. Check date of birth.");
-        }
-         else if (ageInMonths >= 0 & ageInMonths < 6) {
-            throw new IllegalArgumentException("Animals under the age of 6 can not participate");
         }
         else {
             return ageInMonths;

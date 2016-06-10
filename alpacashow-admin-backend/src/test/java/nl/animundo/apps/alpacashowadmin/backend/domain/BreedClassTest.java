@@ -14,31 +14,6 @@ public class BreedClassTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void breedHuacaya() {
-
-        assertEquals("Huacaya", BreedClass.HUACAYA.getBreed());
-    }
-
-    @Test
-    public void breedSuri() {
-
-        assertEquals("Suri", BreedClass.SURI.getBreed());
-    }
-
-    @Test
-    public void breedHuacayafleece() {
-
-        assertEquals("Huacaya fleece", BreedClass.HUACAYAFLEECE.getBreed());
-    }
-
-    @Test
-    public void breedSurifleece() {
-
-        assertEquals("Suri fleece", BreedClass.SURIFLEECE.getBreed());
-    }
-
-
-    @Test
     public void huacayaBreedCode() {
 
         assertEquals(1, BreedClass.HUACAYA.getBreedCode());
