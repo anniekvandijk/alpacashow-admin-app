@@ -18,36 +18,6 @@ public class AgeClassTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void junior() {
-
-        assertEquals("Junior", AgeClass.JUNIOR.getAgeClassName());
-    }
-
-    @Test
-    public void intermediate() {
-
-        assertEquals("Intermediate", AgeClass.INTERMEDIATE.getAgeClassName());
-    }
-
-    @Test
-    public void adult() {
-
-        assertEquals("Adult", AgeClass.ADULT.getAgeClassName());
-    }
-
-    @Test
-    public void senior() {
-
-        assertEquals("Senior", AgeClass.SENIOR.getAgeClassName());
-    }
-
-    @Test
-    public void mature() {
-
-        assertEquals("Mature", AgeClass.MATURE.getAgeClassName());
-    }
-
-    @Test
     public void AgeInMonthsBelow0() {
 
         exception.expect(IllegalArgumentException.class);
@@ -97,7 +67,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,5,15);
         dateOfBirth = LocalDate.of(2015, 11, 14);
         assertEquals(6, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("JUNIOR", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.JUNIOR, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -106,7 +76,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,5,15);
         dateOfBirth = LocalDate.of(2015, 10, 14);
         assertEquals(7, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("JUNIOR", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.JUNIOR, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -115,7 +85,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,5,15);
         dateOfBirth = LocalDate.of(2015, 5, 16);
         assertEquals(11, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("JUNIOR", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.JUNIOR, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -124,7 +94,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,2,29);
         dateOfBirth = LocalDate.of(2015,3,1);
         assertEquals(11, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("JUNIOR", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.JUNIOR, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -133,7 +103,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,5,15);
         dateOfBirth = LocalDate.of(2015,5,15);
         assertEquals(12, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("INTERMEDIATE", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -142,7 +112,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,5,15);
         dateOfBirth = LocalDate.of(2015,5,14);
         assertEquals(12, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("INTERMEDIATE", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -151,7 +121,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,5,30);
         dateOfBirth = LocalDate.of(2015,5,15);
         assertEquals(12, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("INTERMEDIATE", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -160,7 +130,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,2,29);
         dateOfBirth = LocalDate.of(2015,2,28);
         assertEquals(12, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("INTERMEDIATE", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -169,7 +139,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2017,3,1);
         dateOfBirth = LocalDate.of(2016,2,29);
         assertEquals(12, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("INTERMEDIATE", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -178,7 +148,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2017, 3, 28);
         dateOfBirth = LocalDate.of(2016, 2, 29);
         assertEquals(12, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("INTERMEDIATE", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -187,7 +157,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,5,30);
         dateOfBirth = LocalDate.of(2015,4,15);
         assertEquals(13, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("INTERMEDIATE", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -196,7 +166,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,11,15);
         dateOfBirth = LocalDate.of(2015, 5, 1);
         assertEquals(18, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("INTERMEDIATE", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -205,7 +175,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,11,15);
         dateOfBirth = LocalDate.of(2014, 12, 1);
         assertEquals(23, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("INTERMEDIATE", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -214,7 +184,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,11,15);
         dateOfBirth = LocalDate.of(2014, 11, 14);
         assertEquals(24, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("ADULT", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.ADULT, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -223,7 +193,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,11,15);
         dateOfBirth = LocalDate.of(2014, 10, 14);
         assertEquals(25, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("ADULT", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.ADULT, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -232,7 +202,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,11,15);
         dateOfBirth = LocalDate.of(2012, 11, 16);
         assertEquals(47, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("ADULT", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.ADULT, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -241,7 +211,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,11,15);
         dateOfBirth = LocalDate.of(2012, 11, 14);
         assertEquals(48, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("SENIOR", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.SENIOR, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -250,7 +220,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,11,15);
         dateOfBirth = LocalDate.of(2012, 10, 14);
         assertEquals(49, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("SENIOR", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.SENIOR, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -259,7 +229,7 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,11,15);
         dateOfBirth = LocalDate.of(2010, 11, 30);
         assertEquals(71, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("SENIOR", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.SENIOR, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 
     @Test
@@ -268,6 +238,6 @@ public class AgeClassTest {
         showDate = LocalDate.of(2016,11,15);
         dateOfBirth = LocalDate.of(2010, 10, 30);
         assertEquals(72, AgeClass.getAgeInMonths(showDate, dateOfBirth));
-        assertEquals("MATURE", AgeClass.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.MATURE, AgeClass.getAgeClass(showDate, dateOfBirth));
     }
 }

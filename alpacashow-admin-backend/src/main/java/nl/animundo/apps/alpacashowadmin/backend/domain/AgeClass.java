@@ -8,42 +8,31 @@ import java.time.temporal.ChronoUnit;
  */
 public enum AgeClass {
 
-    JUNIOR ("Junior"),
-    INTERMEDIATE ("Intermediate"),
-    ADULT ("Adult"),
-    SENIOR ("Senior"),
-    MATURE ("Mature");
+    JUNIOR (6, 12),
+    INTERMEDIATE (12, 24),
+    ADULT (24, 48),
+    SENIOR (48, 72),
+    MATURE (72, 1000);
 
-    private final String ageClassName;
+    private final int monthMin;
+    private final int monthMax;
 
-    AgeClass(String ageClassName) {
-        this.ageClassName = ageClassName;
+    AgeClass(final int monthMin, final int monthMax) {
+        this.monthMin = monthMin;
+        this.monthMax = monthMax;
     }
 
-    public String getAgeClassName() {
-        return ageClassName;
-    }
-
-    public static String getAgeClass(LocalDate showDate, LocalDate dateOfBirth) {
+    public static AgeClass getAgeClass(final LocalDate showDate, final LocalDate dateOfBirth) {
 
         long ageInMonths = getAgeInMonths(showDate, dateOfBirth);
 
-        Enum ageClass = null;
-
-        // TODO Can we use LongSgtream? LongStream.range(6, 12);
-
-        if (ageInMonths >= 6 & ageInMonths < 12) {
-            ageClass = AgeClass.JUNIOR;
-        } else if (ageInMonths >= 12 & ageInMonths < 24) {
-            ageClass = AgeClass.INTERMEDIATE;
-        } else if (ageInMonths >= 24 & ageInMonths < 48) {
-            ageClass = AgeClass.ADULT;
-        } else if (ageInMonths >= 48 & ageInMonths < 72) {
-            ageClass = AgeClass.SENIOR;
-        } else if (ageInMonths >= 72) {
-            ageClass = AgeClass.MATURE;
+        for (AgeClass ageClass : AgeClass.values()) {
+            if (ageInMonths >= ageClass.monthMin && ageInMonths < ageClass.monthMax) {
+                return ageClass;
+            }
         }
-        return String.valueOf(ageClass);
+
+        throw new RuntimeException("Unable to determen AgeClass, for given showDate '" + showDate + "' and dateOfBirth '" + dateOfBirth + "'");
     }
 
     public static long getAgeInMonths(LocalDate showDate, LocalDate dateOfBirth) {
