@@ -17,6 +17,8 @@ public class ShowEvent {
 
     public ShowEvent(String name, LocalDate date, LocalDate closeDate, String location, String judge) {
 
+        // TODO replace with other util
+
         if (null == name) {
             throw new IllegalArgumentException("Field name can not be empty");
         }
