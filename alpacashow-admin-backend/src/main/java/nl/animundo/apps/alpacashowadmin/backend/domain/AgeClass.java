@@ -1,5 +1,8 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -13,6 +16,8 @@ public enum AgeClass {
     ADULT (24, 48),
     SENIOR (48, 72),
     MATURE (72, 600);
+
+    private static Logger logger = LoggerFactory.getLogger(AgeClass.class);
 
     private final int monthMin;
     private final int monthMax;
@@ -35,6 +40,7 @@ public enum AgeClass {
 
         for (AgeClass ageClass : AgeClass.values()) {
             if (ageInMonths >= ageClass.monthMin && ageInMonths < ageClass.monthMax) {
+                logger.info("AgeClass = " + ageClass);
                 return ageClass;
             }
         }
@@ -44,12 +50,14 @@ public enum AgeClass {
     public static long getAgeInMonthHaltershow(final LocalDate showDate, final LocalDate dateOfBirth) {
 
         final long ageInMonths = ChronoUnit.MONTHS.between(dateOfBirth, showDate);
+        logger.info("Age in months = " + ageInMonths);
 
         if (ageInMonths < 0 ) {
             throw new IllegalArgumentException("Age below zero months. Check date of birth.");
         }
         else {
             return ageInMonths;
+
         }
 
     }
