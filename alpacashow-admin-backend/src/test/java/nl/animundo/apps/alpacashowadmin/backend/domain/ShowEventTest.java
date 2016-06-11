@@ -3,8 +3,6 @@ package nl.animundo.apps.alpacashowadmin.backend.domain;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 import java.time.*;
-import java.util.Date;
-
 import static org.junit.Assert.*;
 
 public class ShowEventTest {
@@ -22,16 +20,16 @@ public class ShowEventTest {
     public void newShowEvent() {
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
 
         assertEquals("Test showEvent", showEvent.getName());
-        assertEquals(LocalDate.of(2016,5,1), showEvent.getDate());
-        assertEquals(LocalDate.of(2016,10,1), showEvent.getCloseDate());
+        assertEquals(LocalDate.now().plusMonths(8), showEvent.getDate());
+        assertEquals(LocalDate.now().plusMonths(6), showEvent.getCloseDate());
         assertEquals("Surhuisterveen", showEvent.getLocation());
         assertEquals("Test Judge", showEvent.getJudge());
     }
@@ -42,16 +40,16 @@ public class ShowEventTest {
         // TODO At list for showTypes
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
 
         assertEquals("Test showEvent", showEvent.getName());
-        assertEquals(LocalDate.of(2016,5,1), showEvent.getDate());
-        assertEquals(LocalDate.of(2016,10,1), showEvent.getCloseDate());
+        assertEquals(LocalDate.now().plusMonths(8), showEvent.getDate());
+        assertEquals(LocalDate.now().plusMonths(6), showEvent.getCloseDate());
         assertEquals("Surhuisterveen", showEvent.getLocation());
         assertEquals("Test Judge", showEvent.getJudge());
     }
@@ -61,16 +59,16 @@ public class ShowEventTest {
     public void showEventTrim() {
 
         name = "Test showEvent  ";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "  Surhuisterveen ";
         judge = "   Test Judge";
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
 
         assertEquals("Test showEvent", showEvent.getName());
-        assertEquals(LocalDate.of(2016,5,1), showEvent.getDate());
-        assertEquals(LocalDate.of(2016,10,1), showEvent.getCloseDate());
+        assertEquals(LocalDate.now().plusMonths(8), showEvent.getDate());
+        assertEquals(LocalDate.now().plusMonths(6), showEvent.getCloseDate());
         assertEquals("Surhuisterveen", showEvent.getLocation());
         assertEquals("Test Judge", showEvent.getJudge());
     }
@@ -82,8 +80,8 @@ public class ShowEventTest {
         exception.expectMessage("Field name can not be empty");
 
         name = null;
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "  Surhuisterveen ";
         judge = "   Test Judge";
 
@@ -97,9 +95,24 @@ public class ShowEventTest {
         exception.expectMessage("Field name can not be empty");
 
         name = "";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
+        judge = "Test Judge";
+
+        new ShowEvent(name, date, closeDate, location, judge);
+    }
+
+    @Test
+    public void showDateBeforeNow() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Date is before today");
+
+        name = "Test showEvent";
+        date = LocalDate.now().minusDays(1);
+        closeDate = LocalDate.now().plusMonths(6);
+        location = "Surhuisterveen ";
         judge = "Test Judge";
 
         new ShowEvent(name, date, closeDate, location, judge);
@@ -113,7 +126,22 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = null;
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.now().plusMonths(6);
+        location = "Surhuisterveen ";
+        judge = "Test Judge";
+
+        new ShowEvent(name, date, closeDate, location, judge);
+    }
+
+    @Test
+    public void showCloseDateNow() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Date is before today");
+
+        name = "Test showEvent";
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now();
         location = "Surhuisterveen ";
         judge = "Test Judge";
 
@@ -127,7 +155,7 @@ public class ShowEventTest {
         exception.expectMessage("Field closeDate can not be empty");
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
+        date = LocalDate.now().plusMonths(8);
         closeDate = null;
         location = "Surhuisterveen ";
         judge = "Test Judge";
@@ -136,14 +164,14 @@ public class ShowEventTest {
     }
 
     @Test
-    public void closeDateBeforeDate() {
+    public void dateShowBeforeCloseDate() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Close date show before date show");
+        exception.expectMessage("Date show before or same as close date subscriptions");
 
         name = "Test showEvent";
-        date = LocalDate.of(2016, 5, 2);
-        closeDate = LocalDate.of(2016, 5, 1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(9);
         location = "Surhuisterveen ";
         judge = "Test Judge";
 
@@ -158,8 +186,8 @@ public class ShowEventTest {
         exception.expectMessage("Field location can not be empty");
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = " ";
         judge = "Test Judge";
 
@@ -173,8 +201,8 @@ public class ShowEventTest {
         exception.expectMessage("Field location can not be empty");
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = null;
         judge = "Test Judge";
 
@@ -188,8 +216,8 @@ public class ShowEventTest {
         exception.expectMessage("Field judge can not be empty");
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "  Surhuisterveen ";
         judge = null;
 
@@ -200,8 +228,8 @@ public class ShowEventTest {
     public void setShowEventName() {
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -219,8 +247,8 @@ public class ShowEventTest {
         exception.expectMessage("Field name can not be empty");
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -235,8 +263,8 @@ public class ShowEventTest {
         exception.expectMessage("Field name can not be empty");
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -248,16 +276,32 @@ public class ShowEventTest {
     public void setShowEventDate() {
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
-        showEvent.setDate(LocalDate.of(2016, Month.OCTOBER, 3));
+        showEvent.setDate(LocalDate.now().plusYears(1));
 
-        assertEquals(LocalDate.of(2016,10,3), showEvent.getDate());
+        assertEquals(LocalDate.now().plusYears(1), showEvent.getDate());
 
+    }
+
+    @Test
+    public void setShowEventDateNow() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Date is before today");
+
+        name = "Test showEvent";
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
+        location = "Surhuisterveen";
+        judge = "Test Judge";
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
+        showEvent.setDate(LocalDate.now().minusWeeks(2));
     }
 
     @Test
@@ -267,8 +311,8 @@ public class ShowEventTest {
         exception.expectMessage("Field date can not be empty");
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -277,19 +321,19 @@ public class ShowEventTest {
     }
 
     @Test
-    public void setDateBeforeCloseDate() {
+    public void setDateSameAsCloseDate() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Close date show before date show");
+        exception.expectMessage("Date show before or same as close date subscriptions");
 
         name = "Test showEvent";
-        date = LocalDate.of(2016, 5, 1);
-        closeDate = LocalDate.of(2016, 10, 1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen ";
         judge = "Test Judge";
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
-        showEvent.setDate(LocalDate.of(2016, 9, 30));
+        showEvent.setDate(LocalDate.now().plusMonths(6));
 
     }
 
@@ -297,15 +341,31 @@ public class ShowEventTest {
     public void setShowEventCloseDate() {
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
-        showEvent.setCloseDate(LocalDate.of(2016, Month.OCTOBER, 3));
+        showEvent.setCloseDate(LocalDate.now().plusWeeks(5));
 
-        assertEquals(LocalDate.of(2016,10,3), showEvent.getCloseDate());
+        assertEquals(LocalDate.now().plusWeeks(5), showEvent.getCloseDate());
+    }
+
+    @Test
+    public void setShowEventCloseDateBeforeNow() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Close date is before today");
+
+        name = "Test showEvent";
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
+        location = "Surhuisterveen";
+        judge = "Test Judge";
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
+        showEvent.setCloseDate(LocalDate.now().minusMonths(6));
     }
 
     @Test
@@ -315,8 +375,8 @@ public class ShowEventTest {
         exception.expectMessage("Field closeDate can not be empty");
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -325,19 +385,19 @@ public class ShowEventTest {
     }
 
     @Test
-    public void setCloseDateSameAsDate() {
+    public void setCloseDateAfterDate() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Close date show before date show");
+        exception.expectMessage("Date show before or same as close date subscriptions");
 
         name = "Test showEvent";
-        date = LocalDate.of(2016, 5, 1);
-        closeDate = LocalDate.of(2016, 10, 1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen ";
         judge = "Test Judge";
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
-        showEvent.setCloseDate(LocalDate.of(2016, 4, 1));
+        showEvent.setCloseDate(LocalDate.now().plusMonths(9));
 
     }
 
@@ -345,8 +405,8 @@ public class ShowEventTest {
     public void setShowEventLocation() {
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -363,8 +423,8 @@ public class ShowEventTest {
         exception.expectMessage("Field location can not be empty");
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -379,8 +439,8 @@ public class ShowEventTest {
         exception.expectMessage("Field location can not be empty");
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -392,8 +452,8 @@ public class ShowEventTest {
     public void setShowEventJudge() {
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -410,8 +470,8 @@ public class ShowEventTest {
         exception.expectMessage("Field judge can not be empty");
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -426,8 +486,8 @@ public class ShowEventTest {
         exception.expectMessage("Field judge can not be empty");
 
         name = "Test showEvent";
-        date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,10,1);
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
