@@ -17,13 +17,13 @@ public class ShowEventTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void newShowEvent() {
+    public void newShowEventWithTrim() {
 
-        name = "Test showEvent";
+        name = "Test showEvent    ";
         date = LocalDate.now().plusMonths(8);
         closeDate = LocalDate.now().plusMonths(6);
-        location = "Surhuisterveen";
-        judge = "Test Judge";
+        location = "   Surhuisterveen";
+        judge = " Test Judge ";
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
 
@@ -44,25 +44,6 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
-
-        assertEquals("Test showEvent", showEvent.getName());
-        assertEquals(LocalDate.now().plusMonths(8), showEvent.getDate());
-        assertEquals(LocalDate.now().plusMonths(6), showEvent.getCloseDate());
-        assertEquals("Surhuisterveen", showEvent.getLocation());
-        assertEquals("Test Judge", showEvent.getJudge());
-    }
-
-
-    @Test
-    public void showEventTrim() {
-
-        name = "Test showEvent  ";
-        date = LocalDate.now().plusMonths(8);
-        closeDate = LocalDate.now().plusMonths(6);
-        location = "  Surhuisterveen ";
-        judge = "   Test Judge";
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
 
