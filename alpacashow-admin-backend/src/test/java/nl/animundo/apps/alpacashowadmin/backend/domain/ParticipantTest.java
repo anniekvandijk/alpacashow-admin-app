@@ -15,6 +15,10 @@ public class ParticipantTest {
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
+    /* TODO
+    Check unique participant
+     */
+
     @Test
     public void newParticipantWithTrim() {
 
