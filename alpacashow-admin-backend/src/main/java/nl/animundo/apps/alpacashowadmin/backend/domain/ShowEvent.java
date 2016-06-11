@@ -1,7 +1,8 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
 
-import nl.animundo.apps.alpacashowadmin.backend.services.InputValidationService;
+import org.apache.commons.lang3.StringUtils;
+
 import java.time.*;
 
 /**
@@ -15,58 +16,57 @@ public class ShowEvent {
     private String location;
     private String judge;
 
-    public ShowEvent(String name, LocalDate date, LocalDate closeDate, String location, String judge) {
+    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge) {
 
-        // TODO replace with other util
-
-        if (null == name) {
+        final String nameCln = StringUtils.trimToNull(name);
+        if (nameCln == null) {
             throw new IllegalArgumentException("Field name can not be empty");
         }
-        if (null == location) {
+        if (date == null) {
+            throw new IllegalArgumentException("Field date can not be empty");
+        }
+        if (closeDate == null) {
+            throw new IllegalArgumentException("Field closeDate can not be empty");
+        }
+        final String locationCln = StringUtils.trimToNull(location);
+        if (locationCln == null) {
             throw new IllegalArgumentException("Field location can not be empty");
         }
-        if (null == judge) {
+        final String judgeCln = StringUtils.trimToNull(judge);
+        if (judgeCln == null) {
             throw new IllegalArgumentException("Field judge can not be empty");
         }
 
-        name = name.trim();
-        location = location.trim();
-        judge = judge.trim();
-
-        InputValidationService.requiredFields(name, "name");
-        InputValidationService.requiredFields(location, "location");
-
-        this.name = name;
+        this.name = nameCln;
         this.date = date;
         this.closeDate = closeDate;
-        this.location = location;
-        this.judge = judge;
+        this.location = locationCln;
+        this.judge = judgeCln;
     }
 
-    // TODO: vraag: zijn de setters nodig?
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
 
-        if (null == name) {
+        final String nameCln = StringUtils.trimToNull(name);
+        if (nameCln == null) {
             throw new IllegalArgumentException("Field name can not be empty");
         }
 
-        name = name.trim();
-
-        InputValidationService.requiredFields(this.name, "name");
-
-        this.name = name;
+        this.name = nameCln;
     }
 
     public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(final LocalDate date) {
+        if (date == null) {
+            throw new IllegalArgumentException("Field date can not be empty");
+        }
         this.date = date;
     }
 
@@ -74,7 +74,10 @@ public class ShowEvent {
         return closeDate;
     }
 
-    public void setCloseDate(LocalDate closeDate) {
+    public void setCloseDate(final LocalDate closeDate) {
+        if (closeDate == null) {
+            throw new IllegalArgumentException("Field closeDate can not be empty");
+        }
         this.closeDate = closeDate;
     }
 
@@ -82,30 +85,27 @@ public class ShowEvent {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(final String location) {
 
-        if (null == location) {
+        final String locationCln = StringUtils.trimToNull(location);
+        if (locationCln == null) {
             throw new IllegalArgumentException("Field location can not be empty");
         }
 
-        location = location.trim();
-
-        InputValidationService.requiredFields(this.location, "location");
-
-        this.location = location;
+        this.location = locationCln;
     }
 
     public String getJudge() {
         return judge;
     }
 
-    public void setJudge(String judge) {
+    public void setJudge(final String judge) {
 
-        if (null == judge) {
+        final String judgeCln = StringUtils.trimToNull(judge);
+        if (judgeCln == null) {
             throw new IllegalArgumentException("Field judge can not be empty");
         }
-        judge = judge.trim();
 
-        this.judge = judge;
+        this.judge = judgeCln;
     }
 }

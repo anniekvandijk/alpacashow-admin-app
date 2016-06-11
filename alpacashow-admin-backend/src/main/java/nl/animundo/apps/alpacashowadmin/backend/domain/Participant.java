@@ -7,7 +7,7 @@ public class Participant {
 
     // TODO check for null and empty string
 
-    private String name;
+    private final String name;
 
     public Participant(final String name) {
         this.name = name;

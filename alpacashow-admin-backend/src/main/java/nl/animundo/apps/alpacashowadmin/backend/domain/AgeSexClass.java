@@ -21,7 +21,7 @@ public enum AgeSexClass {
 
     private final int ageSexCode;
 
-    AgeSexClass(int ageSexCode) {
+    AgeSexClass(final int ageSexCode) {
         this.ageSexCode = ageSexCode;
     }
 
