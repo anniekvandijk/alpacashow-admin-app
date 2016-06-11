@@ -36,6 +36,9 @@ public class ShowEvent {
         if (judgeCln == null) {
             throw new IllegalArgumentException("Field judge can not be empty");
         }
+        if (closeDate.isBefore(date) || closeDate.isEqual(date)) {
+            throw new IllegalArgumentException("Close date show before date show");
+        }
 
         this.name = nameCln;
         this.date = date;
@@ -67,6 +70,9 @@ public class ShowEvent {
         if (date == null) {
             throw new IllegalArgumentException("Field date can not be empty");
         }
+        if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
+            throw new IllegalArgumentException("Close date show before date show");
+        }
         this.date = date;
     }
 
@@ -77,6 +83,9 @@ public class ShowEvent {
     public void setCloseDate(final LocalDate closeDate) {
         if (closeDate == null) {
             throw new IllegalArgumentException("Field closeDate can not be empty");
+        }
+        if (closeDate.isBefore(date) || closeDate.isEqual(date)) {
+            throw new IllegalArgumentException("Close date show before date show");
         }
         this.closeDate = closeDate;
     }

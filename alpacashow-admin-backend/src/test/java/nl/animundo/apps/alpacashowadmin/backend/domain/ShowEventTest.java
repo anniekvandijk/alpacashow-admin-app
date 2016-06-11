@@ -23,7 +23,7 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -31,7 +31,7 @@ public class ShowEventTest {
 
         assertEquals("Test showEvent", showEvent.getName());
         assertEquals(LocalDate.of(2016,5,1), showEvent.getDate());
-        assertEquals(LocalDate.of(2016,1,1), showEvent.getCloseDate());
+        assertEquals(LocalDate.of(2016,10,1), showEvent.getCloseDate());
         assertEquals("Surhuisterveen", showEvent.getLocation());
         assertEquals("Test Judge", showEvent.getJudge());
     }
@@ -43,7 +43,7 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -51,7 +51,7 @@ public class ShowEventTest {
 
         assertEquals("Test showEvent", showEvent.getName());
         assertEquals(LocalDate.of(2016,5,1), showEvent.getDate());
-        assertEquals(LocalDate.of(2016,1,1), showEvent.getCloseDate());
+        assertEquals(LocalDate.of(2016,10,1), showEvent.getCloseDate());
         assertEquals("Surhuisterveen", showEvent.getLocation());
         assertEquals("Test Judge", showEvent.getJudge());
     }
@@ -62,7 +62,7 @@ public class ShowEventTest {
 
         name = "Test showEvent  ";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "  Surhuisterveen ";
         judge = "   Test Judge";
 
@@ -70,7 +70,7 @@ public class ShowEventTest {
 
         assertEquals("Test showEvent", showEvent.getName());
         assertEquals(LocalDate.of(2016,5,1), showEvent.getDate());
-        assertEquals(LocalDate.of(2016,1,1), showEvent.getCloseDate());
+        assertEquals(LocalDate.of(2016,10,1), showEvent.getCloseDate());
         assertEquals("Surhuisterveen", showEvent.getLocation());
         assertEquals("Test Judge", showEvent.getJudge());
     }
@@ -83,7 +83,7 @@ public class ShowEventTest {
 
         name = null;
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "  Surhuisterveen ";
         judge = "   Test Judge";
 
@@ -98,7 +98,7 @@ public class ShowEventTest {
 
         name = "";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -136,6 +136,22 @@ public class ShowEventTest {
     }
 
     @Test
+    public void closeDateBeforeDate() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Close date show before date show");
+
+        name = "Test showEvent";
+        date = LocalDate.of(2016, 5, 2);
+        closeDate = LocalDate.of(2016, 5, 1);
+        location = "Surhuisterveen ";
+        judge = "Test Judge";
+
+        new ShowEvent(name, date, closeDate, location, judge);
+
+    }
+
+    @Test
     public void showLocationNotEmpty() {
 
         exception.expect(IllegalArgumentException.class);
@@ -143,7 +159,7 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = " ";
         judge = "Test Judge";
 
@@ -158,7 +174,7 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = null;
         judge = "Test Judge";
 
@@ -173,7 +189,7 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "  Surhuisterveen ";
         judge = null;
 
@@ -185,7 +201,7 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -204,7 +220,7 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -220,7 +236,7 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -233,14 +249,14 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
-        showEvent.setDate(LocalDate.of(2016, Month.JANUARY, 3));
+        showEvent.setDate(LocalDate.of(2016, Month.OCTOBER, 3));
 
-        assertEquals(LocalDate.of(2016,1,3), showEvent.getDate());
+        assertEquals(LocalDate.of(2016,10,3), showEvent.getDate());
 
     }
 
@@ -252,7 +268,7 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -261,18 +277,35 @@ public class ShowEventTest {
     }
 
     @Test
+    public void setDateBeforeCloseDate() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Close date show before date show");
+
+        name = "Test showEvent";
+        date = LocalDate.of(2016, 5, 1);
+        closeDate = LocalDate.of(2016, 10, 1);
+        location = "Surhuisterveen ";
+        judge = "Test Judge";
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
+        showEvent.setDate(LocalDate.of(2016, 9, 30));
+
+    }
+
+    @Test
     public void setShowEventCloseDate() {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
-        showEvent.setCloseDate(LocalDate.of(2016, Month.JANUARY, 3));
+        showEvent.setCloseDate(LocalDate.of(2016, Month.OCTOBER, 3));
 
-        assertEquals(LocalDate.of(2016,1,3), showEvent.getCloseDate());
+        assertEquals(LocalDate.of(2016,10,3), showEvent.getCloseDate());
     }
 
     @Test
@@ -283,7 +316,7 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -291,13 +324,29 @@ public class ShowEventTest {
         showEvent.setCloseDate(null);
     }
 
+    @Test
+    public void setCloseDateSameAsDate() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Close date show before date show");
+
+        name = "Test showEvent";
+        date = LocalDate.of(2016, 5, 1);
+        closeDate = LocalDate.of(2016, 10, 1);
+        location = "Surhuisterveen ";
+        judge = "Test Judge";
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge);
+        showEvent.setCloseDate(LocalDate.of(2016, 4, 1));
+
+    }
 
     @Test
     public void setShowEventLocation() {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -315,7 +364,7 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -331,7 +380,7 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -344,7 +393,7 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -362,7 +411,7 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
@@ -378,7 +427,7 @@ public class ShowEventTest {
 
         name = "Test showEvent";
         date = LocalDate.of(2016,5,1);
-        closeDate = LocalDate.of(2016,1,1);
+        closeDate = LocalDate.of(2016,10,1);
         location = "Surhuisterveen";
         judge = "Test Judge";
 
