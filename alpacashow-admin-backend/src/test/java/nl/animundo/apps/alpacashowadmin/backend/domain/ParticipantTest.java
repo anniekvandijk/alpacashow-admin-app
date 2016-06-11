@@ -16,9 +16,9 @@ public class ParticipantTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void newParticipant() {
+    public void newParticipantWithTrim() {
 
-        String name = "New Participant";
+        String name = " New Participant";
 
         Participant participant = new Participant(name);
 
@@ -26,5 +26,15 @@ public class ParticipantTest {
 
     }
 
+    @Test
+    public void participantNotNull() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field participant can not be empty");
+
+        String name = null;
+
+        new Participant(name);
+    }
 
 }
