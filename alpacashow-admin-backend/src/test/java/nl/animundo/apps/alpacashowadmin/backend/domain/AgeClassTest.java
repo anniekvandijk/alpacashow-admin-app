@@ -23,8 +23,8 @@ public class AgeClassTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Age below zero months. Check date of birth.");
 
-        showDate = LocalDate.of(2016,5,15);
-        dateOfBirth = LocalDate.of(2016, 6, 15);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().plusMonths(1);
         AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth);
     }
 
@@ -34,8 +34,8 @@ public class AgeClassTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Animals under the age of 6 can not participate");
 
-        showDate = LocalDate.of(2016,5,15);
-        dateOfBirth = LocalDate.of(2016, 5, 15);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now();
         AgeClass.getAgeClassHaltershow(showDate, dateOfBirth);
     }
 
@@ -45,8 +45,8 @@ public class AgeClassTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Animals under the age of 6 can not participate");
 
-        showDate = LocalDate.of(2016,5,15);
-        dateOfBirth = LocalDate.of(2016, 4, 16);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(1).plusDays(1);
         AgeClass.getAgeClassHaltershow(showDate, dateOfBirth);
     }
 
@@ -56,16 +56,16 @@ public class AgeClassTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Animals under the age of 6 can not participate");
 
-        showDate = LocalDate.of(2016,5,15);
-        dateOfBirth = LocalDate.of(2015, 11, 16);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(6).plusDays(1);
         AgeClass.getAgeClassHaltershow(showDate, dateOfBirth);
     }
 
     @Test
     public void AgeInMonths6() {
 
-        showDate = LocalDate.of(2016,5,15);
-        dateOfBirth = LocalDate.of(2015, 11, 14);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(6);
         assertEquals(6, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
         assertEquals(AgeClass.JUNIOR, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
     }
@@ -73,8 +73,8 @@ public class AgeClassTest {
     @Test
     public void AgeInMonths7() {
 
-        showDate = LocalDate.of(2016,5,15);
-        dateOfBirth = LocalDate.of(2015, 10, 14);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(7);
         assertEquals(7, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
         assertEquals(AgeClass.JUNIOR, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
     }
@@ -82,8 +82,8 @@ public class AgeClassTest {
     @Test
     public void AgeInMonths12MinusOneDay() {
 
-        showDate = LocalDate.of(2016,5,15);
-        dateOfBirth = LocalDate.of(2015, 5, 16);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(12).plusDays(1);
         assertEquals(11, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
         assertEquals(AgeClass.JUNIOR, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
     }
@@ -100,8 +100,8 @@ public class AgeClassTest {
     @Test
     public void AgeInMonths12() {
 
-        showDate = LocalDate.of(2016,5,15);
-        dateOfBirth = LocalDate.of(2015,5,15);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(12);
         assertEquals(12, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
         assertEquals(AgeClass.INTERMEDIATE, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
     }
@@ -109,17 +109,8 @@ public class AgeClassTest {
     @Test
     public void AgeInMonths12andOneDay() {
 
-        showDate = LocalDate.of(2016,5,15);
-        dateOfBirth = LocalDate.of(2015,5,14);
-        assertEquals(12, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
-        assertEquals(AgeClass.INTERMEDIATE, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
-    }
-
-    @Test
-    public void AgeInMonthsJust12() {
-
-        showDate = LocalDate.of(2016,5,30);
-        dateOfBirth = LocalDate.of(2015,5,15);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(12).minusDays(1);
         assertEquals(12, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
         assertEquals(AgeClass.INTERMEDIATE, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
     }
@@ -154,8 +145,8 @@ public class AgeClassTest {
     @Test
     public void AgeInMonths13() {
 
-        showDate = LocalDate.of(2016,5,30);
-        dateOfBirth = LocalDate.of(2015,4,15);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(13);
         assertEquals(13, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
         assertEquals(AgeClass.INTERMEDIATE, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
     }
@@ -163,8 +154,8 @@ public class AgeClassTest {
     @Test
     public void AgeInMonths18Months() {
 
-        showDate = LocalDate.of(2016,11,15);
-        dateOfBirth = LocalDate.of(2015, 5, 1);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(18);
         assertEquals(18, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
         assertEquals(AgeClass.INTERMEDIATE, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
     }
@@ -172,8 +163,8 @@ public class AgeClassTest {
     @Test
     public void AgeInMonths23() {
 
-        showDate = LocalDate.of(2016,11,15);
-        dateOfBirth = LocalDate.of(2014, 12, 1);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(23);
         assertEquals(23, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
         assertEquals(AgeClass.INTERMEDIATE, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
     }
@@ -181,8 +172,8 @@ public class AgeClassTest {
     @Test
     public void AgeInMonths24() {
 
-        showDate = LocalDate.of(2016,11,15);
-        dateOfBirth = LocalDate.of(2014, 11, 14);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(24);
         assertEquals(24, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
         assertEquals(AgeClass.ADULT, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
     }
@@ -190,8 +181,8 @@ public class AgeClassTest {
     @Test
     public void AgeInMonths25() {
 
-        showDate = LocalDate.of(2016,11,15);
-        dateOfBirth = LocalDate.of(2014, 10, 14);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(25);
         assertEquals(25, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
         assertEquals(AgeClass.ADULT, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
     }
@@ -199,8 +190,8 @@ public class AgeClassTest {
     @Test
     public void AgeInMonths47() {
 
-        showDate = LocalDate.of(2016,11,15);
-        dateOfBirth = LocalDate.of(2012, 11, 16);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(47);
         assertEquals(47, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
         assertEquals(AgeClass.ADULT, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
     }
@@ -208,8 +199,8 @@ public class AgeClassTest {
     @Test
     public void AgeInMonths48() {
 
-        showDate = LocalDate.of(2016,11,15);
-        dateOfBirth = LocalDate.of(2012, 11, 14);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(48);
         assertEquals(48, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
         assertEquals(AgeClass.SENIOR, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
     }
@@ -217,8 +208,8 @@ public class AgeClassTest {
     @Test
     public void AgeInMonths49() {
 
-        showDate = LocalDate.of(2016,11,15);
-        dateOfBirth = LocalDate.of(2012, 10, 14);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(49);
         assertEquals(49, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
         assertEquals(AgeClass.SENIOR, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
     }
@@ -226,8 +217,8 @@ public class AgeClassTest {
     @Test
     public void AgeInMonths71() {
 
-        showDate = LocalDate.of(2016,11,15);
-        dateOfBirth = LocalDate.of(2010, 11, 30);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(71);
         assertEquals(71, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
         assertEquals(AgeClass.SENIOR, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
     }
@@ -235,8 +226,8 @@ public class AgeClassTest {
     @Test
     public void AgeInMonths72() {
 
-        showDate = LocalDate.of(2016,11,15);
-        dateOfBirth = LocalDate.of(2010, 10, 30);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(72);
         assertEquals(72, AgeClass.getAgeInMonthHaltershow(showDate, dateOfBirth));
         assertEquals(AgeClass.MATURE, AgeClass.getAgeClassHaltershow(showDate, dateOfBirth));
     }
@@ -247,8 +238,8 @@ public class AgeClassTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Animal age to high. Check the date of birth.");
 
-        showDate = LocalDate.of(2016,11,15);
-        dateOfBirth = LocalDate.of(1966, 10, 30);
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(600);
         AgeClass.getAgeClassHaltershow(showDate, dateOfBirth);
     }
 }
