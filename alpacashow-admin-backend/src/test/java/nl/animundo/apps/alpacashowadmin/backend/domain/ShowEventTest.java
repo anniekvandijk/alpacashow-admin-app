@@ -3,21 +3,18 @@ package nl.animundo.apps.alpacashowadmin.backend.domain;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 import java.time.*;
-import java.util.EnumSet;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
-
 import static org.junit.Assert.*;
 
 public class ShowEventTest {
 
-    String name;
-    LocalDate date;
-    LocalDate closeDate;
-    String location;
-    String judge;
-    Set<ShowType> showType;
+    private String name;
+    private LocalDate date;
+    private LocalDate closeDate;
+    private String location;
+    private String judge;
+    private Set<ShowType> showType;
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
