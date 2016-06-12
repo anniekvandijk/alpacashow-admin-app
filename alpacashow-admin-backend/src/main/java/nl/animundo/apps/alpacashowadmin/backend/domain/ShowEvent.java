@@ -21,6 +21,8 @@ public class ShowEvent {
 
     public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final Set<ShowType> showType) {
 
+        // TODO How to get ShowTypes?
+
         final String nameCln = StringUtils.trimToNull(name);
         if (nameCln == null) {
             throw new IllegalArgumentException("Field name can not be empty");
@@ -43,9 +45,11 @@ public class ShowEvent {
             throw new IllegalArgumentException("Date is before today");
         }
         if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
-            throw new IllegalArgumentException("Date show before or same as close date subscriptions");
+            throw new IllegalArgumentException("Date showType before or same as close date subscriptions");
         }
-        logger.info("\n Showname: " + nameCln + "\n Showdate: " + date + "\n Closedate: " + closeDate + "\n Location: " + locationCln + "\n Judge: " + judgeCln + "\n Showtype: " + showType);
+        logger.info("\n Showname: " + nameCln + "\n Showdate: " + date + "\n Closedate: "
+                    + closeDate + "\n Location: " + locationCln + "\n Judge: " + judgeCln
+                    + "\n Showtype(s): " + getShowType());
         this.name = nameCln;
         this.date = date;
         this.closeDate = closeDate;
@@ -81,7 +85,7 @@ public class ShowEvent {
             throw new IllegalArgumentException("Date is before today");
         }
         if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
-            throw new IllegalArgumentException("Date show before or same as close date subscriptions");
+            throw new IllegalArgumentException("Date showType before or same as close date subscriptions");
         }
         this.date = date;
     }
@@ -98,7 +102,7 @@ public class ShowEvent {
             throw new IllegalArgumentException("Close date is before today");
         }
         if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
-            throw new IllegalArgumentException("Date show before or same as close date subscriptions");
+            throw new IllegalArgumentException("Date showType before or same as close date subscriptions");
         }
         this.closeDate = closeDate;
     }
