@@ -1,22 +1,25 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.commons.lang3.StringUtils;
-
 import java.time.*;
+import java.util.Set;
 
 /**
  * Created by Anniek van Dijk on 29-5-2016.
  */
 public class ShowEvent {
+    private static Logger logger = LoggerFactory.getLogger(ShowEvent.class);
 
     private String name;
     private LocalDate date;
     private LocalDate closeDate;
     private String location;
     private String judge;
+    private Set<ShowType> showType;
 
-    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge) {
+    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final Set<ShowType> showType) {
 
         final String nameCln = StringUtils.trimToNull(name);
         if (nameCln == null) {
@@ -42,12 +45,13 @@ public class ShowEvent {
         if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
             throw new IllegalArgumentException("Date show before or same as close date subscriptions");
         }
-
+        logger.info("\n Showname: " + nameCln + "\n Showdate: " + date + "\n Closedate: " + closeDate + "\n Location: " + locationCln + "\n Judge: " + judgeCln + "\n Showtype: " + showType);
         this.name = nameCln;
         this.date = date;
         this.closeDate = closeDate;
         this.location = locationCln;
         this.judge = judgeCln;
+        this.showType = showType;
     }
 
 
@@ -125,5 +129,9 @@ public class ShowEvent {
         }
 
         this.judge = judgeCln;
+    }
+
+    public Set<ShowType> getShowType() {
+        return showType;
     }
 }
