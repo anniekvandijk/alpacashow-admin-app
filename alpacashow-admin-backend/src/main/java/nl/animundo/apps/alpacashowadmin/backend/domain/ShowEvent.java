@@ -17,11 +17,11 @@ public class ShowEvent {
     private LocalDate closeDate;
     private String location;
     private String judge;
-    private Set<ShowType> showType;
+    private Set<Show> show;
 
-    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final Set<ShowType> showType) {
+    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final Set<Show> show) {
 
-        // TODO How to get ShowTypes?
+        // TODO How to get ShowType?
 
         final String nameCln = StringUtils.trimToNull(name);
         if (nameCln == null) {
@@ -45,17 +45,17 @@ public class ShowEvent {
             throw new IllegalArgumentException("Date is before today");
         }
         if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
-            throw new IllegalArgumentException("Date showType before or same as close date subscriptions");
+            throw new IllegalArgumentException("Date show before or same as close date subscriptions");
         }
         logger.info("\n Showname: " + nameCln + "\n Showdate: " + date + "\n Closedate: "
                     + closeDate + "\n Location: " + locationCln + "\n Judge: " + judgeCln
-                    + "\n Showtype(s): " + getShowType());
+                    + "\n Showtype(s): " + show);
         this.name = nameCln;
         this.date = date;
         this.closeDate = closeDate;
         this.location = locationCln;
         this.judge = judgeCln;
-        this.showType = showType;
+        this.show = show;
     }
 
 
@@ -85,7 +85,7 @@ public class ShowEvent {
             throw new IllegalArgumentException("Date is before today");
         }
         if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
-            throw new IllegalArgumentException("Date showType before or same as close date subscriptions");
+            throw new IllegalArgumentException("Date show before or same as close date subscriptions");
         }
         this.date = date;
     }
@@ -102,7 +102,7 @@ public class ShowEvent {
             throw new IllegalArgumentException("Close date is before today");
         }
         if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
-            throw new IllegalArgumentException("Date showType before or same as close date subscriptions");
+            throw new IllegalArgumentException("Date show before or same as close date subscriptions");
         }
         this.closeDate = closeDate;
     }
@@ -135,7 +135,7 @@ public class ShowEvent {
         this.judge = judgeCln;
     }
 
-    public Set<ShowType> getShowType() {
-        return showType;
+    public Set<Show> getShow() {
+        return show;
     }
 }
