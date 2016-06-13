@@ -28,8 +28,6 @@ public class ShowEvent {
 
         public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final Set<Show> shows, final Set<Participant> participants ) {
 
-        // TODO How to get ShowType?
-
         final String nameCln = StringUtils.trimToNull(name);
         if (nameCln == null) {
             throw new IllegalArgumentException("Field name can not be empty");
@@ -56,7 +54,7 @@ public class ShowEvent {
         }
         logger.info("\n Showname: " + nameCln + "\n Showdate: " + date + "\n Closedate: "
                     + closeDate + "\n Location: " + locationCln + "\n Judge: " + judgeCln
-                    + "\n Showtype(s): " + shows);
+                    + "\n Showtype(s): " + shows + "\n Participant(s): " + participants);
         this.name = nameCln;
         this.date = date;
         this.closeDate = closeDate;
@@ -145,5 +143,9 @@ public class ShowEvent {
 
     public Set<Show> getShow() {
         return shows;
+    }
+
+    public Set<Participant> getParticipants() {
+        return participants;
     }
 }

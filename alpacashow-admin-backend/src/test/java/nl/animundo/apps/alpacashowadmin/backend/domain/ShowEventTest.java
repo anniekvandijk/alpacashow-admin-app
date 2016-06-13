@@ -61,7 +61,7 @@ public class ShowEventTest {
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows, participants);
 
-        assertEquals("Test showEvent", showEvent.getName());
+        assertEquals(participants, showEvent.getParticipants());
     }
 
     @Test
