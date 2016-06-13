@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.commons.lang3.StringUtils;
 import java.time.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -17,9 +18,15 @@ public class ShowEvent {
     private LocalDate closeDate;
     private String location;
     private String judge;
-    private Set<Show> show;
+    private Set<Show> shows;
+    private Set<Participant> participants;
 
-    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final Set<Show> show) {
+    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final Set<Show> shows) {
+        this(name, date, closeDate, location, judge, shows, new HashSet<Participant>());
+    }
+
+
+        public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final Set<Show> shows, final Set<Participant> participants ) {
 
         // TODO How to get ShowType?
 
@@ -49,13 +56,14 @@ public class ShowEvent {
         }
         logger.info("\n Showname: " + nameCln + "\n Showdate: " + date + "\n Closedate: "
                     + closeDate + "\n Location: " + locationCln + "\n Judge: " + judgeCln
-                    + "\n Showtype(s): " + show);
+                    + "\n Showtype(s): " + shows);
         this.name = nameCln;
         this.date = date;
         this.closeDate = closeDate;
         this.location = locationCln;
         this.judge = judgeCln;
-        this.show = show;
+        this.shows = shows;
+        this.participants = participants;
     }
 
 
@@ -136,6 +144,6 @@ public class ShowEvent {
     }
 
     public Set<Show> getShow() {
-        return show;
+        return shows;
     }
 }
