@@ -6,8 +6,7 @@ De administratie kan een show en showdetails opvoeren. Deze gegevens kunnen gera
 
 **[Deelnemer kan online dieren inschrijven](../alpacashow-admin-it/src/main/test/resources/features/deelnemer-dieren-inschrijven.feature)**
 
-Een deelnemer kan zich inschrijven voor een show. Hij kan een minimum en maximum aantal dieren opvoeren, wijzigen en verwijderen. Op de inschrijvingen worden validaties uitgevoerd. Welke dieren hij heeft ingeschreven kan hij raadplegen. De administratie kan deze deelnemer en dieren ook raadplegen, wijzigen en verwijderen. Hiervoor zijn schermen beschikbaar.
-
+Een deelnemer kan zich inschrijven voor een show. Hij kan een minimum en maximum aantal dieren opvoeren, wijzigen en verwijderen. Op de inschrijvingen worden validaties uitgevoerd. Welke dieren hij heeft ingeschreven kan hij raadplegen. De administratie kan deze deelnemer en dieren ook raadplegen, wijzigen en verwijderen. Hiervoor zijn schermen beschikbaar. Na het verstrijken van de sluitdatum kan een deelnemer zich niet meer aanmelden en geen dieren meer opvoeren of wijzigen. 
 > doel is een applicatie voor de administratie, direct linken met inschrijvingen is een wens. Lagere prio.
 
 **[Administratie kan een lijst van deelnemers en dieren inlezen](../alpacashow-admin-it/src/main/test/resources/features/administratie-lijst-deelnemers-dieren-inlezen.feature)**
@@ -16,7 +15,7 @@ De administratie kan een lijst met deelnemers en dieren inlezen. Deze wordt geva
 
 **[Automatische klassebepaling dieren](../alpacashow-admin-it/src/main/test/resources/features/automatische-klassebepaling-dieren.feature)**
 
-Als er via online inschrijving of inlezen van een lijst dieren worden aangemeld, dan worden de klasse van de dieren automatisch bepaald aan de hand van de soort, de leeftijdsgroep, het geslacht en de kleur. De klasse moet altijd kloppen, dus bij elke wijziging van de kenmerken moet de klasse herbepaald worden. De klasse hoort bij een individueel dier en wordt daarom bij de gegevens van een dier opgeslagen en getoond.
+Als er via online inschrijving of inlezen van een lijst dieren worden aangemeld, dan worden de klasse van de dieren automatisch bepaald aan de hand van de soort, de leeftijdsgroep, het geslacht en de kleur. De klasse moet altijd kloppen, dus bij elke wijziging van de kenmerken moet de klasse herbepaald worden. De klasse hoort bij een show en wordt daarom apart opgeslagen. Bij een haltershow wordt de leeftijdsklasse bepaald aan de hand van de showdatum. Bij een fleecshow wordt de klasse bepaald aan de hand van de laatste scheerdatum. Nakomelingenklassen kennen klassebepaling (en dus ook geen leeftijdsklasse).
 
 **[Handmatig showvolgorde bepalen](../alpacashow-admin-it/src/main/test/resources/features/handmatig-showvolgorde-bepalen.feature)**
 

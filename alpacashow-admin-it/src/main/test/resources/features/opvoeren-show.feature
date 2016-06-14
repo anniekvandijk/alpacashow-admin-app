@@ -1,8 +1,8 @@
 # language:nl
 
 Functionaliteit: De administratie kan een show en showdetails opvoeren.
-  Deze gegevens kunnen geraadpleegd en gewijzigd worden.
-  Bij de opvoer worden er controles uitgevoerd op de juistheid van de invoer
+  Deze gegevens kunnen geraadpleegd en gewijzigd worden. Hiervoor zijn schermen beschikbaar.
+  Bij de opvoer worden er controles uitgevoerd op de juistheid van de invoer.
 
   # todo: veldlengte
   # todo: automatische correctie datum velden, datumkiezer? > toevoegen aan story?
