@@ -18,12 +18,12 @@ import javax.imageio.IIOException;
 /**
  * Created by Anniek van Dijk on 15-6-2016.
  */
-public class ExcelToCsvService {
+public class ConvertToCsvService {
 
     private static List<List<XSSFCell>> cellGrid;
-    private static String fileLocation = "alpacashow-admin-backend/src/main/resources/";
+    private static String fileLocation = "src/test/resources/";
     private static FileInputStream myInput;
-    private static File file;
+    private static File outputFile;
 
     public static void convertExcelToCsv(String excelFile, ShowType showType) throws IOException {
 
@@ -35,9 +35,14 @@ public class ExcelToCsvService {
 
         try {
             cellGrid = new ArrayList<>();
-            if ((showType.FLEECESHOW).equals(showType)) {
-                myInput = new FileInputStream(fileLocation + "fleeceshowupload/excel/" + excelFile);
+
+            File resourcePath = new File(fileLocation);
+            if (! (resourcePath.isDirectory() && resourcePath.exists())) {
+                throw new IOException("Expected to get resourceDir '" + fileLocation
+                        + "', but does not exist on '" + resourcePath + "'");
             }
+                myInput = new FileInputStream(fileLocation + "fileupload/" + excelFile);
+
             XSSFWorkbook myWorkBook = new XSSFWorkbook(myInput);
             XSSFSheet mySheet = myWorkBook.getSheetAt(0);
             Iterator<?> rowIter = mySheet.rowIterator();
@@ -56,10 +61,9 @@ public class ExcelToCsvService {
             e.printStackTrace();
         }
 
-        if ((showType.FLEECESHOW).equals(showType)) {
-            file = new File(fileLocation + "fleeceshowupload/csv/" + filename + ".csv");
-        }
-        PrintStream stream = new PrintStream(file);
+        outputFile = new File(fileLocation + "csv/" + showType + "_" + filename + ".csv");
+
+        PrintStream stream = new PrintStream(outputFile);
         for (int i = 0; i < cellGrid.size(); i++) {
             List<XSSFCell> cellRowList = cellGrid.get(i);
             for (int j = 0; j < cellRowList.size(); j++) {

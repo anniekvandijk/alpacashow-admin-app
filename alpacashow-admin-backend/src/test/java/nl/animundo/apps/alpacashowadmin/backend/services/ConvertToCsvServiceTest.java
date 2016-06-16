@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by Anniek van Dijk on 15-6-2016.
  */
-public class ExcelToCsvServiceTest {
+public class ConvertToCsvServiceTest {
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
@@ -23,15 +23,15 @@ public class ExcelToCsvServiceTest {
 
         ShowType showType = ShowType.FLEECESHOW;
         String excelFile = "fleeeceshow.xls";
-        ExcelToCsvService.convertExcelToCsv(excelFile, showType);
+        ConvertToCsvService.convertExcelToCsv(excelFile, showType);
     }
 
     @Test
     public void excelXLSXToCsv() throws IOException {
 
         ShowType showType = ShowType.FLEECESHOW;
-        String excelFile = "fleeeceshow.xlsx";
-        ExcelToCsvService.convertExcelToCsv(excelFile, showType);
+        String excelFile = "fleeeceshowdeelnemers.xlsx";
+        ConvertToCsvService.convertExcelToCsv(excelFile, showType);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class ExcelToCsvServiceTest {
 
         ShowType showType = ShowType.FLEECESHOW;
         String excelFile = "fleeeceshow2.xlsx";
-        ExcelToCsvService.convertExcelToCsv(excelFile, showType);
+        ConvertToCsvService.convertExcelToCsv(excelFile, showType);
     }
 
 }
