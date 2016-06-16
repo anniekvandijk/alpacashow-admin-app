@@ -29,16 +29,16 @@ public class ConvertToCsvServiceTest {
     @Test
     public void excelXLSXToCsv() throws IOException {
 
-        ShowType showType = ShowType.FLEECESHOW;
-        String excelFile = "fleeeceshowdeelnemers.xlsx";
+        ShowType showType = ShowType.HALTERSHOW;
+        String excelFile = "haltershow.xlsx";
         ConvertToCsvService.convertExcelToCsv(excelFile, showType);
     }
 
     @Test
     public void excelXLSXToCsvWithName() throws IOException {
 
-        ShowType showType = ShowType.FLEECESHOW;
-        String excelFile = "fleeeceshow2.xlsx";
+        ShowType showType = ShowType.HALTERSHOW;
+        String excelFile = "haltershow2.xlsx";
         ConvertToCsvService.convertExcelToCsv(excelFile, showType);
     }
 

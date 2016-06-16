@@ -21,7 +21,7 @@ import javax.imageio.IIOException;
 public class ConvertToCsvService {
 
     private static List<List<XSSFCell>> cellGrid;
-    private static String fileLocation = "src/test/resources/";
+    private static String fileLocation = "alpacashow-admin-backend/src/test/resources/";
     private static FileInputStream myInput;
     private static File outputFile;
 
