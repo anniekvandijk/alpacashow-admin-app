@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by Anniek van Dijk on 15-6-2016.
  */
-public class ConvertToCsvServiceTest {
+public class ConvertFileToCsvServiceTest {
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
@@ -22,7 +22,7 @@ public class ConvertToCsvServiceTest {
         exception.expectMessage("Upload excel file .xls not allowed");
 
         String file = "HALTERSHOW_haltershow.xls";
-        ConvertToCsvService.convertFileToCsv(file);
+        ConvertFileToCsvService.convertFileToCsv(file);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class ConvertToCsvServiceTest {
         exception.expectMessage("Upload filetype docx not allowed");
 
         String file = "HALTERSHOW_haltershow.docx";
-        ConvertToCsvService.convertFileToCsv(file);
+        ConvertFileToCsvService.convertFileToCsv(file);
     }
 
     @Test
@@ -42,21 +42,21 @@ public class ConvertToCsvServiceTest {
         exception.expectMessage("File does not excist in upload directory");
 
         String file = "HALTERSHOW_waltershow.xlsx";
-        ConvertToCsvService.convertFileToCsv(file);
+        ConvertFileToCsvService.convertFileToCsv(file);
     }
 
     @Test
     public void excelXLSXToCsv() throws IOException {
 
         String file = "HALTERSHOW_haltershow.xlsx";
-        ConvertToCsvService.convertFileToCsv(file);
+        ConvertFileToCsvService.convertFileToCsv(file);
     }
 
     @Test
     public void excelXLSXToCsvWithName() throws IOException {
 
         String file = "HALTERSHOW_haltershow2.xlsx";
-        ConvertToCsvService.convertFileToCsv(file);
+        ConvertFileToCsvService.convertFileToCsv(file);
     }
 
 }

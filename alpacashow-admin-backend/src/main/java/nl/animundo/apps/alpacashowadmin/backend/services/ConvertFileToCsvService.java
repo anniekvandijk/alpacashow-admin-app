@@ -18,14 +18,14 @@ import javax.imageio.IIOException;
 /**
  * Created by Anniek van Dijk on 15-6-2016.
  */
-public class ConvertToCsvService {
+public class ConvertFileToCsvService {
 
     private static List<List<XSSFCell>> cellGrid;
     private static String fileLocation = "src/test/resources/";
     private static FileInputStream myInput;
     private static File outputFile;
 
-    private ConvertToCsvService() throws InstantiationException {
+    private ConvertFileToCsvService() throws InstantiationException {
         throw new InstantiationException("Instances of this type are forbidden!");
     }
 
