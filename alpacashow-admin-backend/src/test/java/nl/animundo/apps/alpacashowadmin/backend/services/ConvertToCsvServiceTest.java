@@ -21,25 +21,32 @@ public class ConvertToCsvServiceTest {
         exception.expect(IOException.class);
         exception.expectMessage("Upload excel file .xls not allowed");
 
-        ShowType showType = ShowType.FLEECESHOW;
-        String excelFile = "fleeeceshow.xls";
-        ConvertToCsvService.convertExcelToCsv(excelFile, showType);
+        String file = "HALTERSHOW_haltershow.xls";
+        ConvertToCsvService.convertToCsv(file);
     }
 
     @Test
+    public void docxToCsvNotAllowed() throws IOException {
+
+        exception.expect(IOException.class);
+        exception.expectMessage("Upload filetype docx not allowed");
+
+        String file = "HALTERSHOW_haltershow.docx";
+        ConvertToCsvService.convertToCsv(file);
+    }
+    
+    @Test
     public void excelXLSXToCsv() throws IOException {
 
-        ShowType showType = ShowType.HALTERSHOW;
-        String excelFile = "haltershow.xlsx";
-        ConvertToCsvService.convertExcelToCsv(excelFile, showType);
+        String file = "HALTERSHOW_haltershow.xlsx";
+        ConvertToCsvService.convertToCsv(file);
     }
 
     @Test
     public void excelXLSXToCsvWithName() throws IOException {
 
-        ShowType showType = ShowType.HALTERSHOW;
-        String excelFile = "haltershow2.xlsx";
-        ConvertToCsvService.convertExcelToCsv(excelFile, showType);
+        String file = "HALTERSHOW_haltershow2.xlsx";
+        ConvertToCsvService.convertToCsv(file);
     }
 
 }

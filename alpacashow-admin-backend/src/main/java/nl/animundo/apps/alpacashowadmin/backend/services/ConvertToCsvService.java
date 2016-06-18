@@ -25,13 +25,22 @@ public class ConvertToCsvService {
     private static FileInputStream myInput;
     private static File outputFile;
 
-    public static void convertExcelToCsv(String excelFile, ShowType showType) throws IOException {
 
-        String ext = FilenameUtils.getExtension(excelFile);
-        String filename = FilenameUtils.getBaseName(excelFile);
+    public static void convertToCsv (String file) throws IOException {
+
+        String ext = FilenameUtils.getExtension(file);
+        String filename = FilenameUtils.getBaseName(file);
         if (ext.equalsIgnoreCase("xls")) {
             throw new IIOException("Upload excel file .xls not allowed");
         }
+        else if (ext.equalsIgnoreCase("xlsx")) {
+            convertExcelToCsv(file, filename);
+        } else {
+            throw new IIOException("Upload filetype " + ext + " not allowed");
+        }
+    }
+
+    public static void convertExcelToCsv(String excelFile, String filename) throws IOException {
 
         try {
             cellGrid = new ArrayList<>();
@@ -61,7 +70,7 @@ public class ConvertToCsvService {
             e.printStackTrace();
         }
 
-        outputFile = new File(fileLocation + "csv/" + showType + "_" + filename + ".csv");
+        outputFile = new File(fileLocation + "csv/" + filename + ".csv");
 
         PrintStream stream = new PrintStream(outputFile);
         for (int i = 0; i < cellGrid.size(); i++) {
