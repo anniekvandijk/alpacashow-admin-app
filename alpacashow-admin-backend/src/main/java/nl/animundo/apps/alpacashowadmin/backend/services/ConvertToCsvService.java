@@ -25,6 +25,9 @@ public class ConvertToCsvService {
     private static FileInputStream myInput;
     private static File outputFile;
 
+    private ConvertToCsvService() throws InstantiationException {
+        throw new InstantiationException("Instances of this type are forbidden!");
+    }
 
     public static void convertFileToCsv(String file) throws IOException {
 
