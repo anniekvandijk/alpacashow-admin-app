@@ -1,10 +1,10 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowType;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -22,7 +22,7 @@ public class ConvertToCsvServiceTest {
         exception.expectMessage("Upload excel file .xls not allowed");
 
         String file = "HALTERSHOW_haltershow.xls";
-        ConvertToCsvService.convertToCsv(file);
+        ConvertToCsvService.convertFileToCsv(file);
     }
 
     @Test
@@ -32,21 +32,31 @@ public class ConvertToCsvServiceTest {
         exception.expectMessage("Upload filetype docx not allowed");
 
         String file = "HALTERSHOW_haltershow.docx";
-        ConvertToCsvService.convertToCsv(file);
+        ConvertToCsvService.convertFileToCsv(file);
     }
-    
+
+    @Test
+    public void fileNotFound() throws IOException {
+
+        exception.expect(FileNotFoundException.class);
+        exception.expectMessage("File does not excist in upload directory");
+
+        String file = "HALTERSHOW_waltershow.xlsx";
+        ConvertToCsvService.convertFileToCsv(file);
+    }
+
     @Test
     public void excelXLSXToCsv() throws IOException {
 
         String file = "HALTERSHOW_haltershow.xlsx";
-        ConvertToCsvService.convertToCsv(file);
+        ConvertToCsvService.convertFileToCsv(file);
     }
 
     @Test
     public void excelXLSXToCsvWithName() throws IOException {
 
         String file = "HALTERSHOW_haltershow2.xlsx";
-        ConvertToCsvService.convertToCsv(file);
+        ConvertToCsvService.convertFileToCsv(file);
     }
 
 }

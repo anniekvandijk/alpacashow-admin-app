@@ -26,7 +26,7 @@ public class ConvertToCsvService {
     private static File outputFile;
 
 
-    public static void convertToCsv (String file) throws IOException {
+    public static void convertFileToCsv(String file) throws IOException {
 
         String ext = FilenameUtils.getExtension(file);
         String filename = FilenameUtils.getBaseName(file);
@@ -40,17 +40,12 @@ public class ConvertToCsvService {
         }
     }
 
-    public static void convertExcelToCsv(String excelFile, String filename) throws IOException {
+    private static void convertExcelToCsv(String excelFile, String filename) throws IOException {
 
         try {
             cellGrid = new ArrayList<>();
 
-            File resourcePath = new File(fileLocation);
-            if (! (resourcePath.isDirectory() && resourcePath.exists())) {
-                throw new IOException("Expected to get resourceDir '" + fileLocation
-                        + "', but does not exist on '" + resourcePath + "'");
-            }
-                myInput = new FileInputStream(fileLocation + "fileupload/" + excelFile);
+            myInput = new FileInputStream(fileLocation + "fileupload/" + excelFile);
 
             XSSFWorkbook myWorkBook = new XSSFWorkbook(myInput);
             XSSFSheet mySheet = myWorkBook.getSheetAt(0);
@@ -67,7 +62,7 @@ public class ConvertToCsvService {
                 cellGrid.add(cellRowList);
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new FileNotFoundException("File does not excist in upload directory");
         }
 
         outputFile = new File(fileLocation + "csv/" + filename + ".csv");
