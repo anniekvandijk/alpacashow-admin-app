@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterConfig} from '@angular/router';
+import {RouterConfig, provideRouter} from '@angular/router';
 import {HomeComponent} from "../home/home.component";
 import {ShowEventComponent} from "../showevent/showevent.component";
 
@@ -17,3 +17,7 @@ export const routes: RouterConfig = [
 
 export class NavigationComponent {
 }
+
+export const APP_ROUTER_PROVIDERS = [
+    provideRouter(routes)
+];

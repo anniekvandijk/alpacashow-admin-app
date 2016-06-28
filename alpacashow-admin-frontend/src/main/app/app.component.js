@@ -22,7 +22,8 @@ var AppComponent = (function () {
             directives: router_1.ROUTER_DIRECTIVES.concat([
                 navigation_component_1.NavigationComponent,
                 home_component_1.HomeComponent
-            ])
+            ]),
+            providers: navigation_component_1.APP_ROUTER_PROVIDERS
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
