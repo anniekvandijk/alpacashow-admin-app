@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {RouterConfig, provideRouter, ROUTER_DIRECTIVES} from '@angular/router';
 import {ShowEventComponent} from "../showevent/showevent.component";
 import { HomeComponent } from '../home/home.component';
-import {AppComponent} from "../app.component";
 
 @Component({
     selector: 'navigation',
@@ -24,7 +23,8 @@ import {AppComponent} from "../app.component";
         <div class="content">
             <router-outlet></router-outlet>
         </div>
-    </div>`,
+    </div>
+    `,
     directives: ROUTER_DIRECTIVES
 })
 
@@ -32,7 +32,7 @@ import {AppComponent} from "../app.component";
  }
 
 export const routes: RouterConfig = [
-    { path: '', component: AppComponent},
+    { path: '', component: HomeComponent},
     { path: 'Home', component: HomeComponent},
     { path: 'Show', component: ShowEventComponent},
 ];
