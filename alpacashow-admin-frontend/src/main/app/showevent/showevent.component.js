@@ -15,7 +15,7 @@ var ShowEventComponent = (function () {
     ShowEventComponent = __decorate([
         core_1.Component({
             selector: 'showevent',
-            templateUrl: 'app/showevent/showevent.html'
+            templateUrl: './app/showevent/showevent.html'
         }), 
         __metadata('design:paramtypes', [])
     ], ShowEventComponent);
