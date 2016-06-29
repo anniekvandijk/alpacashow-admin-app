@@ -3,11 +3,11 @@ import {RouterConfig, provideRouter} from '@angular/router';
 import {HomeComponent} from "../home/home.component";
 import {ShowEventComponent} from "../showevent/showevent.component";
 
-
 @Component({
     selector: 'navigation',
     templateUrl: 'app/navigation/navigation.html'
 })
+
 
 export const routes: RouterConfig = [
     { path: '', redirectTo: 'home'},
