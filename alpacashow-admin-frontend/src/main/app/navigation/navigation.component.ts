@@ -4,7 +4,7 @@ import {ShowEventComponent} from "../showevent/showevent.component";
 import { HomeComponent } from '../home/home.component';
 
 @Component({
-    selector: 'navigation',
+    selector: 'app-with-navigation',
     template: `
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">

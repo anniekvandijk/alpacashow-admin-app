@@ -5614,7 +5614,7 @@ tbody.collapse.in {
 .navbar {
   position: relative;
   min-height: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   border: 1px solid transparent;
 }
 /* line 14, ../sass/bootstrap/mixins/_clearfix.scss */
@@ -5743,7 +5743,7 @@ tbody.collapse.in {
 /* line 138, ../sass/bootstrap/_navbar.scss */
 .navbar-fixed-top,
 .navbar-fixed-bottom {
-  position: fixed;
+  position: relative;
   right: 0;
   left: 0;
   z-index: 1030;
