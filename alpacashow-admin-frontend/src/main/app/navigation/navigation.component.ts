@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {RouterConfig, provideRouter, ROUTER_DIRECTIVES} from '@angular/router';
-import {ShowEventComponent} from "../showevent/showevent.component";
-import { HomeComponent } from '../home/home.component';
+import {ShowEventComponent} from "./../showevent/showevent.component";
+import { HomeComponent } from './../home/home.component';
 
 @Component({
     selector: 'app-with-navigation',

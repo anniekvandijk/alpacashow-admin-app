@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var showevent_component_1 = require("../showevent/showevent.component");
-var home_component_1 = require('../home/home.component');
+var showevent_component_1 = require("./../showevent/showevent.component");
+var home_component_1 = require('./../home/home.component');
 var NavigationComponent = (function () {
     function NavigationComponent() {
     }
