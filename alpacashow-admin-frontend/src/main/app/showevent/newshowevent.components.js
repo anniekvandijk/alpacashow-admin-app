@@ -9,19 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var navigation_component_1 = require('./navigation/navigation.component');
-var AppComponent = (function () {
-    function AppComponent() {
+var NewShow = (function () {
+    function NewShow() {
     }
-    AppComponent = __decorate([
+    NewShow.prototype.onSubmit = function (form) {
+        console.log('you submitted value:', form);
+    };
+    NewShow = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            templateUrl: './app/app.html',
-            directives: [navigation_component_1.NavigationComponent]
+            selector: 'new-showevent',
+            templateUrl: './app/showevent/newshowevent.html',
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], NewShow);
+    return NewShow;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.NewShow = NewShow;
+//# sourceMappingURL=newshowevent.components.js.map

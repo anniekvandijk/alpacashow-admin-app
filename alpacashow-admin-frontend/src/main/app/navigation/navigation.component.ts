@@ -10,7 +10,7 @@ import { HomeComponent } from './../home/home.component';
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" [routerLink]="['Home']">Home</a>
-                <a class="navbar-brand" [routerLink]="['Show']">Show</a>
+                <a class="navbar-brand" [routerLink]="['Show']">Alpacashows</a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">

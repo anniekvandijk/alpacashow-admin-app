@@ -9,13 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var newshowevent_components_1 = require('./newshowevent.components');
 var ShowEventComponent = (function () {
     function ShowEventComponent() {
     }
     ShowEventComponent = __decorate([
         core_1.Component({
             selector: 'showevent',
-            templateUrl: './app/showevent/showevent.html'
+            templateUrl: './app/showevent/showevent.html',
+            directives: [newshowevent_components_1.NewShow]
         }), 
         __metadata('design:paramtypes', [])
     ], ShowEventComponent);

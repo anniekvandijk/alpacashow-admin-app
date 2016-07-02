@@ -4,9 +4,7 @@ import { NavigationComponent} from './navigation/navigation.component';
 @Component({
   selector: 'my-app',
   templateUrl: './app/app.html',
-  directives: [
-    NavigationComponent
-  ]
+  directives: [ NavigationComponent ]
 })
 
 export class AppComponent { }
