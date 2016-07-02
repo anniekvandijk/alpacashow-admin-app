@@ -16,8 +16,6 @@ public class Show {
         if (showType == null) {
             throw new IllegalArgumentException("Show can not be empty");
         }
-
-        logger.info("Show: " + showType);
         this.showType = showType;
     }
 

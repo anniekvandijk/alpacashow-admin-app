@@ -52,7 +52,7 @@ public class ShowEvent {
         if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
             throw new IllegalArgumentException("Date show before or same as close date subscriptions");
         }
-        logger.info("\n Showname: " + nameCln + "\n Showdate: " + date + "\n Closedate: "
+        logger.info("Added new showEvent:\n Showname: " + nameCln + "\n Showdate: " + date + "\n Closedate: "
                     + closeDate + "\n Location: " + locationCln + "\n Judge: " + judgeCln
                     + "\n Showtype(s): " + shows + "\n Participant(s): " + participants);
         this.name = nameCln;
