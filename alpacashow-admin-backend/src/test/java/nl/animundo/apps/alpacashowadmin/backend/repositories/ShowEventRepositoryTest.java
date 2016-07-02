@@ -19,7 +19,7 @@ public class ShowEventRepositoryTest {
     // TODO add exceptions
     // TODO Add search for showTypes and participants
     // TODO Add search for part of searchvalue
-    // TODO Add search for more search options. HOW?
+    // TODO Add search for more search options. HOW? Make a list and loop through list I think
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
