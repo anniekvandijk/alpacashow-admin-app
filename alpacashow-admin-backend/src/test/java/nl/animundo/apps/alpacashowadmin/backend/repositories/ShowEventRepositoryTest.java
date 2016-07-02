@@ -16,7 +16,10 @@ import static org.junit.Assert.assertEquals;
 public class ShowEventRepositoryTest {
     private static Logger logger = LoggerFactory.getLogger(ShowEventRepositoryTest.class);
 
+    // TODO add exceptions
     // TODO Add search for showTypes and participants
+    // TODO Add search for part of searchvalue
+    // TODO Add search for more search options. HOW?
 
     @Rule
     public ExpectedException exception = ExpectedException.none();

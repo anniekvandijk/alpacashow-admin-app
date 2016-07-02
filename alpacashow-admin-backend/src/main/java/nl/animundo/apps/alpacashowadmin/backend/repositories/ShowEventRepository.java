@@ -16,6 +16,8 @@ public class ShowEventRepository {
     private Map<String, ShowEvent> showEventRepo = new HashMap<>();
 
     public void add(ShowEvent showEvent) {
+        // TODO no double keys
+
         String showEventKey = showEvent.getName() + "_" + showEvent.getDate();
         showEventRepo.put(showEventKey, showEvent);
         logger.info("Added showEvent '" + showEventKey + "' to showEventRepo");
