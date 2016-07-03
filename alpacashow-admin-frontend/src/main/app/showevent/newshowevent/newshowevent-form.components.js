@@ -14,6 +14,7 @@ var ShowEventForm = (function () {
     function ShowEventForm() {
         this.submitted = false;
         this.active = true;
+        // name, location, date, closedate, haltershow. fleeceshow, maleprogenyshow, femaleprogenyshow
         this.model = new newshowevent_1.NewShowEvent('', '', '', '', '', false, false, false, false);
     }
     ShowEventForm.prototype.onSubmit = function (form) {

@@ -1,5 +1,5 @@
 export class NewShowEvent {
-    
+
     constructor(
         public name: string,
         public location: string,

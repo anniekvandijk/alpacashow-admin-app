@@ -11,7 +11,8 @@ export class ShowEventForm {
 
     submitted = false;
     active = true;
-
+    
+    // name, location, date, closedate, haltershow. fleeceshow, maleprogenyshow, femaleprogenyshow
     model = new NewShowEvent('', '', '', '', '', false, false, false, false);
 
     onSubmit(form:any):void {
@@ -19,6 +20,7 @@ export class ShowEventForm {
         //    this.active = false;
         //   setTimeout(() => this.active = true, 0);
         console.log('you submitted value:', form);
+
         console.log('json: ', JSON.stringify(this.model));
         
         // json sent to backend
