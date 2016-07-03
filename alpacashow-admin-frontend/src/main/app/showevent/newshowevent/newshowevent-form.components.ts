@@ -1,19 +1,35 @@
 import { Component } from '@angular/core';
-import { NewShowEvent} from './newshowevent';
-
+import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'new-showevent-form',
     templateUrl: './app/showevent/newshowevent/newshowevent-form.html',
+    directives: [REACTIVE_FORM_DIRECTIVES]
 })
 
 export class ShowEventForm {
 
     submitted = false;
     active = true;
-    
-    // name, location, date, closedate, haltershow. fleeceshow, maleprogenyshow, femaleprogenyshow
-    model = new NewShowEvent('', '', '', '', '', false, false, false, false);
+
+    constructor(private formBuilder: FormBuilder) {}
+
+    showEventForm: FormGroup;
+
+    ngOnInit() {
+        this.showEventForm = this.formBuilder.group({
+            name:               ['', Validators.required],
+            location:           ['', Validators.required],
+            date:               ['', Validators.required],
+            closedate:          ['', Validators.required],
+            judge:              ['', Validators.required],
+            haltershow:         ['', Validators.required],
+            fleeceshow:         ['', Validators.required],
+            maleprogenyshow:    ['', Validators.required],
+            femaleprogenyshow:  ['', Validators.required],
+
+        });
+    }
 
     onSubmit(form:any):void {
         this.submitted = true;
@@ -21,7 +37,7 @@ export class ShowEventForm {
         //   setTimeout(() => this.active = true, 0);
         console.log('you submitted value:', form);
 
-        console.log('json: ', JSON.stringify(this.model));
+        console.log('json output: ', JSON.stringify(form));
         
         // json sent to backend
     }

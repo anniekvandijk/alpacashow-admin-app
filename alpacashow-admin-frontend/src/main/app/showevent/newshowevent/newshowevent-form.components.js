@@ -9,28 +9,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var newshowevent_1 = require('./newshowevent');
+var forms_1 = require('@angular/forms');
 var ShowEventForm = (function () {
-    function ShowEventForm() {
+    function ShowEventForm(formBuilder) {
+        this.formBuilder = formBuilder;
         this.submitted = false;
         this.active = true;
-        // name, location, date, closedate, haltershow. fleeceshow, maleprogenyshow, femaleprogenyshow
-        this.model = new newshowevent_1.NewShowEvent('', '', '', '', '', false, false, false, false);
     }
+    ShowEventForm.prototype.ngOnInit = function () {
+        this.showEventForm = this.formBuilder.group({
+            name: ['', forms_1.Validators.required],
+            location: ['', forms_1.Validators.required],
+            date: ['', forms_1.Validators.required],
+            closedate: ['', forms_1.Validators.required],
+            judge: ['', forms_1.Validators.required],
+            haltershow: ['', forms_1.Validators.required],
+            fleeceshow: ['', forms_1.Validators.required],
+            maleprogenyshow: ['', forms_1.Validators.required],
+            femaleprogenyshow: ['', forms_1.Validators.required],
+        });
+    };
     ShowEventForm.prototype.onSubmit = function (form) {
         this.submitted = true;
         //    this.active = false;
         //   setTimeout(() => this.active = true, 0);
         console.log('you submitted value:', form);
-        console.log('json: ', JSON.stringify(this.model));
+        console.log('json output: ', JSON.stringify(form));
         // json sent to backend
     };
     ShowEventForm = __decorate([
         core_1.Component({
             selector: 'new-showevent-form',
             templateUrl: './app/showevent/newshowevent/newshowevent-form.html',
+            directives: [forms_1.REACTIVE_FORM_DIRECTIVES]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [forms_1.FormBuilder])
     ], ShowEventForm);
     return ShowEventForm;
 }());
