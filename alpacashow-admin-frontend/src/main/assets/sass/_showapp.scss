@@ -1,3 +1,7 @@
 .appform {
-  width: 50%;
+  max-width: 1200px;
+}
+
+.ng-valid[required] {
+  border-left: 5px solid #42A948; /* green */
 }

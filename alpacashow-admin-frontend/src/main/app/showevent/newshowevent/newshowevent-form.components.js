@@ -9,20 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var NewShow = (function () {
-    function NewShow() {
+var newshowevent_1 = require('./newshowevent');
+var ShowEventForm = (function () {
+    function ShowEventForm() {
+        this.submitted = false;
+        this.active = true;
+        this.model = new newshowevent_1.NewShowEvent('', '', '', '', '', false, false, false, false);
     }
-    NewShow.prototype.onSubmit = function (form) {
+    ShowEventForm.prototype.onSubmit = function (form) {
+        this.submitted = true;
+        //    this.active = false;
+        //   setTimeout(() => this.active = true, 0);
         console.log('you submitted value:', form);
+        console.log('json: ', JSON.stringify(this.model));
+        // json sent to backend
     };
-    NewShow = __decorate([
+    ShowEventForm = __decorate([
         core_1.Component({
-            selector: 'new-showevent',
-            templateUrl: './app/showevent/newshowevent.html',
+            selector: 'new-showevent-form',
+            templateUrl: './app/showevent/newshowevent/newshowevent-form.html',
         }), 
         __metadata('design:paramtypes', [])
-    ], NewShow);
-    return NewShow;
+    ], ShowEventForm);
+    return ShowEventForm;
 }());
-exports.NewShow = NewShow;
-//# sourceMappingURL=newshowevent.components.js.map
+exports.ShowEventForm = ShowEventForm;
+//# sourceMappingURL=newshowevent-form.components.js.map

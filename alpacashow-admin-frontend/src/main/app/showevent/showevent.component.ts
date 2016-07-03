@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NewShow } from './newshowevent.components';
+import { ShowEventForm } from './newshowevent/newshowevent-form.components';
+
 
 @Component({
     selector: 'showevent',
     templateUrl: './app/showevent/showevent.html',
-    directives: [ NewShow ]
+    directives: [ ShowEventForm ]
 })
 
 export class ShowEventComponent {

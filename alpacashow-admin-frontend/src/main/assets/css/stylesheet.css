@@ -1,7 +1,13 @@
 @charset "UTF-8";
 /* line 1, ../sass/_showapp.scss */
 .appform {
-  width: 50%;
+  max-width: 1200px;
+}
+
+/* line 5, ../sass/_showapp.scss */
+.ng-valid[required] {
+  border-left: 5px solid #42A948;
+  /* green */
 }
 
 /*!
