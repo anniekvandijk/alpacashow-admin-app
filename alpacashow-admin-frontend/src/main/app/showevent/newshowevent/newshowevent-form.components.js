@@ -41,7 +41,7 @@ var ShowEventForm = (function () {
         core_1.Component({
             selector: 'new-showevent-form',
             templateUrl: './app/showevent/newshowevent/newshowevent-form.html',
-            directives: [forms_1.REACTIVE_FORM_DIRECTIVES]
+            directives: [forms_1.FORM_DIRECTIVES, forms_1.REACTIVE_FORM_DIRECTIVES],
         }), 
         __metadata('design:paramtypes', [forms_1.FormBuilder])
     ], ShowEventForm);

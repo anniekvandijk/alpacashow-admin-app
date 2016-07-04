@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'new-showevent-form',
     templateUrl: './app/showevent/newshowevent/newshowevent-form.html',
-    directives: [REACTIVE_FORM_DIRECTIVES]
+    directives: [FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES],
 })
 
 export class ShowEventForm {
