@@ -23,10 +23,10 @@ var ShowEventForm = (function () {
             date: ['', forms_1.Validators.required],
             closedate: ['', forms_1.Validators.required],
             judge: ['', forms_1.Validators.required],
-            haltershow: ['', forms_1.Validators.required],
-            fleeceshow: ['', forms_1.Validators.required],
-            maleprogenyshow: ['', forms_1.Validators.required],
-            femaleprogenyshow: ['', forms_1.Validators.required],
+            haltershow: ['',],
+            fleeceshow: ['',],
+            maleprogenyshow: ['',],
+            femaleprogenyshow: ['',],
         });
     };
     ShowEventForm.prototype.onSubmit = function (form) {

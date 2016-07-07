@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* line 3, ../sass/_showapp.scss */
+/* line 1, ../sass/_showapp.scss */
 .ng-valid[required] {
   border-left: 5px solid #42A948;
   /* green */
@@ -6668,36 +6668,37 @@ a.thumbnail.active {
 
 /* line 9, ../sass/bootstrap/_alerts.scss */
 .alert {
-  padding: 15px;
+  padding: 5px;
   margin-bottom: 20px;
+  margin-top: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
 }
-/* line 16, ../sass/bootstrap/_alerts.scss */
+/* line 17, ../sass/bootstrap/_alerts.scss */
 .alert h4 {
   margin-top: 0;
   color: inherit;
 }
-/* line 23, ../sass/bootstrap/_alerts.scss */
+/* line 24, ../sass/bootstrap/_alerts.scss */
 .alert .alert-link {
   font-weight: bold;
 }
-/* line 28, ../sass/bootstrap/_alerts.scss */
+/* line 29, ../sass/bootstrap/_alerts.scss */
 .alert > p,
 .alert > ul {
   margin-bottom: 0;
 }
-/* line 33, ../sass/bootstrap/_alerts.scss */
+/* line 34, ../sass/bootstrap/_alerts.scss */
 .alert > p + p {
   margin-top: 5px;
 }
 
-/* line 42, ../sass/bootstrap/_alerts.scss */
+/* line 43, ../sass/bootstrap/_alerts.scss */
 .alert-dismissable,
 .alert-dismissible {
-  padding-right: 35px;
+  padding-right: 25px;
 }
-/* line 47, ../sass/bootstrap/_alerts.scss */
+/* line 48, ../sass/bootstrap/_alerts.scss */
 .alert-dismissable .close,
 .alert-dismissible .close {
   position: relative;
@@ -6706,7 +6707,7 @@ a.thumbnail.active {
   color: inherit;
 }
 
-/* line 59, ../sass/bootstrap/_alerts.scss */
+/* line 60, ../sass/bootstrap/_alerts.scss */
 .alert-success {
   background-color: #dff0d8;
   border-color: #d6e9c6;
@@ -6721,7 +6722,7 @@ a.thumbnail.active {
   color: #2b542c;
 }
 
-/* line 63, ../sass/bootstrap/_alerts.scss */
+/* line 64, ../sass/bootstrap/_alerts.scss */
 .alert-info {
   background-color: #d9edf7;
   border-color: #bce8f1;
@@ -6736,7 +6737,7 @@ a.thumbnail.active {
   color: #245269;
 }
 
-/* line 67, ../sass/bootstrap/_alerts.scss */
+/* line 68, ../sass/bootstrap/_alerts.scss */
 .alert-warning {
   background-color: #fcf8e3;
   border-color: #faebcc;
@@ -6751,7 +6752,7 @@ a.thumbnail.active {
   color: #66512c;
 }
 
-/* line 71, ../sass/bootstrap/_alerts.scss */
+/* line 72, ../sass/bootstrap/_alerts.scss */
 .alert-danger {
   background-color: #f2dede;
   border-color: #ebccd1;

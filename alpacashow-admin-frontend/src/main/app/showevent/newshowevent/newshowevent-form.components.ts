@@ -23,10 +23,10 @@ export class ShowEventForm {
             date:               ['', Validators.required],
             closedate:          ['', Validators.required],
             judge:              ['', Validators.required],
-            haltershow:         ['', Validators.required],
-            fleeceshow:         ['', Validators.required],
-            maleprogenyshow:    ['', Validators.required],
-            femaleprogenyshow:  ['', Validators.required],
+            haltershow:         ['', ],
+            fleeceshow:         ['', ],
+            maleprogenyshow:    ['', ],
+            femaleprogenyshow:  ['', ],
 
         });
     }
