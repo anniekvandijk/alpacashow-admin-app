@@ -5,7 +5,6 @@ package nl.animundo.apps.alpacashowadmin.backend.domain;
  */
 public enum ShowEventSearch {
 
-    KEY,
     NAME,
     JUDGE,
     LOCATION,

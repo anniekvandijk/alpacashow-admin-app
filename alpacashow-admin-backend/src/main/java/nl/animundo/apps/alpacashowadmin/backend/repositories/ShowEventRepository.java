@@ -5,49 +5,45 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventSearch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Anniek van Dijk on 1-7-2016.
  */
 public class ShowEventRepository {
     private static Logger logger = LoggerFactory.getLogger(ShowEventRepository.class);
+    private Map<String, ShowEvent> showEvents = new HashMap<>();
 
-    private Map<String, ShowEvent> showEventRepo = new HashMap<>();
 
-    public void add(ShowEvent showEvent) {
+    public void add(final ShowEvent showEvent) {
         // TODO no double keys
 
         String showEventKey = showEvent.getName() + "_" + showEvent.getDate();
-        showEventRepo.put(showEventKey, showEvent);
+        showEvents.put(showEventKey, showEvent);
         logger.info("Added showEvent '" + showEventKey + "' to showEventRepo");
 
     }
 
-    public String search(ShowEventSearch searchOption, String searchFor) {
-
-        for (Map.Entry<String, ShowEvent> show : showEventRepo.entrySet()) {
-
+    public ShowEvent search(final ShowEventSearch searchOption, final String searchFor) {
+        for (Map.Entry<String, ShowEvent> showEventEntry : showEvents.entrySet()) {
             String value = "";
-
             switch (searchOption) {
-                case KEY:
-                    value = show.getKey();
-                    break;
                 case NAME:
-                    value = show.getValue().getName();
+                    value = showEventEntry.getValue().getName();
                     break;
                 case JUDGE:
-                    value = show.getValue().getJudge();
+                    value = showEventEntry.getValue().getJudge();
                     break;
                 case LOCATION:
-                    value = show.getValue().getLocation();
+                    value = showEventEntry.getValue().getLocation();
                     break;
                 case DATE:
-                    value = String.valueOf(show.getValue().getDate());
+                    value = String.valueOf(showEventEntry.getValue().getDate()); //TODO dd-MM-yyyy dateformatter
                     break;
                 case CLOSEDATE:
-                    value = String.valueOf(show.getValue().getCloseDate());
+                    value = String.valueOf(showEventEntry.getValue().getCloseDate());
                     break;
                 case SHOWTYPE:
                     break;
@@ -59,9 +55,12 @@ public class ShowEventRepository {
 
             if (searchFor.equalsIgnoreCase(value)) {
                 logger.info("value: '" + value + "' is found");
-                return value;
-            } else return "value '" + value + "' not found with search for '" + searchFor + "'";
+                return showEventEntry.getValue();
+
+            }
         }
+
         return null;
     }
+
 }
