@@ -10,9 +10,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
+var ShowType = (function () {
+    function ShowType() {
+    }
+    return ShowType;
+}());
+exports.ShowType = ShowType;
+var SHOWTYPES = [
+    { name: 'haltershow', label: 'Haltershow' },
+    { name: 'fleeceshow', label: 'Fleeceshow' },
+    { name: 'maleprogenyshow', label: 'Male progeny show' },
+    { name: 'femaleprogenyshow', label: 'Female progeny show' }
+];
 var ShowEventForm = (function () {
     function ShowEventForm(formBuilder) {
         this.formBuilder = formBuilder;
+        this.showtype = SHOWTYPES;
         this.submitted = false;
         this.active = true;
     }
