@@ -4,6 +4,7 @@
     </div>
     <div class="panel-body">
         <table class="table table-hover">
+            <thead>
             <tr>
                 <th>Show naam</th>
                 <th>Show locatie</th>
@@ -12,6 +13,8 @@
                 <th>Show jury</th>
                 <th>Showtypen</th>
             </tr>
+            </thead>
+            <tbody>
             <tr *ngFor="let showevent of showevents">
                 <td>{{showevent.name}}</td>
                 <td>{{showevent.location}}</td>
@@ -20,7 +23,7 @@
                 <td>{{showevent.judge}}</td>
                 <td>{{showevent.showtype}}</td>
             </tr>
-
+            </tbody>
         </table>
     </div>
 </div>
