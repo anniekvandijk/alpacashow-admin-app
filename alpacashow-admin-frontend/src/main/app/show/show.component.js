@@ -9,7 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var newshowevent_form_components_1 = require('./newshowevent/newshowevent-form.components');
+var newshowevent_form_component_1 = require('./newshowevent/newshowevent-form.component');
+var showevent_component_1 = require('./showevent/showevent.component');
 var ShowComponent = (function () {
     function ShowComponent() {
     }
@@ -17,7 +18,7 @@ var ShowComponent = (function () {
         core_1.Component({
             selector: 'show',
             templateUrl: './app/show/show.html',
-            directives: [newshowevent_form_components_1.ShowEventForm]
+            directives: [newshowevent_form_component_1.ShowEventForm, showevent_component_1.ShowEventComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], ShowComponent);

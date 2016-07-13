@@ -61,4 +61,4 @@ var ShowEventForm = (function () {
     return ShowEventForm;
 }());
 exports.ShowEventForm = ShowEventForm;
-//# sourceMappingURL=newshowevent-form.components.js.map
+//# sourceMappingURL=newshowevent-form.component.js.map

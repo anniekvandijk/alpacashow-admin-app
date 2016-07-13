@@ -9,15 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var showevent_service_1 = require('./showevent.service');
 var ShowEventComponent = (function () {
-    function ShowEventComponent() {
+    function ShowEventComponent(showEventService) {
+        this.showEventService = showEventService;
     }
+    ShowEventComponent.prototype.getShowEvents = function () {
+        var _this = this;
+        this.showEventService.getShowEvents().then(function (showevents) { return _this.showevents = showevents; });
+    };
+    ShowEventComponent.prototype.ngOnInit = function () {
+        this.getShowEvents();
+    };
     ShowEventComponent = __decorate([
         core_1.Component({
             selector: 'showevent-table',
-            templateUrl: './app/show/showevent/showevent-table.html'
+            templateUrl: './app/show/showevent/showevent-table.html',
+            providers: [showevent_service_1.ShowEventService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [showevent_service_1.ShowEventService])
     ], ShowEventComponent);
     return ShowEventComponent;
 }());
