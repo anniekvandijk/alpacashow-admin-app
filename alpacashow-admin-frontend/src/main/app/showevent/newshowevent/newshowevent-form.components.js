@@ -17,10 +17,10 @@ var ShowType = (function () {
 }());
 exports.ShowType = ShowType;
 var SHOWTYPES = [
-    { name: 'haltershow', label: 'Haltershow' },
-    { name: 'fleeceshow', label: 'Fleeceshow' },
-    { name: 'maleprogenyshow', label: 'Male progeny show' },
-    { name: 'femaleprogenyshow', label: 'Female progeny show' }
+    { value: false, name: 'haltershow', label: 'Haltershow' },
+    { value: false, name: 'fleeceshow', label: 'Fleeceshow' },
+    { value: false, name: 'maleprogenyshow', label: 'Male progeny show' },
+    { value: false, name: 'femaleprogenyshow', label: 'Female progeny show' }
 ];
 var ShowEventForm = (function () {
     function ShowEventForm(formBuilder) {

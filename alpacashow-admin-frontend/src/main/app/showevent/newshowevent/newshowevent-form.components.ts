@@ -4,13 +4,14 @@ import { FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, For
 export class ShowType {
     name: string;
     label: string;
+    value: boolean;
 }
 
 const SHOWTYPES: ShowType[] = [
-    { name: 'haltershow', label: 'Haltershow' },
-    { name: 'fleeceshow', label: 'Fleeceshow' },
-    { name: 'maleprogenyshow', label: 'Male progeny show' },
-    { name: 'femaleprogenyshow', label: 'Female progeny show' }
+    { value: false, name: 'haltershow', label: 'Haltershow' },
+    { value: false, name: 'fleeceshow', label: 'Fleeceshow' },
+    { value: false, name: 'maleprogenyshow', label: 'Male progeny show' },
+    { value: false, name: 'femaleprogenyshow', label: 'Female progeny show' }
 
 ];
 

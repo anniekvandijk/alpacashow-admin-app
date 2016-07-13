@@ -60,12 +60,9 @@
             <div class="">
                     <div class="checkbox" *ngFor="let showtype of showtypes">
                         <label class="">
-                            <input type="checkbox"> {{ showtype.label }}
+                            <input type="checkbox" [checked]="false" [(ngModel)]="showtype.value" name="{{showtype.name}}"> {{ showtype.label }}
                         </label>
                     </div>
-                    <!--<label for="haltershow" class="">-->
-                        <!--<input type="checkbox" class="showtype" id="haltershow" value="haltershow" name="haltershow"  [(ngModel)]="haltershow">Haltershow-->
-                    <!--</label>-->
             </div>
         </div>
         <!-- Submit -->
