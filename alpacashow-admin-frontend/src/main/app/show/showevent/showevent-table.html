@@ -24,12 +24,14 @@
                 <td>{{showevent.judge}}</td>
                 <td>{{showevent.showtype}}</td>
                 <td>
-                    <button type="submit" class="btn btn-warning"  style="margin-right: 5px">Wijzig</button>
-                    <button type="submit" class="btn btn-danger">Verwijder</button>
+                    <button type="submit" class="btn btn-warning"  style="margin-right: 5px" (click)="updateShow()">Wijzig</button>
+                    <button type="submit" class="btn btn-danger" (click)="deleteShow()">Verwijder</button>
 
                 </td>
             </tr>
             </tbody>
         </table>
+        {{deleteMessage}}
+        {{updateMessage}}
     </div>
 </div>

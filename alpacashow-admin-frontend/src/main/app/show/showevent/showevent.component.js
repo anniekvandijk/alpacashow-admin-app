@@ -13,6 +13,8 @@ var showevent_service_1 = require('./showevent.service');
 var ShowEventComponent = (function () {
     function ShowEventComponent(showEventService) {
         this.showEventService = showEventService;
+        this.deleteMessage = '';
+        this.updateMessage = '';
     }
     ShowEventComponent.prototype.getShowEvents = function () {
         var _this = this;
@@ -20,6 +22,12 @@ var ShowEventComponent = (function () {
     };
     ShowEventComponent.prototype.ngOnInit = function () {
         this.getShowEvents();
+    };
+    ShowEventComponent.prototype.deleteShow = function () {
+        this.deleteMessage = 'Show delete!';
+    };
+    ShowEventComponent.prototype.updateShow = function () {
+        this.updateMessage = 'Show update!';
     };
     ShowEventComponent = __decorate([
         core_1.Component({

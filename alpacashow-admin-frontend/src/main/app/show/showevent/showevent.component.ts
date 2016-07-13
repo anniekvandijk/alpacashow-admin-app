@@ -12,6 +12,8 @@ import { ShowEventService } from './showevent.service';
 export class ShowEventComponent {
 
     showevents: ShowEvent[];
+    deleteMessage = '';
+    updateMessage = '';
 
     constructor(private showEventService: ShowEventService) { }
 
@@ -20,6 +22,14 @@ export class ShowEventComponent {
     }
     ngOnInit() {
         this.getShowEvents();
+    }
+
+    deleteShow() {
+        this.deleteMessage = 'Show delete!';
+    }
+
+    updateShow() {
+        this.updateMessage = 'Show update!';
     }
 
 }
