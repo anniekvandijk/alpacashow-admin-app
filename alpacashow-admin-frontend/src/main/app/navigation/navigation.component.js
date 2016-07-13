@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var showevent_component_1 = require("./../showevent/showevent.component");
+var show_component_1 = require("./../show/show.component");
 var home_component_1 = require('./../home/home.component');
 var NavigationComponent = (function () {
     function NavigationComponent() {
@@ -29,7 +29,7 @@ exports.NavigationComponent = NavigationComponent;
 exports.routes = [
     { path: '', component: home_component_1.HomeComponent },
     { path: 'Home', component: home_component_1.HomeComponent },
-    { path: 'Show', component: showevent_component_1.ShowEventComponent },
+    { path: 'Show', component: show_component_1.ShowComponent },
 ];
 exports.APP_ROUTER_PROVIDERS = [
     router_1.provideRouter(exports.routes)

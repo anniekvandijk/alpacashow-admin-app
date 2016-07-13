@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {RouterConfig, provideRouter, ROUTER_DIRECTIVES} from '@angular/router';
-import {ShowEventComponent} from "./../showevent/showevent.component";
+import {ShowComponent} from "./../show/show.component";
 import { HomeComponent } from './../home/home.component';
 
 @Component({
@@ -34,7 +34,7 @@ import { HomeComponent } from './../home/home.component';
 export const routes: RouterConfig = [
     { path: '', component: HomeComponent},
     { path: 'Home', component: HomeComponent},
-    { path: 'Show', component: ShowEventComponent},
+    { path: 'Show', component: ShowComponent},
 ];
 
 export const APP_ROUTER_PROVIDERS = [

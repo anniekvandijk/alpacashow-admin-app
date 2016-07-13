@@ -9,19 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var newshowevent_form_components_1 = require('./newshowevent/newshowevent-form.components');
-var ShowEventComponent = (function () {
-    function ShowEventComponent() {
+var showevent_mock_1 = require('./showevent-mock');
+var ShowEventService = (function () {
+    function ShowEventService() {
     }
-    ShowEventComponent = __decorate([
-        core_1.Component({
-            selector: 'showevent',
-            templateUrl: './app/showevent/showevent.html',
-            directives: [newshowevent_form_components_1.ShowEventForm]
-        }), 
+    ShowEventService.prototype.getShowEvents = function () {
+        return Promise.resolve(showevent_mock_1.SHOWEVENTS);
+    };
+    ShowEventService = __decorate([
+        core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], ShowEventComponent);
-    return ShowEventComponent;
+    ], ShowEventService);
+    return ShowEventService;
 }());
-exports.ShowEventComponent = ShowEventComponent;
-//# sourceMappingURL=showevent.component.js.map
+exports.ShowEventService = ShowEventService;
+//# sourceMappingURL=showevent.service.js.map

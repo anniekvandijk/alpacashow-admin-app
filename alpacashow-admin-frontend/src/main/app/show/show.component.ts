@@ -3,10 +3,10 @@ import { ShowEventForm } from './newshowevent/newshowevent-form.components';
 
 
 @Component({
-    selector: 'showevent',
-    templateUrl: './app/showevent/showevent.html',
+    selector: 'show',
+    templateUrl: './app/show/show.html',
     directives: [ ShowEventForm ]
 })
 
-export class ShowEventComponent {
+export class ShowComponent {
 }
