@@ -8,7 +8,7 @@
             <label for="name" class="control-label">Naam show</label>
             <div class="">
                 <input type="text" class="form-control" id="name" placeholder="Voer de naam van de show op" name="name"  [(ngModel)]="name">
-                <div *ngIf="showEventForm.controls['name'].hasError('required')" class="alert alert-danger">
+                <div *ngIf="showEventForm.controls['name'].hasError('required') && showEventForm.controls['name'].touched" class="alert alert-danger">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     Naam show is verplicht veld
                 </div>
@@ -18,7 +18,7 @@
             <label for="location" class="control-label">Locatie show</label>
             <div class="">
                 <input type="text" class="form-control" id="location" placeholder="Voer de locatie van de show op" name="location"  [(ngModel)]="location">
-                    <div *ngIf="showEventForm.controls['location'].hasError('required')" class="alert alert-danger">
+                    <div *ngIf="showEventForm.controls['location'].hasError('required') && showEventForm.controls['location'].touched" class="alert alert-danger">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     Locatie is verplicht
                     </div>
@@ -28,7 +28,7 @@
             <label for="date" class="control-label">Datum show</label>
             <div class="">
                 <input type="date" class="form-control" id="date" placeholder="Voer de datum van de show op" name="date"  [(ngModel)]="date">
-                <div *ngIf="showEventForm.controls['date'].hasError('required')" class="alert alert-danger">
+                <div *ngIf="showEventForm.controls['date'].hasError('required') && showEventForm.controls['date'].touched" class="alert alert-danger">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     Datum show is verplicht
                 </div>
@@ -38,7 +38,7 @@
             <label for="closedate" class="control-label">Sluitingsdatum</label>
             <div class="">
                 <input type="date" class="form-control" id="closedate" placeholder="Voer de datum van de show op" name="closedate"  [(ngModel)]="closedate">
-                <div *ngIf="showEventForm.controls['closedate'].hasError('required')" class="alert alert-danger">
+                <div *ngIf="showEventForm.controls['closedate'].hasError('required') && showEventForm.controls['closedate'].touched" class="alert alert-danger">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     Sluitingsdatum is verplicht
                 </div>
@@ -48,7 +48,7 @@
             <label for="judge" class="control-label">Jurylid</label>
             <div class="">
                 <input type="text" class="form-control" id="judge" placeholder="Voer het jurylid op" name="judge"  [(ngModel)]="judge">
-                <div *ngIf="showEventForm.controls['judge'].hasError('required')" class="alert alert-danger">
+                <div *ngIf="showEventForm.controls['judge'].hasError('required') && showEventForm.controls['judge'].touched" class="alert alert-danger">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     Jurylid is verplicht
                 </div>
@@ -66,7 +66,11 @@
             </div>
         </div>
         <!-- Submit -->
-        <div class="form-group">
+            <div *ngIf="!showEventForm.valid" class="alert alert-danger">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                Niet alle verplichte velden zijn ingevuld
+            </div>
+            <div class="form-group">
             <div class="">
                 <button type="submit" class="btn btn-success">Opslaan</button>
             </div>

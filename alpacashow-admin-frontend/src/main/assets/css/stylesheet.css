@@ -1,10 +1,4 @@
 @charset "UTF-8";
-/* line 1, ../sass/_showapp.scss */
-.ng-valid[required] {
-  border-left: 5px solid #42A948;
-  /* green */
-}
-
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -8797,4 +8791,13 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+/* line 1, ../sass/_showapp.scss */
+.form-control.ng-valid {
+  border-left: 5px solid #5cb85c;
+}
+
+/* line 5, ../sass/_showapp.scss */
+.form-control.ng-invalid {
+  border-left: 5px solid #d9534f;
 }
