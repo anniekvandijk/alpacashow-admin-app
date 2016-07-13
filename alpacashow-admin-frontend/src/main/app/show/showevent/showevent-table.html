@@ -1,12 +1,26 @@
-<div id="showevents" class="col-lg-4 panel panel-primary appform" style="padding-left: 0; padding-right: 0">
+<div id="showevents" class="panel panel-primary appform" style="padding-left: 0; padding-right: 0">
     <div class="panel-heading">
         <h3 class="panel-title">Shows</h3>
     </div>
     <div class="panel-body">
-        <ul class="heroes">
-            <li *ngFor="let showevent of showevents">
-                <span class="badge">{{showevent.name}}</span> {{showevent.location}}
-            </li>
-        </ul>
+        <table class="table table-hover">
+            <tr>
+                <th>Show naam</th>
+                <th>Show locatie</th>
+                <th>Show datum</th>
+                <th>Show sluitdatum</th>
+                <th>Show jury</th>
+                <th>Showtypen</th>
+            </tr>
+            <tr *ngFor="let showevent of showevents">
+                <td>{{showevent.name}}</td>
+                <td>{{showevent.location}}</td>
+                <td>{{showevent.date}}</td>
+                <td>{{showevent.closedate}}</td>
+                <td>{{showevent.judge}}</td>
+                <td>{{showevent.showtype}}</td>
+            </tr>
+
+        </table>
     </div>
 </div>
