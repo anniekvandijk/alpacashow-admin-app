@@ -21,8 +21,8 @@ const SHOWTYPES: ShowType[] = [
 })
 
 export class ShowEventForm {
-
-    showtype = SHOWTYPES;
+    
+    showtypes = SHOWTYPES;
     submitted = false;
     active = true;
 

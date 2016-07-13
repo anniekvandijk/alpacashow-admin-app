@@ -25,7 +25,7 @@ var SHOWTYPES = [
 var ShowEventForm = (function () {
     function ShowEventForm(formBuilder) {
         this.formBuilder = formBuilder;
-        this.showtype = SHOWTYPES;
+        this.showtypes = SHOWTYPES;
         this.submitted = false;
         this.active = true;
     }
