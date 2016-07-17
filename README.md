@@ -11,9 +11,9 @@
 
 ## Features
 
-Register and manage show events
-Register and manage participants
-Calculate animal classes
-Manage showrings and prizes
-Print rings and certificates
+* Register and manage show events
+* Register and manage participants
+* Calculate animal classes
+* Manage showrings and prizes
+* Print rings and certificates
 
