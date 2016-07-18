@@ -11,7 +11,7 @@ public class Show {
 
     private ShowType showType;
 
-    public Show(ShowType showType) {
+    public Show(final ShowType showType) {
 
         if (showType == null) {
             throw new IllegalArgumentException("Show can not be empty");
