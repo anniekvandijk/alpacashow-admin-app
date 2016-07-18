@@ -31,7 +31,7 @@ public enum AgeClass {
 
         long ageInMonths = getAgeInMonthHaltershow(showDate, dateOfBirth);
 
-        if (ageInMonths >= 0 & ageInMonths < 6) {
+        if (ageInMonths >= 0 && ageInMonths < 6) {
             throw new IllegalArgumentException("Animals under the age of 6 can not participate.");
         }
         if (ageInMonths >= 600 ) {
