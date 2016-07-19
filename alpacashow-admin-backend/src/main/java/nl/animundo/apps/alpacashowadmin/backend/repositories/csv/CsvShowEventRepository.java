@@ -51,8 +51,7 @@ public class CsvShowEventRepository extends ShowEventRepository {
             String[] showList = nextLine[COL_SHOWTYPES].split(",");
 
             for ( String showInList : showList) {
-                String showInListCln = StringUtils.trimToNull(showInList);
-                show.add(new Show(ShowType.valueOf(showInListCln.toUpperCase())));
+                show.add(new Show(ShowType.fromText(showInList)));
             }
 
             String dateCln = StringUtils.trimToNull(nextLine[COL_DATE]);

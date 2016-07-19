@@ -33,7 +33,7 @@ public class ShowEventTest {
         shows.add(new Show(ShowType.FLEECESHOW));
         shows.add(new Show(ShowType.HALTERSHOW));
         shows.add(new Show(ShowType.FEMALEPROGENYSHOW));
-        shows.add(new Show(ShowType.MALEPROGENYSHOW));
+        shows.add(new Show(ShowType.MALE_PROGENY_SHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
 
