@@ -36,7 +36,7 @@ public class ShowEventRepositoryTest {
 
         shows.add(new Show(ShowType.FLEECESHOW));
         shows.add(new Show(ShowType.HALTERSHOW));
-        shows.add(new Show(ShowType.FEMALEPROGENYSHOW));
+        shows.add(new Show(ShowType.FEMALE_PROGENY_SHOW));
         shows.add(new Show(ShowType.MALE_PROGENY_SHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -62,7 +62,7 @@ public class ShowEventRepositoryTest {
 
         shows.add(new Show(ShowType.FLEECESHOW));
         shows.add(new Show(ShowType.HALTERSHOW));
-        shows.add(new Show(ShowType.FEMALEPROGENYSHOW));
+        shows.add(new Show(ShowType.FEMALE_PROGENY_SHOW));
         shows.add(new Show(ShowType.MALE_PROGENY_SHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -88,7 +88,7 @@ public class ShowEventRepositoryTest {
 
         shows.add(new Show(ShowType.FLEECESHOW));
         shows.add(new Show(ShowType.HALTERSHOW));
-        shows.add(new Show(ShowType.FEMALEPROGENYSHOW));
+        shows.add(new Show(ShowType.FEMALE_PROGENY_SHOW));
         shows.add(new Show(ShowType.MALE_PROGENY_SHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -114,7 +114,7 @@ public class ShowEventRepositoryTest {
 
         shows.add(new Show(ShowType.FLEECESHOW));
         shows.add(new Show(ShowType.HALTERSHOW));
-        shows.add(new Show(ShowType.FEMALEPROGENYSHOW));
+        shows.add(new Show(ShowType.FEMALE_PROGENY_SHOW));
         shows.add(new Show(ShowType.MALE_PROGENY_SHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -140,7 +140,7 @@ public class ShowEventRepositoryTest {
 
         shows.add(new Show(ShowType.FLEECESHOW));
         shows.add(new Show(ShowType.HALTERSHOW));
-        shows.add(new Show(ShowType.FEMALEPROGENYSHOW));
+        shows.add(new Show(ShowType.FEMALE_PROGENY_SHOW));
         shows.add(new Show(ShowType.MALE_PROGENY_SHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);

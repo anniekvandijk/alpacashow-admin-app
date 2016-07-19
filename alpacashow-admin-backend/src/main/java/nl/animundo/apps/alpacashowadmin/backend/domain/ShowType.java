@@ -10,7 +10,7 @@ public enum ShowType {
     HALTERSHOW,
     FLEECESHOW,
     MALE_PROGENY_SHOW,
-    FEMALEPROGENYSHOW;
+    FEMALE_PROGENY_SHOW;
 
     public static ShowType fromText(final String showTypeStr) {
         final String showTypeCln = StringUtils.trimToNull(showTypeStr);
