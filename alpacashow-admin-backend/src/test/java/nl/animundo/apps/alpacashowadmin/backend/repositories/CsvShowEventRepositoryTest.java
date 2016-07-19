@@ -3,6 +3,7 @@ package nl.animundo.apps.alpacashowadmin.backend.repositories;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventSearch;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvShowEventRepository;
+import nl.animundo.apps.alpacashowadmin.backend.utils.Application;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -11,8 +12,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.net.URI;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by Anniek van Dijk on 18-7-2016.
@@ -24,18 +28,21 @@ public class CsvShowEventRepositoryTest {
 
     @Test
     public void addShowEventFromFile() throws IOException {
+        final String workingDir = System.getProperty("user.dir");
 
-        // TODO filelocagtion
-        // add tests
-
-        File file = new File("D:\\Java\\alpacashow-admin-app\\alpacashow-admin-backend\\src\\test\\resources\\csv\\SHOWEVENTS.csv");
+        File file = new File(workingDir, "src/test/resources/csv/SHOWEVENTS.csv");
+        assertTrue(file.isFile() && file.exists() && file.canRead());
         Reader reader = new FileReader(file) ;
 
         ShowEventRepository repo = CsvShowEventRepository.create(reader);
-
+        assertEquals(2, repo.size());
 
         ShowEventSearch searchOption = ShowEventSearch.NAME;
-        String searchFor = "Meppel 2016";
+        String searchFor = "Meppel 2017";
         ShowEvent showEvent = repo.search(searchOption, searchFor);
+        assertNotNull(showEvent);
+        assertEquals("Meppel", showEvent.getLocation());
+
+
     }
 }

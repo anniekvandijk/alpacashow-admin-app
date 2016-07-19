@@ -26,7 +26,7 @@ public class ShowEvent {
     }
 
 
-        public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final Set<Show> shows, final Set<Participant> participants ) {
+    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final Set<Show> shows, final Set<Participant> participants ) {
 
         final String nameCln = StringUtils.trimToNull(name);
         if (nameCln == null) {

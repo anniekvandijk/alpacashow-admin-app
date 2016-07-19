@@ -63,4 +63,8 @@ public class ShowEventRepository {
         return null;
     }
 
+    public int size() {
+        return showEvents.size();
+    }
+
 }

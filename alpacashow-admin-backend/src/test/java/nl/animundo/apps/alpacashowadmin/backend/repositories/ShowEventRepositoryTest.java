@@ -36,8 +36,8 @@ public class ShowEventRepositoryTest {
 
         shows.add(new Show(ShowType.FLEECESHOW));
         shows.add(new Show(ShowType.HALTERSHOW));
-        shows.add(new Show(ShowType.FEMALEPROGENYSHOW));
-        shows.add(new Show(ShowType.MALEPROGENYSHOW));
+        shows.add(new Show(ShowType.FEMALE_PROGENY_SHOW));
+        shows.add(new Show(ShowType.MALE_PROGENY_SHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
         ShowEventRepository showEventRepository = new ShowEventRepository();
@@ -62,8 +62,8 @@ public class ShowEventRepositoryTest {
 
         shows.add(new Show(ShowType.FLEECESHOW));
         shows.add(new Show(ShowType.HALTERSHOW));
-        shows.add(new Show(ShowType.FEMALEPROGENYSHOW));
-        shows.add(new Show(ShowType.MALEPROGENYSHOW));
+        shows.add(new Show(ShowType.FEMALE_PROGENY_SHOW));
+        shows.add(new Show(ShowType.MALE_PROGENY_SHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
         ShowEventRepository showEventRepository = new ShowEventRepository();
@@ -88,8 +88,8 @@ public class ShowEventRepositoryTest {
 
         shows.add(new Show(ShowType.FLEECESHOW));
         shows.add(new Show(ShowType.HALTERSHOW));
-        shows.add(new Show(ShowType.FEMALEPROGENYSHOW));
-        shows.add(new Show(ShowType.MALEPROGENYSHOW));
+        shows.add(new Show(ShowType.FEMALE_PROGENY_SHOW));
+        shows.add(new Show(ShowType.MALE_PROGENY_SHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
         ShowEventRepository showEventRepository = new ShowEventRepository();
@@ -114,8 +114,8 @@ public class ShowEventRepositoryTest {
 
         shows.add(new Show(ShowType.FLEECESHOW));
         shows.add(new Show(ShowType.HALTERSHOW));
-        shows.add(new Show(ShowType.FEMALEPROGENYSHOW));
-        shows.add(new Show(ShowType.MALEPROGENYSHOW));
+        shows.add(new Show(ShowType.FEMALE_PROGENY_SHOW));
+        shows.add(new Show(ShowType.MALE_PROGENY_SHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
         ShowEventRepository showEventRepository = new ShowEventRepository();
@@ -140,8 +140,8 @@ public class ShowEventRepositoryTest {
 
         shows.add(new Show(ShowType.FLEECESHOW));
         shows.add(new Show(ShowType.HALTERSHOW));
-        shows.add(new Show(ShowType.FEMALEPROGENYSHOW));
-        shows.add(new Show(ShowType.MALEPROGENYSHOW));
+        shows.add(new Show(ShowType.FEMALE_PROGENY_SHOW));
+        shows.add(new Show(ShowType.MALE_PROGENY_SHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
         ShowEventRepository showEventRepository = new ShowEventRepository();
