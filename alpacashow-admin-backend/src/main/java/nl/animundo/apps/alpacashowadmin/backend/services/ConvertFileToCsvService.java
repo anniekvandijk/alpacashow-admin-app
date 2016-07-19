@@ -21,7 +21,8 @@ import javax.imageio.IIOException;
 public class ConvertFileToCsvService {
 
     private static List<List<XSSFCell>> cellGrid;
-    private static String fileLocation = "src/test/resources/";
+    private final static String workingDir = System.getProperty("user.dir");
+    private final static String fileLocation = workingDir + "/src/test/resources/";
     private static FileInputStream myInput;
     private static File outputFile;
 

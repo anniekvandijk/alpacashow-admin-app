@@ -1,7 +1,8 @@
-package nl.animundo.apps.alpacashowadmin.backend.repositories;
+package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventSearch;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvShowEventRepository;
 import nl.animundo.apps.alpacashowadmin.backend.utils.Application;
 import org.junit.Rule;
@@ -30,7 +31,7 @@ public class CsvShowEventRepositoryTest {
     public void addShowEventFromFile() throws IOException {
         final String workingDir = System.getProperty("user.dir");
 
-        File file = new File(workingDir, "src/test/resources/csv/SHOWEVENTS.csv");
+        File file = new File(workingDir, "alpacashow-admin-backend/src/test/resources/csv/SHOWEVENTS.csv");
         assertTrue(file.isFile() && file.exists() && file.canRead());
         Reader reader = new FileReader(file) ;
 
