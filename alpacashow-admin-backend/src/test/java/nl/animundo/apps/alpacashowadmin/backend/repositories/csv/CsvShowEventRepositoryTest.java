@@ -1,9 +1,8 @@
-package nl.animundo.apps.alpacashowadmin.backend.repositories;
+package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventSearch;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvShowEventRepository;
-import nl.animundo.apps.alpacashowadmin.backend.utils.Application;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -12,7 +11,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.net.URI;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
