@@ -4,8 +4,14 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import javax.imageio.IIOException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Anniek van Dijk on 15-6-2016.
@@ -16,13 +22,23 @@ public class ConvertFileToCsvServiceTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void excelXLSToCsvNotAllowed() throws IOException {
+    public void noInstanceTest() throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
 
-        exception.expect(IOException.class);
-        exception.expectMessage("Upload excel file .xls not allowed");
+        exception.expect(InstantiationException.class);
+        exception.expectMessage("Instances of this type are forbidden!");
 
-        String file = "HALTERSHOW_haltershow.xls";
-        ConvertFileToCsvService.convertFileToCsv(file);
+        Constructor<ConvertFileToCsvService> constructor = ConvertFileToCsvService.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+
+        try {
+            constructor.newInstance();
+        } catch (InvocationTargetException e) {
+            throw (InstantiationException) e.getTargetException();
+        }
+
+        constructor.setAccessible(false);
+
     }
 
     @Test
@@ -32,6 +48,16 @@ public class ConvertFileToCsvServiceTest {
         exception.expectMessage("Upload filetype docx not allowed");
 
         String file = "HALTERSHOW_haltershow.docx";
+        ConvertFileToCsvService.convertFileToCsv(file);
+    }
+
+    @Test
+    public void xlsNotAllowed() throws IOException {
+
+        exception.expect(IIOException.class);
+        exception.expectMessage("Upload filetype xls not allowed");
+
+        String file = "HALTERSHOW_haltershow.xls";
         ConvertFileToCsvService.convertFileToCsv(file);
     }
 

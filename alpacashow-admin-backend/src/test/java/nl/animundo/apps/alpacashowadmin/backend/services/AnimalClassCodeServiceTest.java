@@ -3,12 +3,16 @@ package nl.animundo.apps.alpacashowadmin.backend.services;
 import nl.animundo.apps.alpacashowadmin.backend.domain.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ColorClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.AgeSexClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.SexClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Anniek van Dijk on 3-6-2016.
@@ -19,11 +23,23 @@ public class AnimalClassCodeServiceTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void noInstanceTest() {
+    public void noInstanceTest() throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
 
-//        reflection?
-//        exception.expect(InstantiationException.class);
-//        exception.expectMessage("Instances of this type are forbidden!");
+        exception.expect(InstantiationException.class);
+        exception.expectMessage("Instances of this type are forbidden!");
+
+        Constructor<AnimalClassCodeService> constructor = AnimalClassCodeService.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+
+        try {
+            constructor.newInstance();
+        } catch (InvocationTargetException e) {
+            throw (InstantiationException) e.getTargetException();
+        }
+
+        constructor.setAccessible(false);
+
     }
 
     @Test

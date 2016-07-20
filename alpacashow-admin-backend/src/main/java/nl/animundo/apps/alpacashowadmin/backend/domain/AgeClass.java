@@ -44,6 +44,7 @@ public enum AgeClass {
                 return ageClass;
             }
         }
+        // If enums are changed, code will break. Throw exeption.
         throw new RuntimeException("Unable to determen AgeClass, for given showDate '" + showDate + "' and dateOfBirth '" + dateOfBirth + "'");
     }
 

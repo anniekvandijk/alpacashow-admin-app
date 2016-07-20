@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowType;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.xssf.usermodel.*;
 
@@ -34,10 +33,7 @@ public class ConvertFileToCsvService {
 
         String ext = FilenameUtils.getExtension(file);
         String filename = FilenameUtils.getBaseName(file);
-        if (ext.equalsIgnoreCase("xls")) {
-            throw new IIOException("Upload excel file .xls not allowed");
-        }
-        else if (ext.equalsIgnoreCase("xlsx")) {
+         if (ext.equalsIgnoreCase("xlsx")) {
             convertExcelToCsv(file, filename);
         } else {
             throw new IIOException("Upload filetype " + ext + " not allowed");
