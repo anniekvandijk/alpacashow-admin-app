@@ -47,7 +47,7 @@ public class ShowEvent {
             throw new IllegalArgumentException("Field judge can not be empty");
         }
         if (date.isBefore(LocalDate.now()) || date.isEqual(LocalDate.now()) || closeDate.isBefore(LocalDate.now()) || closeDate.isEqual(LocalDate.now())) {
-            throw new IllegalArgumentException("Date is before today");
+            throw new IllegalArgumentException("Date is (before) today");
         }
         if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
             throw new IllegalArgumentException("Date show before or same as close date subscriptions");
@@ -88,7 +88,7 @@ public class ShowEvent {
             throw new IllegalArgumentException("Field date can not be empty");
         }
         if (date.isBefore(LocalDate.now()) || date.isEqual(LocalDate.now())) {
-            throw new IllegalArgumentException("Date is before today");
+            throw new IllegalArgumentException("Date is (before) today");
         }
         if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
             throw new IllegalArgumentException("Date show before or same as close date subscriptions");
@@ -105,7 +105,7 @@ public class ShowEvent {
             throw new IllegalArgumentException("Field closeDate can not be empty");
         }
         if (closeDate.isBefore(LocalDate.now()) || closeDate.isEqual(LocalDate.now())) {
-            throw new IllegalArgumentException("Close date is before today");
+            throw new IllegalArgumentException("Close date is (before) today");
         }
         if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
             throw new IllegalArgumentException("Date show before or same as close date subscriptions");

@@ -102,7 +102,7 @@ public class ShowEventTest {
     public void showDateBeforeNow() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Date is before today");
+        exception.expectMessage("Date is (before) today");
 
         name = "Test showEvent";
         date = LocalDate.now().minusDays(1);
@@ -114,6 +114,24 @@ public class ShowEventTest {
 
         new ShowEvent(name, date, closeDate, location, judge, shows);
     }
+
+    @Test
+    public void showDateNow() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Date is (before) today");
+
+        name = "Test showEvent";
+        date = LocalDate.now();
+        closeDate = LocalDate.now().plusMonths(6);
+        location = "Surhuisterveen ";
+        judge = "Test Judge";
+        shows = new HashSet<>();
+        shows.add(new Show(ShowType.HALTERSHOW));
+
+        new ShowEvent(name, date, closeDate, location, judge, shows);
+    }
+
 
     @Test
     public void showDateNotNull() {
@@ -133,10 +151,27 @@ public class ShowEventTest {
     }
 
     @Test
+    public void showCloseDateBeforeNow() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Date is (before) today");
+
+        name = "Test showEvent";
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().minusDays(1);
+        location = "Surhuisterveen ";
+        judge = "Test Judge";
+        shows = new HashSet<>();
+        shows.add(new Show(ShowType.HALTERSHOW));
+
+        new ShowEvent(name, date, closeDate, location, judge, shows);
+    }
+
+    @Test
     public void showCloseDateNow() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Date is before today");
+        exception.expectMessage("Date is (before) today");
 
         name = "Test showEvent";
         date = LocalDate.now().plusMonths(8);
@@ -308,10 +343,10 @@ public class ShowEventTest {
     }
 
     @Test
-    public void setShowEventDateNow() {
+    public void setShowEventDateBeforeNow() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Date is before today");
+        exception.expectMessage("Date is (before) today");
 
         name = "Test showEvent";
         date = LocalDate.now().plusMonths(8);
@@ -323,6 +358,24 @@ public class ShowEventTest {
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
         showEvent.setDate(LocalDate.now().minusWeeks(2));
+    }
+
+    @Test
+    public void setShowEventDateNow() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Date is (before) today");
+
+        name = "Test showEvent";
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
+        location = "Surhuisterveen";
+        judge = "Test Judge";
+        shows = new HashSet<>();
+        shows.add(new Show(ShowType.HALTERSHOW));
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
+        showEvent.setDate(LocalDate.now());
     }
 
     @Test
@@ -383,7 +436,7 @@ public class ShowEventTest {
     public void setShowEventCloseDateBeforeNow() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Close date is before today");
+        exception.expectMessage("Close date is (before) today");
 
         name = "Test showEvent";
         date = LocalDate.now().plusMonths(8);
@@ -395,6 +448,24 @@ public class ShowEventTest {
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
         showEvent.setCloseDate(LocalDate.now().minusMonths(6));
+    }
+
+    @Test
+    public void setShowEventCloseDateNow() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Close date is (before) today");
+
+        name = "Test showEvent";
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
+        location = "Surhuisterveen";
+        judge = "Test Judge";
+        shows = new HashSet<>();
+        shows.add(new Show(ShowType.HALTERSHOW));
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
+        showEvent.setCloseDate(LocalDate.now());
     }
 
     @Test
