@@ -20,7 +20,7 @@ public enum ShowType {
             }
         }
 
-        throw new RuntimeException();
+        throw new IllegalArgumentException("Showtype " + showTypeCln + " is not a known showtype.");
     }
 }
 
