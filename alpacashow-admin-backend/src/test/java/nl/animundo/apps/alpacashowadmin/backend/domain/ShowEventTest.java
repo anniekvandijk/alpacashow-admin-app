@@ -220,6 +220,24 @@ public class ShowEventTest {
     }
 
     @Test
+    public void dateShowEqualsCloseDate() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Date show before or same as close date subscriptions");
+
+        name = "Test showEvent";
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(8);
+        location = "Surhuisterveen ";
+        judge = "Test Judge";
+        shows = new HashSet<>();
+        shows.add(new Show(ShowType.HALTERSHOW));
+
+        new ShowEvent(name, date, closeDate, location, judge, shows);
+
+    }
+
+    @Test
     public void showLocationNotEmpty() {
 
         exception.expect(IllegalArgumentException.class);
@@ -397,6 +415,25 @@ public class ShowEventTest {
     }
 
     @Test
+    public void setDateBeforeCloseDate() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Date show before or same as close date subscriptions");
+
+        name = "Test showEvent";
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
+        location = "Surhuisterveen ";
+        judge = "Test Judge";
+        shows = new HashSet<>();
+        shows.add(new Show(ShowType.HALTERSHOW));
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
+        showEvent.setDate(LocalDate.now().plusMonths(4));
+
+    }
+
+    @Test
     public void setDateSameAsCloseDate() {
 
         exception.expect(IllegalArgumentException.class);
@@ -502,6 +539,25 @@ public class ShowEventTest {
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
         showEvent.setCloseDate(LocalDate.now().plusMonths(9));
+
+    }
+
+    @Test
+    public void setCloseDateEqualsDate() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Date show before or same as close date subscriptions");
+
+        name = "Test showEvent";
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
+        location = "Surhuisterveen ";
+        judge = "Test Judge";
+        shows = new HashSet<>();
+        shows.add(new Show(ShowType.HALTERSHOW));
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
+        showEvent.setCloseDate(LocalDate.now().plusMonths(8));
 
     }
 
