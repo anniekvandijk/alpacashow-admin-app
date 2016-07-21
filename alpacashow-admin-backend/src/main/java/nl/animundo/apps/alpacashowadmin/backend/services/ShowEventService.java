@@ -28,7 +28,7 @@ public class ShowEventService {
             if (showEvent.getName().equals(repo.search(ShowEventSearch.NAME, showEvent.getName()))) {
             // TODO add show to csv or replace csv?
         } else {
-            throw new IllegalArgumentException("ShowEqq1q1q1qqqqqq1 vent with name '" + showEvent.getName() + "' and date '" + String.valueOf(showEvent.getDate()) + "' already excists");
+            throw new IllegalArgumentException("ShowEvent with name '" + showEvent.getName() + "' and date '" + String.valueOf(showEvent.getDate()) + "' already excists");
         }
 
     }
