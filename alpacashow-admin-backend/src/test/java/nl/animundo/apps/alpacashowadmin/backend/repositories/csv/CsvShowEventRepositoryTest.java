@@ -28,7 +28,7 @@ public class CsvShowEventRepositoryTest {
     public void addShowEventFromFile() throws IOException {
         final String workingDir = System.getProperty("user.dir");
 
-        File file = new File(workingDir, "src/test/resources/csv/SHOWEVENTS.csv");
+        File file = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repotest.csv");
         assertTrue(file.isFile() && file.exists() && file.canRead());
         Reader reader = new FileReader(file) ;
 
@@ -51,7 +51,7 @@ public class CsvShowEventRepositoryTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Showtype Haltershows is not a known showtype.");
 
-        File file = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_notKnownShowType.csv");
+        File file = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repotest_notKnownShowType.csv");
         assertTrue(file.isFile() && file.exists() && file.canRead());
         Reader reader = new FileReader(file) ;
 
