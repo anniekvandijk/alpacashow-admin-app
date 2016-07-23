@@ -13,22 +13,25 @@ import java.util.Properties;
 public class Application {
     private static Logger logger = LoggerFactory.getLogger(Application.class);
 
-    private String WORK_DIR;
+    private static String WORK_DIR = System.getProperty("user.dir");
     private ShowEventRepository showEventRepo;
 
     public Application(final Properties prop) throws IOException {
-        FileReader reader = new FileReader(prop.getProperty("filestorage"));
-      //  if (prop.equalsIgnoreCase("csv")) {
-        WORK_DIR = System.getProperty("user.dir");
-        FileReader csvReader = new FileReader(WORK_DIR + prop.getProperty("csv-showevent-filedir"));
+        String fileStorage = prop.getProperty("filestorage");
+        if (fileStorage.equalsIgnoreCase("csv")) {
+            String csvShowEventFileDir = prop.getProperty("csv-showevent-filedir");
+            FileReader csvReader = new FileReader(WORK_DIR + csvShowEventFileDir);
             showEventRepo = CsvShowEventRepository.create(csvReader);
-     //   }
-
+        } else {
+            throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
+        }
     }
 
-    public void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
+
         Properties prop = new Properties();
-        prop.load(new FileReader(new File("application.properties")));
+
+        prop.load(new FileReader(new File(WORK_DIR +"/application.properties")));
 
         Application app = new Application(prop);
 
