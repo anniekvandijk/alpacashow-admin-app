@@ -32,7 +32,7 @@ public class CsvShowEventRepositoryTest {
         assertTrue(file.isFile() && file.exists() && file.canRead());
         Reader reader = new FileReader(file) ;
 
-        ShowEventRepository repo = CsvShowEventRepository.create(reader);
+        ShowEventRepository repo = CsvShowEventRepository.importData(reader);
         assertEquals(2, repo.size());
 
         ShowEventSearch searchOption = ShowEventSearch.NAME;
@@ -55,7 +55,7 @@ public class CsvShowEventRepositoryTest {
         assertTrue(file.isFile() && file.exists() && file.canRead());
         Reader reader = new FileReader(file) ;
 
-        ShowEventRepository repo = CsvShowEventRepository.create(reader);
+        ShowEventRepository repo = CsvShowEventRepository.importData(reader);
         
     }
 }

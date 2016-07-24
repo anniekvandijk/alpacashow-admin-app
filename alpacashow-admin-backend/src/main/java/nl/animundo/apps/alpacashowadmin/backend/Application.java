@@ -14,14 +14,14 @@ public class Application {
     private static Logger logger = LoggerFactory.getLogger(Application.class);
 
     private static String WORK_DIR = System.getProperty("user.dir");
-    private ShowEventRepository showEventRepo;
 
     public Application(final Properties prop) throws IOException {
         String fileStorage = prop.getProperty("filestorage");
+
         if (fileStorage.equalsIgnoreCase("csv")) {
             String csvShowEventFileDir = prop.getProperty("csv-showevent-filedir");
             FileReader csvReader = new FileReader(WORK_DIR + csvShowEventFileDir);
-            showEventRepo = CsvShowEventRepository.create(csvReader);
+            ShowEventRepository showEventRepo = CsvShowEventRepository.importData(csvReader);
         } else {
             throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
         }
@@ -29,13 +29,15 @@ public class Application {
 
     public static void main(String[] args) throws IOException {
 
-        Properties prop = new Properties();
+        logger.info("Application is running");
 
-        prop.load(new FileReader(new File(WORK_DIR +"/application.properties")));
+        Properties prop = new Properties();
+        prop.load(new FileReader(new File(WORK_DIR +"/tst.application.properties")));
+        logger.info("Properties set");
 
         Application app = new Application(prop);
 
-        System.out.println("Application is running");
+
 
     }
 }

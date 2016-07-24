@@ -30,10 +30,9 @@ public class CsvShowEventRepository extends ShowEventRepository {
     private static Logger logger = LoggerFactory.getLogger(CsvShowEventRepository.class);
 
 
-    public static ShowEventRepository create(Reader reader) throws IOException {
+    public static ShowEventRepository importData(Reader reader) throws IOException {
 
         CsvShowEventRepository repo = new CsvShowEventRepository();
-
         repo.read(reader);
         return repo;
     }
