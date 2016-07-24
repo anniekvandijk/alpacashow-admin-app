@@ -9,8 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
+import java.io.Writer;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
@@ -37,6 +39,27 @@ public class CsvShowEventRepository extends ShowEventRepository {
         return repo;
     }
 
+    public static void exportData(final Writer writer, final ShowEventRepository showEventRepo) throws IOException {
+        writer  .append("NAAM").append(";")
+                .append("DATUM").append(";")
+                .append("SLUITDATUM").append(";")
+                .append("LOCATIE").append(";")
+                .append("JURY").append(";")
+                .append("SHOWTYPEN").append("\n");
+
+        for (String showEvent : showEventRepo.getShowEvents()) {
+            ShowEvent show = showEventRepo.getShowEventsByKeySet(showEvent);
+            writer  .append(show.getName()).append(";")
+                    .append(show.getDate().toString()).append(";")
+                    .append(show.getCloseDate().toString()).append(";")
+                    .append(show.getLocation()).append(";")
+                    .append(show.getJudge()).append(";")
+                    .append(show.getShow().toString()).append("\n");
+        }
+    }
+
+
+
     private void read(Reader reader) throws IOException {
         CSVReader csvReader = new CSVReader(reader, ';');
 
@@ -53,6 +76,7 @@ public class CsvShowEventRepository extends ShowEventRepository {
                 show.add(new Show(ShowType.fromText(showInList)));
             }
 
+            // TODO File dates as Localdate, convert only on frontend
             String dateCln = StringUtils.trimToNull(nextLine[COL_DATE]);
             String closeDateCln = StringUtils.trimToNull(nextLine[COL_CLOSEDATE]);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");

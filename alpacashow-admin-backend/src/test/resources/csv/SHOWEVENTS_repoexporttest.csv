@@ -1,0 +1,4 @@
+NAAM;DATUM;SLUITDATUM;LOCATIE;JURY;SHOWTYPEN
+Test showEvent;2017-07-01;2017-05-15;Surhuisterveen;Test Judge;[nl.animundo.apps.alpacashowadmin.backend.domain.Show@2471cca7, nl.animundo.apps.alpacashowadmin.backend.domain.Show@5d3411d]
+Hapert 2017;2017-04-24;2017-03-20;Hapert;Judge X;[nl.animundo.apps.alpacashowadmin.backend.domain.Show@6f79caec, nl.animundo.apps.alpacashowadmin.backend.domain.Show@67117f44, nl.animundo.apps.alpacashowadmin.backend.domain.Show@1ef7fe8e]
+Meppel 2017;2017-05-01;2017-04-01;Meppel;Rob Bettinson;[nl.animundo.apps.alpacashowadmin.backend.domain.Show@5d22bbb7, nl.animundo.apps.alpacashowadmin.backend.domain.Show@41a4555e]

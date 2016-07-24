@@ -2,8 +2,11 @@ package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventSearch;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -65,6 +68,14 @@ public class ShowEventRepository {
 
     public int size() {
         return showEvents.size();
+    }
+
+    public Set<String> getShowEvents() {
+        return showEvents.keySet();
+    }
+
+    public ShowEvent getShowEventsByKeySet(final String keySet) {
+        return showEvents.get(keySet);
     }
 
 }
