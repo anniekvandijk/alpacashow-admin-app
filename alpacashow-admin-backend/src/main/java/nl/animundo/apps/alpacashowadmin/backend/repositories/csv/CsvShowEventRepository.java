@@ -59,9 +59,6 @@ public class CsvShowEventRepository extends ShowEventRepository {
     }
 
     private static String createShowTypeString(Set<Show> showTypes) {
-        if (showTypes.isEmpty()) {
-            return "";
-        }
 
         final StringBuilder bldr = new StringBuilder();
         for (Show showType : showTypes) {

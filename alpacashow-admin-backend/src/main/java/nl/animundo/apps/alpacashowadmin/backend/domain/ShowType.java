@@ -12,16 +12,6 @@ public enum ShowType {
     MALE_PROGENY_SHOW,
     FEMALE_PROGENY_SHOW;
 
-    public static ShowType fromText(final String showTypeStr) {
-        final String showTypeCln = StringUtils.trimToNull(showTypeStr);
-        for (ShowType showType : values()) {
-            if (showType.name().replace('_', ' ').equalsIgnoreCase(showTypeCln)) {
-                return showType;
-            }
-        }
-
-        throw new IllegalArgumentException("Showtype " + showTypeCln + " is not a known showtype.");
-    }
 }
 
 
