@@ -29,6 +29,14 @@ public class ShowEventRepository {
 
     }
 
+    public void delete(final String showEventKey) {
+
+        ShowEvent showEventToDelete = getShowEventsByKeySet(showEventKey);
+        showEvents.remove(showEventToDelete.getName() + "_" + showEventToDelete.getDate());
+        logger.info("Deleted showEvent '" + showEventKey + "' from showEventRepo");
+
+    }
+
     public ShowEvent search(final ShowEventSearch searchOption, final String searchFor) {
         for (Map.Entry<String, ShowEvent> showEventEntry : showEvents.entrySet()) {
             String value = "";

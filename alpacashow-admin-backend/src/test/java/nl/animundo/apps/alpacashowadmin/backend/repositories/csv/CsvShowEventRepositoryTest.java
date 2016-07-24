@@ -90,12 +90,47 @@ public class CsvShowEventRepositoryTest {
 
         ShowEventRepository newRepo = CsvShowEventRepository.importData(reader);
         assertEquals(3, newRepo.size());
-//
-//        ShowEventSearch searchOption = ShowEventSearch.NAME;
-//        String searchFor = "Boekel 2017";
-//        ShowEvent showEvent = newRepo.search(searchOption, searchFor);
-//        assertNotNull(showEvent);
-//        assertEquals("Meppel", showEvent.getLocation());
+
+        ShowEventSearch searchOption = ShowEventSearch.NAME;
+        String searchFor = "Test showEvent";
+        ShowEvent showEvent = newRepo.search(searchOption, searchFor);
+        assertNotNull(showEvent);
+        assertEquals("Surhuisterveen", showEvent.getLocation());
+
+    }
+
+    @Test
+    public void deleteShowEvent() throws IOException {
+
+        File importFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoimporttest.csv");
+        File exportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repodeletetest.csv");
+
+        if (exportFile.exists()) {
+            exportFile.delete();
+        }
+
+        assertTrue(importFile.isFile() && importFile.exists() && importFile.canRead());
+        Reader reader = new FileReader(importFile) ;
+
+        ShowEventRepository repo = CsvShowEventRepository.importData(reader);
+        assertEquals(2, repo.size());
+
+        repo.delete("Hapert 2017_2017-04-24");
+//        assertEquals(1, repo.size());
+
+        File newExportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repodeletetest.csv");
+        FileWriter writer = new FileWriter(newExportFile);
+        CsvShowEventRepository.exportData(writer, repo);
+        writer.flush();
+        writer.close();
+
+        File newImportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repodeletetest.csv");
+
+        assertTrue(newImportFile.isFile() && newImportFile.exists() && newImportFile.canRead());
+        reader = new FileReader(newImportFile) ;
+
+        ShowEventRepository newRepo = CsvShowEventRepository.importData(reader);
+        assertEquals(1, newRepo.size());
 
     }
 

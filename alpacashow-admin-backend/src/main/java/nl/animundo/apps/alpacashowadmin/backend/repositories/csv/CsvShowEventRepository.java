@@ -92,7 +92,6 @@ public class CsvShowEventRepository extends ShowEventRepository {
                 show.add(new Show(ShowType.valueOf(showInListCln)));
             }
 
-            // TODO File dates as Localdate, convert only on frontend
             String dateCln = StringUtils.trimToNull(nextLine[COL_DATE]);
             String closeDateCln = StringUtils.trimToNull(nextLine[COL_CLOSEDATE]);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
