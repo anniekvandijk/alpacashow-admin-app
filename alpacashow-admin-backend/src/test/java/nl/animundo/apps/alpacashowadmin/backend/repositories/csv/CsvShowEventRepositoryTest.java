@@ -33,7 +33,7 @@ public class CsvShowEventRepositoryTest {
     @Test
     public void importShowEventsFromFile() throws IOException {
 
-        File file = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repotest.csv");
+        File file = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoimporttest.csv");
 
         assertTrue(file.isFile() && file.exists() && file.canRead());
         Reader reader = new FileReader(file) ;
@@ -52,10 +52,15 @@ public class CsvShowEventRepositoryTest {
     @Test
     public void exportShowEventsToFile() throws IOException {
 
-        File file = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoimporttest.csv");
+        File importFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoimporttest.csv");
+        File exportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoexporttest.csv");
 
-        assertTrue(file.isFile() && file.exists() && file.canRead());
-        Reader reader = new FileReader(file) ;
+        if (exportFile.exists()) {
+            exportFile.delete();
+        }
+
+        assertTrue(importFile.isFile() && importFile.exists() && importFile.canRead());
+        Reader reader = new FileReader(importFile) ;
 
         ShowEventRepository repo = CsvShowEventRepository.importData(reader);
         assertEquals(2, repo.size());
@@ -72,11 +77,25 @@ public class CsvShowEventRepositoryTest {
         repo.add(new ShowEvent(name, date, closeDate, location, judge, shows));
         assertEquals(3, repo.size());
 
-        File exportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoexporttest.csv");
-        FileWriter writer = new FileWriter(exportFile);
+        File newExportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoexporttest.csv");
+        FileWriter writer = new FileWriter(newExportFile);
         CsvShowEventRepository.exportData(writer, repo);
         writer.flush();
         writer.close();
+
+        File newImportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoexporttest.csv");
+
+        assertTrue(newImportFile.isFile() && newImportFile.exists() && newImportFile.canRead());
+        reader = new FileReader(newImportFile) ;
+
+        ShowEventRepository newRepo = CsvShowEventRepository.importData(reader);
+        assertEquals(3, newRepo.size());
+//
+//        ShowEventSearch searchOption = ShowEventSearch.NAME;
+//        String searchFor = "Boekel 2017";
+//        ShowEvent showEvent = newRepo.search(searchOption, searchFor);
+//        assertNotNull(showEvent);
+//        assertEquals("Meppel", showEvent.getLocation());
 
     }
 
@@ -85,7 +104,7 @@ public class CsvShowEventRepositoryTest {
         final String workingDir = System.getProperty("user.dir");
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Showtype Haltershows is not a known showtype.");
+        exception.expectMessage("No enum constant");
 
         File file = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repotest_notKnownShowType.csv");
         assertTrue(file.isFile() && file.exists() && file.canRead());

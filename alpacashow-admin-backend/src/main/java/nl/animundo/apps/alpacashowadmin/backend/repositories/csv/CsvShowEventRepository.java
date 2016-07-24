@@ -54,8 +54,23 @@ public class CsvShowEventRepository extends ShowEventRepository {
                     .append(show.getCloseDate().toString()).append(";")
                     .append(show.getLocation()).append(";")
                     .append(show.getJudge()).append(";")
-                    .append(show.getShow().toString()).append("\n");
+                    .append(createShowTypeString(show.getShow())).append("\n");
         }
+    }
+
+    private static String createShowTypeString(Set<Show> showTypes) {
+        if (showTypes.isEmpty()) {
+            return "";
+        }
+
+        final StringBuilder bldr = new StringBuilder();
+        for (Show showType : showTypes) {
+            if (bldr.length() != 0) {
+                bldr.append(", ");
+            }
+            bldr.append(showType.getShowType());
+        }
+        return bldr.toString();
     }
 
 
@@ -73,13 +88,14 @@ public class CsvShowEventRepository extends ShowEventRepository {
             String[] showList = nextLine[COL_SHOWTYPES].split(",");
 
             for ( String showInList : showList) {
-                show.add(new Show(ShowType.fromText(showInList)));
+                String showInListCln = StringUtils.trimToNull(showInList);
+                show.add(new Show(ShowType.valueOf(showInListCln)));
             }
 
             // TODO File dates as Localdate, convert only on frontend
             String dateCln = StringUtils.trimToNull(nextLine[COL_DATE]);
             String closeDateCln = StringUtils.trimToNull(nextLine[COL_CLOSEDATE]);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date = LocalDate.parse(dateCln, formatter);
             LocalDate closeDate = LocalDate.parse(closeDateCln, formatter);
 
