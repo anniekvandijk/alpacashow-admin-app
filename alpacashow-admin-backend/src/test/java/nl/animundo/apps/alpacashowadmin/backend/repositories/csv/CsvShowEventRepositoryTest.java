@@ -1,9 +1,7 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
-import nl.animundo.apps.alpacashowadmin.backend.Application;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Show;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventSearch;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import org.junit.Rule;
@@ -41,9 +39,8 @@ public class CsvShowEventRepositoryTest {
         ShowEventRepository repo = CsvShowEventRepository.importData(reader);
         assertEquals(2, repo.size());
 
-        ShowEventSearch searchOption = ShowEventSearch.NAME;
-        String searchFor = "Meppel 2017";
-        ShowEvent showEvent = repo.search(searchOption, searchFor);
+        String searchForKey = "Meppel 2017_2017-05-01";
+        ShowEvent showEvent = repo.search(searchForKey);
         assertNotNull(showEvent);
         assertEquals("Meppel", showEvent.getLocation());
 
@@ -91,9 +88,8 @@ public class CsvShowEventRepositoryTest {
         ShowEventRepository newRepo = CsvShowEventRepository.importData(reader);
         assertEquals(3, newRepo.size());
 
-        ShowEventSearch searchOption = ShowEventSearch.NAME;
-        String searchFor = "Test showEvent";
-        ShowEvent showEvent = newRepo.search(searchOption, searchFor);
+        String searchForKey = "Test showEvent_2017-07-01";
+        ShowEvent showEvent = newRepo.search(searchForKey);
         assertNotNull(showEvent);
         assertEquals("Surhuisterveen", showEvent.getLocation());
 
@@ -134,9 +130,8 @@ public class CsvShowEventRepositoryTest {
         ShowEventRepository newRepo = CsvShowEventRepository.importData(reader);
         assertEquals(2, newRepo.size());
 
-        ShowEventSearch searchOption = ShowEventSearch.NAME;
-        String searchFor = "Internationale alpacashowshow Meppel 2017";
-        ShowEvent showEvent = newRepo.search(searchOption, searchFor);
+        String searchForKey = "Internationale alpacashowshow Meppel 2017_2017-05-01";
+        ShowEvent showEvent = newRepo.search(searchForKey);
         assertNotNull(showEvent);
         assertEquals("Some other judge", showEvent.getJudge());
 

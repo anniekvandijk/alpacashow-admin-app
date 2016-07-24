@@ -1,14 +1,10 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventSearch;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.FileWriter;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -37,41 +33,14 @@ public class ShowEventRepository {
 
     }
 
-    public ShowEvent search(final ShowEventSearch searchOption, final String searchFor) {
-        for (Map.Entry<String, ShowEvent> showEventEntry : showEvents.entrySet()) {
-            String value = "";
-            switch (searchOption) {
-                case NAME:
-                    value = showEventEntry.getValue().getName();
-                    break;
-                case JUDGE:
-                    value = showEventEntry.getValue().getJudge();
-                    break;
-                case LOCATION:
-                    value = showEventEntry.getValue().getLocation();
-                    break;
-                case DATE:
-                    value = String.valueOf(showEventEntry.getValue().getDate()); //TODO dd-MM-yyyy dateformatter
-                    break;
-                case CLOSEDATE:
-                    value = String.valueOf(showEventEntry.getValue().getCloseDate());
-                    break;
-                case SHOWTYPE:
-                    break;
-                case PARTICIPANTS:
-                    break;
-                default:
-                    throw new IllegalArgumentException("value not found");
-            }
+    public ShowEvent search(final String searchForKey) {
 
-            if (searchFor.equalsIgnoreCase(value)) {
-                logger.info("value: '" + value + "' is found");
-                return showEventEntry.getValue();
-
-            }
+        ShowEvent showEventToSearchFor = getShowEventsByKeySet(searchForKey);
+        if (showEventToSearchFor != null) {
+            return showEventToSearchFor;
+        } else {
+            return null;
         }
-
-        return null;
     }
 
     public int size() {
