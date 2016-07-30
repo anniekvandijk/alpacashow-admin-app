@@ -27,7 +27,7 @@ public class Application {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[]args) throws IOException {
 
         logger.info("Application is running");
 

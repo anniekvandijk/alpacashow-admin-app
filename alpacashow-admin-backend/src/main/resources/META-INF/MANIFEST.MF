@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Created-By: Anniek van Dijk, Animundo
+Main-Class: nl.animundo.apps.alpacashowadmin.backend.Application
+Class-Path: dependency-jars/slf4j-api-1.7.21.jar dependency-jars/slf4j-jdk14-1.7.21.jar
+
