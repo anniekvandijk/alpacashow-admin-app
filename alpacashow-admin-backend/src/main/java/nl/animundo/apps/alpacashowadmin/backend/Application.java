@@ -13,7 +13,7 @@ import java.util.Properties;
 public class Application {
     private static Logger logger = LoggerFactory.getLogger(Application.class);
 
-    private static String WORK_DIR = System.getProperty("user.dir");
+    private static String WORK_DIR = System.getProperty("user.dir") + "/alpacashow-admin-backend/";
 
     public Application(final Properties prop) throws IOException {
         String fileStorage = prop.getProperty("filestorage");
@@ -32,7 +32,7 @@ public class Application {
         logger.info("Application is running");
 
         Properties prop = new Properties();
-        prop.load(new FileReader(new File(WORK_DIR +"/tst.application.properties")));
+        prop.load(new FileReader(new File(WORK_DIR +"tst.application.properties")));
         logger.info("Properties set");
 
         Application app = new Application(prop);
