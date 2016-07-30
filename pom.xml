@@ -29,11 +29,11 @@
     <distributionManagement>
         <repository>
             <id>JavaRepo</id>
-            <url>file:///${project.basedir}/../../../java-repository/maven-releases</url>
+            <url>file:///${project.basedir}/../../repository/maven-releases</url>
         </repository>
         <snapshotRepository>
             <id>JavaRepo</id>
-            <url>file:///${project.basedir}/../../../java-repository/maven-snapshots</url>
+            <url>file:///${project.basedir}/../../java-repository/maven-snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 

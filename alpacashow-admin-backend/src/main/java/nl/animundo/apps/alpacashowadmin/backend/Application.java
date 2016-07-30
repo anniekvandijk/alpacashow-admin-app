@@ -15,7 +15,7 @@ public class Application {
 
     private static String WORK_DIR = System.getProperty("user.dir") + "/alpacashow-admin-backend/";
 
-    public Application(final Properties prop) throws IOException {
+    private Application(final Properties prop) throws IOException {
         String fileStorage = prop.getProperty("filestorage");
 
         if (fileStorage.equalsIgnoreCase("csv")) {
