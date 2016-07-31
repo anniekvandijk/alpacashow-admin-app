@@ -6,15 +6,30 @@
         <artifactId>alpacashow-admin</artifactId>
         <groupId>nl.animundo.apps.alpacashow-admin</groupId>
         <version>1.0.0</version>
+
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>alpacashow-admin-frontend</artifactId>
     <version>0.1.0</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-compiler-plugin.version>1.8</maven-compiler-plugin.version>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${maven-compiler-plugin.version}</source>
+                    <target>${maven-compiler-plugin.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
