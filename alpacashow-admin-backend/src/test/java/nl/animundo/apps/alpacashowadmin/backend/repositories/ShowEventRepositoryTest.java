@@ -70,6 +70,43 @@ public class ShowEventRepositoryTest {
         showEventRepository.search(searchForKey).getName();
 
     }
+
+    @Test
+    public void getAllShowEvents() {
+
+        ShowEventRepository showEventRepository = new ShowEventRepository();
+
+        String name = "Test showEvent 1";
+        LocalDate date = LocalDate.of(2017, 6, 15);
+        LocalDate closeDate = LocalDate.of(2017, 4, 15);
+        String location = "Surhuisterveen";
+        String judge = " Test Judge ";
+        Set<Show> shows = new HashSet<>();
+
+        shows.add(new Show(ShowType.FLEECESHOW));
+        shows.add(new Show(ShowType.HALTERSHOW));
+        shows.add(new Show(ShowType.FEMALE_PROGENY_SHOW));
+        shows.add(new Show(ShowType.MALE_PROGENY_SHOW));
+
+        ShowEvent showEvent1 = new ShowEvent(name, date, closeDate, location, judge, shows);
+
+        name = "Test showEvent 2";
+        date = LocalDate.of(2017, 6, 15);
+        closeDate = LocalDate.of(2017, 4, 15);
+        location = "Surhuisterveen";
+        judge = " Test Judge ";
+        shows = new HashSet<>();
+
+        shows.add(new Show(ShowType.FLEECESHOW));
+
+        ShowEvent showEvent2 = new ShowEvent(name, date, closeDate, location, judge, shows);
+
+        showEventRepository.add(showEvent1);
+        showEventRepository.add(showEvent2);
+
+        assertEquals(2, showEventRepository.getAllShowEvents().size());
+
+    }
 }
 
 

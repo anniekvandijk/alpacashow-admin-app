@@ -4,9 +4,7 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Anniek van Dijk on 1-7-2016.
@@ -50,6 +48,11 @@ public class ShowEventRepository {
     public Set<String> getShowEvents() {
         return showEvents.keySet();
     }
+
+    public Collection<ShowEvent> getAllShowEvents() {
+        return showEvents.values();
+    }
+
 
     public ShowEvent getShowEventsByKeySet(final String keySet) {
         return showEvents.get(keySet);
