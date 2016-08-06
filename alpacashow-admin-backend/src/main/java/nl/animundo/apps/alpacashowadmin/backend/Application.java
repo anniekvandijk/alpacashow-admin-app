@@ -32,12 +32,18 @@ public class Application {
         logger.info("Application is running");
 
         Properties prop = new Properties();
-        prop.load(new FileReader(new File(WORK_DIR +"tst.application.properties")));
-        logger.info("Properties set");
+
+        String environment = "tst";
+
+        if (environment.equalsIgnoreCase("prd")) {
+            prop.load(new FileReader(new File(WORK_DIR +"prd.application.properties")));
+            logger.info("Properties production set");
+        } else {
+            prop.load(new FileReader(new File(WORK_DIR +"dev.application.properties")));
+            logger.info("Properties development set");
+        }
 
         Application app = new Application(prop);
-
-
 
     }
 }
