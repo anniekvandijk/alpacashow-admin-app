@@ -10,14 +10,17 @@
 .project
 .classpath
 
-#NodeJS
+# NodeJS
 *typings
 *node_modules
 *app/js/*
 *npm-debug.log*
 
-#sass/scss
+# sass/scss
 *sass-cache
 
-#local proxy settings
+# local proxy settings
 .typingsrc
+
+# docker files
+docker-dir
