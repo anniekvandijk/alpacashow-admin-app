@@ -45,7 +45,6 @@ public class ApplicationRepositoryServiceTest {
     public void getDevCsvShowEventRepo() throws IOException {
 
         String environment = "dev";
-        String fileStorage = "csv";
 
         ShowEventRepository showEventRepo;
         showEventRepo = ApplicationRepositoryService.getShowEventRepository(environment);
@@ -58,23 +57,6 @@ public class ApplicationRepositoryServiceTest {
     public void getPrdCsvShowEventRepo() throws IOException {
 
         String environment = "prd";
-        String fileStorage = "csv";
-
-        ShowEventRepository showEventRepo;
-        showEventRepo = ApplicationRepositoryService.getShowEventRepository(environment);
-
-        assertEquals(2, showEventRepo.size());
-
-    }
-
-    @Test
-    public void getDevNotKnownFileStorageShowEventRepo() throws IOException {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Not known filestorage property: bla");
-
-        String environment = "dev";
-        String fileStorage = "bla";
 
         ShowEventRepository showEventRepo;
         showEventRepo = ApplicationRepositoryService.getShowEventRepository(environment);
