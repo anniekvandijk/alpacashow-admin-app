@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationUserDirService;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.xssf.usermodel.*;
 
@@ -20,7 +21,7 @@ import javax.imageio.IIOException;
 public class ConvertFileToCsvService {
 
     private static List<List<XSSFCell>> cellGrid;
-    private final static String workingDir = System.getProperty("user.dir");
+    private static String workingDir = ApplicationUserDirService.getUserDir();
     private final static String fileLocation = workingDir + "/src/test/resources/";
     private static FileInputStream myInput;
     private static File outputFile;

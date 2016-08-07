@@ -14,7 +14,7 @@ import java.util.Properties;
 public class ApplicationPropertiesService {
     private static Logger logger = LoggerFactory.getLogger(ApplicationPropertiesService.class);
 
-    private static String WORK_DIR = System.getProperty("user.dir");
+    private static String workingDir = ApplicationUserDirService.getUserDir();
 
     private ApplicationPropertiesService() throws InstantiationException {
         throw new InstantiationException("Instances of this type are forbidden!");
@@ -25,13 +25,13 @@ public class ApplicationPropertiesService {
         Properties applicationProperties = new Properties();
 
         if (environment.equalsIgnoreCase("prd")) {
-            applicationProperties.load(new FileReader(new File(WORK_DIR + "/prd.application.properties")));
+            applicationProperties.load(new FileReader(new File(workingDir + "/prd.application.properties")));
             logger.info("Production properties set.");
         } else if (environment.equalsIgnoreCase("dev")) {
-            applicationProperties.load(new FileReader(new File(WORK_DIR + "/dev.application.properties")));
+            applicationProperties.load(new FileReader(new File(workingDir + "/dev.application.properties")));
             logger.info("Development properties set.");
         } else {
-            applicationProperties.load(new FileReader(new File(WORK_DIR +"/dev.application.properties")));
+            applicationProperties.load(new FileReader(new File(workingDir +"/dev.application.properties")));
             logger.info("Environment not detected. Development properties set.");
         }
         return applicationProperties;

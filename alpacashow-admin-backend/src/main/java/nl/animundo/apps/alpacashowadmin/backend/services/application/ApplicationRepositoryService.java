@@ -15,7 +15,7 @@ import java.util.Properties;
 public class ApplicationRepositoryService {
 
     private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
-    private static String WORK_DIR = System.getProperty("user.dir");
+    private static String workingDir = ApplicationUserDirService.getUserDir();
     private static Properties prop = new Properties();
     private static ShowEventRepository showEventRepo = new ShowEventRepository();
 
@@ -30,7 +30,7 @@ public class ApplicationRepositoryService {
 
         if (fileStorage.equalsIgnoreCase("csv")) {
             String csvShowEventFileDir = prop.getProperty("csv-showevent-filedir");
-            FileReader csvReader = new FileReader(WORK_DIR + csvShowEventFileDir);
+            FileReader csvReader = new FileReader(workingDir + csvShowEventFileDir);
             showEventRepo = CsvShowEventRepository.importData(csvReader);
             logger.info("Imported csvShowEventRepository");
         } else {

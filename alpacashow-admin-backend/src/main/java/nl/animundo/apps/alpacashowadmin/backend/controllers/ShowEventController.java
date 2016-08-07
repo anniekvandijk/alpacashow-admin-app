@@ -24,6 +24,8 @@ import javax.ws.rs.core.MediaType;
 public class ShowEventController {
     private static Logger logger = LoggerFactory.getLogger(ShowEventController.class);
     private ShowEventRepository showEventRepo;
+
+    // TODO Make environment configurable
     private String environment = "dev";
 
 
@@ -32,7 +34,9 @@ public class ShowEventController {
         showEventRepo = ApplicationRepositoryService.getShowEventRepository(environment);
     }
 
-    // /alpacashow-admin-app/backend/webservice/showevent/
+    /*
+    Jetty Runner path http://localhost:8080/alpacashow-admin-app/alpacashow-admin-backend/webservice/showevent/
+     */
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
