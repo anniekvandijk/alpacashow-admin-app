@@ -1,0 +1,83 @@
+[
+  {
+    "name": "Boekel 2017",
+    "date": {
+      "year": 2017,
+      "month": "JUNE",
+      "dayOfYear": 152,
+      "leapYear": false,
+      "monthValue": 6,
+      "chronology": {
+        "id": "ISO",
+        "calendarType": "iso8601"
+      },
+      "dayOfMonth": 1,
+      "dayOfWeek": "THURSDAY",
+      "era": "CE"
+    },
+    "closeDate": {
+      "year": 2017,
+      "month": "MAY",
+      "dayOfYear": 121,
+      "leapYear": false,
+      "monthValue": 5,
+      "chronology": {
+        "id": "ISO",
+        "calendarType": "iso8601"
+      },
+      "dayOfMonth": 1,
+      "dayOfWeek": "MONDAY",
+      "era": "CE"
+    },
+    "location": "Boekel",
+    "judge": "judge X",
+    "participants": [],
+    "show": [
+      {
+        "showType": "HALTERSHOW"
+      }
+    ]
+  },
+  {
+    "name": "Assen 2017",
+    "date": {
+      "year": 2017,
+      "month": "MAY",
+      "dayOfYear": 121,
+      "leapYear": false,
+      "monthValue": 5,
+      "chronology": {
+        "id": "ISO",
+        "calendarType": "iso8601"
+      },
+      "dayOfMonth": 1,
+      "dayOfWeek": "MONDAY",
+      "era": "CE"
+    },
+    "closeDate": {
+      "year": 2017,
+      "month": "APRIL",
+      "dayOfYear": 91,
+      "leapYear": false,
+      "monthValue": 4,
+      "chronology": {
+        "id": "ISO",
+        "calendarType": "iso8601"
+      },
+      "dayOfMonth": 1,
+      "dayOfWeek": "SATURDAY",
+      "era": "CE"
+    },
+    "location": "Assen",
+    "judge": "Rob Bettinson",
+    "participants": [],
+    "show": [
+      {
+        "showType": "FLEECESHOW"
+      },
+      {
+        "showType": "HALTERSHOW"
+      }
+    ]
+  }
+]
