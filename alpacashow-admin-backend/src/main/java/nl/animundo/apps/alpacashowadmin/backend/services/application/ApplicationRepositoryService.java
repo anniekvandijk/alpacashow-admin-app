@@ -24,9 +24,10 @@ public class ApplicationRepositoryService {
         throw new InstantiationException("Instances of this type are forbidden!");
     }
 
-    public static ShowEventRepository getShowEventRepository(String environment, String fileStorage) throws IOException {
+    public static ShowEventRepository getShowEventRepository(String environment) throws IOException {
 
         prop = ApplicationPropertiesService.getApplicationProperties(environment);
+        String fileStorage = prop.getProperty("filestorage");
 
         if (fileStorage.equalsIgnoreCase("csv")) {
             String csvShowEventFileDir = prop.getProperty("csv-showevent-filedir");

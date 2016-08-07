@@ -48,7 +48,7 @@ public class ApplicationRepositoryServiceTest {
         String fileStorage = "csv";
 
         ShowEventRepository showEventRepo;
-        showEventRepo = ApplicationRepositoryService.getShowEventRepository(environment, fileStorage);
+        showEventRepo = ApplicationRepositoryService.getShowEventRepository(environment);
 
         assertEquals(1, showEventRepo.size());
 
@@ -61,7 +61,7 @@ public class ApplicationRepositoryServiceTest {
         String fileStorage = "csv";
 
         ShowEventRepository showEventRepo;
-        showEventRepo = ApplicationRepositoryService.getShowEventRepository(environment, fileStorage);
+        showEventRepo = ApplicationRepositoryService.getShowEventRepository(environment);
 
         assertEquals(2, showEventRepo.size());
 
@@ -77,7 +77,7 @@ public class ApplicationRepositoryServiceTest {
         String fileStorage = "bla";
 
         ShowEventRepository showEventRepo;
-        showEventRepo = ApplicationRepositoryService.getShowEventRepository(environment, fileStorage);
+        showEventRepo = ApplicationRepositoryService.getShowEventRepository(environment);
 
         assertEquals(2, showEventRepo.size());
 
