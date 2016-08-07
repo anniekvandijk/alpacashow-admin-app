@@ -17,6 +17,10 @@ public class ApplicationPropertiesService {
 
     private static String WORK_DIR = System.getProperty("user.dir");
 
+    private ApplicationPropertiesService() throws InstantiationException {
+        throw new InstantiationException("Instances of this type are forbidden!");
+    }
+
     public static Properties getApplicationProperties(String environment) throws IOException {
 
         Properties applicationProperties = new Properties();

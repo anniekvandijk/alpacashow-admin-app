@@ -20,6 +20,10 @@ public class ApplicationRepositoryService {
     private static Properties prop = new Properties();
     private static ShowEventRepository showEventRepo = new ShowEventRepository();
 
+    private ApplicationRepositoryService() throws InstantiationException {
+        throw new InstantiationException("Instances of this type are forbidden!");
+    }
+
     public static ShowEventRepository getShowEventRepository(String environment, String fileStorage) throws IOException {
 
         prop = ApplicationPropertiesService.getApplicationProperties(environment);
