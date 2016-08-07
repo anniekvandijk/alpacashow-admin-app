@@ -8,12 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Collection;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -60,6 +55,18 @@ public class ShowEventController {
     public void addShowEvent(ShowEvent showEvent) throws IOException {
         loadRepository();
         this.showEventRepo.add(showEvent);
+    }
+
+    @PUT
+    @Path("/{key}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void updateShowEvent(@PathParam("key") String key) throws IOException {
+//        loadRepository();
+//        ShowEvent showEventToUpdate = showEventRepo.getShowEventsByKeySet(key);
+//        showEventToUpdate.setName("name");
+//        showEventToUpdate.setDate();
+//        showEventToUpdate.setJudge("judge");
+//        showEventRepo.add(showEventToUpdate);
     }
 
     @DELETE
