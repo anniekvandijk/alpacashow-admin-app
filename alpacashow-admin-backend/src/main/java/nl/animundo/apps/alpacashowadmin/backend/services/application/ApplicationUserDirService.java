@@ -22,10 +22,10 @@ public class ApplicationUserDirService {
     public static String getUserDir() {
 
         String userDir = System.getProperty("user.dir");
-        if (userDir.contains("\\alpacashow-admin-backend")) {
+        if (userDir.contains("alpacashow-admin-backend")) {
             return userDir;
         } else {
-            userDir = System.getProperty("user.dir") + "\\alpacashow-admin-backend";
+            userDir = System.getProperty("user.dir") + "/alpacashow-admin-backend";
 
         }
         logger.info("UserDir: " + userDir);

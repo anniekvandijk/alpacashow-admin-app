@@ -11,8 +11,8 @@ import java.time.LocalDate;
  */
 public class AgeClassTest {
 
-    LocalDate showDate;
-    LocalDate dateOfBirth;
+    private LocalDate showDate;
+    private LocalDate dateOfBirth;
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
