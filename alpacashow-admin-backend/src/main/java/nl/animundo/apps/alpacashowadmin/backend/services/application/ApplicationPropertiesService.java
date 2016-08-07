@@ -1,6 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
-import nl.animundo.apps.alpacashowadmin.backend.Application;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +12,7 @@ import java.util.Properties;
  * Created by Anniek van Dijk on 7-8-2016.
  */
 public class ApplicationPropertiesService {
-    private static Logger logger = LoggerFactory.getLogger(Application.class);
+    private static Logger logger = LoggerFactory.getLogger(ApplicationPropertiesService.class);
 
     private static String WORK_DIR = System.getProperty("user.dir");
 

@@ -1,6 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
-import nl.animundo.apps.alpacashowadmin.backend.Application;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvShowEventRepository;
 import org.slf4j.Logger;
@@ -15,7 +14,7 @@ import java.util.Properties;
  */
 public class ApplicationRepositoryService {
 
-    private static Logger logger = LoggerFactory.getLogger(Application.class);
+    private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
     private static String WORK_DIR = System.getProperty("user.dir");
     private static Properties prop = new Properties();
     private static ShowEventRepository showEventRepo = new ShowEventRepository();
