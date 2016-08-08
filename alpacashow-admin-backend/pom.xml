@@ -109,9 +109,6 @@
                 </executions>
                 <configuration>
                     <archive>
-                        <manifest>
-                            <mainClass>nl.animundo.apps.alpacashowadmin.backend.Application</mainClass>
-                        </manifest>
                     </archive>
                 </configuration>
             </plugin>
