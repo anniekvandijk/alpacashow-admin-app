@@ -3,12 +3,18 @@ package nl.animundo.apps.alpacashowadmin.backend.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import nl.animundo.apps.alpacashowadmin.backend.domain.Show;
+import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
+import nl.animundo.apps.alpacashowadmin.backend.domain.ShowType;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
-
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -16,44 +22,55 @@ import static org.junit.Assert.assertEquals;
  */
 public class ShowEventControllerTest {
 
+    // TODO client installeren om de webserver goed te testen
+
     @Test
-    public void serializingLocalDate() throws JsonProcessingException {
-        LocalDate date1 = LocalDate.of(2014, 12, 20);
+    public void getShowEvent () throws JsonProcessingException {
+
+        String name = "Test showEvent to Json";
+        LocalDate date = LocalDate.of(2017, 5, 1);
+        LocalDate closeDate = LocalDate.of(2017, 3, 15);
+        String location = "Surhuisterveen";
+        String judge = "Test Judge";
+        Set<Show> shows = new HashSet<>();
+        shows.add(new Show(ShowType.FLEECESHOW));
+        shows.add(new Show(ShowType.HALTERSHOW));
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
 
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
-        String localDateToString = date1.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        String result = mapper.writeValueAsString(localDateToString);
-        assertEquals("\"20-12-2014\"", result);
-    }
+        String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(showEvent);
 
-    @Test
-    public void deserializingLocalDate() {
-        String json = "{"
-           + "   \"date\": \"01-05-2017\"           "
-           + "   }                                  ";
+        String expectedJson = "{"
+                + "   \"name\": \"Test showEvent to Json\",     "
+                + "   \"date\": \"2017-05-01\",                 "
+                + "   \"closeDate\": \"2017-03-15\",            "
+                + "   \"location\": \"Surhuisterveen\",         "
+                + "   \"judge\": \"Test Judge\",                "
+                + "   \"participants\": [],                     "
+                + "   \"show\":                                 "
+                + "      [ {                                    "
+                + "      \"showType\": \"FLEECESHOW\"},         "
+                + "      {\"showType\": \"HALTERSHOW\"          "
+                + "      } ]                                    "
+                + "   }                                         ";
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModules();
-        SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
-//        LocalDate newdate = LocalDate.parse(date.format("yyyy-MM-dd"));
-//      //  mapper.reader(newdate);
-//
-//        Dummy event = null;
-//        try {
-//            event = mapper.readerFor(Dummy.class).readValue(json);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        assertEquals("01-05-2017", date.format(event.getDate()));
+        String jsonTrim = json.replaceAll("\\s","");
+        String expectedJsonTrim = expectedJson.replaceAll("\\s","");
+
+        assertEquals(expectedJsonTrim, jsonTrim);
+
 
     }
 
     @Test
-    public void showEvent() {
+    public void addShowEvent() {
         String json = "{"
-                + "   \"name\": \"Test 2017\",           "
+                + "   \"name\": \"Test from Json2017\",  "
                 + "   \"date\": \"01-05-2017\",          "
                 + "   \"closeDate\": \"15-03-2017\",     "
                 + "   \"location\": \"Test\",            "
