@@ -1,8 +1,12 @@
 package nl.animundo.apps.alpacashowadmin.backend.controllers;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
+import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateDeserializer;
+import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,14 +24,11 @@ public class ShowEventController {
     private static Logger logger = LoggerFactory.getLogger(ShowEventController.class);
     private ShowEventRepository showEventRepo;
 
+    @JsonDeserialize(using = JsonDateDeserializer.class)
+    @JsonSerialize(using = JsonDateSerializer.class)
+
     // TODO Make environment configurable
     private String environment = "dev";
-
-
-    private void loadRepository() throws IOException {
-
-        showEventRepo = ApplicationRepositoryService.getShowEventRepository(environment);
-    }
 
     /*
     Jetty Runner path http://localhost:8080/alpacashow-admin-app/alpacashow-admin-backend/webservice/showevent/
@@ -76,5 +77,10 @@ public class ShowEventController {
         loadRepository();
         this.showEventRepo.delete(key);
 
+    }
+
+    private void loadRepository() throws IOException {
+
+        showEventRepo = ApplicationRepositoryService.getShowEventRepository(environment);
     }
 }
