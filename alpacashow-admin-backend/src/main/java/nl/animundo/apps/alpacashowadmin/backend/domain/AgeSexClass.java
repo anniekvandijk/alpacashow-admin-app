@@ -1,8 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Created by Anniek van Dijk on 7-6-2016.
  */

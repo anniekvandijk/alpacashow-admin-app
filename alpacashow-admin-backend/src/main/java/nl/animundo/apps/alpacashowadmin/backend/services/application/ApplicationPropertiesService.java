@@ -24,10 +24,10 @@ public class ApplicationPropertiesService {
 
         Properties applicationProperties = new Properties();
 
-        if (environment.equalsIgnoreCase("prd")) {
+        if ("prd".equalsIgnoreCase(environment)) {
             applicationProperties.load(new FileReader(new File(workingDir + "/prd.application.properties")));
             logger.info("Production properties set.");
-        } else if (environment.equalsIgnoreCase("dev")) {
+        } else if ("dev".equalsIgnoreCase(environment)) {
             applicationProperties.load(new FileReader(new File(workingDir + "/dev.application.properties")));
             logger.info("Development properties set.");
         } else {

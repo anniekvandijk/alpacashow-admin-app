@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
  * Created by Anniek van Dijk on 12-6-2016.
  */
 public class Show {
-    private static Logger logger = LoggerFactory.getLogger(Show.class);
 
     private ShowType showType;
 

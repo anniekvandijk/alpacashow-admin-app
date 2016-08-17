@@ -5,11 +5,7 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.Show;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.apache.commons.lang3.StringUtils;
-
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
@@ -17,20 +13,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Created by Anniek van Dijk on 1-7-2016.
  */
 public class CsvShowEventRepository extends ShowEventRepository {
+
     private static final int COL_NAME = 0;
     private static final int COL_DATE= 1;
     private static final int COL_CLOSEDATE = 2;
     private static final int COL_LOCATION = 3;
     private static final int COL_JUDGE = 4;
     private static final int COL_SHOWTYPES = 5;
-    private static Logger logger = LoggerFactory.getLogger(CsvShowEventRepository.class);
-
 
     public static ShowEventRepository importData(Reader reader) throws IOException {
 
@@ -77,7 +71,7 @@ public class CsvShowEventRepository extends ShowEventRepository {
 
 
         csvReader.readNext(); // read the first row (header)
-        String[] nextLine = null;
+        String[] nextLine;
 
         while ((nextLine = csvReader.readNext()) != null) {
 

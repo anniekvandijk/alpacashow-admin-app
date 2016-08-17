@@ -28,7 +28,7 @@ public class ApplicationRepositoryService {
         prop = ApplicationPropertiesService.getApplicationProperties(environment);
         String fileStorage = prop.getProperty("filestorage");
 
-        if (fileStorage.equalsIgnoreCase("csv")) {
+        if ("csv".equalsIgnoreCase(fileStorage)) {
             String csvShowEventFileDir = prop.getProperty("csv-showevent-filedir");
             FileReader csvReader = new FileReader(workingDir + csvShowEventFileDir);
             showEventRepo = CsvShowEventRepository.importData(csvReader);
