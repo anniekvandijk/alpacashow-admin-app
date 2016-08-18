@@ -1,5 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
@@ -22,13 +23,10 @@ import javax.ws.rs.core.MediaType;
 @Path("/showevent")
 public class ShowEventController {
     private static Logger logger = LoggerFactory.getLogger(ShowEventController.class);
-    private ShowEventRepository showEventRepo;
-
-    @JsonDeserialize(using = JsonDateDeserializer.class)
-    @JsonSerialize(using = JsonDateSerializer.class)
 
     // TODO Make environment configurable
     private String environment = "dev";
+    private ShowEventRepository showEventRepo;
 
     /*
     Jetty Runner path http://localhost:8080/alpacashow-admin-app/alpacashow-admin-backend/webservice/showevent/
@@ -36,12 +34,16 @@ public class ShowEventController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Collection<ShowEvent> getShowEvents() throws IOException {
+    public String getShowEvents() throws IOException {
         loadRepository();
+        String result = "";
         Collection<ShowEvent> listOfShowEvents=showEventRepo.getAllShowEvents();
-        logger.info("Getting showevents");
-        return listOfShowEvents;
+        for (ShowEvent event : listOfShowEvents) {
+            result = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(event);
+        }
+        return result;
     }
+
 
     @GET
     @Path("/{key}")

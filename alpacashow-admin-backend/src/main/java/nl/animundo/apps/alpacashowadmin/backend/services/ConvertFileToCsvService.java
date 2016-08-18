@@ -78,6 +78,7 @@ public class ConvertFileToCsvService {
             }
             stream.println("");
         }
+        stream.close();
     }
 
 }

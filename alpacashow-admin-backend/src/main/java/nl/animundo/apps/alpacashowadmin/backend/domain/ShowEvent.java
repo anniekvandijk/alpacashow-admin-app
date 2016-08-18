@@ -1,5 +1,10 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateDeserializer;
+import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.commons.lang3.StringUtils;
@@ -10,11 +15,16 @@ import java.util.Set;
 /**
  * Created by Anniek van Dijk on 29-5-2016.
  */
+@JsonRootName(value = "showevent")
 public class ShowEvent {
     private static Logger logger = LoggerFactory.getLogger(ShowEvent.class);
 
     private String name;
+    @JsonDeserialize(using = JsonDateDeserializer.class)
+    @JsonSerialize(using = JsonDateSerializer.class)
     private LocalDate date;
+    @JsonDeserialize(using = JsonDateDeserializer.class)
+    @JsonSerialize(using = JsonDateSerializer.class)
     private LocalDate closeDate;
     private String location;
     private String judge;
