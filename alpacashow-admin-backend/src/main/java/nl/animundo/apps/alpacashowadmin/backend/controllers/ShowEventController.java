@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 

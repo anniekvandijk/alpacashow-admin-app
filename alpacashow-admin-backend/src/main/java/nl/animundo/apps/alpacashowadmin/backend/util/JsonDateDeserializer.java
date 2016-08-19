@@ -1,34 +1,24 @@
 package nl.animundo.apps.alpacashowadmin.backend.util;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.node.TextNode;
-
 import java.io.IOException;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Anniek van Dijk on 17-8-2016.
  */
 public class JsonDateDeserializer extends JsonDeserializer<LocalDate> {
 
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
     @Override
-    public LocalDate deserialize(JsonParser jp, DeserializationContext ctxt)
-            throws IOException, JsonProcessingException {
+    public LocalDate deserialize(JsonParser parser, DeserializationContext ctxt) throws IOException {
 
-        ObjectCodec oc = jp.getCodec();
-        TextNode node = (TextNode) oc.readTree(jp);
-        String dateString = node.textValue();
-
-        Instant instant = Instant.parse(dateString);
-        LocalDateTime dateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-        LocalDate date = LocalDate.of(dateTime.getYear(), dateTime.getMonth(), dateTime.getDayOfMonth());
-        return date;
+        String incommingDateString = parser.getText();
+        LocalDate tmpDate = LocalDate.parse(incommingDateString, formatter);
+        return LocalDate.of(tmpDate.getYear(), tmpDate.getMonth(), tmpDate.getDayOfMonth());
     }
 }

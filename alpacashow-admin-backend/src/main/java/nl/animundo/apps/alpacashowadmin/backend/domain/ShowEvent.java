@@ -30,6 +30,10 @@ public class ShowEvent {
     private Set<Show> shows;
     private Set<Participant> participants;
 
+    public ShowEvent() {
+        super();
+    }
+
     public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final Set<Show> shows) {
         this(name, date, closeDate, location, judge, shows, new HashSet<Participant>());
     }
