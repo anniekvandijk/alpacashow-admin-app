@@ -1,18 +1,15 @@
 package nl.animundo.apps.alpacashowadmin.backend.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
-import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateDeserializer;
-import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
@@ -36,21 +33,17 @@ public class ShowEventController {
     @Produces(MediaType.APPLICATION_JSON)
     public String getShowEvents() throws IOException {
         loadRepository();
-        String result = "";
         Collection<ShowEvent> listOfShowEvents=showEventRepo.getAllShowEvents();
-        for (ShowEvent event : listOfShowEvents) {
-            result = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(event);
-        }
-        return result;
+        return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfShowEvents);
     }
-
 
     @GET
     @Path("/{key}")
     @Produces(MediaType.APPLICATION_JSON)
-    public ShowEvent getShowEventByKey(@PathParam("key") String key) throws IOException {
+    public String getShowEventByKey(@PathParam("key") String key) throws IOException {
         loadRepository();
-        return showEventRepo.getShowEventsByKeySet(key);
+        ShowEvent event = showEventRepo.getShowEventsByKeySet(key);
+        return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(event);
     }
 
     @POST
