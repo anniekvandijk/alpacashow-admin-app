@@ -15,7 +15,6 @@ import java.util.Set;
 /**
  * Created by Anniek van Dijk on 29-5-2016.
  */
-@JsonRootName(value = "showevent")
 public class ShowEvent {
     private static Logger logger = LoggerFactory.getLogger(ShowEvent.class);
 
