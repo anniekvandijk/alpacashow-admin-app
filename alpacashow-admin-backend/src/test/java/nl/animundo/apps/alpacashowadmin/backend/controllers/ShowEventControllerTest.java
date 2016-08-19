@@ -39,7 +39,6 @@ public class ShowEventControllerTest {
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
