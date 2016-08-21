@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.time.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
 
 /**
  * Created by Anniek van Dijk on 29-5-2016.
@@ -27,19 +28,19 @@ public class ShowEvent {
     private LocalDate closeDate;
     private String location;
     private String judge;
-    private Set<Show> shows;
+    private SortedSet<Show> shows;
     private Set<Participant> participants;
 
     public ShowEvent() {
         super();
     }
 
-    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final Set<Show> shows) {
+    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final SortedSet<Show> shows) {
         this(name, date, closeDate, location, judge, shows, new HashSet<Participant>());
     }
 
 
-    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final Set<Show> shows, final Set<Participant> participants ) {
+    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final SortedSet<Show> shows, final Set<Participant> participants ) {
 
         final String nameCln = StringUtils.trimToNull(name);
         if (nameCln == null) {
@@ -154,7 +155,7 @@ public class ShowEvent {
         this.judge = judgeCln;
     }
 
-    public Set<Show> getShow() {
+    public SortedSet<Show> getShow() {
         return shows;
     }
 

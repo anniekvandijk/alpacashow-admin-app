@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by Anniek van Dijk on 12-6-2016.
  */
-public class Show {
+public class Show implements Comparable<Show> {
 
     private ShowType showType;
 
@@ -21,4 +21,10 @@ public class Show {
     public ShowType getShowType() {
         return showType;
     }
+
+    @Override
+    public int compareTo(final Show other) {
+        return this.getShowType().compareTo(other.getShowType());
+    }
+
 }

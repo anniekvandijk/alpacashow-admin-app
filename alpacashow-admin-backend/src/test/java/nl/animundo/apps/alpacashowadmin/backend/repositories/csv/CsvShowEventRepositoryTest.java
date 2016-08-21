@@ -1,9 +1,11 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
+import jdk.internal.org.objectweb.asm.util.TraceAnnotationVisitor;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Show;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
+import org.apache.poi.ss.formula.functions.T;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -12,6 +14,8 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -67,7 +71,7 @@ public class CsvShowEventRepositoryTest {
         LocalDate closeDate = LocalDate.of(2017, 5, 15);
         String location = "Surhuisterveen";
         String judge = " Test Judge ";
-        Set<Show> shows = new HashSet<>();
+        SortedSet<Show> shows = new TreeSet<>();
         shows.add(new Show(ShowType.FLEECESHOW));
         shows.add(new Show(ShowType.HALTERSHOW));
 

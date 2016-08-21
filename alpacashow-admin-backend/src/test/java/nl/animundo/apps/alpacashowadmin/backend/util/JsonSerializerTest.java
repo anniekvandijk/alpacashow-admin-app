@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import static org.junit.Assert.assertEquals;
 
@@ -25,7 +27,7 @@ public class JsonSerializerTest {
         LocalDate closeDate = LocalDate.of(2017, 3, 15);
         String location = "Surhuisterveen";
         String judge = "Test Judge";
-        Set<Show> shows = new HashSet<>();
+        SortedSet<Show> shows = new TreeSet<>();
         shows.add(new Show(ShowType.FLEECESHOW));
         shows.add(new Show(ShowType.HALTERSHOW));
 

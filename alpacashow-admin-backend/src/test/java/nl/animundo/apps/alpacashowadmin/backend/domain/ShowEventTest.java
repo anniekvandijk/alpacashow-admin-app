@@ -5,6 +5,7 @@ import org.junit.rules.ExpectedException;
 import java.time.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +16,7 @@ public class ShowEventTest {
     private LocalDate closeDate;
     private String location;
     private String judge;
-    private Set<Show> shows;
+    private TreeSet<Show> shows;
     private Set<Participant> participants;
 
     @Rule
@@ -29,7 +30,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "   Surhuisterveen";
         judge = " Test Judge ";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.FLEECESHOW));
         shows.add(new Show(ShowType.HALTERSHOW));
         shows.add(new Show(ShowType.FEMALE_PROGENY_SHOW));
@@ -53,7 +54,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge ";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
         participants = new HashSet<>();
         participants.add(new Participant("Test participant"));
@@ -75,7 +76,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "  Surhuisterveen ";
         judge = "   Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -92,7 +93,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -109,7 +110,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen ";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -126,7 +127,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen ";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -144,7 +145,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen ";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -161,7 +162,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().minusDays(1);
         location = "Surhuisterveen ";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -178,7 +179,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now();
         location = "Surhuisterveen ";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -195,7 +196,7 @@ public class ShowEventTest {
         closeDate = null;
         location = "Surhuisterveen ";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -212,7 +213,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(9);
         location = "Surhuisterveen ";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -230,7 +231,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(8);
         location = "Surhuisterveen ";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -248,7 +249,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = " ";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -265,7 +266,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = null;
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -282,7 +283,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "  Surhuisterveen ";
         judge = null;
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -296,7 +297,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -317,7 +318,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -335,7 +336,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -350,7 +351,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -371,7 +372,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -389,7 +390,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -407,7 +408,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -425,7 +426,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen ";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -444,7 +445,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen ";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -460,7 +461,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -480,7 +481,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -498,7 +499,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -516,7 +517,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -534,7 +535,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen ";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -553,7 +554,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen ";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -569,7 +570,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -589,7 +590,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -607,7 +608,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -622,7 +623,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -642,7 +643,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -660,7 +661,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
@@ -675,7 +676,7 @@ public class ShowEventTest {
         closeDate = LocalDate.now().plusMonths(6);
         location = "Surhuisterveen";
         judge = "Test Judge";
-        shows = new HashSet<>();
+        shows = new TreeSet<>();
         shows.add(new Show(ShowType.HALTERSHOW));
         shows.add(new Show(ShowType.FLEECESHOW));
 

@@ -13,6 +13,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * Created by Anniek van Dijk on 1-7-2016.
@@ -52,7 +54,7 @@ public class CsvShowEventRepository extends ShowEventRepository {
         }
     }
 
-    private static String createShowTypeString(Set<Show> showTypes) {
+    private static String createShowTypeString(SortedSet<Show> showTypes) {
 
         final StringBuilder bldr = new StringBuilder();
         for (Show showType : showTypes) {
@@ -75,7 +77,7 @@ public class CsvShowEventRepository extends ShowEventRepository {
 
         while ((nextLine = csvReader.readNext()) != null) {
 
-            Set<Show> show = new HashSet<>();
+            SortedSet<Show> show = new TreeSet<>();
             String[] showList = nextLine[COL_SHOWTYPES].split(",");
 
             for ( String showInList : showList) {
