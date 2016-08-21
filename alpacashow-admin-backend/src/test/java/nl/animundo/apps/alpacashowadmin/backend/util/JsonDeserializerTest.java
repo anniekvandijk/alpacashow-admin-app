@@ -30,12 +30,13 @@ public class JsonDeserializerTest {
                 + "      } ]                                    "
                 + "   }                                         ";
 
-//        ShowEvent event = new ObjectMapper().readValue(json, ShowEvent.class);
-//
-//        LocalDate expectedDate = LocalDate.of(2017, 5, 1);
-//        LocalDate expectedCloseDate = LocalDate.of(2017, 3, 15);
-//
-//        assertEquals(expectedDate, event.getDate());
-//        assertEquals(expectedCloseDate, event.getCloseDate());
+        ShowEvent event = new ObjectMapper().readValue(json, ShowEvent.class);
+
+        LocalDate expectedDate = LocalDate.of(2017, 5, 1);
+        LocalDate expectedCloseDate = LocalDate.of(2017, 3, 15);
+
+        assertEquals("Test showEvent to Json", event.getName());
+        assertEquals(expectedDate, event.getDate());
+        assertEquals(expectedCloseDate, event.getCloseDate());
     }
 }

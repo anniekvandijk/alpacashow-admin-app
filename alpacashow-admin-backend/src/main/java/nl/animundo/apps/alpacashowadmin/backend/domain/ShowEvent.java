@@ -105,8 +105,10 @@ public class ShowEvent {
         if (date.isBefore(LocalDate.now()) || date.isEqual(LocalDate.now())) {
             throw new IllegalArgumentException("Date is (before) today");
         }
-        if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
-            throw new IllegalArgumentException("Date show before or same as close date subscriptions");
+        if (!(closeDate == null)) {
+            if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
+                throw new IllegalArgumentException("Date show before or same as close date subscriptions");
+            }
         }
         this.date = date;
     }
@@ -122,8 +124,10 @@ public class ShowEvent {
         if (closeDate.isBefore(LocalDate.now()) || closeDate.isEqual(LocalDate.now())) {
             throw new IllegalArgumentException("Close date is (before) today");
         }
-        if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
-            throw new IllegalArgumentException("Date show before or same as close date subscriptions");
+        if (!(date == null)) {
+            if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
+                throw new IllegalArgumentException("Date show before or same as close date subscriptions");
+            }
         }
         this.closeDate = closeDate;
     }
