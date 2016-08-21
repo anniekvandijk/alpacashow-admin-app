@@ -12,6 +12,11 @@ public class Show implements Comparable<Show> {
 
     private ShowType showType;
 
+    public Show() {
+        // For Json serialization
+        super();
+    }
+
     public Show(final ShowType showType) {
 
         if (showType == null) {
