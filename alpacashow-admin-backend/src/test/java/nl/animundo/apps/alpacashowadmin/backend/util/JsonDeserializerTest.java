@@ -38,5 +38,6 @@ public class JsonDeserializerTest {
         assertEquals("Test showEvent to Json", event.getName());
         assertEquals(expectedDate, event.getDate());
         assertEquals(expectedCloseDate, event.getCloseDate());
+        assertEquals("HALTERSHOW, FLEECESHOW", event.toStringShow());
     }
 }

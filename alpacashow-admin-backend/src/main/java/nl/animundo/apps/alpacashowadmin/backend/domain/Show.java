@@ -1,10 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.SortedSet;
-
 /**
  * Created by Anniek van Dijk on 12-6-2016.
  */
@@ -27,11 +22,6 @@ public class Show implements Comparable<Show> {
 
     public ShowType getShowType() {
         return showType;
-    }
-
-    public void setShowType(final ShowType showType) {
-
-        this.showType = showType;
     }
 
     @Override

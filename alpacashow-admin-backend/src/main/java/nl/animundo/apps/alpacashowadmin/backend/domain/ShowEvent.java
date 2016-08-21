@@ -1,6 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateDeserializer;
@@ -171,5 +170,16 @@ public class ShowEvent {
 
     public Set<Participant> getParticipants() {
         return participants;
+    }
+
+    public String toStringShow() {
+        StringBuilder bldr = new StringBuilder();
+        for (Show types : shows) {
+            if (bldr.length() > 0) {
+                bldr.append(", ");
+            }
+            bldr.append(types.getShowType());
+        }
+        return bldr.toString();
     }
 }

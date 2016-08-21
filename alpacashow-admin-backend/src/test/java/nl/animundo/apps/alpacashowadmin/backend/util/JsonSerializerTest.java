@@ -7,8 +7,6 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.ShowType;
 import org.junit.Test;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
