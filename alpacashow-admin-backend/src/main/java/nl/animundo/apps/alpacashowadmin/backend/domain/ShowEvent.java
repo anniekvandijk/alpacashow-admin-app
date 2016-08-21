@@ -32,6 +32,7 @@ public class ShowEvent {
     private Set<Participant> participants;
 
     public ShowEvent() {
+        // For Json serialization
         super();
     }
 
@@ -157,6 +158,11 @@ public class ShowEvent {
 
     public SortedSet<Show> getShow() {
         return shows;
+    }
+
+    public void setShow(final SortedSet<Show> shows) {
+
+        this.shows = shows;
     }
 
     public Set<Participant> getParticipants() {
