@@ -1,0 +1,13 @@
+{
+  "name": "Test 2017",
+  "date": "01-03-2017",
+  "closeDate": "15-01-2017",
+  "location": "Test update",
+  "judge": "judge Y",
+  "participants": [],
+  "show": [
+    {
+      "showType": "FLEECESHOW"
+    }
+  ]
+}

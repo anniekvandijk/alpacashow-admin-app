@@ -47,7 +47,7 @@ public class ApplicationRepositoryServiceTest {
         String environment = "dev";
 
         ShowEventRepository showEventRepo;
-        showEventRepo = ApplicationRepositoryService.getShowEventRepository(environment);
+        showEventRepo = ApplicationRepositoryService.loadShowEventRepository(environment);
 
         assertEquals(2, showEventRepo.size());
 
@@ -59,7 +59,7 @@ public class ApplicationRepositoryServiceTest {
         String environment = "prd";
 
         ShowEventRepository showEventRepo;
-        showEventRepo = ApplicationRepositoryService.getShowEventRepository(environment);
+        showEventRepo = ApplicationRepositoryService.loadShowEventRepository(environment);
 
         assertEquals(2, showEventRepo.size());
 

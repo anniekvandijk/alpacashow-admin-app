@@ -47,34 +47,46 @@ public class ShowEventController {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public void addShowEvent(ShowEvent showEvent) throws IOException {
+    public String addShowEvent(String showEvent) throws IOException {
         loadRepository();
-        this.showEventRepo.add(showEvent);
+        ObjectMapper mapper = new ObjectMapper();
+        ShowEvent event = mapper.readValue(showEvent, ShowEvent.class);
+        showEventRepo.add(event);
+        saveRepository();
+        return "add showevent '" + event.getName() + "' repo size '" + showEventRepo.size() + "'";
     }
 
     @PUT
     @Path("/{key}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void updateShowEvent(@PathParam("key") String key) throws IOException {
-//        loadRepository();
-//        ShowEvent showEventToUpdate = showEventRepo.getShowEventsByKeySet(key);
-//        showEventToUpdate.setName("name");
-//        showEventToUpdate.setDate();
-//        showEventToUpdate.setJudge("judge");
-//        showEventRepo.add(showEventToUpdate);
+    public String updateShowEvent(@PathParam("key") String key, String showEvent) throws IOException {
+        loadRepository();
+        showEventRepo.delete(key);
+        ObjectMapper mapper = new ObjectMapper();
+        ShowEvent event = mapper.readValue(showEvent, ShowEvent.class);
+        showEventRepo.add(event);
+        saveRepository();
+        return "updated showevent '" + key + "' repo size '" + showEventRepo.size() + "'";
     }
 
     @DELETE
     @Path("/{key}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void deleteShowEvent(@PathParam("key") String key) throws IOException {
+    public String deleteShowEvent(@PathParam("key") String key) throws IOException {
         loadRepository();
-        this.showEventRepo.delete(key);
+        showEventRepo.delete(key);
+        saveRepository();
+        return "deleted showevent '" + key + "' repo size '" + showEventRepo.size() + "'";
 
     }
 
     private void loadRepository() throws IOException {
 
-        showEventRepo = ApplicationRepositoryService.getShowEventRepository(environment);
+        showEventRepo = ApplicationRepositoryService.loadShowEventRepository(environment);
+    }
+
+    private void saveRepository() throws IOException {
+
+        ApplicationRepositoryService.saveShowEventRepository(environment, showEventRepo);
     }
 }

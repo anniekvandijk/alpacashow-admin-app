@@ -5,7 +5,9 @@ import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvShowEventRep
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -23,19 +25,41 @@ public class ApplicationRepositoryService {
         throw new InstantiationException("Instances of this type are forbidden!");
     }
 
-    public static ShowEventRepository getShowEventRepository(String environment) throws IOException {
+    public static ShowEventRepository loadShowEventRepository(String environment) throws IOException {
 
-        prop = ApplicationPropertiesService.getApplicationProperties(environment);
-        String fileStorage = prop.getProperty("filestorage");
+        String fileStorage = getFileStorage(environment);
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
             String csvShowEventFileDir = prop.getProperty("csv-showevent-filedir");
             FileReader csvReader = new FileReader(workingDir + csvShowEventFileDir);
             showEventRepo = CsvShowEventRepository.importData(csvReader);
+            csvReader.close();
             logger.info("Imported csvShowEventRepository");
         } else {
             throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
         }
         return showEventRepo;
+    }
+
+    public static void saveShowEventRepository(String environment, ShowEventRepository repo) throws IOException {
+
+        String fileStorage = getFileStorage(environment);
+
+        if ("csv".equalsIgnoreCase(fileStorage)) {
+            String csvShowEventFileDir = prop.getProperty("csv-showevent-filedir");
+            File newExportFile = new File(workingDir + csvShowEventFileDir);
+            FileWriter writer = new FileWriter(newExportFile);
+            CsvShowEventRepository.exportData(writer, repo);
+            writer.flush();
+            writer.close();
+            logger.info("Exported csvShowEventRepository");
+        } else {
+            throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
+        }
+    }
+
+    private static String getFileStorage(String environment) throws IOException {
+        prop = ApplicationPropertiesService.getApplicationProperties(environment);
+        return prop.getProperty("filestorage");
     }
 }
