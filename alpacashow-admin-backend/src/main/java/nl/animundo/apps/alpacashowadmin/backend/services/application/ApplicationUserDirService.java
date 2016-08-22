@@ -25,12 +25,7 @@ public class ApplicationUserDirService {
         if (userDir.contains("alpacashow-admin-backend")) {
             return userDir;
         } else {
-            userDir = System.getProperty("user.dir") + "/alpacashow-admin-backend";
-
+            return System.getProperty("user.dir") + "/alpacashow-admin-backend";
         }
-        logger.info("UserDir: " + userDir);
-        return userDir;
     }
-
-
 }

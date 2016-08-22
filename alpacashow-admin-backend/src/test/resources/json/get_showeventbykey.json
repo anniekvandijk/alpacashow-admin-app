@@ -2,10 +2,12 @@
   "name" : "Breda 2017",
   "date" : "01-04-2017",
   "closeDate" : "01-03-2017",
-  "location" : "Breda update",
+  "location" : "Breda",
   "judge" : "Shirley Bettinson",
   "participants" : [ ],
   "show" : [ {
-    "showType" : "FLEECESHOW"
-  }]
+    "showType" : "HALTERSHOW"
+  }, {
+    "showType" : "MALE_PROGENY_SHOW"
+  } ]
 }
