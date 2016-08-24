@@ -68,6 +68,7 @@ public class ShowEventRepository {
         return showEvents.get(keySet);
     }
 
+    // FIXME there can be more than One show with same name
     public ShowEvent getShowEventsByName(final String name) {
         String eventName = null;
         for (ShowEvent event : showEvents.values()) {
