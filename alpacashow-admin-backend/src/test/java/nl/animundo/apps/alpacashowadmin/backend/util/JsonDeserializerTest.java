@@ -22,7 +22,6 @@ public class JsonDeserializerTest {
                 + "   \"closeDate\": \"15-03-2017\",            "
                 + "   \"location\": \"Surhuisterveen\",         "
                 + "   \"judge\": \"Test Judge\",                "
-                + "   \"participants\": [],                     "
                 + "   \"show\":                                 "
                 + "      [ {                                    "
                 + "      \"showType\": \"FLEECESHOW\"},         "
