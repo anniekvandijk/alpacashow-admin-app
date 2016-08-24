@@ -2,13 +2,13 @@ package nl.animundo.apps.alpacashowadmin.backend.domain;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationIDGenerator;
 import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateDeserializer;
 import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.commons.lang3.StringUtils;
 import java.time.*;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.SortedSet;
 
@@ -18,6 +18,7 @@ import java.util.SortedSet;
 public class ShowEvent {
     private static Logger logger = LoggerFactory.getLogger(ShowEvent.class);
 
+    private String id;
     private String name;
     @JsonDeserialize(using = JsonDateDeserializer.class)
     @JsonSerialize(using = JsonDateSerializer.class)
@@ -28,19 +29,18 @@ public class ShowEvent {
     private String location;
     private String judge;
     private SortedSet<Show> shows;
-    private Set<Participant> participants;
 
     public ShowEvent() {
         // For Json serialization
         super();
     }
 
-//    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final SortedSet<Show> shows) {
-//        this(name, date, closeDate, location, judge, shows, new HashSet<Participant>());
-//    }
-
-
     public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final SortedSet<Show> shows) {
+        this(ApplicationIDGenerator.generateID(), name, date, closeDate, location, judge, shows);
+    }
+
+
+    public ShowEvent(final String id, final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final SortedSet<Show> shows) {
 
         final String nameCln = StringUtils.trimToNull(name);
         if (nameCln == null) {
@@ -66,9 +66,10 @@ public class ShowEvent {
         if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
             throw new IllegalArgumentException("Date show before or same as close date subscriptions");
         }
-        logger.info("Added new showEvent:\n Showname: " + nameCln + "\n Showdate: " + date + "\n Closedate: "
+        logger.info("Added new showEvent:\n ID: " + id + "\n Showname: " + nameCln + "\n Showdate: " + date + "\n Closedate: "
                     + closeDate + "\n Location: " + locationCln + "\n Judge: " + judgeCln
                     + "\n Showtype(s): " + shows);
+        this.id = id;
         this.name = nameCln;
         this.date = date;
         this.closeDate = closeDate;
@@ -77,6 +78,9 @@ public class ShowEvent {
         this.shows = shows;
     }
 
+    public String getID() {
+        return id;
+    }
 
     public String getName() {
         return name;

@@ -1,15 +1,5 @@
 [ {
-  "name" : "Assen 2017",
-  "date" : "01-05-2017",
-  "closeDate" : "01-04-2017",
-  "location" : "Assen",
-  "judge" : "Rob Bettinson",
-  "show" : [ {
-    "showType" : "HALTERSHOW"
-  }, {
-    "showType" : "FLEECESHOW"
-  } ]
-}, {
+  "id" : "5027dbc9-e4af-46ef-b5ca-5338ba8ebbbc",
   "name" : "Breda 2017",
   "date" : "01-04-2017",
   "closeDate" : "01-03-2017",
@@ -19,5 +9,17 @@
     "showType" : "HALTERSHOW"
   }, {
     "showType" : "MALE_PROGENY_SHOW"
+  } ]
+}, {
+  "id" : "c0965232-a620-487f-a59d-87aa31eaf0a0",
+  "name" : "Assen 2017",
+  "date" : "01-05-2017",
+  "closeDate" : "01-04-2017",
+  "location" : "Assen",
+  "judge" : "Rob Bettinson",
+  "show" : [ {
+    "showType" : "HALTERSHOW"
+  }, {
+    "showType" : "FLEECESHOW"
   } ]
 } ]

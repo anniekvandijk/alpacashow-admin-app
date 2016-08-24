@@ -21,12 +21,13 @@ import java.util.TreeSet;
  */
 public class CsvShowEventRepository extends ShowEventRepository {
 
-    private static final int COL_NAME = 0;
-    private static final int COL_DATE= 1;
-    private static final int COL_CLOSEDATE = 2;
-    private static final int COL_LOCATION = 3;
-    private static final int COL_JUDGE = 4;
-    private static final int COL_SHOWTYPES = 5;
+    private static final int COL_ID = 0;
+    private static final int COL_NAME = 1;
+    private static final int COL_DATE= 2;
+    private static final int COL_CLOSEDATE = 3;
+    private static final int COL_LOCATION = 4;
+    private static final int COL_JUDGE = 5;
+    private static final int COL_SHOWTYPES = 6;
 
     public static ShowEventRepository importData(Reader reader) throws IOException {
 
@@ -36,7 +37,8 @@ public class CsvShowEventRepository extends ShowEventRepository {
     }
 
     public static void exportData(final Writer writer, final ShowEventRepository showEventRepo) throws IOException {
-        writer  .append("NAAM").append(";")
+        writer  .append("ID").append(";")
+                .append("NAAM").append(";")
                 .append("DATUM").append(";")
                 .append("SLUITDATUM").append(";")
                 .append("LOCATIE").append(";")
@@ -45,7 +47,8 @@ public class CsvShowEventRepository extends ShowEventRepository {
 
         for (String showEvent : showEventRepo.getShowEvents()) {
             ShowEvent show = showEventRepo.getShowEventsByKeySet(showEvent);
-            writer  .append(show.getName()).append(";")
+            writer  .append(show.getID()).append(";")
+                    .append(show.getName()).append(";")
                     .append(show.getDate().toString()).append(";")
                     .append(show.getCloseDate().toString()).append(";")
                     .append(show.getLocation()).append(";")
@@ -91,7 +94,7 @@ public class CsvShowEventRepository extends ShowEventRepository {
             LocalDate date = LocalDate.parse(dateCln, formatter);
             LocalDate closeDate = LocalDate.parse(closeDateCln, formatter);
 
-            add(new ShowEvent(nextLine[COL_NAME], date, closeDate, nextLine[COL_LOCATION], nextLine[COL_JUDGE], show));
+            add(new ShowEvent(nextLine[COL_ID],nextLine[COL_NAME], date, closeDate, nextLine[COL_LOCATION], nextLine[COL_JUDGE], show));
         }
 
         csvReader.close();
