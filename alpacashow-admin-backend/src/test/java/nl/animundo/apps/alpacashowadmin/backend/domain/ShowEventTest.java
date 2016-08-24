@@ -1,7 +1,11 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
+import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationPropertiesService;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +15,7 @@ import static org.junit.Assert.*;
 
 public class ShowEventTest {
 
+    private static Logger logger = LoggerFactory.getLogger(ShowEventTest.class);
     private String name;
     private LocalDate date;
     private LocalDate closeDate;
