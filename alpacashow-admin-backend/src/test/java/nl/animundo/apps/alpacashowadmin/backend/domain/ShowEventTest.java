@@ -1,5 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 import java.time.*;

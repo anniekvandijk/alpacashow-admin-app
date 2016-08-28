@@ -3,7 +3,7 @@ package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 import com.opencsv.CSVReader;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Show;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowType;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import org.apache.commons.lang3.StringUtils;
 import java.io.IOException;
@@ -11,8 +11,6 @@ import java.io.Reader;
 import java.io.Writer;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 

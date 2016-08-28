@@ -2,6 +2,7 @@ package nl.animundo.apps.alpacashowadmin.backend.domain;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.util.JsonShowTypeDeserializer;
 import nl.animundo.apps.alpacashowadmin.backend.util.JsonShowTypeSerializer;
 

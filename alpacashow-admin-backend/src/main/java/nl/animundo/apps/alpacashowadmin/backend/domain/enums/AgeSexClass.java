@@ -1,4 +1,4 @@
-package nl.animundo.apps.alpacashowadmin.backend.domain;
+package nl.animundo.apps.alpacashowadmin.backend.domain.enums;
 
 public enum AgeSexClass {
 

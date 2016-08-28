@@ -3,12 +3,9 @@ package nl.animundo.apps.alpacashowadmin.backend.util;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowType;
-import org.apache.commons.lang3.StringUtils;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class JsonShowTypeSerializer extends JsonSerializer<ShowType> {
 

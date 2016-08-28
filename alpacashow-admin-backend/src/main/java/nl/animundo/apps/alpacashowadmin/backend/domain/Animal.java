@@ -1,5 +1,8 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;

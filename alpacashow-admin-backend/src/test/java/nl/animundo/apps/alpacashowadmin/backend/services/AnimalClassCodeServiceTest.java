@@ -1,8 +1,8 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.BreedClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ColorClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.AgeSexClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeSexClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

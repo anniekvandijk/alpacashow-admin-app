@@ -1,17 +1,12 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.time.LocalDate;
-import java.util.HashSet;
-
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by Anniek van Dijk on 12-6-2016.
- */
 public class ShowTest {
 
     @Rule

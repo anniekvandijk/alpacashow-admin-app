@@ -1,5 +1,8 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -8,9 +11,6 @@ import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by Anniek van Dijk on 8-6-2016.
- */
 public class AnimalTest {
 
     String name;
