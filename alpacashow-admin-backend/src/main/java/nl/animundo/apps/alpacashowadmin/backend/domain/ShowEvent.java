@@ -12,9 +12,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.SortedSet;
 
-/**
- * Created by Anniek van Dijk on 29-5-2016.
- */
 public class ShowEvent {
     private static Logger logger = LoggerFactory.getLogger(ShowEvent.class);
 
@@ -43,6 +40,8 @@ public class ShowEvent {
     public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final SortedSet<Show> shows, final Set<Participant> participants ) {
 
         final String nameCln = StringUtils.trimToNull(name);
+        final String locationCln = StringUtils.trimToNull(location);
+        final String judgeCln = StringUtils.trimToNull(judge);
         if (nameCln == null) {
             throw new IllegalArgumentException("Field name can not be empty");
         }
@@ -52,11 +51,11 @@ public class ShowEvent {
         if (closeDate == null) {
             throw new IllegalArgumentException("Field closeDate can not be empty");
         }
-        final String locationCln = StringUtils.trimToNull(location);
+
         if (locationCln == null) {
             throw new IllegalArgumentException("Field location can not be empty");
         }
-        final String judgeCln = StringUtils.trimToNull(judge);
+
         if (judgeCln == null) {
             throw new IllegalArgumentException("Field judge can not be empty");
         }
@@ -66,9 +65,6 @@ public class ShowEvent {
         if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
             throw new IllegalArgumentException("Date show before or same as close date subscriptions");
         }
-        logger.info("Added new showEvent:\n Showname: " + nameCln + "\n Showdate: " + date + "\n Closedate: "
-                    + closeDate + "\n Location: " + locationCln + "\n Judge: " + judgeCln
-                    + "\n Showtype(s): " + shows + "\n Participant(s): " + participants);
         this.name = nameCln;
         this.date = date;
         this.closeDate = closeDate;
@@ -104,7 +100,7 @@ public class ShowEvent {
         if (date.isBefore(LocalDate.now()) || date.isEqual(LocalDate.now())) {
             throw new IllegalArgumentException("Date is (before) today");
         }
-        if (!(closeDate == null)) {
+        if (closeDate != null) {
             if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
                 throw new IllegalArgumentException("Date show before or same as close date subscriptions");
             }
@@ -123,7 +119,7 @@ public class ShowEvent {
         if (closeDate.isBefore(LocalDate.now()) || closeDate.isEqual(LocalDate.now())) {
             throw new IllegalArgumentException("Close date is (before) today");
         }
-        if (!(date == null)) {
+        if (date != null) {
             if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
                 throw new IllegalArgumentException("Date show before or same as close date subscriptions");
             }

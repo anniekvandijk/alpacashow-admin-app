@@ -4,9 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
 
-/**
- * Created by Anniek van Dijk on 5-6-2016.
- */
 public class Animal {
 
 

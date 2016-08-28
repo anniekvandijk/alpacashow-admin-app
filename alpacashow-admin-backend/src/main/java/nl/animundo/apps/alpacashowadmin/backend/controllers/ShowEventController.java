@@ -12,20 +12,13 @@ import java.util.Collection;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-/**
- * Created by Anniek van Dijk on 6-8-2016.
- */
-
 @Path("/showevent")
 public class ShowEventController {
-    private static Logger logger = LoggerFactory.getLogger(ShowEventController.class);
 
-    // TODO Make environment configurable
-    private String environment = "dev";
     private ShowEventRepository showEventRepo;
 
     /*
-    Jetty Runner path http://localhost:8080/alpacashow-admin-app/alpacashow-admin-backend/webservice/showevent/
+    Jetty Runner path http://localhost:8081/webservice/showevent/
      */
 
     @GET

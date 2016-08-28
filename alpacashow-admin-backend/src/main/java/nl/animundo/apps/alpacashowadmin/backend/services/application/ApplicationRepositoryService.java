@@ -11,9 +11,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 
-/**
- * Created by Anniek van Dijk on 7-8-2016.
- */
 public class ApplicationRepositoryService {
 
     private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);

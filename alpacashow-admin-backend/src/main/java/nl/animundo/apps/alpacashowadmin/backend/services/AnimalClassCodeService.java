@@ -1,9 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
-/**
- * Created by Anniek van Dijk on 4-6-2016.
- */
-
 public class AnimalClassCodeService {
 
     private AnimalClassCodeService() throws InstantiationException {

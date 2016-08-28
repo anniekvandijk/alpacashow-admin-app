@@ -16,9 +16,6 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-/**
- * Created by Anniek van Dijk on 1-7-2016.
- */
 public class CsvShowEventRepository extends ShowEventRepository {
 
     private static final int COL_NAME = 0;

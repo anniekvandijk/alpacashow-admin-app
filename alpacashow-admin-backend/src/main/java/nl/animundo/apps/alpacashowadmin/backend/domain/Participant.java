@@ -6,9 +6,6 @@ import org.slf4j.LoggerFactory;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by Anniek van Dijk on 5-6-2016.
- */
 public class Participant {
     private static Logger logger = LoggerFactory.getLogger(Participant.class);
 

@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Created by Anniek van Dijk on 17-8-2016.
- */
 public class JsonDateDeserializer extends JsonDeserializer<LocalDate> {
 
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");

@@ -6,9 +6,6 @@ import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-/**
- * Created by Anniek van Dijk on 7-6-2016.
- */
 public enum AgeClass {
 
     JUNIOR (6, 12),

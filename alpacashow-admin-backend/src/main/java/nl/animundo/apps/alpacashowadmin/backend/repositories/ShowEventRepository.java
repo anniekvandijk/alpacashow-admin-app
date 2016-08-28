@@ -6,9 +6,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-/**
- * Created by Anniek van Dijk on 1-7-2016.
- */
 public class ShowEventRepository {
     private static Logger logger = LoggerFactory.getLogger(ShowEventRepository.class);
     private Map<String, ShowEvent> showEvents = new HashMap<>();

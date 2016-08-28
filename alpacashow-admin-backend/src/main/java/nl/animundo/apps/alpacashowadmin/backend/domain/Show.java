@@ -1,8 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
-/**
- * Created by Anniek van Dijk on 12-6-2016.
- */
 public class Show implements Comparable<Show> {
 
     private ShowType showType;

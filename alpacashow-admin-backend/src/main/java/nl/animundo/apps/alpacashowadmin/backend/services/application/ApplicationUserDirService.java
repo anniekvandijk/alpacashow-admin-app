@@ -3,12 +3,7 @@ package nl.animundo.apps.alpacashowadmin.backend.services.application;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Created by Anniek van Dijk on 7-8-2016.
- */
 public class ApplicationUserDirService {
-
-    private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
 
     /**
      * This is a system workaround because of user.dir problems.

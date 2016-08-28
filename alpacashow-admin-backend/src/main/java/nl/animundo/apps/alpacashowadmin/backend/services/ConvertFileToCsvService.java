@@ -15,9 +15,6 @@ import org.apache.poi.xssf.usermodel.*;
 
 import javax.imageio.IIOException;
 
-/**
- * Created by Anniek van Dijk on 15-6-2016.
- */
 public class ConvertFileToCsvService {
 
     private static List<List<XSSFCell>> cellGrid;
