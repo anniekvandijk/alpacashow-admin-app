@@ -4,8 +4,8 @@ import { FormsModule }    from '@angular/forms';
 import { routing } from './app.routing';
 import { AppComponent }  from './app.component';
 import { HomeComponent} from './home/home.component';
-import { ShowComponent }     from './show/show.component';
-//import { ShowEventService } from './show/showevent/showevent.service'
+import { ShowEventsComponent }     from './showevent/showevents.component';
+//import { ShowEventService } from './show/showevent/showevents.service'
 
 @NgModule({
     imports: [
@@ -16,10 +16,10 @@ import { ShowComponent }     from './show/show.component';
     declarations: [
         AppComponent,
         HomeComponent,
-        ShowComponent
+        ShowEventsComponent
     ],
     // providers: [
-    //     ShowEventService
+    //     ShowEventsService
     // ],
     bootstrap: [ AppComponent ]
 })

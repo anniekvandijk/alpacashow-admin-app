@@ -14,8 +14,8 @@ var forms_1 = require('@angular/forms');
 var app_routing_1 = require('./app.routing');
 var app_component_1 = require('./app.component');
 var home_component_1 = require('./home/home.component');
-var show_component_1 = require('./show/show.component');
-//import { ShowEventService } from './show/showevent/showevent.service'
+var showevents_component_1 = require('./showevent/showevents.component');
+//import { ShowEventService } from './show/showevent/showevents.service'
 var AppModule = (function () {
     function AppModule() {
     }
@@ -29,10 +29,10 @@ var AppModule = (function () {
             declarations: [
                 app_component_1.AppComponent,
                 home_component_1.HomeComponent,
-                show_component_1.ShowComponent
+                showevents_component_1.ShowEventsComponent
             ],
             // providers: [
-            //     ShowEventService
+            //     ShowEventsService
             // ],
             bootstrap: [app_component_1.AppComponent]
         }), 

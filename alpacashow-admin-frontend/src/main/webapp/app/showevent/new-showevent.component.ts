@@ -16,13 +16,13 @@ const SHOWTYPES: ShowType[] = [
 ];
 
 @Component({
-    selector: 'new-showevent-form',
-    templateUrl: './app/show/newshowevent/newshowevent-form.html',
+    selector: 'new-showevent',
+    templateUrl: './app/show/newshowevent/new-showevent.html',
     providers: [ FormBuilder ],
     directives: [FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES],
 })
 
-export class ShowEventForm {
+export class NewShowEventComponent {
     
     showtypes = SHOWTYPES;
     submitted = false;

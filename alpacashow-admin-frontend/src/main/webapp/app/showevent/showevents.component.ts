@@ -3,13 +3,13 @@ import { ShowEvent } from './showevent';
 import { ShowEventService } from './showevent.service';
 
 @Component({
-    selector: 'showevent-table',
-    templateUrl: './app/show/showevent/showevent-table.html',
+    selector: 'showevents',
+    templateUrl: './app/showevent/showevents.html',
     providers: [ShowEventService]
 
 })
 
-export class ShowEventComponent {
+export class ShowEventsComponent {
 
     showevents: ShowEvent[];
     deleteMessage = '';

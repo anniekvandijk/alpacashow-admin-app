@@ -22,14 +22,14 @@ var SHOWTYPES = [
     { value: false, name: 'maleprogenyshow', label: 'Male progeny show' },
     { value: false, name: 'femaleprogenyshow', label: 'Female progeny show' }
 ];
-var ShowEventForm = (function () {
-    function ShowEventForm(formBuilder) {
+var NewShowEventComponent = (function () {
+    function NewShowEventComponent(formBuilder) {
         this.formBuilder = formBuilder;
         this.showtypes = SHOWTYPES;
         this.submitted = false;
         this.active = true;
     }
-    ShowEventForm.prototype.ngOnInit = function () {
+    NewShowEventComponent.prototype.ngOnInit = function () {
         this.showEventForm = this.formBuilder.group({
             name: ['', forms_1.Validators.required],
             location: ['', forms_1.Validators.required],
@@ -42,7 +42,7 @@ var ShowEventForm = (function () {
             femaleprogenyshow: ['',],
         });
     };
-    ShowEventForm.prototype.onSubmit = function (form) {
+    NewShowEventComponent.prototype.onSubmit = function (form) {
         this.submitted = true;
         //    this.active = false;
         //   setTimeout(() => this.active = true, 0);
@@ -50,16 +50,16 @@ var ShowEventForm = (function () {
         console.log('json output: ', JSON.stringify(form));
         // json sent to backend
     };
-    ShowEventForm = __decorate([
+    NewShowEventComponent = __decorate([
         core_1.Component({
-            selector: 'new-showevent-form',
-            templateUrl: './app/show/newshowevent/newshowevent-form.html',
+            selector: 'new-showevent',
+            templateUrl: './app/show/newshowevent/new-showevent.html',
             providers: [forms_1.FormBuilder],
             directives: [forms_1.FORM_DIRECTIVES, forms_1.REACTIVE_FORM_DIRECTIVES],
         }), 
         __metadata('design:paramtypes', [forms_1.FormBuilder])
-    ], ShowEventForm);
-    return ShowEventForm;
+    ], NewShowEventComponent);
+    return NewShowEventComponent;
 }());
-exports.ShowEventForm = ShowEventForm;
-//# sourceMappingURL=newshowevent-form.component.js.map
+exports.NewShowEventComponent = NewShowEventComponent;
+//# sourceMappingURL=new-showevent.component.js.map

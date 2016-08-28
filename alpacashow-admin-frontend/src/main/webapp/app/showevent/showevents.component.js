@@ -10,34 +10,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var showevent_service_1 = require('./showevent.service');
-var ShowEventComponent = (function () {
-    function ShowEventComponent(showEventService) {
+var ShowEventsComponent = (function () {
+    function ShowEventsComponent(showEventService) {
         this.showEventService = showEventService;
         this.deleteMessage = '';
         this.updateMessage = '';
     }
-    ShowEventComponent.prototype.getShowEvents = function () {
+    ShowEventsComponent.prototype.getShowEvents = function () {
         var _this = this;
         this.showEventService.getShowEvents().then(function (showevents) { return _this.showevents = showevents; });
     };
-    ShowEventComponent.prototype.ngOnInit = function () {
+    ShowEventsComponent.prototype.ngOnInit = function () {
         this.getShowEvents();
     };
-    ShowEventComponent.prototype.deleteShow = function () {
+    ShowEventsComponent.prototype.deleteShow = function () {
         this.deleteMessage = 'Show delete!';
     };
-    ShowEventComponent.prototype.updateShow = function () {
+    ShowEventsComponent.prototype.updateShow = function () {
         this.updateMessage = 'Show update!';
     };
-    ShowEventComponent = __decorate([
+    ShowEventsComponent = __decorate([
         core_1.Component({
-            selector: 'showevent-table',
-            templateUrl: './app/show/showevent/showevent-table.html',
+            selector: 'showevents',
+            templateUrl: './app/showevent/showevents.html',
             providers: [showevent_service_1.ShowEventService]
         }), 
         __metadata('design:paramtypes', [showevent_service_1.ShowEventService])
-    ], ShowEventComponent);
-    return ShowEventComponent;
+    ], ShowEventsComponent);
+    return ShowEventsComponent;
 }());
-exports.ShowEventComponent = ShowEventComponent;
-//# sourceMappingURL=showevent.component.js.map
+exports.ShowEventsComponent = ShowEventsComponent;
+//# sourceMappingURL=showevents.component.js.map

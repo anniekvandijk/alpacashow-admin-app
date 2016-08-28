@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SHOWEVENTS } from './showevent-mock';
+import { SHOWEVENTS } from './showevents-mock';
 
 @Injectable()
 export class ShowEventService {
