@@ -35,12 +35,12 @@ public class ShowEvent {
         super();
     }
 
-//    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final SortedSet<Show> shows) {
-//        this(name, date, closeDate, location, judge, shows, new HashSet<Participant>());
-//    }
-
-
     public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final SortedSet<Show> shows) {
+        this(name, date, closeDate, location, judge, shows, new HashSet<Participant>());
+    }
+
+
+    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final SortedSet<Show> shows, final Set<Participant> participants ) {
 
         final String nameCln = StringUtils.trimToNull(name);
         if (nameCln == null) {
@@ -68,13 +68,14 @@ public class ShowEvent {
         }
         logger.info("Added new showEvent:\n Showname: " + nameCln + "\n Showdate: " + date + "\n Closedate: "
                     + closeDate + "\n Location: " + locationCln + "\n Judge: " + judgeCln
-                    + "\n Showtype(s): " + shows);
+                    + "\n Showtype(s): " + shows + "\n Participant(s): " + participants);
         this.name = nameCln;
         this.date = date;
         this.closeDate = closeDate;
         this.location = locationCln;
         this.judge = judgeCln;
         this.shows = shows;
+        this.participants = participants;
     }
 
 
@@ -165,6 +166,10 @@ public class ShowEvent {
     public void setShow(final SortedSet<Show> shows) {
 
         this.shows = shows;
+    }
+
+    public Set<Participant> getParticipants() {
+        return participants;
     }
 
     public String toStringShow() {

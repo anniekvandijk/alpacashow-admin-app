@@ -52,6 +52,24 @@ public class ShowEventTest {
         assertEquals("HALTERSHOW, FLEECESHOW, MALE_PROGENY_SHOW, FEMALE_PROGENY_SHOW", showEvent.toStringShow());
     }
 
+    @Test
+    public void newShowEventWithParticipants() {
+
+        name = "Test showEvent";
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
+        location = "Surhuisterveen";
+        judge = "Test Judge ";
+        shows = new TreeSet<>();
+        shows.add(new Show(ShowType.HALTERSHOW));
+        participants = new HashSet<>();
+        participants.add(new Participant("Test participant"));
+        participants.add(new Participant("Test participant2"));
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows, participants);
+
+        assertEquals(participants, showEvent.getParticipants());
+    }
 
     @Test
     public void showNameNotNull() {
