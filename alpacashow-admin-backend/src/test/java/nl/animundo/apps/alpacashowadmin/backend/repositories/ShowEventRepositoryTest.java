@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -39,8 +41,8 @@ public class ShowEventRepositoryTest {
 
         showEventRepository.add(showEvent);
 
-        String searchForName = "Test showEvent";
-        assertEquals("Test showEvent", showEventRepository.searchForName(searchForName).getName());
+        String searchForKey = "Test showEvent_2017-06-15";
+        assertEquals("Test showEvent", showEventRepository.search(searchForKey).getName());
 
     }
 
@@ -66,8 +68,8 @@ public class ShowEventRepositoryTest {
 
         showEventRepository.add(showEvent);
 
-        String searchForName = "Test showEvent";
-        showEventRepository.searchForKey(searchForName).getName();
+        String searchForKey = "Test showEvent_2017-06-14";
+        showEventRepository.search(searchForKey).getName();
 
     }
 

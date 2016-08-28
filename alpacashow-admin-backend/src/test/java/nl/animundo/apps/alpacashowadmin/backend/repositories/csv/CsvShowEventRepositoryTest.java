@@ -38,8 +38,8 @@ public class CsvShowEventRepositoryTest {
         ShowEventRepository repo = CsvShowEventRepository.importData(reader);
         assertEquals(2, repo.size());
 
-        String searchForKey = "89ab7e81-fa97-45d0-8589-a4269439a9a4";
-        ShowEvent showEvent = repo.searchForKey(searchForKey);
+        String searchForKey = "Meppel 2017_2017-05-01";
+        ShowEvent showEvent = repo.search(searchForKey);
         assertNotNull(showEvent);
         assertEquals("Meppel", showEvent.getLocation());
 
@@ -87,8 +87,8 @@ public class CsvShowEventRepositoryTest {
         ShowEventRepository newRepo = CsvShowEventRepository.importData(reader);
         assertEquals(3, newRepo.size());
 
-        String searchForName = "Test showEvent";
-        ShowEvent showEvent = newRepo.searchForName(searchForName);
+        String searchForKey = "Test showEvent_2017-07-01";
+        ShowEvent showEvent = newRepo.search(searchForKey);
         assertNotNull(showEvent);
         assertEquals("Surhuisterveen", showEvent.getLocation());
 
@@ -110,7 +110,7 @@ public class CsvShowEventRepositoryTest {
         ShowEventRepository repo = CsvShowEventRepository.importData(reader);
         assertEquals(2, repo.size());
 
-        String selectShowEvent = "89ab7e81-fa97-45d0-8589-a4269439a9a4";
+        String selectShowEvent = "Meppel 2017_2017-05-01";
         ShowEvent showEventToUpdate = repo.getShowEventsByKeySet(selectShowEvent);
         showEventToUpdate.setName("Internationale alpacashowshow Meppel 2017");
         showEventToUpdate.setJudge("Some other judge");
@@ -129,8 +129,8 @@ public class CsvShowEventRepositoryTest {
         ShowEventRepository newRepo = CsvShowEventRepository.importData(reader);
         assertEquals(2, newRepo.size());
 
-        String searchForKey = "89ab7e81-fa97-45d0-8589-a4269439a9a4";
-        ShowEvent showEvent = newRepo.searchForKey(searchForKey);
+        String searchForKey = "Internationale alpacashowshow Meppel 2017_2017-05-01";
+        ShowEvent showEvent = newRepo.search(searchForKey);
         assertNotNull(showEvent);
         assertEquals("Some other judge", showEvent.getJudge());
 
@@ -152,7 +152,7 @@ public class CsvShowEventRepositoryTest {
         ShowEventRepository repo = CsvShowEventRepository.importData(reader);
         assertEquals(2, repo.size());
 
-        repo.delete("37867707-66fc-4e6a-a3f8-de8fa632090b");
+        repo.delete("Hapert 2017_2017-04-24");
 
         File newExportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repodeletetest.csv");
         FileWriter writer = new FileWriter(newExportFile);

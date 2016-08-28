@@ -17,7 +17,7 @@ public class ShowEventRepository {
     public void add(final ShowEvent showEvent) {
         // TODO no double keys
 
-        String showEventKey = showEvent.getID();
+        String showEventKey = showEvent.getName() + "_" + showEvent.getDate();
         showEvents.put(showEventKey, showEvent);
         logger.info("Added showEvent '" + showEventKey + "' to showEventRepo");
 
@@ -26,24 +26,14 @@ public class ShowEventRepository {
     public void delete(final String showEventKey) {
 
         ShowEvent showEventToDelete = getShowEventsByKeySet(showEventKey);
-        showEvents.remove(showEventToDelete.getID());
+        showEvents.remove(showEventToDelete.getName() + "_" + showEventToDelete.getDate());
         logger.info("Deleted showEvent '" + showEventKey + "' from showEventRepo");
 
     }
 
-    public ShowEvent searchForKey(final String searchForKey) {
+    public ShowEvent search(final String searchForKey) {
 
         ShowEvent showEventToSearchFor = getShowEventsByKeySet(searchForKey);
-        if (showEventToSearchFor != null) {
-            return showEventToSearchFor;
-        } else {
-            return null;
-        }
-    }
-
-    public ShowEvent searchForName(final String searchForName) {
-
-        ShowEvent showEventToSearchFor = getShowEventsByName(searchForName);
         if (showEventToSearchFor != null) {
             return showEventToSearchFor;
         } else {
@@ -68,16 +58,4 @@ public class ShowEventRepository {
         return showEvents.get(keySet);
     }
 
-    public ShowEvent getShowEventsByName(final String name) {
-        String eventName = null;
-        for (ShowEvent event : showEvents.values()) {
-            eventName = event.getName();
-            if (name.equalsIgnoreCase(eventName)) {
-                return event;
-            } else {
-                return null;
-            }
-        }
-        return null;
-    }
 }
