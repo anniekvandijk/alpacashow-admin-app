@@ -25,8 +25,9 @@ public class JsonDeserializerTest {
                 + "   \"participants\": [],                     "
                 + "   \"show\":                                 "
                 + "      [ {                                    "
-                + "      \"showType\": \"FLEECESHOW\"},         "
-                + "      {\"showType\": \"HALTERSHOW\"          "
+                + "      \"showType\": \"Fleeceshow\"},         "
+                + "      {\"showType\": \"Haltershow\"},        "
+                + "      {\"showType\": \"Male progeny show\"   "
                 + "      } ]                                    "
                 + "   }                                         ";
 
@@ -38,6 +39,6 @@ public class JsonDeserializerTest {
         assertEquals("Test showEvent to Json", event.getName());
         assertEquals(expectedDate, event.getDate());
         assertEquals(expectedCloseDate, event.getCloseDate());
-        assertEquals("HALTERSHOW, FLEECESHOW", event.toStringShow());
+        assertEquals("HALTERSHOW, FLEECESHOW, MALE_PROGENY_SHOW", event.toStringShow());
     }
 }

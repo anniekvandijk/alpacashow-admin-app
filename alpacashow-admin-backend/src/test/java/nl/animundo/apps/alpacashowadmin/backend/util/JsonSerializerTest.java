@@ -43,8 +43,8 @@ public class JsonSerializerTest {
                 + "   \"participants\": [],                     "
                 + "   \"show\":                                 "
                 + "      [ {                                    "
-                + "      \"showType\": \"HALTERSHOW\"},          "
-                + "      {\"showType\": \"FLEECESHOW\"         "
+                + "      \"showType\": \"Haltershow\"},         "
+                + "      {\"showType\": \"Fleeceshow\"          "
                 + "      } ]                                    "
                 + "   }                                         ";
         String expectedJsonTrim = expectedJson.replaceAll("\\s", "");

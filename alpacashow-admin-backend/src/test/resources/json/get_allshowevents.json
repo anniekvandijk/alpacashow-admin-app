@@ -6,9 +6,9 @@
   "judge" : "Rob Bettinson",
   "participants" : [ ],
   "show" : [ {
-    "showType" : "HALTERSHOW"
+    "showType" : "Haltershow"
   }, {
-    "showType" : "FLEECESHOW"
+    "showType" : "Fleeceshow"
   } ]
 }, {
   "name" : "Breda 2017",
@@ -18,8 +18,8 @@
   "judge" : "Shirley Bettinson",
   "participants" : [ ],
   "show" : [ {
-    "showType" : "HALTERSHOW"
+    "showType" : "Haltershow"
   }, {
-    "showType" : "MALE_PROGENY_SHOW"
+    "showType" : "Male progeny show"
   } ]
 } ]

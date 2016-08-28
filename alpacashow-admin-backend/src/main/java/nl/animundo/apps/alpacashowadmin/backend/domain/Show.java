@@ -1,7 +1,14 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import nl.animundo.apps.alpacashowadmin.backend.util.JsonShowTypeDeserializer;
+import nl.animundo.apps.alpacashowadmin.backend.util.JsonShowTypeSerializer;
+
 public class Show implements Comparable<Show> {
 
+    @JsonSerialize(using = JsonShowTypeSerializer.class)
+    @JsonDeserialize(using = JsonShowTypeDeserializer.class)
     private ShowType showType;
 
     public Show() {
