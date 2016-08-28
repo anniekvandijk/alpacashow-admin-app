@@ -18,6 +18,7 @@ const SHOWTYPES: ShowType[] = [
 @Component({
     selector: 'new-showevent-form',
     templateUrl: './app/show/newshowevent/newshowevent-form.html',
+    providers: [ FormBuilder ],
     directives: [FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES],
 })
 
