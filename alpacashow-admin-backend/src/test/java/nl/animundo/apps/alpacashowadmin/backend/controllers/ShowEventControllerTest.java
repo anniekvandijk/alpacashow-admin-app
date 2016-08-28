@@ -1,6 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
@@ -8,20 +7,10 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.*;
-import java.util.Collection;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by Anniek van Dijk on 6-8-2016.
- *
- * This class simulates the webservice. It's not a direct webservice test.
- * When a test fales in this class, take a look at the ShowEventController.class too
- */
-
-
 public class ShowEventControllerTest {
-    private static Logger logger = LoggerFactory.getLogger(ShowEventControllerTest.class);
 
     // TODO Make environment configurable
     private String environment = "dev";
@@ -31,9 +20,9 @@ public class ShowEventControllerTest {
     @Test
     public void getAllShowEvents() throws IOException {
 
-        loadRepository();
-        Collection<ShowEvent> listOfShowEvents=showEventRepo.getAllShowEvents();
-        String result = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfShowEvents);
+        ShowEventController controller = new ShowEventController();
+
+        String result = controller.getShowEvents();
         String resultTrim = result.replaceAll("\\s", "");
         String fileName = "get_allshowevents.json";
         String expected = readJsonfile(fileName);
@@ -44,9 +33,10 @@ public class ShowEventControllerTest {
 
     @Test
     public void getShowEventByKey() throws IOException {
-        loadRepository();
-        ShowEvent event = showEventRepo.getShowEventsByKeySet("Breda 2017_2017-04-01");
-        String result = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(event);
+
+        ShowEventController controller = new ShowEventController();
+
+        String result = controller.getShowEventByKey("Breda 2017_2017-04-01");
         String resultTrim = result.replaceAll("\\s", "");
         String fileName = "get_showeventbykey.json";
         String expected = readJsonfile(fileName);
@@ -57,50 +47,43 @@ public class ShowEventControllerTest {
 
     @Test
     public void addAndDeleteShowEvent() throws IOException {
+
         loadRepository();
         assertEquals(2, showEventRepo.size());
-        ObjectMapper mapper = new ObjectMapper();
+
+        ShowEventController controller = new ShowEventController();
+
         String showEvent = readJsonfile("add_showevent.json");
-        ShowEvent event = mapper.readValue(showEvent, ShowEvent.class);
-        showEventRepo.add(event);
-        saveRepository();
+        controller.addShowEvent(showEvent);
 
         loadRepository();
         assertEquals(3, showEventRepo.size());
 
-        ShowEvent getEvent = showEventRepo.getShowEventsByKeySet("Test 2017_2017-03-01");
-        assertEquals("Test 2017", getEvent.getName());
-        showEventRepo.delete("Test 2017_2017-03-01");
+        ShowEvent event = showEventRepo.search("Test 2017_2017-03-01");
+        assertEquals("Test 2017", event.getName());
+
+        controller.deleteShowEvent("Test 2017_2017-03-01");
+
+        loadRepository();
         assertEquals(2, showEventRepo.size());
-        saveRepository();
+
     }
 
     @Test
     public void updateShowEvent() throws IOException {
-        loadRepository();
-        showEventRepo.delete("Breda 2017_2017-04-01");
-        assertEquals(1, showEventRepo.size());
-        ObjectMapper mapper = new ObjectMapper();
 
-        // Update 1
+        ShowEventController controller = new ShowEventController();
+
         String showEvent = readJsonfile("update_showevent.json");
-        ShowEvent event = mapper.readValue(showEvent, ShowEvent.class);
-        showEventRepo.add(event);
-        assertEquals(2, showEventRepo.size());
-        saveRepository();
+        controller.updateShowEvent("Breda 2017_2017-04-01", showEvent);
 
         loadRepository();
         ShowEvent getEvent = showEventRepo.getShowEventsByKeySet("Breda 2017_2017-04-01");
         assertEquals("Breda update", getEvent.getLocation());
         assertEquals("FLEECESHOW", getEvent.toStringShow());
 
-        // Update back to old situation
-        showEventRepo.delete("Breda 2017_2017-04-01");
         String showEvent2 = readJsonfile("get_showeventbykey.json");
-        ShowEvent event2 = mapper.readValue(showEvent2, ShowEvent.class);
-        showEventRepo.add(event2);
-        assertEquals(2, showEventRepo.size());
-        saveRepository();
+        controller.updateShowEvent("Breda 2017_2017-04-01", showEvent2);
 
         loadRepository();
         ShowEvent getEvent3 = showEventRepo.getShowEventsByKeySet("Breda 2017_2017-04-01");
@@ -112,11 +95,6 @@ public class ShowEventControllerTest {
     private void loadRepository() throws IOException {
 
         showEventRepo = ApplicationRepositoryService.loadShowEventRepository(environment);
-    }
-
-    private void saveRepository() throws IOException {
-
-        ApplicationRepositoryService.saveShowEventRepository(environment, showEventRepo);
     }
 
     private String readJsonfile(String fileName) throws IOException {
