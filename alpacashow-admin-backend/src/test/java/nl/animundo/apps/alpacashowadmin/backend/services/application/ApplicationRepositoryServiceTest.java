@@ -44,22 +44,8 @@ public class ApplicationRepositoryServiceTest {
     @Test
     public void getDevCsvShowEventRepo() throws IOException {
 
-        String environment = "dev";
-
         ShowEventRepository showEventRepo;
-        showEventRepo = ApplicationRepositoryService.loadShowEventRepository(environment);
-
-        assertEquals(2, showEventRepo.size());
-
-    }
-
-    @Test
-    public void getPrdCsvShowEventRepo() throws IOException {
-
-        String environment = "prd";
-
-        ShowEventRepository showEventRepo;
-        showEventRepo = ApplicationRepositoryService.loadShowEventRepository(environment);
+        showEventRepo = ApplicationRepositoryService.loadShowEventRepository();
 
         assertEquals(2, showEventRepo.size());
 

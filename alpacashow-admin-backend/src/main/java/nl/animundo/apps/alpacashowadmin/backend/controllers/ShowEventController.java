@@ -82,11 +82,11 @@ public class ShowEventController {
 
     private void loadRepository() throws IOException {
 
-        showEventRepo = ApplicationRepositoryService.loadShowEventRepository(environment);
+        showEventRepo = ApplicationRepositoryService.loadShowEventRepository();
     }
 
     private void saveRepository() throws IOException {
 
-        ApplicationRepositoryService.saveShowEventRepository(environment, showEventRepo);
+        ApplicationRepositoryService.saveShowEventRepository(showEventRepo);
     }
 }

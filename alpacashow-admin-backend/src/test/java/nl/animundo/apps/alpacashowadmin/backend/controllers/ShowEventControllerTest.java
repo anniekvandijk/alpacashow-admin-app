@@ -12,8 +12,6 @@ import static org.junit.Assert.assertTrue;
 
 public class ShowEventControllerTest {
 
-    // TODO Make environment configurable
-    private String environment = "dev";
     final String workingDir = System.getProperty("user.dir");
     private ShowEventRepository showEventRepo;
 
@@ -94,7 +92,7 @@ public class ShowEventControllerTest {
 
     private void loadRepository() throws IOException {
 
-        showEventRepo = ApplicationRepositoryService.loadShowEventRepository(environment);
+        showEventRepo = ApplicationRepositoryService.loadShowEventRepository();
     }
 
     private String readJsonfile(String fileName) throws IOException {

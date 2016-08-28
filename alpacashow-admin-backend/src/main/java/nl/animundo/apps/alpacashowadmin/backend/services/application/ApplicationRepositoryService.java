@@ -25,9 +25,9 @@ public class ApplicationRepositoryService {
         throw new InstantiationException("Instances of this type are forbidden!");
     }
 
-    public static ShowEventRepository loadShowEventRepository(String environment) throws IOException {
+    public static ShowEventRepository loadShowEventRepository() throws IOException {
 
-        String fileStorage = getFileStorage(environment);
+        String fileStorage = getFileStorage();
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
             String csvShowEventFileDir = prop.getProperty("csv-showevent-filedir");
@@ -41,9 +41,9 @@ public class ApplicationRepositoryService {
         return showEventRepo;
     }
 
-    public static void saveShowEventRepository(String environment, ShowEventRepository repo) throws IOException {
+    public static void saveShowEventRepository(ShowEventRepository repo) throws IOException {
 
-        String fileStorage = getFileStorage(environment);
+        String fileStorage = getFileStorage();
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
             String csvShowEventFileDir = prop.getProperty("csv-showevent-filedir");
@@ -58,8 +58,8 @@ public class ApplicationRepositoryService {
         }
     }
 
-    private static String getFileStorage(String environment) throws IOException {
-        prop = ApplicationPropertiesService.getApplicationProperties(environment);
+    private static String getFileStorage() throws IOException {
+        prop = ApplicationPropertiesService.getApplicationProperties();
         return prop.getProperty("filestorage");
     }
 }

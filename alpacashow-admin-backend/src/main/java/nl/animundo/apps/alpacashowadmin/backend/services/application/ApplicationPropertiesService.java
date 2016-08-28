@@ -15,12 +15,15 @@ public class ApplicationPropertiesService {
     private static Logger logger = LoggerFactory.getLogger(ApplicationPropertiesService.class);
 
     private static String workingDir = ApplicationUserDirService.getUserDir();
+    // TODO: Make environment configurable
+    private static String environment = "dev";
 
     private ApplicationPropertiesService() throws InstantiationException {
         throw new InstantiationException("Instances of this type are forbidden!");
     }
 
-    public static Properties getApplicationProperties(String environment) throws IOException {
+
+    public static Properties getApplicationProperties() throws IOException {
 
         Properties applicationProperties = new Properties();
 

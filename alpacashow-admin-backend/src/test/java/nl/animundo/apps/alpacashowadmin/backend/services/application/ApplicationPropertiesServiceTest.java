@@ -45,29 +45,9 @@ public class ApplicationPropertiesServiceTest {
     @Test
     public void getDevProperties() throws IOException {
 
-        Properties prop = new Properties(ApplicationPropertiesService.getApplicationProperties("dev"));
+        Properties prop = new Properties(ApplicationPropertiesService.getApplicationProperties());
 
         assertEquals("/src/test/resources/csv/SHOWEVENTS.csv", prop.getProperty("csv-showevent-filedir"));
 
     }
-
-    @Test
-    public void getPrdProperties() throws IOException {
-
-        Properties prop = ApplicationPropertiesService.getApplicationProperties("prd");
-
-        assertEquals("/src/main/resources/csv/SHOWEVENTS.csv", prop.getProperty("csv-showevent-filedir"));
-
-    }
-
-    @Test
-    public void getNotKnownEnvProperties() throws IOException {
-
-        Properties prop = ApplicationPropertiesService.getApplicationProperties("bla");
-
-        assertEquals("/src/test/resources/csv/SHOWEVENTS.csv", prop.getProperty("csv-showevent-filedir"));
-
-    }
-
-
 }
