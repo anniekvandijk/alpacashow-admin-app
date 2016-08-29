@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
 export class ShowType {
     name: string;
@@ -19,7 +19,7 @@ const SHOWTYPES: ShowType[] = [
     selector: 'new-showevent',
     templateUrl: './app/showevent/new-showevent.html',
     providers: [ FormBuilder ],
-    directives: [FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES],
+    directives: [REACTIVE_FORM_DIRECTIVES],
 })
 
 export class NewShowEventComponent {

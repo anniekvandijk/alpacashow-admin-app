@@ -55,7 +55,7 @@ var NewShowEventComponent = (function () {
             selector: 'new-showevent',
             templateUrl: './app/showevent/new-showevent.html',
             providers: [forms_1.FormBuilder],
-            directives: [forms_1.FORM_DIRECTIVES, forms_1.REACTIVE_FORM_DIRECTIVES],
+            directives: [forms_1.REACTIVE_FORM_DIRECTIVES],
         }), 
         __metadata('design:paramtypes', [forms_1.FormBuilder])
     ], NewShowEventComponent);

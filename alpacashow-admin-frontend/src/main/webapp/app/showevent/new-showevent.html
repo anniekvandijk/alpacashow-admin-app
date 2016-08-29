@@ -8,7 +8,7 @@
         <div class="form-group">
             <label for="name" class="control-label">Naam show</label>
             <div class="">
-                <input type="text" class="form-control" id="name" placeholder="Voer de naam van de show op" name="name"  [(ngModel)]="name">
+                <input type="text" class="form-control" id="name" placeholder="Voer de naam van de show op" formControlName="name"  [(ngModel)]="name">
                 <div *ngIf="showEventForm.controls['name'].hasError('required') && showEventForm.controls['name'].touched" class="alert alert-danger">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     Naam show is verplicht veld
@@ -18,7 +18,7 @@
         <div class="form-group">
             <label for="location" class="control-label">Locatie show</label>
             <div class="">
-                <input type="text" class="form-control" id="location" placeholder="Voer de locatie van de show op" name="location"  [(ngModel)]="location">
+                <input type="text" class="form-control" id="location" placeholder="Voer de locatie van de show op" formControlName="location"  [(ngModel)]="location">
                     <div *ngIf="showEventForm.controls['location'].hasError('required') && showEventForm.controls['location'].touched" class="alert alert-danger">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     Locatie is verplicht
@@ -28,7 +28,7 @@
         <div class="form-group">
             <label for="date" class="control-label">Datum show</label>
             <div class="">
-                <input type="date" class="form-control" id="date" placeholder="Voer de datum van de show op" name="date"  [(ngModel)]="date">
+                <input type="date" class="form-control" id="date" placeholder="Voer de datum van de show op" formControlName="date"  [(ngModel)]="date">
                 <div *ngIf="showEventForm.controls['date'].hasError('required') && showEventForm.controls['date'].touched" class="alert alert-danger">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     Datum show is verplicht
@@ -38,7 +38,7 @@
         <div class="form-group">
             <label for="closedate" class="control-label">Sluitingsdatum</label>
             <div class="">
-                <input type="date" class="form-control" id="closedate" placeholder="Voer de datum van de show op" name="closedate"  [(ngModel)]="closedate">
+                <input type="date" class="form-control" id="closedate" placeholder="Voer de datum van de show op" formControlName="closedate"  [(ngModel)]="closedate">
                 <div *ngIf="showEventForm.controls['closedate'].hasError('required') && showEventForm.controls['closedate'].touched" class="alert alert-danger">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     Sluitingsdatum is verplicht
@@ -48,7 +48,7 @@
         <div class="form-group">
             <label for="judge" class="control-label">Jurylid</label>
             <div class="">
-                <input type="text" class="form-control" id="judge" placeholder="Voer het jurylid op" name="judge"  [(ngModel)]="judge">
+                <input type="text" class="form-control" id="judge" placeholder="Voer het jurylid op" formControlName="judge"  [(ngModel)]="judge">
                 <div *ngIf="showEventForm.controls['judge'].hasError('required') && showEventForm.controls['judge'].touched" class="alert alert-danger">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     Jurylid is verplicht
@@ -61,7 +61,7 @@
             <div class="">
                     <div class="checkbox" *ngFor="let showtype of showtypes">
                         <label class="">
-                            <input type="checkbox" [(ngModel)]="showtype.value" name="{{showtype.name}}"> {{ showtype.label }}
+                            <input type="checkbox" [(ngModel)]="showtype.value" formControlName="{{showtype.name}}"> {{ showtype.label }}
                         </label>
                     </div>
             </div>
