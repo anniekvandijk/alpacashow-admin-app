@@ -53,7 +53,7 @@ var NewShowEventComponent = (function () {
     NewShowEventComponent = __decorate([
         core_1.Component({
             selector: 'new-showevent',
-            templateUrl: './app/show/newshowevent/new-showevent.html',
+            templateUrl: './app/showevent/new-showevent.html',
             providers: [forms_1.FormBuilder],
             directives: [forms_1.FORM_DIRECTIVES, forms_1.REACTIVE_FORM_DIRECTIVES],
         }), 

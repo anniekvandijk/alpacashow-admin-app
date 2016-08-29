@@ -15,6 +15,7 @@ var app_routing_1 = require('./app.routing');
 var app_component_1 = require('./app.component');
 var home_component_1 = require('./home/home.component');
 var showevents_component_1 = require('./showevent/showevents.component');
+var new_showevent_component_1 = require('./showevent/new-showevent.component');
 //import { ShowEventService } from './show/showevent/showevents.service'
 var AppModule = (function () {
     function AppModule() {
@@ -29,7 +30,8 @@ var AppModule = (function () {
             declarations: [
                 app_component_1.AppComponent,
                 home_component_1.HomeComponent,
-                showevents_component_1.ShowEventsComponent
+                showevents_component_1.ShowEventsComponent,
+                new_showevent_component_1.NewShowEventComponent
             ],
             // providers: [
             //     ShowEventsService

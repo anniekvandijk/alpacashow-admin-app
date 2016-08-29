@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
-import { ShowEvent } from './showevent';
-import { ShowEventService } from './showevent.service';
+import { Component }                from '@angular/core';
+import { ShowEvent }                from './showevent';
+import { NewShowEventComponent }    from "./new-showevent.component";
+import { ShowEventService }         from './showevent.service';
 
 @Component({
     selector: 'showevents',
     templateUrl: './app/showevent/showevents.html',
-    providers: [ShowEventService]
+    providers: [ShowEventService],
+    directives: [NewShowEventComponent]
 
 })
 

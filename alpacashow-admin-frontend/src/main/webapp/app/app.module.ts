@@ -5,6 +5,7 @@ import { routing } from './app.routing';
 import { AppComponent }  from './app.component';
 import { HomeComponent} from './home/home.component';
 import { ShowEventsComponent }     from './showevent/showevents.component';
+import { NewShowEventComponent }     from './showevent/new-showevent.component';
 //import { ShowEventService } from './show/showevent/showevents.service'
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ShowEventsComponent }     from './showevent/showevents.component';
     declarations: [
         AppComponent,
         HomeComponent,
-        ShowEventsComponent
+        ShowEventsComponent,
+        NewShowEventComponent
     ],
     // providers: [
     //     ShowEventsService
