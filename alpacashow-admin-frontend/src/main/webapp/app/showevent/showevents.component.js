@@ -24,6 +24,9 @@ var ShowEventsComponent = (function () {
     ShowEventsComponent.prototype.ngOnInit = function () {
         this.getShowEvents();
     };
+    ShowEventsComponent.prototype.onSelect = function (show) {
+        this.selectedShow = show;
+    };
     ShowEventsComponent.prototype.deleteShow = function () {
         this.deleteMessage = 'Show delete!';
     };

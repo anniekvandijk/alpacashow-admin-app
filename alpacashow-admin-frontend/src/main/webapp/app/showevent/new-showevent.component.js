@@ -17,14 +17,15 @@ var ShowType = (function () {
 }());
 exports.ShowType = ShowType;
 var SHOWTYPES = [
-    { value: false, name: 'haltershow', label: 'Haltershow' },
-    { value: false, name: 'fleeceshow', label: 'Fleeceshow' },
-    { value: false, name: 'maleprogenyshow', label: 'Male progeny show' },
-    { value: false, name: 'femaleprogenyshow', label: 'Female progeny show' }
+    { value: 'Haltershow' },
+    { value: 'Fleeceshow' },
+    { value: 'Male progeny show' },
+    { value: 'Female progeny show' }
 ];
 var NewShowEventComponent = (function () {
     function NewShowEventComponent(formBuilder) {
         this.formBuilder = formBuilder;
+        this.heroes = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
         this.showtypes = SHOWTYPES;
         this.submitted = false;
         this.active = true;
@@ -34,12 +35,9 @@ var NewShowEventComponent = (function () {
             name: ['', forms_1.Validators.required],
             location: ['', forms_1.Validators.required],
             date: ['', forms_1.Validators.required],
-            closedate: ['', forms_1.Validators.required],
+            closeDate: ['', forms_1.Validators.required],
             judge: ['', forms_1.Validators.required],
-            haltershow: ['',],
-            fleeceshow: ['',],
-            maleprogenyshow: ['',],
-            femaleprogenyshow: ['',],
+            shows: ['',],
         });
     };
     NewShowEventComponent.prototype.onSubmit = function (form) {

@@ -2,16 +2,14 @@ import { Component } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
 export class ShowType {
-    name: string;
-    label: string;
-    value: boolean;
+    value: string;
 }
 
 const SHOWTYPES: ShowType[] = [
-    { value: false, name: 'haltershow', label: 'Haltershow' },
-    { value: false, name: 'fleeceshow', label: 'Fleeceshow' },
-    { value: false, name: 'maleprogenyshow', label: 'Male progeny show' },
-    { value: false, name: 'femaleprogenyshow', label: 'Female progeny show' }
+    { value: 'Haltershow' },
+    { value: 'Fleeceshow' },
+    { value: 'Male progeny show' },
+    { value: 'Female progeny show' }
 
 ];
 
@@ -23,7 +21,7 @@ const SHOWTYPES: ShowType[] = [
 })
 
 export class NewShowEventComponent {
-    
+
     showtypes = SHOWTYPES;
     submitted = false;
     active = true;
@@ -37,13 +35,9 @@ export class NewShowEventComponent {
             name:               ['', Validators.required],
             location:           ['', Validators.required],
             date:               ['', Validators.required],
-            closedate:          ['', Validators.required],
+            closeDate:          ['', Validators.required],
             judge:              ['', Validators.required],
-            haltershow:         ['', ],
-            fleeceshow:         ['', ],
-            maleprogenyshow:    ['', ],
-            femaleprogenyshow:  ['', ],
-
+            shows:              ['', Validators.required],
         });
     }
 

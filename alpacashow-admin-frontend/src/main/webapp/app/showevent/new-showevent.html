@@ -36,10 +36,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="closedate" class="control-label">Sluitingsdatum</label>
+            <label for="closeDate" class="control-label">Sluitingsdatum</label>
             <div class="">
-                <input type="date" class="form-control" id="closedate" placeholder="Voer de datum van de show op" formControlName="closedate"  [(ngModel)]="closedate">
-                <div *ngIf="newShowEventForm.controls['closedate'].hasError('required') && newShowEventForm.controls['closedate'].touched" class="alert alert-danger">
+                <input type="date" class="form-control" id="closeDate" placeholder="Voer de datum van de show op" formControlName="closeDate"  [(ngModel)]="closeDate">
+                <div *ngIf="newShowEventForm.controls['closeDate'].hasError('required') && newShowEventForm.controls['closeDate'].touched" class="alert alert-danger">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     Sluitingsdatum is verplicht
                 </div>
@@ -57,13 +57,15 @@
         </div>
         <!-- Show types -->
         <div class="form-group">
-            <label class="control-label">Show typen</label>
+            <label for="shows" class="control-label">Show typen</label>
             <div class="">
-                    <div class="checkbox" *ngFor="let showtype of showtypes">
-                        <label class="">
-                            <input type="checkbox" [(ngModel)]="showtype.value" formControlName="{{showtype.name}}"> {{ showtype.label }}
-                        </label>
-                    </div>
+                <select multiple id="shows" class="form-control"  formControlName="shows" [(ngModel)]="shows" title="Kies shows ...">
+                    <option  *ngFor="let type of showtypes" [value]="type.value"> {{ type.value }} </option>
+                </select>
+                <div *ngIf="newShowEventForm.controls['shows'].hasError('required') && newShowEventForm.controls['shows'].touched" class="alert alert-danger">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    Kies minimaal 1 show
+                </div>
             </div>
         </div>
         <!-- Submit -->

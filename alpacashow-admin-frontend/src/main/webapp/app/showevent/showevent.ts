@@ -2,7 +2,7 @@ export class ShowEvent {
     name: string;
     location: string;
     date: string;
-    closedate: string;
+    closeDate: string;
     judge: string;
-    showtype: string;
+    shows: string[];
 }

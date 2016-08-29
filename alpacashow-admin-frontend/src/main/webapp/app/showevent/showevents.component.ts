@@ -13,6 +13,8 @@ import { ShowEventService }         from './showevent.service';
 
 export class ShowEventsComponent {
 
+    selectedShow: ShowEvent;
+
     showevents: ShowEvent[];
     deleteMessage = '';
     updateMessage = '';
@@ -24,6 +26,10 @@ export class ShowEventsComponent {
     }
     ngOnInit() {
         this.getShowEvents();
+    }
+
+    onSelect(show: ShowEvent): void {
+        this.selectedShow = show;
     }
 
     deleteShow() {
