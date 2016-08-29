@@ -30,10 +30,10 @@ export class NewShowEventComponent {
 
     constructor(private formBuilder: FormBuilder) {}
 
-    showEventForm: FormGroup;
+    newShowEventForm: FormGroup;
 
     ngOnInit() {
-        this.showEventForm = this.formBuilder.group({
+        this.newShowEventForm = this.formBuilder.group({
             name:               ['', Validators.required],
             location:           ['', Validators.required],
             date:               ['', Validators.required],

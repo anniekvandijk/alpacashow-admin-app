@@ -30,7 +30,7 @@ var NewShowEventComponent = (function () {
         this.active = true;
     }
     NewShowEventComponent.prototype.ngOnInit = function () {
-        this.showEventForm = this.formBuilder.group({
+        this.newShowEventForm = this.formBuilder.group({
             name: ['', forms_1.Validators.required],
             location: ['', forms_1.Validators.required],
             date: ['', forms_1.Validators.required],
