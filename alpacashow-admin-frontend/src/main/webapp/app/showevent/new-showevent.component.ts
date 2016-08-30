@@ -24,7 +24,20 @@ export class NewShowEventComponent {
 
     showtypes = SHOWTYPES;
     submitted = false;
+    showtypeSelected = false;
     active = true;
+    selectedShowType = [];
+
+    select(showtype){
+        this.selectedShowType.push(showtype);
+        this.showtypeSelected = true;
+    }
+
+    remove(showtype){
+        this.selectedShowType.splice(this.selectedShowType.indexOf(showtype),1);
+        this.showtypeSelected = false;
+
+    }
 
     constructor(private formBuilder: FormBuilder) {}
 
@@ -37,7 +50,7 @@ export class NewShowEventComponent {
             date:               ['', Validators.required],
             closeDate:          ['', Validators.required],
             judge:              ['', Validators.required],
-            shows:              ['', Validators.required],
+            shows:              ['', ],
         });
     }
 

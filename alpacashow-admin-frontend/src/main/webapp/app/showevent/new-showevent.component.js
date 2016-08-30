@@ -27,8 +27,18 @@ var NewShowEventComponent = (function () {
         this.formBuilder = formBuilder;
         this.showtypes = SHOWTYPES;
         this.submitted = false;
+        this.showtypeSelected = false;
         this.active = true;
+        this.selectedShowType = [];
     }
+    NewShowEventComponent.prototype.select = function (showtype) {
+        this.selectedShowType.push(showtype);
+        this.showtypeSelected = true;
+    };
+    NewShowEventComponent.prototype.remove = function (showtype) {
+        this.selectedShowType.splice(this.selectedShowType.indexOf(showtype), 1);
+        this.showtypeSelected = false;
+    };
     NewShowEventComponent.prototype.ngOnInit = function () {
         this.newShowEventForm = this.formBuilder.group({
             name: ['', forms_1.Validators.required],
@@ -36,7 +46,7 @@ var NewShowEventComponent = (function () {
             date: ['', forms_1.Validators.required],
             closeDate: ['', forms_1.Validators.required],
             judge: ['', forms_1.Validators.required],
-            shows: ['', forms_1.Validators.required],
+            shows: ['',],
         });
     };
     NewShowEventComponent.prototype.onSubmit = function (form) {
