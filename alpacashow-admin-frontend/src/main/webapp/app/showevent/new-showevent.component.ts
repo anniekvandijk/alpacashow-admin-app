@@ -26,17 +26,16 @@ export class NewShowEventComponent {
     submitted = false;
     showtypeSelected = false;
     active = true;
-    selectedShowType = [];
-    shows = this.selectedShowType;
+    shows = [];
+
+    // TODO change button collor when selected. After another click set default and remove showtype.
 
     select(showtype){
-        this.selectedShowType.push(showtype);
-        this.showtypeSelected = true;
+       this.shows.push(showtype);
     }
 
     remove(showtype){
-        this.selectedShowType.splice(this.selectedShowType.indexOf(showtype),1);
-        this.showtypeSelected = false;
+        this.shows.splice(this.shows.indexOf(showtype),1);
 
     }
 

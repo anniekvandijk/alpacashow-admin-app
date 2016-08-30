@@ -29,16 +29,14 @@ var NewShowEventComponent = (function () {
         this.submitted = false;
         this.showtypeSelected = false;
         this.active = true;
-        this.selectedShowType = [];
-        this.shows = this.selectedShowType;
+        this.shows = [];
     }
+    // TODO change button collor when selected. After another click set default and remove showtype.
     NewShowEventComponent.prototype.select = function (showtype) {
-        this.selectedShowType.push(showtype);
-        this.showtypeSelected = true;
+        this.shows.push(showtype);
     };
     NewShowEventComponent.prototype.remove = function (showtype) {
-        this.selectedShowType.splice(this.selectedShowType.indexOf(showtype), 1);
-        this.showtypeSelected = false;
+        this.shows.splice(this.shows.indexOf(showtype), 1);
     };
     NewShowEventComponent.prototype.ngOnInit = function () {
         this.newShowEventForm = this.formBuilder.group({
