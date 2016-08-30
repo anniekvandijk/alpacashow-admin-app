@@ -27,6 +27,7 @@ export class NewShowEventComponent {
     showtypeSelected = false;
     active = true;
     selectedShowType = [];
+    shows = this.selectedShowType;
 
     select(showtype){
         this.selectedShowType.push(showtype);
@@ -50,7 +51,7 @@ export class NewShowEventComponent {
             date:               ['', Validators.required],
             closeDate:          ['', Validators.required],
             judge:              ['', Validators.required],
-            shows:              ['', ],
+            shows:              ['', Validators.required],
         });
     }
 

@@ -30,6 +30,7 @@ var NewShowEventComponent = (function () {
         this.showtypeSelected = false;
         this.active = true;
         this.selectedShowType = [];
+        this.shows = this.selectedShowType;
     }
     NewShowEventComponent.prototype.select = function (showtype) {
         this.selectedShowType.push(showtype);
@@ -46,7 +47,7 @@ var NewShowEventComponent = (function () {
             date: ['', forms_1.Validators.required],
             closeDate: ['', forms_1.Validators.required],
             judge: ['', forms_1.Validators.required],
-            shows: ['',],
+            shows: ['', forms_1.Validators.required],
         });
     };
     NewShowEventComponent.prototype.onSubmit = function (form) {

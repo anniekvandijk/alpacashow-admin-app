@@ -25,7 +25,7 @@
                 <td>{{showevent.judge}}</td>
                 <td>{{showevent.shows}}</td>
                 <td>
-                    <button type="submit" class="btn btn-warning"  style="margin-right: 5px" (click)="onSelect(show)">Wijzig</button>
+                    <button type="submit" class="btn btn-warning"  style="margin-right: 5px" (click)="onSelect(showdetail)">Wijzig</button>
                     <button type="submit" class="btn btn-danger" (click)="deleteShow()">Verwijder</button>
 
                 </td>
@@ -39,3 +39,4 @@
     <h2>{{selectedShow.name}} details!</h2>
     <label>name: </label>
     <input [(ngModel)]="selectedShow.name" placeholder="name"/>
+</div>
