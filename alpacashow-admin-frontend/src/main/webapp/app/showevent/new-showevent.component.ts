@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
 export class ShowType {
-    value: string;
+    showType: string;
 }
 
 const SHOWTYPES: ShowType[] = [
-    { value: 'Haltershow' },
-    { value: 'Fleeceshow' },
-    { value: 'Male progeny show' },
-    { value: 'Female progeny show' }
+    { showType: 'Haltershow' },
+    { showType: 'Fleeceshow' },
+    { showType: 'Male progeny show' },
+    { showType: 'Female progeny show' }
 
 ];
 
