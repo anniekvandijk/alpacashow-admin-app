@@ -36,7 +36,7 @@
 </div>
 {{deleteMessage}}
 <div *ngIf="selectedShow">
-    <h2>{{selectedShow.name}} details!</h2>
+    <h2>Wijzigen {{selectedShow.name}}</h2>
     <label>name: </label>
     <input [(ngModel)]="selectedShow.name"/>
     <label>location: </label>
@@ -49,4 +49,86 @@
     <input [(ngModel)]="selectedShow.judge"/>
     <label>shows: </label>
     <input [(ngModel)]="selectedShow.shows"/>
+
+    <div id="showdetail" class="panel panel-primary appform" style="padding-left: 0; padding-right: 0">
+        <div class="panel-body">
+            <form [formGroup]="updateShowEventForm" (ngSubmit)="onSubmit(updateShowEventForm.value)" class="form">
+                <div class="form-group">
+                    <label for="name" class="control-label">Naam show</label>
+                    <div class="">
+                        <input type="text" class="form-control" id="name" formControlName="name"  [(ngModel)]="selectedShow.name">
+                        <div *ngIf="updateShowEventForm.controls['name'].hasError('required') && updateShowEventForm.controls['name'].touched" class="alert alert-danger">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            Naam show is verplicht veld
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="location" class="control-label">Locatie show</label>
+                    <div class="">
+                        <input type="text" class="form-control" id="location" placeholder="Voer de locatie van de show op" formControlName="location"  [(ngModel)]="selectedShow.location">
+                        <div *ngIf="updateShowEventForm.controls['location'].hasError('required') && updateShowEventForm.controls['location'].touched" class="alert alert-danger">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            Locatie is verplicht
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="date" class="control-label">Datum show</label>
+                    <div class="">
+                        <input type="date" class="form-control" id="date" placeholder="Voer de datum van de show op" formControlName="date"  [(ngModel)]="selectedShow.date">
+                        <div *ngIf="updateShowEventForm.controls['date'].hasError('required') && updateShowEventForm.controls['date'].touched" class="alert alert-danger">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            Datum show is verplicht
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="closeDate" class="control-label">Sluitingsdatum</label>
+                    <div class="">
+                        <input type="date" class="form-control" id="closeDate" placeholder="Voer de datum van de show op" formControlName="closeDate"  [(ngModel)]="selectedShow.closeDate">
+                        <div *ngIf="updateShowEventForm.controls['closeDate'].hasError('required') && updateShowEventForm.controls['closeDate'].touched" class="alert alert-danger">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            Sluitingsdatum is verplicht
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="judge" class="control-label">Jurylid</label>
+                    <div class="">
+                        <input type="text" class="form-control" id="judge" placeholder="Voer het jurylid op" formControlName="judge"  [(ngModel)]="selectedShow.judge">
+                        <div *ngIf="updateShowEventForm.controls['judge'].hasError('required') && updateShowEventForm.controls['judge'].touched" class="alert alert-danger">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            Jurylid is verplicht
+                        </div>
+                    </div>
+                </div>
+                <!-- Show types -->
+                <!--<div class="form-group">-->
+                    <!--<label class="control-label">Show typen</label>-->
+                    <!--<div class="">-->
+                        <!--<table><tr>-->
+                            <!--<td *ngFor="let showtype of showtypes">-->
+                                <!--<button style="margin: 5px" class="btn btn-default" (click)="select(showtype)">{{ showtype.showType }}</button>-->
+                            <!--</td></tr></table>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<div class="">-->
+                        <!--<input type="text" class="form-control" id="shows" formControlName="shows"  [(ngModel)]="selectedShow.shows">-->
+                        <!--<div *ngIf="updateShowEventForm.controls['shows'].hasError('required') && updateShowEventForm.controls['shows'].touched" class="alert alert-danger">-->
+                            <!--<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>-->
+                            <!--Kies minimaal 1 show-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!-- Submit -->
+                <div class="form-group">
+                    <div class="">
+                        <button [disabled]="!updateShowEventForm.valid" type="submit" class="btn btn-success">Opslaan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
