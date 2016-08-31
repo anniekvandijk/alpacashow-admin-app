@@ -28,8 +28,8 @@ export class ShowEventsComponent {
         this.getShowEvents();
     }
 
-    onSelect(showdetail: ShowEvent): void {
-        this.selectedShow = showdetail;
+    onSelect(showevent: ShowEvent): void {
+        this.selectedShow = showevent;
     }
 
     deleteShow() {

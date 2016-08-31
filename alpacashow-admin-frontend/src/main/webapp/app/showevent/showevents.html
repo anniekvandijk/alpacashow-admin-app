@@ -25,7 +25,7 @@
                 <td>{{showevent.judge}}</td>
                 <td>{{showevent.shows}}</td>
                 <td>
-                    <button type="submit" class="btn btn-warning"  style="margin-right: 5px" (click)="onSelect(showdetail)">Wijzig</button>
+                    <button type="submit" class="btn btn-warning"  style="margin-right: 5px" (click)="onSelect(showevent)">Wijzig</button>
                     <button type="submit" class="btn btn-danger" (click)="deleteShow()">Verwijder</button>
 
                 </td>
@@ -38,5 +38,15 @@
 <div *ngIf="selectedShow">
     <h2>{{selectedShow.name}} details!</h2>
     <label>name: </label>
-    <input [(ngModel)]="selectedShow.name" placeholder="name"/>
+    <input [(ngModel)]="selectedShow.name"/>
+    <label>location: </label>
+    <input [(ngModel)]="selectedShow.location"/>
+    <label>date: </label>
+    <input [(ngModel)]="selectedShow.date"/>
+    <label>cloasedate: </label>
+    <input [(ngModel)]="selectedShow.closeDate"/>
+    <label>judge: </label>
+    <input [(ngModel)]="selectedShow.judge"/>
+    <label>shows: </label>
+    <input [(ngModel)]="selectedShow.shows"/>
 </div>
