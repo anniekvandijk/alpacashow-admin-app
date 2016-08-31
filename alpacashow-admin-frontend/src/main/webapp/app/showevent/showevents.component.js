@@ -17,7 +17,6 @@ var ShowEventsComponent = (function () {
         this.showEventService = showEventService;
         this.formBuilder = formBuilder;
         this.deleteMessage = '';
-        this.updateMessage = '';
     }
     ShowEventsComponent.prototype.getShowEvents = function () {
         var _this = this;
@@ -25,9 +24,6 @@ var ShowEventsComponent = (function () {
     };
     ShowEventsComponent.prototype.ngOnInit = function () {
         this.getShowEvents();
-    };
-    ShowEventsComponent.prototype.onSelect = function (showevent) {
-        this.selectedShow = showevent;
         this.updateShowEventForm = this.formBuilder.group({
             name: ['', forms_1.Validators.required],
             location: ['', forms_1.Validators.required],
@@ -37,11 +33,11 @@ var ShowEventsComponent = (function () {
             shows: ['', forms_1.Validators.required],
         });
     };
+    ShowEventsComponent.prototype.onSelect = function (showevent) {
+        this.selectedShow = showevent;
+    };
     ShowEventsComponent.prototype.deleteShow = function () {
         this.deleteMessage = 'Show delete!';
-    };
-    ShowEventsComponent.prototype.updateShow = function () {
-        this.updateMessage = 'Show update!';
     };
     ShowEventsComponent = __decorate([
         core_1.Component({

@@ -18,7 +18,6 @@ export class ShowEventsComponent {
     updateShowEventForm: FormGroup;
     showevents: ShowEvent[];
     deleteMessage = '';
-    updateMessage = '';
 
     constructor(private showEventService: ShowEventService, private formBuilder: FormBuilder) { }
 
@@ -27,10 +26,6 @@ export class ShowEventsComponent {
     }
     ngOnInit() {
         this.getShowEvents();
-    }
-
-    onSelect(showevent: ShowEvent): void {
-        this.selectedShow = showevent;
 
         this.updateShowEventForm = this.formBuilder.group({
             name:               ['', Validators.required],
@@ -42,12 +37,13 @@ export class ShowEventsComponent {
         });
     }
 
-    deleteShow() {
-        this.deleteMessage = 'Show delete!';
+    onSelect(showevent: ShowEvent): void {
+
+        this.selectedShow = showevent;
     }
 
-    updateShow() {
-        this.updateMessage = 'Show update!';
+    deleteShow() {
+        this.deleteMessage = 'Show delete!';
     }
 
 }
