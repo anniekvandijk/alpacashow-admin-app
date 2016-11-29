@@ -12,7 +12,7 @@ import java.util.Collection;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-@Path("/showevent")
+@Path("/showevent/")
 public class ShowEventController {
 
     private ShowEventRepository showEventRepo;

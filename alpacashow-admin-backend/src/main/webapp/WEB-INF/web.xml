@@ -5,7 +5,7 @@
 
 <web-app>
 
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>Alpacashow backend application</display-name>
 
     <servlet>
         <servlet-name>jersey-servlet</servlet-name>
@@ -16,7 +16,7 @@
         </init-param>
         <init-param>
             <param-name>com.sun.jersey.config.property.packages</param-name>
-            <param-value>nl.animundo.apps.alpacashowadmin.backend</param-value>
+            <param-value>nl.animundo.apps.alpacashowadmin.backend.controllers</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
