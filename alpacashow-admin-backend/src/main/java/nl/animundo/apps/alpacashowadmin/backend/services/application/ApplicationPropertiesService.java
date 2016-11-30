@@ -41,7 +41,9 @@ public class ApplicationPropertiesService {
             InputStream resourceAsStream = getClassLoader().getResourceAsStream(environment + ".application.properties");
             if (resourceAsStream != null) {
                 applicationProperties.load(resourceAsStream);
+
             }
+            resourceAsStream.close();
 
 
         } catch (IOException e) {
