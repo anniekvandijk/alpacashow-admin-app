@@ -47,7 +47,7 @@ public class ApplicationPropertiesServiceTest {
 
         Properties prop = new Properties(ApplicationPropertiesService.getApplicationProperties());
 
-        assertEquals("/src/test/resources/csv/SHOWEVENTS.csv", prop.getProperty("csv-showevent-filedir"));
+        assertEquals("csv", prop.getProperty("filestorage"));
 
     }
 }

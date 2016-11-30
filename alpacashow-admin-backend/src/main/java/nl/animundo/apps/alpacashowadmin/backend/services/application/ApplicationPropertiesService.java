@@ -6,12 +6,14 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
+
+import static com.sun.xml.bind.v2.util.ClassLoaderRetriever.getClassLoader;
 
 public class ApplicationPropertiesService {
     private static Logger logger = LoggerFactory.getLogger(ApplicationPropertiesService.class);
 
-    private static String workingDir = ApplicationUserDirService.getUserDir();
     // TODO: Make environment configurable
     private static String environment = "dev";
 
@@ -24,15 +26,26 @@ public class ApplicationPropertiesService {
 
         Properties applicationProperties = new Properties();
 
-        if ("prd".equalsIgnoreCase(environment)) {
-            applicationProperties.load(new FileReader(new File(workingDir + "/prd.application.properties")));
-            logger.info("Production properties set.");
-        } else if ("dev".equalsIgnoreCase(environment)) {
-            applicationProperties.load(new FileReader(new File(workingDir + "/dev.application.properties")));
-            logger.info("Development properties set.");
+        if ("prd".equalsIgnoreCase(environment) || "dev".equalsIgnoreCase(environment)) {
+            applicationProperties = getResourceAsStreem(applicationProperties, environment);
+            logger.info(environment + " properties set.");
         } else {
-            applicationProperties.load(new FileReader(new File(workingDir +"/dev.application.properties")));
+            applicationProperties = getResourceAsStreem(applicationProperties, "dev");
             logger.info("Environment not detected. Development properties set.");
+        }
+        return applicationProperties;
+    }
+
+    private static Properties getResourceAsStreem(Properties applicationProperties, String environment) {
+        try {
+            InputStream resourceAsStream = getClassLoader().getResourceAsStream(environment + ".application.properties");
+            if (resourceAsStream != null) {
+                applicationProperties.load(resourceAsStream);
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return applicationProperties;
     }

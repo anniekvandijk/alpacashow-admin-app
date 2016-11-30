@@ -25,50 +25,6 @@
 
         <profile>
             <id>DEV</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>copy-properties</id>
-                                <!-- copy resources to docker-dir-->
-                                <phase>validate</phase>
-                                <goals>
-                                    <goal>copy-resources</goal>
-                                </goals>
-                                <configuration>
-                                    <outputDirectory>${project.basedir}/../docker-dir/backend</outputDirectory>
-                                    <resources>
-                                        <resource>
-                                            <directory>${project.basedir}/</directory>
-                                            <includes>
-                                                <include>dev.application.properties</include>
-                                            </includes>
-                                        </resource>
-                                    </resources>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>copy-csv</id>
-                                <!-- copy resources to docker-dir-->
-                                <phase>validate</phase>
-                                <goals>
-                                    <goal>copy-resources</goal>
-                                </goals>
-                                <configuration>
-                                    <outputDirectory>${project.basedir}/../docker-dir/backend/files/csv</outputDirectory>
-                                    <resources>
-                                        <resource>
-                                            <directory>${project.basedir}/src/test/resources/csv/</directory>
-                                        </resource>
-                                    </resources>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
     </profiles>
 
@@ -179,31 +135,6 @@
                     <target>${maven-compiler-plugin.version}</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-artifact-docker</id>
-                        <!-- copy resources to docker-dir-->
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.basedir}/../docker-dir/backend</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>${project.basedir}/target</directory>
-                                    <includes>
-                                        <include>alpacashow-admin-backend.war</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
