@@ -5,16 +5,16 @@ import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvShowEventRep
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
+
+import static com.sun.xml.bind.v2.util.ClassLoaderRetriever.getClassLoader;
 
 public class ApplicationRepositoryService {
 
     private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
     private static String workingDir = ApplicationUserDirService.getUserDir();
+    private static InputStream resourceAsStream;
     private static Properties prop = new Properties();
     private static ShowEventRepository showEventRepo = new ShowEventRepository();
 
@@ -27,9 +27,15 @@ public class ApplicationRepositoryService {
         String fileStorage = getFileStorage();
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
-            String csvShowEventFileDir = prop.getProperty("csv-showevent-filedir");
-            FileReader csvReader = new FileReader(workingDir + csvShowEventFileDir);
+            String showEvent = "SHOWEVENTS.csv";
+            resourceAsStream = getClassLoader().getResourceAsStream(fileStorage + "/" + showEvent);
+            if (resourceAsStream == null) {
+                throw new IOException ("File " + showEvent + " not found!");
+            }
+
+            FileReader csvReader = new FileReader(workingDir + "/src/test/resources/csv/SHOWEVENTS.csv");
             showEventRepo = CsvShowEventRepository.importData(csvReader);
+            resourceAsStream.close();
             csvReader.close();
             logger.info("Imported csvShowEventRepository");
         } else {
@@ -43,8 +49,7 @@ public class ApplicationRepositoryService {
         String fileStorage = getFileStorage();
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
-            String csvShowEventFileDir = prop.getProperty("csv-showevent-filedir");
-            File newExportFile = new File(workingDir + csvShowEventFileDir);
+            File newExportFile = new File(workingDir + "/src/test/resources/csv/SHOWEVENTS.csv");
             FileWriter writer = new FileWriter(newExportFile);
             CsvShowEventRepository.exportData(writer, repo);
             writer.flush();
