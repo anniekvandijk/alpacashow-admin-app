@@ -58,7 +58,7 @@ public class ApplicationRepositoryService {
 
     private static String getCsvShowEventResourcePath(String fileStorage) throws IOException {
 
-        String csvPath = getClassLoader().getResource(fileStorage + "/SHOWEVENTS.csv").getPath();
+        String csvPath = ApplicationRepositoryService.class.getClassLoader().getResource(fileStorage + "/SHOWEVENTS.csv").getPath();
         if (csvPath == null) {
             throw new IOException ("File '" + csvPath + "' not found!");
         }
