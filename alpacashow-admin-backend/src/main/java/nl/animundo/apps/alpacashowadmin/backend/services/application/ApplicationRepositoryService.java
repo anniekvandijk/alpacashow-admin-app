@@ -4,17 +4,14 @@ import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvShowEventRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.*;
-import java.net.URL;
 import java.util.Properties;
-
 import static com.sun.xml.bind.v2.util.ClassLoaderRetriever.getClassLoader;
+
 
 public class ApplicationRepositoryService {
 
     private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
-    private static String workingDir = ApplicationUserDirService.getUserDir();
     private static Properties prop = new Properties();
     private static ShowEventRepository showEventRepo = new ShowEventRepository();
 
@@ -61,11 +58,9 @@ public class ApplicationRepositoryService {
 
     private static String getCsvShowEventResourcePath(String fileStorage) throws IOException {
 
-        String csvShowEvent = "SHOWEVENTS.csv";
-
-        String csvPath = getClassLoader().getResource(fileStorage + "/" + csvShowEvent).getPath();
+        String csvPath = getClassLoader().getResource(fileStorage + "/SHOWEVENTS.csv").getPath();
         if (csvPath == null) {
-            throw new IOException ("File " + csvShowEvent + " not found!");
+            throw new IOException ("File '" + csvPath + "' not found!");
         }
         return csvPath;
     }
