@@ -13,6 +13,7 @@ import static org.junit.Assert.assertTrue;
 public class ShowEventControllerTest {
 
     final String workingDir = System.getProperty("user.dir");
+    final String testFileDir = "/src/test/resources/json/";
     private ShowEventRepository showEventRepo;
 
     @Test
@@ -96,7 +97,7 @@ public class ShowEventControllerTest {
     }
 
     private String readJsonfile(String fileName) throws IOException {
-        File file = new File(workingDir, "src/test/resources/json/" + fileName);
+        File file = new File(workingDir + testFileDir + fileName);
         assertTrue(file.isFile() && file.exists() && file.canRead());
         BufferedReader reader = new BufferedReader (new FileReader(file));
         StringBuilder builder = new StringBuilder();
