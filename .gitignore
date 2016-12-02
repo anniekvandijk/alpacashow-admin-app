@@ -23,4 +23,4 @@
 .typingsrc
 
 # docker files
-docker-dir
+Dockerfile*
