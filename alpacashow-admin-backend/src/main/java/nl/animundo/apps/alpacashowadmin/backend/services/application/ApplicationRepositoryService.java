@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.net.URL;
 import java.util.Properties;
 
 import static com.sun.xml.bind.v2.util.ClassLoaderRetriever.getClassLoader;
@@ -14,7 +15,6 @@ public class ApplicationRepositoryService {
 
     private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
     private static String workingDir = ApplicationUserDirService.getUserDir();
-    private static InputStream resourceAsStream;
     private static Properties prop = new Properties();
     private static ShowEventRepository showEventRepo = new ShowEventRepository();
 
@@ -27,15 +27,9 @@ public class ApplicationRepositoryService {
         String fileStorage = getFileStorage();
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
-            String showEvent = "SHOWEVENTS.csv";
-            resourceAsStream = getClassLoader().getResourceAsStream(fileStorage + "/" + showEvent);
-            if (resourceAsStream == null) {
-                throw new IOException ("File " + showEvent + " not found!");
-            }
-
-            FileReader csvReader = new FileReader(workingDir + "/src/test/resources/csv/SHOWEVENTS.csv");
+            String csvShowEventsResource =  getCsvShowEventResourcePath(fileStorage);
+            FileReader csvReader = new FileReader(String.valueOf(csvShowEventsResource));
             showEventRepo = CsvShowEventRepository.importData(csvReader);
-            resourceAsStream.close();
             csvReader.close();
             logger.info("Imported csvShowEventRepository");
         } else {
@@ -49,8 +43,8 @@ public class ApplicationRepositoryService {
         String fileStorage = getFileStorage();
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
-            File newExportFile = new File(workingDir + "/src/test/resources/csv/SHOWEVENTS.csv");
-            FileWriter writer = new FileWriter(newExportFile);
+            String csvShowEventsResource = getCsvShowEventResourcePath(fileStorage);
+            FileWriter writer = new FileWriter(csvShowEventsResource);
             CsvShowEventRepository.exportData(writer, repo);
             writer.flush();
             writer.close();
@@ -63,5 +57,16 @@ public class ApplicationRepositoryService {
     private static String getFileStorage() throws IOException {
         prop = ApplicationPropertiesService.getApplicationProperties();
         return prop.getProperty("filestorage");
+    }
+
+    private static String getCsvShowEventResourcePath(String fileStorage) throws IOException {
+
+        String csvShowEvent = "SHOWEVENTS.csv";
+
+        String csvPath = getClassLoader().getResource(fileStorage + "/" + csvShowEvent).getPath();
+        if (csvPath == null) {
+            throw new IOException ("File " + csvShowEvent + " not found!");
+        }
+        return csvPath;
     }
 }
