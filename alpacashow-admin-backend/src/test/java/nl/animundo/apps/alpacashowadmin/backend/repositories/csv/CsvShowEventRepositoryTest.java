@@ -22,6 +22,7 @@ import static org.junit.Assert.assertNotNull;
 public class CsvShowEventRepositoryTest {
 
     final String workingDir = System.getProperty("user.dir");
+    final String testFileDir = "/src/test/resources/csv/";
 
 
     @Rule
@@ -30,7 +31,7 @@ public class CsvShowEventRepositoryTest {
     @Test
     public void importShowEventsFromFile() throws IOException {
 
-        File file = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoimporttest.csv");
+        File file = new File(workingDir + testFileDir + "SHOWEVENTS_repoimporttest.csv");
 
         assertTrue(file.isFile() && file.exists() && file.canRead());
         Reader reader = new FileReader(file) ;
@@ -48,8 +49,8 @@ public class CsvShowEventRepositoryTest {
     @Test
     public void exportShowEventsToFile() throws IOException {
 
-        File importFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoimporttest.csv");
-        File exportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoexporttest.csv");
+        File importFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoimporttest.csv");
+        File exportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoexporttest.csv");
 
         if (exportFile.exists()) {
             exportFile.delete();
@@ -73,13 +74,13 @@ public class CsvShowEventRepositoryTest {
         repo.add(new ShowEvent(name, date, closeDate, location, judge, shows));
         assertEquals(3, repo.size());
 
-        File newExportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoexporttest.csv");
+        File newExportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoexporttest.csv");
         FileWriter writer = new FileWriter(newExportFile);
         CsvShowEventRepository.exportData(writer, repo);
         writer.flush();
         writer.close();
 
-        File newImportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoexporttest.csv");
+        File newImportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoexporttest.csv");
 
         assertTrue(newImportFile.isFile() && newImportFile.exists() && newImportFile.canRead());
         reader = new FileReader(newImportFile) ;
@@ -97,8 +98,8 @@ public class CsvShowEventRepositoryTest {
     @Test
     public void updateShowEvent() throws IOException {
 
-        File importFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoimporttest.csv");
-        File exportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repouodatetest.csv");
+        File importFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoimporttest.csv");
+        File exportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repouodatetest.csv");
 
         if (exportFile.exists()) {
             exportFile.delete();
@@ -115,13 +116,13 @@ public class CsvShowEventRepositoryTest {
         showEventToUpdate.setName("Internationale alpacashowshow Meppel 2017");
         showEventToUpdate.setJudge("Some other judge");
 
-        File newExportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoupdatetest.csv");
+        File newExportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoupdatetest.csv");
         FileWriter writer = new FileWriter(newExportFile);
         CsvShowEventRepository.exportData(writer, repo);
         writer.flush();
         writer.close();
 
-        File newImportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoupdatetest.csv");
+        File newImportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoupdatetest.csv");
 
         assertTrue(newImportFile.isFile() && newImportFile.exists() && newImportFile.canRead());
         reader = new FileReader(newImportFile) ;
@@ -139,8 +140,8 @@ public class CsvShowEventRepositoryTest {
     @Test
     public void deleteShowEvent() throws IOException {
 
-        File importFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repoimporttest.csv");
-        File exportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repodeletetest.csv");
+        File importFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoimporttest.csv");
+        File exportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repodeletetest.csv");
 
         if (exportFile.exists()) {
             exportFile.delete();
@@ -154,13 +155,13 @@ public class CsvShowEventRepositoryTest {
 
         repo.delete("Hapert 2017_2017-04-24");
 
-        File newExportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repodeletetest.csv");
+        File newExportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repodeletetest.csv");
         FileWriter writer = new FileWriter(newExportFile);
         CsvShowEventRepository.exportData(writer, repo);
         writer.flush();
         writer.close();
 
-        File newImportFile = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repodeletetest.csv");
+        File newImportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repodeletetest.csv");
 
         assertTrue(newImportFile.isFile() && newImportFile.exists() && newImportFile.canRead());
         reader = new FileReader(newImportFile) ;
@@ -177,7 +178,7 @@ public class CsvShowEventRepositoryTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("No enum constant");
 
-        File file = new File(workingDir, "src/test/resources/csv/SHOWEVENTS_repotest_notKnownShowType.csv");
+        File file = new File(workingDir + testFileDir + "SHOWEVENTS_repotest_notKnownShowType.csv");
         assertTrue(file.isFile() && file.exists() && file.canRead());
         Reader reader = new FileReader(file) ;
 
