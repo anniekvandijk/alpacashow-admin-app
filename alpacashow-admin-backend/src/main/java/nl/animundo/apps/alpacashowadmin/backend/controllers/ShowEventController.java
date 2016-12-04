@@ -89,10 +89,7 @@ public class ShowEventController {
     public Response updateShowEvent(@PathParam("key") String key, String showEvent) throws IOException {
         loadRepository();
         String showDelete = showEventRepo.delete(key);
-        if (showDelete != null) {
-            saveRepository();
-        }
-        else {
+        if (showDelete == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         ObjectMapper mapper = new ObjectMapper();
