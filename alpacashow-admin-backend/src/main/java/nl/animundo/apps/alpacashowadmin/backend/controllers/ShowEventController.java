@@ -57,6 +57,8 @@ public class ShowEventController {
     @ApiOperation(value = "Add new showevent",
             response = ShowEvent.class,
             responseContainer = "List")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad request")})
     @Produces(MediaType.APPLICATION_JSON)
     public Response addShowEvent(String showEvent) throws IOException {
         loadRepository();
@@ -80,17 +82,34 @@ public class ShowEventController {
     @PUT
     @ApiOperation(value = "Update showevent by key")
     @ApiResponses(value = {
-            @ApiResponse(code = 404, message = "Show not found") })
+            @ApiResponse(code = 404, message = "Show not found"),
+            @ApiResponse(code = 400, message = "Bad request")})
     @Path("/{key}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String updateShowEvent(@PathParam("key") String key, String showEvent) throws IOException {
+    public Response updateShowEvent(@PathParam("key") String key, String showEvent) throws IOException {
         loadRepository();
-        showEventRepo.delete(key);
+        String showDelete = showEventRepo.delete(key);
+        if (showDelete != null) {
+            saveRepository();
+        }
+        else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
         ObjectMapper mapper = new ObjectMapper();
-        ShowEvent event = mapper.readValue(showEvent, ShowEvent.class);
-        showEventRepo.add(event);
-        saveRepository();
-        return "updated showevent '" + key + "' repo size '" + showEventRepo.size() + "'";
+        ShowEvent event = null;
+        try {
+            event = mapper.readValue(showEvent, ShowEvent.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (event != null) {
+            showEventRepo.add(event);
+            saveRepository();
+            return Response.status(Response.Status.OK).build();
+        } else {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
     }
 
     @DELETE
@@ -99,12 +118,16 @@ public class ShowEventController {
             @ApiResponse(code = 404, message = "Show not found") })
     @Path("/{key}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String deleteShowEvent(@PathParam("key") String key) throws IOException {
+    public Response deleteShowEvent(@PathParam("key") String key) throws IOException {
         loadRepository();
-        showEventRepo.delete(key);
-        saveRepository();
-        return "deleted showevent '" + key + "' repo size '" + showEventRepo.size() + "'";
-
+        String showDelete = showEventRepo.delete(key);
+        if (showDelete != null) {
+            saveRepository();
+            return Response.status(Response.Status.OK).build();
+        }
+        else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
     }
 
     private void loadRepository() throws IOException {

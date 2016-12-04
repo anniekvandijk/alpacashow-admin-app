@@ -23,10 +23,13 @@ public class ShowEventRepository {
     public String delete(final String showEventKey) {
 
         ShowEvent showEventToDelete = getShowEventsByKeySet(showEventKey);
-        showEvents.remove(showEventToDelete.getName() + "_" + showEventToDelete.getDate());
-        logger.info("Deleted showEvent '" + showEventKey + "' from showEventRepo");
-
-        return showEventKey;
+        if (showEventToDelete != null) {
+            showEvents.remove(showEventToDelete.getName() + "_" + showEventToDelete.getDate());
+            logger.info("Deleted showEvent '" + showEventKey + "' from showEventRepo");
+            return showEventToDelete.getName();
+        } else {
+            return null;
+        }
     }
 
     public ShowEvent search(final String searchForKey) {
