@@ -58,13 +58,23 @@ public class ShowEventController {
             response = ShowEvent.class,
             responseContainer = "List")
     @Produces(MediaType.APPLICATION_JSON)
-    public String addShowEvent(String showEvent) throws IOException {
+    public Response addShowEvent(String showEvent) throws IOException {
         loadRepository();
         ObjectMapper mapper = new ObjectMapper();
-        ShowEvent event = mapper.readValue(showEvent, ShowEvent.class);
-        showEventRepo.add(event);
-        saveRepository();
-        return "add showevent '" + event.getName() + "' repo size '" + showEventRepo.size() + "'";
+        ShowEvent event = null;
+        try {
+            event = mapper.readValue(showEvent, ShowEvent.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (event != null) {
+            showEventRepo.add(event);
+            saveRepository();
+            return Response.status(Response.Status.OK).build();
+        } else {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
     }
 
     @PUT
