@@ -35,7 +35,7 @@ public class ShowEventControllerTest {
 
         ShowEventController controller = new ShowEventController();
 
-        String result = controller.getShowEventByKey("Breda 2017_2017-04-01");
+        String result = (String) controller.getShowEventByKey("Breda 2017_2017-04-01").getEntity();
         String resultTrim = result.replaceAll("\\s", "");
         String fileName = "get_showeventbykey.json";
         String expected = readJsonfile(fileName);

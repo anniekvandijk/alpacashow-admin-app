@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Collection;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Api (value="Showevent")
 @Path("/showevent/")
@@ -41,10 +42,15 @@ public class ShowEventController {
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "Show not found") })
     @Produces(MediaType.APPLICATION_JSON)
-    public String getShowEventByKey(@PathParam("key") String key) throws IOException {
+    public Response getShowEventByKey(@PathParam("key") String key) throws IOException {
         loadRepository();
         ShowEvent event = showEventRepo.getShowEventsByKeySet(key);
-        return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(event);
+
+        if (event != null) {
+            return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(event)).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
     }
 
     @POST
