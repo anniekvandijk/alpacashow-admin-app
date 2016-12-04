@@ -13,6 +13,7 @@ public class ApplicationRepositoryService {
 
     private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
     private static Properties prop = new Properties();
+    private static String fileStorage = "csv";
     private static ShowEventRepository showEventRepo = new ShowEventRepository();
 
     private ApplicationRepositoryService() throws InstantiationException {
@@ -20,8 +21,6 @@ public class ApplicationRepositoryService {
     }
 
     public static ShowEventRepository loadShowEventRepository() throws IOException {
-
-        String fileStorage = getFileStorage();
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
             String csvShowEventsResource =  getCsvShowEventResourcePath(fileStorage);
@@ -37,8 +36,6 @@ public class ApplicationRepositoryService {
 
     public static void saveShowEventRepository(ShowEventRepository repo) throws IOException {
 
-        String fileStorage = getFileStorage();
-
         if ("csv".equalsIgnoreCase(fileStorage)) {
             String csvShowEventsResource = getCsvShowEventResourcePath(fileStorage);
             FileWriter writer = new FileWriter(csvShowEventsResource);
@@ -49,11 +46,6 @@ public class ApplicationRepositoryService {
         } else {
             throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
         }
-    }
-
-    private static String getFileStorage() throws IOException {
-        prop = ApplicationPropertiesService.getApplicationProperties();
-        return prop.getProperty("filestorage");
     }
 
     private static String getCsvShowEventResourcePath(String fileStorage) throws IOException {

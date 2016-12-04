@@ -25,6 +25,8 @@ public class ShowEventController {
     Jetty Runner path http://localhost:8081/webservice/showevent/
      */
 
+    // TODO: if response != 200, put some information in the response body what went wrong.
+
     @GET
     @ApiOperation(value = "Get all Showevents",
             response = ShowEvent.class,
