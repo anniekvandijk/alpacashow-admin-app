@@ -18,8 +18,8 @@ public class JsonDeserializerTest {
 
         String json = "{"
                 + "   \"name\": \"Test showEvent to Json\",     "
-                + "   \"date\": \"01-05-2017\",                 "
-                + "   \"closeDate\": \"15-03-2017\",            "
+                + "   \"date\": \"2017-05-01\",                 "
+                + "   \"closeDate\": \"2017-03-15\",            "
                 + "   \"location\": \"Surhuisterveen\",         "
                 + "   \"judge\": \"Test Judge\",                "
                 + "   \"participants\": [],                     "
