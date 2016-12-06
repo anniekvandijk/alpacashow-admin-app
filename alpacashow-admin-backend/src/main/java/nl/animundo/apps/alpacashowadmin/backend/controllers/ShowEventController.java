@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Api (value="Showevent")
-@Path("/showevent/")
+@Path("/showevents/")
 public class ShowEventController {
 
     private ShowEventRepository showEventRepo;
