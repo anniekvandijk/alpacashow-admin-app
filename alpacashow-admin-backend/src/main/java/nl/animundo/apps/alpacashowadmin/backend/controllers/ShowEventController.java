@@ -8,7 +8,8 @@ import io.swagger.annotations.ApiResponses;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Collection;
 import javax.ws.rs.*;
@@ -16,14 +17,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Api (value="Showevent")
-@Path("/showevents/")
+@Path("showevents")
 public class ShowEventController {
 
+    private static Logger logger = LoggerFactory.getLogger(ShowEventController.class);
     private ShowEventRepository showEventRepo;
-
-    /*
-    Jetty Runner path http://localhost:8081/webservice/showevent/
-     */
 
     // TODO: if response != 200, put some information in the response body what went wrong.
 
@@ -32,10 +30,10 @@ public class ShowEventController {
             response = ShowEvent.class,
             responseContainer = "List")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getShowEvents() throws IOException {
+    public Response getShowEvents() throws IOException {
         loadRepository();
         Collection<ShowEvent> listOfShowEvents=showEventRepo.getAllShowEvents();
-        return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfShowEvents);
+        return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfShowEvents)).build();
     }
 
     @GET

@@ -25,7 +25,7 @@ public class ShowEventControllerTest {
 
         ShowEventController controller = new ShowEventController();
 
-        String result = controller.getShowEvents();
+        String result = (String)controller.getShowEvents().getEntity();
         String resultTrim = result.replaceAll("\\s", "");
         String fileName = "get_allshowevents.json";
         String expected = readJsonfile(fileName);
