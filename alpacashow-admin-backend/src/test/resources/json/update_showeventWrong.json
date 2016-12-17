@@ -4,8 +4,8 @@
   "closeDate" : "2017-03-01",
   "location" : "Breda update",
   "judge" : "Shirley Bettinson",
-  "participants" : [ ],
-  "show" : [ {
+  "shows" : [ {
     "showType" : "Fleeceshowssss"
-  }]
+  }],
+  "participants" : [ ]
 }

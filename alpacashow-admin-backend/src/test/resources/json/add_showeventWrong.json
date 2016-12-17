@@ -4,10 +4,10 @@
   "closeDate": "2017-04-15",
   "location": "Test",
   "judge": "judge Y",
-  "participants": [],
-  "show": [
+  "shows": [
     {
       "showType": "Haltershow"
     }
-  ]
+  ],
+  "participants": []
 }

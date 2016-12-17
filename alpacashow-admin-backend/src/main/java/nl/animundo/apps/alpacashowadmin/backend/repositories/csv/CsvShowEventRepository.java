@@ -45,7 +45,7 @@ public class CsvShowEventRepository extends ShowEventRepository {
                     .append(show.getCloseDate().toString()).append(";")
                     .append(show.getLocation()).append(";")
                     .append(show.getJudge()).append(";")
-                    .append(createShowTypeString(show.getShow())).append("\n");
+                    .append(createShowTypeString(show.getShows())).append("\n");
         }
     }
 

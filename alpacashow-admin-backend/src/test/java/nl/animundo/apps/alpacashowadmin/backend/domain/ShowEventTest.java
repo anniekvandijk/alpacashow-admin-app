@@ -44,7 +44,7 @@ public class ShowEventTest {
         assertEquals(LocalDate.now().plusMonths(6), showEvent.getCloseDate());
         assertEquals("Surhuisterveen", showEvent.getLocation());
         assertEquals("Test Judge", showEvent.getJudge());
-        assertEquals(4, showEvent.getShow().size());
+        assertEquals(4, showEvent.getShows().size());
         assertEquals("HALTERSHOW, FLEECESHOW, MALE_PROGENY_SHOW, FEMALE_PROGENY_SHOW", showEvent.toStringShow());
     }
 
@@ -685,6 +685,6 @@ public class ShowEventTest {
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
         shows.remove(new Show(ShowType.FLEECESHOW));
 
-        assertEquals(shows, showEvent.getShow());
+        assertEquals(shows, showEvent.getShows());
     }
 }

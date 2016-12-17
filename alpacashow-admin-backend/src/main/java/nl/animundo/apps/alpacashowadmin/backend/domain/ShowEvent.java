@@ -155,11 +155,11 @@ public class ShowEvent {
         this.judge = judgeCln;
     }
 
-    public SortedSet<Show> getShow() {
+    public SortedSet<Show> getShows() {
         return shows;
     }
 
-    public void setShow(final SortedSet<Show> shows) {
+    public void setShows(final SortedSet<Show> shows) {
 
         this.shows = shows;
     }

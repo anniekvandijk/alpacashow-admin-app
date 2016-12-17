@@ -40,12 +40,12 @@ public class JsonSerializerTest {
                 + "   \"closeDate\": \"2017-03-15\",            "
                 + "   \"location\": \"Surhuisterveen\",         "
                 + "   \"judge\": \"Test Judge\",                "
-                + "   \"participants\": [],                     "
-                + "   \"show\":                                 "
+                + "   \"shows\":                                "
                 + "      [ {                                    "
                 + "      \"showType\": \"Haltershow\"},         "
                 + "      {\"showType\": \"Fleeceshow\"          "
-                + "      } ]                                    "
+                + "      } ],                                   "
+                + "   \"participants\": []                      "
                 + "   }                                         ";
         String expectedJsonTrim = expectedJson.replaceAll("\\s", "");
 

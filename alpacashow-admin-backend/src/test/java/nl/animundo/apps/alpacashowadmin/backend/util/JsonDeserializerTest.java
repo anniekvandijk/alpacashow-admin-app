@@ -22,13 +22,13 @@ public class JsonDeserializerTest {
                 + "   \"closeDate\": \"2017-03-15\",            "
                 + "   \"location\": \"Surhuisterveen\",         "
                 + "   \"judge\": \"Test Judge\",                "
-                + "   \"participants\": [],                     "
-                + "   \"show\":                                 "
+                + "   \"shows\":                                "
                 + "      [ {                                    "
                 + "      \"showType\": \"Fleeceshow\"},         "
                 + "      {\"showType\": \"Haltershow\"},        "
                 + "      {\"showType\": \"Male progeny show\"   "
-                + "      } ]                                    "
+                + "      } ],                                   "
+                + "   \"participants\": []                      "
                 + "   }                                         ";
 
         ShowEvent event = new ObjectMapper().readValue(json, ShowEvent.class);
