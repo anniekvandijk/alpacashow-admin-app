@@ -5,4 +5,5 @@ export class ShowEvent {
     closeDate: string;
     judge: string;
     shows: string[];
+    participants: string[];
 }

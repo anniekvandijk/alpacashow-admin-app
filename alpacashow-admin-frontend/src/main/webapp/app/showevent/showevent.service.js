@@ -1,12 +1,3 @@
-// import { Injectable } from '@angular/core';
-// import { SHOWEVENTS } from './showevents-mock';
-//
-// @Injectable()
-// export class ShowEventService {
-//     getShowEvents() {
-//         return Promise.resolve(SHOWEVENTS);
-//     }
-// }
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -18,29 +9,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
+var showevents_mock_1 = require('./showevents-mock');
 var ShowEventService = (function () {
-    function ShowEventService(http) {
-        this.http = http;
-        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        this.showEventUrl = 'http://localhost:8081/webservice/showevent'; // URL to web api
+    function ShowEventService() {
     }
     ShowEventService.prototype.getShowEvents = function () {
-        return this.http.get(this.showEventUrl)
-            .toPromise()
-            .then(function (response) { return response.json().data; })
-            .catch(this.handleError);
-    };
-    ShowEventService.prototype.handleError = function (error) {
-        console.error('An error occurred', error); // for demo purposes only
-        return Promise.reject(error.message || error);
+        return Promise.resolve(showevents_mock_1.SHOWEVENTS);
     };
     ShowEventService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [])
     ], ShowEventService);
     return ShowEventService;
 }());
 exports.ShowEventService = ShowEventService;
+// import { Injectable }    from '@angular/core';
+// import { Headers, Http } from '@angular/http';
+//
+// import 'rxjs/add/operator/toPromise';
+//
+// import { ShowEvent } from './showevent';
+//
+// @Injectable()
+// export class ShowEventService {
+//
+//     private headers = new Headers({'Content-Type': 'application/json'});
+//     private showEventUrl = 'http://localhost:8081/webservice/showevents';  // URL to web api
+//
+//     constructor(private http: Http) { }
+//
+//     getShowEvents(): Promise<ShowEvent[]> {
+//         return this.http.get(this.showEventUrl)
+//             .toPromise()
+//             .then(response => response.json().data as ShowEvent[])
+//             .catch(this.handleError);
+//     }
+//
+//     private handleError(error: any): Promise<any> {
+//         console.error('An error occurred', error); // for demo purposes only
+//         return Promise.reject(error.message || error);
+//     }
+// } 
 //# sourceMappingURL=showevent.service.js.map
