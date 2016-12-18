@@ -21,7 +21,7 @@ export class ShowEventsComponent {
     constructor(private showEventService: ShowEventService, private formBuilder: FormBuilder) { }
 
     getShowEvents() {
-        this.showEventService.getShowEvents().then(events => this.showevents = events);
+        this.showEventService.getShowEvents().forEach(events => this.showevents = events);
     }
     ngOnInit() {
         this.getShowEvents();
