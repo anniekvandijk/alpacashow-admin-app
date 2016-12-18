@@ -17,7 +17,7 @@ export class ShowEventsComponent implements OnInit {
     selectedShow: ShowEvent;
     updateShowEventForm: FormGroup;
     showevents: ShowEvent[];
-    deleteMessage = 'None';
+    deleteMessage = '';
 
     constructor(private showEventService: ShowEventService, private formBuilder: FormBuilder) { }
 

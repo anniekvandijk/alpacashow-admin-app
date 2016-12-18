@@ -16,7 +16,7 @@ var ShowEventsComponent = (function () {
     function ShowEventsComponent(showEventService, formBuilder) {
         this.showEventService = showEventService;
         this.formBuilder = formBuilder;
-        this.deleteMessage = 'None';
+        this.deleteMessage = '';
     }
     ShowEventsComponent.prototype.getShowEvents = function () {
         var _this = this;

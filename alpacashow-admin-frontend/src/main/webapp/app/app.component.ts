@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import './rxjs-extensions';
-import { ToArrayPipe } from "./arraypipe";
 
 @Component({
   selector: 'my-app',
-  templateUrl: './app/app.html',
-  pipes: [ ToArrayPipe ]
+  templateUrl: './app/app.html'
 })
 
 export class AppComponent { }

@@ -7,6 +7,6 @@ export class ShowEvent {
     closeDate: string;
     location: string;
     judge: string;
-    participants: Participant[];
     shows: Show[];
+    participants: Participant[];
 }

@@ -36,7 +36,7 @@ public class ShowEventController {
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfShowEvents);
         Response response = Response
                 .status(Response.Status.OK)
-                .header("Access-Control-Allow-Origin", "http://localhost:8080")
+                .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, X-Requested-With")
                 .entity(json)
                 .build();
