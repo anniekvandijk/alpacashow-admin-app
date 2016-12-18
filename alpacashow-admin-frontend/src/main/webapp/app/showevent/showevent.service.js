@@ -28,12 +28,8 @@ var ShowEventService = (function () {
     }
     ShowEventService.prototype.getShowEvents = function () {
         return this.http.get(this.showEventUrl)
-            .map(this.extractData)
+            .map(function (response) { return response.json(); })
             .catch(this.handleError);
-    };
-    ShowEventService.prototype.extractData = function (res) {
-        var body = res.json();
-        return body.data || {};
     };
     ShowEventService.prototype.handleError = function (error) {
         // In a real world app, we might use a remote logging infrastructure
