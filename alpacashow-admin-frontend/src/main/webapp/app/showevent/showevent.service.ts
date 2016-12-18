@@ -11,7 +11,7 @@
 import { Injectable }    from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
-import {ShowEvent} from "../model/showevent";
+import {ShowEvent} from '../model/showevent';
 
 @Injectable()
 export class ShowEventService {

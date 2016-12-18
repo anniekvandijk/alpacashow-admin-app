@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
-var new_showevent_component_1 = require("./new-showevent.component");
 var showevent_service_1 = require('./showevent.service');
 var ShowEventsComponent = (function () {
     function ShowEventsComponent(showEventService, formBuilder) {
@@ -45,7 +44,6 @@ var ShowEventsComponent = (function () {
             selector: 'showevents',
             templateUrl: './app/showevent/showevents.html',
             providers: [showevent_service_1.ShowEventService, forms_1.FormBuilder],
-            directives: [new_showevent_component_1.NewShowEventComponent, forms_1.REACTIVE_FORM_DIRECTIVES],
         }), 
         __metadata('design:paramtypes', [showevent_service_1.ShowEventService, forms_1.FormBuilder])
     ], ShowEventsComponent);

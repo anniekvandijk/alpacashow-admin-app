@@ -1,14 +1,12 @@
 import {Component, OnInit}                from '@angular/core';
-import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { NewShowEventComponent }    from "./new-showevent.component";
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { ShowEventService }         from './showevent.service';
-import {ShowEvent}                  from "../model/showevent";
+import {ShowEvent}                  from '../model/showevent';
 
 @Component({
     selector: 'showevents',
     templateUrl: './app/showevent/showevents.html',
     providers: [ShowEventService, FormBuilder],
-    directives: [NewShowEventComponent, REACTIVE_FORM_DIRECTIVES],
 })
 
 export class ShowEventsComponent implements OnInit {
