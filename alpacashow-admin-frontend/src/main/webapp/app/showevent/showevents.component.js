@@ -20,7 +20,7 @@ var ShowEventsComponent = (function () {
     }
     ShowEventsComponent.prototype.getShowEvents = function () {
         var _this = this;
-        this.showEventService.getShowEvents().then(function (showevents) { return _this.showevents = showevents; });
+        this.showEventService.getShowEvents().then(function (events) { return _this.showevents = events; });
     };
     ShowEventsComponent.prototype.ngOnInit = function () {
         this.getShowEvents();
