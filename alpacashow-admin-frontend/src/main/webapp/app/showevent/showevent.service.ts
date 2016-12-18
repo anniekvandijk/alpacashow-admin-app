@@ -12,17 +12,17 @@ import { Injectable }    from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
-import * as models      from '../model/models';
+import {ShowEvent} from "../model/showevent";
 
 @Injectable()
 export class ShowEventService {
 
-    private headers = new Headers({'Content-Type': 'application/json'});
+    // private headers = new Headers({'Content-Type': 'application/json'});
     private showEventUrl = 'http://localhost:8081/webservice/showevents';
 
     constructor (private http: Http) {}
 
-    getShowEvents (): Observable<models.ShowEvent[]> {
+    getShowEvents (): Observable<ShowEvent[]> {
         return this.http.get(this.showEventUrl)
             .map(this.extractData)
             .catch(this.handleError);

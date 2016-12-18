@@ -1,15 +1,13 @@
-import * as models from './models';
-
-export interface Animal {
-    name?: string;
-    breedClass?: Animal.BreedClassEnum;
-    sexClass?: Animal.SexClassEnum;
-    colorClass?: Animal.ColorClassEnum;
-    dateOfBirth?: Date;
-    microchip?: string;
-    registration?: string;
-    sire?: string;
-    dam?: string;
+export class Animal {
+    name: string;
+    breedClass: Animal.BreedClassEnum;
+    sexClass: Animal.SexClassEnum;
+    colorClass: Animal.ColorClassEnum;
+    dateOfBirth: Date;
+    microchip: string;
+    registration: string;
+    sire: string;
+    dam: string;
 
 }
 export namespace Animal {

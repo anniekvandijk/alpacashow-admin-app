@@ -1,11 +1,18 @@
 "use strict";
+var Show = (function () {
+    function Show() {
+    }
+    return Show;
+}());
+exports.Show = Show;
 var Show;
 (function (Show) {
     (function (ShowTypeEnum) {
-        ShowTypeEnum[ShowTypeEnum["HALTERSHOW"] = 'HALTERSHOW'] = "HALTERSHOW";
-        ShowTypeEnum[ShowTypeEnum["FLEECESHOW"] = 'FLEECESHOW'] = "FLEECESHOW";
-        ShowTypeEnum[ShowTypeEnum["MALEPROGENYSHOW"] = 'MALE_PROGENY_SHOW'] = "MALEPROGENYSHOW";
-        ShowTypeEnum[ShowTypeEnum["FEMALEPROGENYSHOW"] = 'FEMALE_PROGENY_SHOW'] = "FEMALEPROGENYSHOW";
+        ShowTypeEnum[ShowTypeEnum["HALTERSHOW"] = 'Haltershow'] = "HALTERSHOW";
+        ShowTypeEnum[ShowTypeEnum["FLEECESHOW"] = 'Fleeceshow'] = "FLEECESHOW";
+        ShowTypeEnum[ShowTypeEnum["MALEPROGENYSHOW"] = 'Male progeny show'] = "MALEPROGENYSHOW";
+        ShowTypeEnum[ShowTypeEnum["FEMALEPROGENYSHOW"] = 'Female progeny show'] = "FEMALEPROGENYSHOW";
     })(Show.ShowTypeEnum || (Show.ShowTypeEnum = {}));
     var ShowTypeEnum = Show.ShowTypeEnum;
 })(Show = exports.Show || (exports.Show = {}));
+//# sourceMappingURL=show.js.map

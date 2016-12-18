@@ -1,6 +1,6 @@
-import * as models from './models';
+import {Animal} from "./animal";
 
-export interface Participant {
-    name?: string;
-    animals?: Array<models.Animal>;
+export class Participant {
+    name: string;
+    animals: Animal[];
 }

@@ -1,11 +1,12 @@
-import * as models from './models';
+import {Show} from "./show";
+import {Participant} from "./participant";
 
-export interface ShowEvent {
-    name?: string;
-    date?: string;
-    closeDate?: string;
-    location?: string;
-    judge?: string;
-    participants?: Array<models.Participant>;
-    show?: Array<models.Show>;
+export class ShowEvent {
+    name: string;
+    date: string;
+    closeDate: string;
+    location: string;
+    judge: string;
+    participants: Participant[];
+    shows: Show[];
 }

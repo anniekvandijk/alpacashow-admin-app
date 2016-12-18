@@ -1,28 +1,33 @@
-import { Component }                from '@angular/core';
+import {Component, OnInit}                from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import * as models                  from '../model/models';
 import { NewShowEventComponent }    from "./new-showevent.component";
 import { ShowEventService }         from './showevent.service';
+import {ShowEvent}                  from "../model/showevent";
 
 @Component({
     selector: 'showevents',
     templateUrl: './app/showevent/showevents.html',
     providers: [ShowEventService, FormBuilder],
-    directives: [NewShowEventComponent, REACTIVE_FORM_DIRECTIVES]
+    directives: [NewShowEventComponent, REACTIVE_FORM_DIRECTIVES],
 })
 
-export class ShowEventsComponent {
+export class ShowEventsComponent implements OnInit {
 
-    selectedShow: models.ShowEvent;
+    errorMessage: string;
+    selectedShow: ShowEvent;
     updateShowEventForm: FormGroup;
-    showevents: models.ShowEvent[];
-    deleteMessage = '';
+    showevents: ShowEvent[];
+    deleteMessage = 'None';
 
     constructor(private showEventService: ShowEventService, private formBuilder: FormBuilder) { }
 
     getShowEvents() {
-        this.showEventService.getShowEvents().forEach(events => this.showevents = events);
+        this.showEventService.getShowEvents()
+            .subscribe(
+                showevents => this.showevents = showevents,
+                error =>  this.errorMessage = <any>error);
     }
+
     ngOnInit() {
         this.getShowEvents();
 
@@ -36,7 +41,7 @@ export class ShowEventsComponent {
         });
     }
 
-    onSelect(showevent: models.ShowEvent): void {
+    onSelect(showevent: ShowEvent): void {
 
         this.selectedShow = showevent;
     }

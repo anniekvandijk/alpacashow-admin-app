@@ -1,4 +1,10 @@
 "use strict";
+var Animal = (function () {
+    function Animal() {
+    }
+    return Animal;
+}());
+exports.Animal = Animal;
 var Animal;
 (function (Animal) {
     (function (BreedClassEnum) {
@@ -24,3 +30,4 @@ var Animal;
     })(Animal.ColorClassEnum || (Animal.ColorClassEnum = {}));
     var ColorClassEnum = Animal.ColorClassEnum;
 })(Animal = exports.Animal || (exports.Animal = {}));
+//# sourceMappingURL=animal.js.map

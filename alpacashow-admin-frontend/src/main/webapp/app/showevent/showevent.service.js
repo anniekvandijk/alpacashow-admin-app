@@ -24,7 +24,7 @@ require('rxjs/add/operator/toPromise');
 var ShowEventService = (function () {
     function ShowEventService(http) {
         this.http = http;
-        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        // private headers = new Headers({'Content-Type': 'application/json'});
         this.showEventUrl = 'http://localhost:8081/webservice/showevents';
     }
     ShowEventService.prototype.getShowEvents = function () {

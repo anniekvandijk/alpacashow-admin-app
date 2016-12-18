@@ -9,20 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-require('./rxjs-extensions');
-var arraypipe_1 = require("./arraypipe");
-var AppComponent = (function () {
-    function AppComponent() {
+var ToArrayPipe = (function () {
+    function ToArrayPipe() {
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'my-app',
-            templateUrl: './app/app.html',
-            pipes: [arraypipe_1.ToArrayPipe]
+    ToArrayPipe.prototype.transform = function (val) {
+        return Array.isArray(val)
+            ? val : [val];
+    };
+    ToArrayPipe = __decorate([
+        core_1.Pipe({
+            name: 'toarray'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], ToArrayPipe);
+    return ToArrayPipe;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.ToArrayPipe = ToArrayPipe;
+//# sourceMappingURL=arraypipe.js.map

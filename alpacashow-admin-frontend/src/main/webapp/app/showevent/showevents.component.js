@@ -16,11 +16,12 @@ var ShowEventsComponent = (function () {
     function ShowEventsComponent(showEventService, formBuilder) {
         this.showEventService = showEventService;
         this.formBuilder = formBuilder;
-        this.deleteMessage = '';
+        this.deleteMessage = 'None';
     }
     ShowEventsComponent.prototype.getShowEvents = function () {
         var _this = this;
-        this.showEventService.getShowEvents().forEach(function (events) { return _this.showevents = events; });
+        this.showEventService.getShowEvents()
+            .subscribe(function (showevents) { return _this.showevents = showevents; }, function (error) { return _this.errorMessage = error; });
     };
     ShowEventsComponent.prototype.ngOnInit = function () {
         this.getShowEvents();
@@ -44,7 +45,7 @@ var ShowEventsComponent = (function () {
             selector: 'showevents',
             templateUrl: './app/showevent/showevents.html',
             providers: [showevent_service_1.ShowEventService, forms_1.FormBuilder],
-            directives: [new_showevent_component_1.NewShowEventComponent, forms_1.REACTIVE_FORM_DIRECTIVES]
+            directives: [new_showevent_component_1.NewShowEventComponent, forms_1.REACTIVE_FORM_DIRECTIVES],
         }), 
         __metadata('design:paramtypes', [showevent_service_1.ShowEventService, forms_1.FormBuilder])
     ], ShowEventsComponent);
