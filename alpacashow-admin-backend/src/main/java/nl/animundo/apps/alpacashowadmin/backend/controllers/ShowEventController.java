@@ -33,7 +33,14 @@ public class ShowEventController {
     public Response getShowEvents() throws IOException {
         loadRepository();
         Collection<ShowEvent> listOfShowEvents=showEventRepo.getAllShowEvents();
-        return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfShowEvents)).build();
+        String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfShowEvents);
+        Response response = Response
+                .status(Response.Status.OK)
+                .header("Access-Control-Allow-Origin", "http://localhost:8080")
+                .header("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, X-Requested-With")
+                .entity(json)
+                .build();
+        return response;
     }
 
     @GET
