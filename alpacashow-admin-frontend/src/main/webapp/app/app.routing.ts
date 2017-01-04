@@ -8,8 +8,8 @@ const appRoutes: Routes = [
 
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
-    { path: 'showevent', component: ShowEventsComponent },
-    { path: 'showevent/new-showevent', component: NewShowEventComponent }
+    { path: 'showevents', component: ShowEventsComponent },
+    { path: 'showevents/new-showevent', component: NewShowEventComponent }
 
 ];
 
