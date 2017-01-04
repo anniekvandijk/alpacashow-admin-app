@@ -1,6 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.Show;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
@@ -9,8 +8,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import java.io.*;
 import java.time.LocalDate;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;

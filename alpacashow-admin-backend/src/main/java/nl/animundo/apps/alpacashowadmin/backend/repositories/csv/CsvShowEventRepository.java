@@ -10,8 +10,6 @@ import java.io.Reader;
 import java.io.Writer;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 public class CsvShowEventRepository extends ShowEventRepository {
 

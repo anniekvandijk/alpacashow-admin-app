@@ -1,14 +1,11 @@
 package nl.animundo.apps.alpacashowadmin.backend.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import nl.animundo.apps.alpacashowadmin.backend.domain.Show;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import org.junit.Test;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import static org.junit.Assert.assertEquals;
 
