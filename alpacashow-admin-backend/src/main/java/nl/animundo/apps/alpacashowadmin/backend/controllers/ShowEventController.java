@@ -67,6 +67,7 @@ public class ShowEventController {
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Bad request")})
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response addShowEvent(String showEvent) throws IOException {
         loadRepository();
         ObjectMapper mapper = new ObjectMapper();
@@ -93,6 +94,7 @@ public class ShowEventController {
             @ApiResponse(code = 400, message = "Bad request")})
     @Path("/{key}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response updateShowEvent(@PathParam("key") String key, String showEvent) throws IOException {
         loadRepository();
         String showDelete = showEventRepo.delete(key);
