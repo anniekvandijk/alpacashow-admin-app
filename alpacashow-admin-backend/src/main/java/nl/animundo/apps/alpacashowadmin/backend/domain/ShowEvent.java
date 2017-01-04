@@ -2,8 +2,11 @@ package nl.animundo.apps.alpacashowadmin.backend.domain;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateDeserializer;
 import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateSerializer;
+import nl.animundo.apps.alpacashowadmin.backend.util.JsonShowTypeDeserializer;
+import nl.animundo.apps.alpacashowadmin.backend.util.JsonShowTypeSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.commons.lang3.StringUtils;
@@ -24,7 +27,9 @@ public class ShowEvent {
     private LocalDate closeDate;
     private String location;
     private String judge;
-    private SortedSet<Show> shows;
+    @JsonDeserialize(using = JsonShowTypeDeserializer.class)
+    @JsonSerialize(using = JsonShowTypeSerializer.class)
+    private ShowType showType;
     private Set<Participant> participants;
 
     public ShowEvent() {
@@ -32,12 +37,12 @@ public class ShowEvent {
         super();
     }
 
-    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final SortedSet<Show> shows) {
-        this(name, date, closeDate, location, judge, shows, new HashSet<Participant>());
+    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final ShowType showType) {
+        this(name, date, closeDate, location, judge, showType, new HashSet<Participant>());
     }
 
 
-    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final SortedSet<Show> shows, final Set<Participant> participants ) {
+    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate, final String location, final String judge, final ShowType showType, final Set<Participant> participants ) {
 
         final String nameCln = StringUtils.trimToNull(name);
         final String locationCln = StringUtils.trimToNull(location);
@@ -65,12 +70,15 @@ public class ShowEvent {
         if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
             throw new IllegalArgumentException("Date show before or same as close date subscriptions");
         }
+        if (showType == null) {
+            throw new IllegalArgumentException("Field showType can not be empty");
+        }
         this.name = nameCln;
         this.date = date;
         this.closeDate = closeDate;
         this.location = locationCln;
         this.judge = judgeCln;
-        this.shows = shows;
+        this.showType = showType;
         this.participants = participants;
     }
 
@@ -155,27 +163,16 @@ public class ShowEvent {
         this.judge = judgeCln;
     }
 
-    public SortedSet<Show> getShows() {
-        return shows;
+    public ShowType getShowType() {
+        return showType;
     }
 
-    public void setShows(final SortedSet<Show> shows) {
+    public void setShowType(final ShowType showType) {
 
-        this.shows = shows;
+        this.showType = showType;
     }
 
     public Set<Participant> getParticipants() {
         return participants;
-    }
-
-    public String toStringShow() {
-        StringBuilder bldr = new StringBuilder();
-        for (Show types : shows) {
-            if (bldr.length() > 0) {
-                bldr.append(", ");
-            }
-            bldr.append(types.getShowType());
-        }
-        return bldr.toString();
     }
 }

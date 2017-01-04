@@ -1,7 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
 import com.opencsv.CSVReader;
-import nl.animundo.apps.alpacashowadmin.backend.domain.Show;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
@@ -45,23 +44,9 @@ public class CsvShowEventRepository extends ShowEventRepository {
                     .append(show.getCloseDate().toString()).append(";")
                     .append(show.getLocation()).append(";")
                     .append(show.getJudge()).append(";")
-                    .append(createShowTypeString(show.getShows())).append("\n");
+                    .append(show.getShowType().toString()).append("\n");
         }
     }
-
-    private static String createShowTypeString(SortedSet<Show> showTypes) {
-
-        final StringBuilder bldr = new StringBuilder();
-        for (Show showType : showTypes) {
-            if (bldr.length() != 0) {
-                bldr.append(", ");
-            }
-            bldr.append(showType.getShowType());
-        }
-        return bldr.toString();
-    }
-
-
 
     private void read(Reader reader) throws IOException {
         CSVReader csvReader = new CSVReader(reader, ';');
@@ -72,21 +57,14 @@ public class CsvShowEventRepository extends ShowEventRepository {
 
         while ((nextLine = csvReader.readNext()) != null) {
 
-            SortedSet<Show> show = new TreeSet<>();
-            String[] showList = nextLine[COL_SHOWTYPES].split(",");
-
-            for ( String showInList : showList) {
-                String showInListCln = StringUtils.trimToNull(showInList);
-                show.add(new Show(ShowType.valueOf(showInListCln)));
-            }
-
             String dateCln = StringUtils.trimToNull(nextLine[COL_DATE]);
             String closeDateCln = StringUtils.trimToNull(nextLine[COL_CLOSEDATE]);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date = LocalDate.parse(dateCln, formatter);
             LocalDate closeDate = LocalDate.parse(closeDateCln, formatter);
+            ShowType showType = ShowType.valueOf(nextLine[COL_SHOWTYPES]);
 
-            add(new ShowEvent(nextLine[COL_NAME], date, closeDate, nextLine[COL_LOCATION], nextLine[COL_JUDGE], show));
+            add(new ShowEvent(nextLine[COL_NAME], date, closeDate, nextLine[COL_LOCATION], nextLine[COL_JUDGE], showType));
         }
 
         csvReader.close();

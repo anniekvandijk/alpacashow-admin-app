@@ -28,14 +28,9 @@ public class ShowEventRepositoryTest {
         LocalDate closeDate = LocalDate.of(2017, 4, 15);
         String location = "Surhuisterveen";
         String judge = " Test Judge ";
-        SortedSet<Show> shows = new TreeSet<>();
+        ShowType showType = ShowType.FLEECESHOW;
 
-        shows.add(new Show(ShowType.FLEECESHOW));
-        shows.add(new Show(ShowType.HALTERSHOW));
-        shows.add(new Show(ShowType.FEMALE_PROGENY_SHOW));
-        shows.add(new Show(ShowType.MALE_PROGENY_SHOW));
-
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
         ShowEventRepository showEventRepository = new ShowEventRepository();
 
         showEventRepository.add(showEvent);
@@ -55,14 +50,9 @@ public class ShowEventRepositoryTest {
         LocalDate closeDate = LocalDate.of(2017, 4, 15);
         String location = "Surhuisterveen";
         String judge = " Test Judge ";
-        SortedSet<Show> shows = new TreeSet<>();
+        ShowType showType = ShowType.FLEECESHOW;
 
-        shows.add(new Show(ShowType.FLEECESHOW));
-        shows.add(new Show(ShowType.HALTERSHOW));
-        shows.add(new Show(ShowType.FEMALE_PROGENY_SHOW));
-        shows.add(new Show(ShowType.MALE_PROGENY_SHOW));
-
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
         ShowEventRepository showEventRepository = new ShowEventRepository();
 
         showEventRepository.add(showEvent);
@@ -82,25 +72,18 @@ public class ShowEventRepositoryTest {
         LocalDate closeDate = LocalDate.of(2017, 4, 15);
         String location = "Surhuisterveen";
         String judge = " Test Judge ";
-        SortedSet<Show> shows = new TreeSet<>();
+        ShowType showType = ShowType.FLEECESHOW;
 
-        shows.add(new Show(ShowType.FLEECESHOW));
-        shows.add(new Show(ShowType.HALTERSHOW));
-        shows.add(new Show(ShowType.FEMALE_PROGENY_SHOW));
-        shows.add(new Show(ShowType.MALE_PROGENY_SHOW));
-
-        ShowEvent showEvent1 = new ShowEvent(name, date, closeDate, location, judge, shows);
+        ShowEvent showEvent1 = new ShowEvent(name, date, closeDate, location, judge, showType);
 
         name = "Test showEvent 2";
         date = LocalDate.of(2017, 6, 15);
         closeDate = LocalDate.of(2017, 4, 15);
         location = "Surhuisterveen";
         judge = " Test Judge ";
-        shows = new TreeSet<>();
+        showType = ShowType.HALTERSHOW;
 
-        shows.add(new Show(ShowType.FLEECESHOW));
-
-        ShowEvent showEvent2 = new ShowEvent(name, date, closeDate, location, judge, shows);
+        ShowEvent showEvent2 = new ShowEvent(name, date, closeDate, location, judge, showType);
 
         showEventRepository.add(showEvent1);
         showEventRepository.add(showEvent2);

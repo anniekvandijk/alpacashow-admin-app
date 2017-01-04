@@ -25,11 +25,9 @@ public class JsonSerializerTest {
         LocalDate closeDate = LocalDate.of(2017, 3, 15);
         String location = "Surhuisterveen";
         String judge = "Test Judge";
-        SortedSet<Show> shows = new TreeSet<>();
-        shows.add(new Show(ShowType.FLEECESHOW));
-        shows.add(new Show(ShowType.HALTERSHOW));
+        ShowType showType = ShowType.FLEECESHOW;
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, shows);
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
 
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(showEvent);
         String jsonTrim = json.replaceAll("\\s", "");
@@ -40,11 +38,7 @@ public class JsonSerializerTest {
                 + "   \"closeDate\": \"2017-03-15\",            "
                 + "   \"location\": \"Surhuisterveen\",         "
                 + "   \"judge\": \"Test Judge\",                "
-                + "   \"shows\":                                "
-                + "      [ {                                    "
-                + "      \"showType\": \"Haltershow\"},         "
-                + "      {\"showType\": \"Fleeceshow\"          "
-                + "      } ],                                   "
+                + "   \"showType\": \"Fleeceshow\",             "
                 + "   \"participants\": []                      "
                 + "   }                                         ";
         String expectedJsonTrim = expectedJson.replaceAll("\\s", "");

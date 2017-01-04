@@ -4,10 +4,6 @@
   "closeDate" : "2017-03-01",
   "location" : "Breda",
   "judge" : "Shirley Bettinson",
-  "shows" : [ {
-    "showType" : "Haltershow"
-  }, {
-    "showType" : "Male progeny show"
-  } ],
+  "showType": "Male progeny show",
   "participants" : [ ]
 }

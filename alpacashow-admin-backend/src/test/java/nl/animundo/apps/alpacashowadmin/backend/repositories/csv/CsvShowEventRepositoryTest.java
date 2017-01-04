@@ -67,11 +67,9 @@ public class CsvShowEventRepositoryTest {
         LocalDate closeDate = LocalDate.of(2017, 5, 15);
         String location = "Surhuisterveen";
         String judge = " Test Judge ";
-        SortedSet<Show> shows = new TreeSet<>();
-        shows.add(new Show(ShowType.FLEECESHOW));
-        shows.add(new Show(ShowType.HALTERSHOW));
+        ShowType showType = ShowType.FLEECESHOW;
 
-        repo.add(new ShowEvent(name, date, closeDate, location, judge, shows));
+        repo.add(new ShowEvent(name, date, closeDate, location, judge, showType));
         assertEquals(3, repo.size());
 
         File newExportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoexporttest.csv");
