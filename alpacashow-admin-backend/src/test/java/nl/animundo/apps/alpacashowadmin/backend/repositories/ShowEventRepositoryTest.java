@@ -39,6 +39,36 @@ public class ShowEventRepositoryTest {
     }
 
     @Test
+    public void AddShowWithSameKey() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Showevent with same date and showtype already exists");
+
+        String name = "Test showEvent1";
+        LocalDate date = LocalDate.of(2017, 6, 15);
+        LocalDate closeDate = LocalDate.of(2017, 4, 15);
+        String location = "Surhuisterveen";
+        String judge = " Test Judge ";
+        ShowType showType = ShowType.FLEECESHOW;
+
+        ShowEvent showEvent1 = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEventRepository showEventRepository = new ShowEventRepository();
+
+        showEventRepository.add(showEvent1);
+
+        name = "Test showEvent2";
+        date = LocalDate.of(2017, 6, 15);
+        closeDate = LocalDate.of(2017, 4, 15);
+        location = "Surhuisterveen";
+        judge = " Test Judge ";
+        showType = ShowType.FLEECESHOW;
+
+        ShowEvent showEvent2 = new ShowEvent(name, date, closeDate, location, judge, showType);
+
+        showEventRepository.add(showEvent2);
+    }
+
+    @Test
     public void searchForNotKnownShow() {
 
         exception.expect(NullPointerException.class);

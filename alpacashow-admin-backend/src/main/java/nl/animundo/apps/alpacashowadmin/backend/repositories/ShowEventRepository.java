@@ -12,12 +12,14 @@ public class ShowEventRepository {
 
 
     public void add(final ShowEvent showEvent) {
-        // TODO no double keys
 
         String showEventKey = showEvent.getDate() + "_" + showEvent.getShowType();
-        showEvents.put(showEventKey, showEvent);
-        logger.info("Added showEvent '" + showEventKey + "' to showEventRepo");
-
+        if (getShowEventsByKeySet(showEventKey) == null) {
+            showEvents.put(showEventKey, showEvent);
+            logger.info("Added showEvent '" + showEventKey + "' to showEventRepo");
+        } else {
+            throw new IllegalArgumentException("Showevent with same date and showtype already exists");
+        }
     }
 
     public String delete(final String showEventKey) {
