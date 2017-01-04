@@ -14,7 +14,7 @@ public class ShowEventRepository {
     public void add(final ShowEvent showEvent) {
         // TODO no double keys
 
-        String showEventKey = showEvent.getName() + "_" + showEvent.getDate();
+        String showEventKey = showEvent.getDate() + "_" + showEvent.getShowType();
         showEvents.put(showEventKey, showEvent);
         logger.info("Added showEvent '" + showEventKey + "' to showEventRepo");
 
@@ -24,7 +24,7 @@ public class ShowEventRepository {
 
         ShowEvent showEventToDelete = getShowEventsByKeySet(showEventKey);
         if (showEventToDelete != null) {
-            showEvents.remove(showEventToDelete.getName() + "_" + showEventToDelete.getDate());
+            showEvents.remove(showEventToDelete.getDate() + "_" + showEventToDelete.getShowType());
             logger.info("Deleted showEvent '" + showEventKey + "' from showEventRepo");
             return showEventToDelete.getName();
         } else {

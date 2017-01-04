@@ -33,7 +33,7 @@ public class ShowEventRepositoryTest {
 
         showEventRepository.add(showEvent);
 
-        String searchForKey = "Test showEvent_2017-06-15";
+        String searchForKey = "2017-06-15_FLEECESHOW";
         assertEquals("Test showEvent", showEventRepository.search(searchForKey).getName());
 
     }
@@ -55,7 +55,7 @@ public class ShowEventRepositoryTest {
 
         showEventRepository.add(showEvent);
 
-        String searchForKey = "Test showEvent_2017-06-14";
+        String searchForKey = "2017-06-14_FLEECESHOW";
         showEventRepository.search(searchForKey).getName();
 
     }

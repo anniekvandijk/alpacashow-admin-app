@@ -39,8 +39,8 @@ public class ShowEventControllerTest {
 
         ShowEventController controller = new ShowEventController();
 
-        Response resultCode = controller.getShowEventByKey("Breda 2017_2017-04-01");
-        String result = (String) controller.getShowEventByKey("Breda 2017_2017-04-01").getEntity();
+        Response resultCode = controller.getShowEventByKey("2017-04-01_MALE_PROGENY_SHOW");
+        String result = (String) controller.getShowEventByKey("2017-04-01_MALE_PROGENY_SHOW").getEntity();
         String resultTrim = result.replaceAll("\\s", "");
         String fileName = "get_showeventbykey.json";
         String expected = readJsonfile(fileName);
@@ -55,7 +55,7 @@ public class ShowEventControllerTest {
 
         ShowEventController controller = new ShowEventController();
 
-        Response resultCode = controller.getShowEventByKey("Breda 2015_2017-04-01");
+        Response resultCode = controller.getShowEventByKey("2017-04-01_HALTERSHOW");
         assertEquals(404, resultCode.getStatus());
     }
 
@@ -73,10 +73,10 @@ public class ShowEventControllerTest {
         loadRepository();
         assertEquals(3, showEventRepo.size());
 
-        ShowEvent event = showEventRepo.search("Test 2017_2017-03-01");
+        ShowEvent event = showEventRepo.search("2017-03-01_HALTERSHOW");
         assertEquals("Test 2017", event.getName());
 
-        controller.deleteShowEvent("Test 2017_2017-03-01");
+        controller.deleteShowEvent("2017-03-01_HALTERSHOW");
 
         loadRepository();
         assertEquals(2, showEventRepo.size());
@@ -111,17 +111,17 @@ public class ShowEventControllerTest {
         loadRepository();
         assertEquals(3, showEventRepo.size());
 
-        ShowEvent event = showEventRepo.search("Test 2017_2017-03-01");
+        ShowEvent event = showEventRepo.search("2017-03-01_HALTERSHOW");
         assertEquals("Test 2017", event.getName());
 
         String showEvent2 = readJsonfile("update_showevent.json");
-        controller.updateShowEvent("Test 2017_2017-03-01", showEvent2);
+        controller.updateShowEvent("2017-03-01_HALTERSHOW", showEvent2);
 
         loadRepository();
-        ShowEvent getEvent3 = showEventRepo.getShowEventsByKeySet("Test 2017_2017-03-01");
+        ShowEvent getEvent3 = showEventRepo.getShowEventsByKeySet("2017-03-01_HALTERSHOW");
         assertEquals("Test update", getEvent3.getLocation());
 
-        controller.deleteShowEvent("Test 2017_2017-03-01");
+        controller.deleteShowEvent("2017-03-01_HALTERSHOW");
 
     }
 
@@ -142,7 +142,7 @@ public class ShowEventControllerTest {
         ShowEventController controller = new ShowEventController();
 
         String showEvent = readJsonfile("update_showeventWrong.json");
-        Response resultCode = controller.updateShowEvent("Breda 2017_2017-04-01", showEvent);
+        Response resultCode = controller.updateShowEvent("2017-04-01_MALE_PROGENY_SHOW", showEvent);
 
         assertEquals(400, resultCode.getStatus());
     }
@@ -153,7 +153,7 @@ public class ShowEventControllerTest {
         loadRepository();
 
         ShowEventController controller = new ShowEventController();
-        Response resultCode = controller.deleteShowEvent("Test 2014_2017-03-01");
+        Response resultCode = controller.deleteShowEvent("2017-03-01_HALTERSHO");
 
         assertEquals(404, resultCode.getStatus());
 

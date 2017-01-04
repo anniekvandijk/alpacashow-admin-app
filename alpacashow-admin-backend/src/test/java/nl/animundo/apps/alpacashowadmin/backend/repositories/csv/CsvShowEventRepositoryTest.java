@@ -36,7 +36,7 @@ public class CsvShowEventRepositoryTest {
         ShowEventRepository repo = CsvShowEventRepository.importData(reader);
         assertEquals(2, repo.size());
 
-        String searchForKey = "Meppel 2017_2017-05-01";
+        String searchForKey = "2017-05-01_HALTERSHOW";
         ShowEvent showEvent = repo.search(searchForKey);
         assertNotNull(showEvent);
         assertEquals("Meppel", showEvent.getLocation());
@@ -83,7 +83,7 @@ public class CsvShowEventRepositoryTest {
         ShowEventRepository newRepo = CsvShowEventRepository.importData(reader);
         assertEquals(3, newRepo.size());
 
-        String searchForKey = "Test showEvent_2017-07-01";
+        String searchForKey = "2017-07-01_FLEECESHOW";
         ShowEvent showEvent = newRepo.search(searchForKey);
         assertNotNull(showEvent);
         assertEquals("Surhuisterveen", showEvent.getLocation());
@@ -106,7 +106,7 @@ public class CsvShowEventRepositoryTest {
         ShowEventRepository repo = CsvShowEventRepository.importData(reader);
         assertEquals(2, repo.size());
 
-        String selectShowEvent = "Meppel 2017_2017-05-01";
+        String selectShowEvent = "2017-05-01_HALTERSHOW";
         ShowEvent showEventToUpdate = repo.getShowEventsByKeySet(selectShowEvent);
         showEventToUpdate.setName("Internationale alpacashowshow Meppel 2017");
         showEventToUpdate.setJudge("Some other judge");
@@ -125,7 +125,7 @@ public class CsvShowEventRepositoryTest {
         ShowEventRepository newRepo = CsvShowEventRepository.importData(reader);
         assertEquals(2, newRepo.size());
 
-        String searchForKey = "Internationale alpacashowshow Meppel 2017_2017-05-01";
+        String searchForKey = "2017-05-01_HALTERSHOW";
         ShowEvent showEvent = newRepo.search(searchForKey);
         assertNotNull(showEvent);
         assertEquals("Some other judge", showEvent.getJudge());
@@ -148,7 +148,7 @@ public class CsvShowEventRepositoryTest {
         ShowEventRepository repo = CsvShowEventRepository.importData(reader);
         assertEquals(2, repo.size());
 
-        repo.delete("Hapert 2017_2017-04-24");
+        repo.delete("2017-04-24_MALE_PROGENY_SHOW");
 
         File newExportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repodeletetest.csv");
         FileWriter writer = new FileWriter(newExportFile);
