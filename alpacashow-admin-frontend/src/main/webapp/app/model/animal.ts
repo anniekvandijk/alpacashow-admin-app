@@ -12,22 +12,22 @@ export class Animal {
 }
 export namespace Animal {
     export enum BreedClassEnum {
-        HUACAYA = <any> 'HUACAYA',
-        SURI = <any> 'SURI',
-        HUACAYAFLEECE = <any> 'HUACAYAFLEECE',
-        SURIFLEECE = <any> 'SURIFLEECE'
+        HUACAYA = <any> 'Huacaya',
+        SURI = <any> 'Suri',
+        HUACAYAFLEECE = <any> 'Huacayafleece',
+        SURIFLEECE = <any> 'Surifleece'
     }
     export enum SexClassEnum {
-        FEMALE = <any> 'FEMALE',
-        MALE = <any> 'MALE'
+        FEMALE = <any> 'Female',
+        MALE = <any> 'Male'
     }
     export enum ColorClassEnum {
-        WHITE = <any> 'WHITE',
-        FAWN = <any> 'FAWN',
-        BROWN = <any> 'BROWN',
-        GREY = <any> 'GREY',
-        BLACK = <any> 'BLACK',
-        FANCY = <any> 'FANCY',
-        BEIGE = <any> 'BEIGE'
+        WHITE = <any> 'White',
+        FAWN = <any> 'Fawn',
+        BROWN = <any> 'Brown',
+        GREY = <any> 'Grey',
+        BLACK = <any> 'Black',
+        FANCY = <any> 'Fancy',
+        BEIGE = <any> 'Beige'
     }
 }
