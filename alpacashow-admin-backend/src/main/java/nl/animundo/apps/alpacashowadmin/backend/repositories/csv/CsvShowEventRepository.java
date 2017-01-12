@@ -60,7 +60,7 @@ public class CsvShowEventRepository extends ShowEventRepository {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date = LocalDate.parse(dateCln, formatter);
             LocalDate closeDate = LocalDate.parse(closeDateCln, formatter);
-            ShowType showType = ShowType.valueOf(nextLine[COL_SHOWTYPES]);
+            ShowType showType = ShowType.valueOf(StringUtils.trimToNull(nextLine[COL_SHOWTYPES]));
 
             add(new ShowEvent(nextLine[COL_NAME], date, closeDate, nextLine[COL_LOCATION], nextLine[COL_JUDGE], showType));
         }
