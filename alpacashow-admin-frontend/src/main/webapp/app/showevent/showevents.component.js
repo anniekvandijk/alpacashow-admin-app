@@ -30,11 +30,8 @@ var ShowEventsComponent = (function () {
             date: ['', forms_1.Validators.required],
             closeDate: ['', forms_1.Validators.required],
             judge: ['', forms_1.Validators.required],
-            shows: ['', forms_1.Validators.required],
+            showType: ['', forms_1.Validators.required],
         });
-    };
-    ShowEventsComponent.prototype.onSelect = function (showevent) {
-        this.selectedShow = showevent;
     };
     ShowEventsComponent.prototype.deleteShow = function () {
         this.deleteMessage = 'Show delete!';

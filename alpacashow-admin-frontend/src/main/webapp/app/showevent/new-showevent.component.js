@@ -10,34 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
-var ShowType = (function () {
-    function ShowType() {
-    }
-    return ShowType;
-}());
-exports.ShowType = ShowType;
-var SHOWTYPES = [
-    { showType: 'Haltershow' },
-    { showType: 'Fleeceshow' },
-    { showType: 'Male progeny show' },
-    { showType: 'Female progeny show' }
-];
 var NewShowEventComponent = (function () {
     function NewShowEventComponent(formBuilder) {
         this.formBuilder = formBuilder;
-        this.showtypes = SHOWTYPES;
         this.submitted = false;
-        this.showtypeSelected = false;
         this.active = true;
-        this.shows = [];
     }
-    // TODO change button collor when selected. After another click set default and remove showtype.
-    NewShowEventComponent.prototype.select = function (showtype) {
-        this.shows.push(showtype);
-    };
-    NewShowEventComponent.prototype.remove = function (showtype) {
-        this.shows.splice(this.shows.indexOf(showtype), 1);
-    };
     NewShowEventComponent.prototype.ngOnInit = function () {
         this.newShowEventForm = this.formBuilder.group({
             name: ['', forms_1.Validators.required],
@@ -45,7 +23,7 @@ var NewShowEventComponent = (function () {
             date: ['', forms_1.Validators.required],
             closeDate: ['', forms_1.Validators.required],
             judge: ['', forms_1.Validators.required],
-            shows: ['', forms_1.Validators.required],
+            showType: ['', forms_1.Validators.required],
         });
     };
     NewShowEventComponent.prototype.onSubmit = function (form) {

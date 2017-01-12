@@ -12,7 +12,6 @@ import {ShowEvent}                  from '../model/showevent';
 export class ShowEventsComponent implements OnInit {
 
     errorMessage: string;
-    selectedShow: ShowEvent;
     updateShowEventForm: FormGroup;
     showevents: ShowEvent[];
     deleteMessage = '';
@@ -35,13 +34,8 @@ export class ShowEventsComponent implements OnInit {
             date:               ['', Validators.required],
             closeDate:          ['', Validators.required],
             judge:              ['', Validators.required],
-            shows:              ['', Validators.required],
+            showType:           ['', Validators.required],
         });
-    }
-
-    onSelect(showevent: ShowEvent): void {
-
-        this.selectedShow = showevent;
     }
 
     deleteShow() {
