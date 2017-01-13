@@ -1,17 +1,13 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.time.LocalDate;
-
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ParticipantsRepositoryTest {
     private static Logger logger = LoggerFactory.getLogger(ParticipantsRepositoryTest.class);
@@ -20,7 +16,7 @@ public class ParticipantsRepositoryTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void getParticipant() {
+    public void addParticipant() {
 
         String name = "Test participant";
         String farmName = "farm";
@@ -37,7 +33,7 @@ public class ParticipantsRepositoryTest {
         participantRepository.add(participant);
 
         String key = "Test participant";
-        assertEquals("Test participant", participantRepository.getParticipantByKeySet(key).getName());
+        assertEquals(key, participantRepository.getParticipantByKeySet(key).getName());
 
     }
 
@@ -65,6 +61,59 @@ public class ParticipantsRepositoryTest {
     }
 
     @Test
+    public void deleteParticipant() {
+
+        String name = "Test participant to delete";
+        String farmName = "farm";
+        String email = "farm@farm.nl";
+        String telephone = "06-12345678";
+        String address = "some address";
+        String zipCode = "1234 AA";
+        String city = "some City";
+        String country = "Netherlands";
+
+        Participant participant = new Participant(name, farmName, email, telephone, address, zipCode, city, country);
+        ParticipantRepository participantRepository = new ParticipantRepository();
+        participantRepository.add(participant);
+
+        assertEquals(1, participantRepository.getAllParticipants().size());
+        String key = "Test participant to delete";
+        assertEquals(key, participantRepository.getParticipantByKeySet(key).getName());
+
+        participantRepository.delete(key);
+
+        assertEquals(0, participantRepository.getAllParticipants().size());
+    }
+
+    @Test
+    public void deleteParticipantWithNotKnownKey() {
+
+        exception.expect(NullPointerException.class);
+
+        String name = "Test participant to delete";
+        String farmName = "farm";
+        String email = "farm@farm.nl";
+        String telephone = "06-12345678";
+        String address = "some address";
+        String zipCode = "1234 AA";
+        String city = "some City";
+        String country = "Netherlands";
+
+        Participant participant = new Participant(name, farmName, email, telephone, address, zipCode, city, country);
+        ParticipantRepository participantRepository = new ParticipantRepository();
+        participantRepository.add(participant);
+
+        assertEquals(1, participantRepository.getAllParticipants().size());
+
+        String key = "Not known participant";
+        participantRepository.delete(key);
+
+        assertEquals(1, participantRepository.getAllParticipants().size());
+        assertEquals(null, participantRepository.delete(key).toString());
+
+    }
+
+    @Test
     public void getNotKnownParticipant() {
 
         exception.expect(NullPointerException.class);
@@ -89,10 +138,10 @@ public class ParticipantsRepositoryTest {
     }
 
     @Test
-    public void getAllParticpants() {
+    public void getAllParticipantsByKeySet() {
 
         String name1 = "Test participant";
-        String name2 = "Andere participant";
+        String name2 = "Test participant nummer 2";
         String farmName = "farm";
         String email = "farm@farm.nl";
         String telephone = "06-12345678";
@@ -108,9 +157,12 @@ public class ParticipantsRepositoryTest {
         participantRepository.add(participant1);
         participantRepository.add(participant2);
 
-        assertEquals(2, participantRepository.getAllParticipants().size());
-
+        assertEquals(2, participantRepository.getAllParticipantsByKeySet().size());
+        assertTrue(participantRepository.getAllParticipantsByKeySet().contains("Test participant"));
+        assertTrue(participantRepository.getAllParticipantsByKeySet().contains("Test participant nummer 2"));
     }
+
+
 }
 
 

@@ -43,6 +43,27 @@ public class ShowEventRepositoryTest {
     }
 
     @Test
+    public void AddShowEventWithSameKey() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Showevent with same date and showtype already exists");
+
+        String name = "Test showEvent";
+        LocalDate date = LocalDate.of(2017, 6, 15);
+        LocalDate closeDate = LocalDate.of(2017, 4, 15);
+        String location = "Surhuisterveen";
+        String judge = " Test Judge ";
+        ShowType showType = ShowType.FLEECESHOW;
+
+        ShowEvent showEvent1 = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEvent showEvent2 = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEventRepository showEventRepository = new ShowEventRepository();
+
+        showEventRepository.add(showEvent1);
+        showEventRepository.add(showEvent2);
+    }
+
+    @Test
     public void deleteShowEvent() {
 
         String name = "Test showEvent to delete";
@@ -63,37 +84,6 @@ public class ShowEventRepositoryTest {
         showEventRepository.delete(key);
 
         assertEquals(0, showEventRepository.getAllShowEvents().size());
-
-    }
-
-    @Test
-    public void AddShowEventWithSameKey() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Showevent with same date and showtype already exists");
-
-        String name = "Test showEvent1";
-        LocalDate date = LocalDate.of(2017, 6, 15);
-        LocalDate closeDate = LocalDate.of(2017, 4, 15);
-        String location = "Surhuisterveen";
-        String judge = " Test Judge ";
-        ShowType showType = ShowType.FLEECESHOW;
-
-        ShowEvent showEvent1 = new ShowEvent(name, date, closeDate, location, judge, showType);
-        ShowEventRepository showEventRepository = new ShowEventRepository();
-
-        showEventRepository.add(showEvent1);
-
-        name = "Test showEvent2";
-        date = LocalDate.of(2017, 6, 15);
-        closeDate = LocalDate.of(2017, 4, 15);
-        location = "Surhuisterveen";
-        judge = " Test Judge ";
-        showType = ShowType.FLEECESHOW;
-
-        ShowEvent showEvent2 = new ShowEvent(name, date, closeDate, location, judge, showType);
-
-        showEventRepository.add(showEvent2);
     }
 
     @Test
@@ -148,23 +138,17 @@ public class ShowEventRepositoryTest {
 
         ShowEventRepository showEventRepository = new ShowEventRepository();
 
-        String name = "Test showEvent 1";
+        String name1 = "Test showEvent 1";
+        String name2 = "Test showEvent 2";
         LocalDate date = LocalDate.of(2017, 6, 15);
         LocalDate closeDate = LocalDate.of(2017, 4, 15);
         String location = "Surhuisterveen";
         String judge = " Test Judge ";
-        ShowType showType = ShowType.FLEECESHOW;
+        ShowType showType1 = ShowType.FLEECESHOW;
+        ShowType showType2 = ShowType.HALTERSHOW;
 
-        ShowEvent showEvent1 = new ShowEvent(name, date, closeDate, location, judge, showType);
-
-        name = "Test showEvent 2";
-        date = LocalDate.of(2017, 6, 15);
-        closeDate = LocalDate.of(2017, 4, 15);
-        location = "Surhuisterveen";
-        judge = " Test Judge ";
-        showType = ShowType.HALTERSHOW;
-
-        ShowEvent showEvent2 = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEvent showEvent1 = new ShowEvent(name1, date, closeDate, location, judge, showType1);
+        ShowEvent showEvent2 = new ShowEvent(name2, date, closeDate, location, judge, showType2);
 
         showEventRepository.add(showEvent1);
         showEventRepository.add(showEvent2);
@@ -172,36 +156,6 @@ public class ShowEventRepositoryTest {
         assertEquals(2, showEventRepository.getAllShowEventsByKeySet().size());
         assertTrue(showEventRepository.getAllShowEventsByKeySet().contains("2017-06-15_HALTERSHOW"));
         assertTrue(showEventRepository.getAllShowEventsByKeySet().contains("2017-06-15_FLEECESHOW"));
-
-    }
-
-    @Test
-    public void getAllShowEvents() {
-
-        ShowEventRepository showEventRepository = new ShowEventRepository();
-
-        String name = "Test showEvent 1";
-        LocalDate date = LocalDate.of(2017, 6, 15);
-        LocalDate closeDate = LocalDate.of(2017, 4, 15);
-        String location = "Surhuisterveen";
-        String judge = " Test Judge ";
-        ShowType showType = ShowType.FLEECESHOW;
-
-        ShowEvent showEvent1 = new ShowEvent(name, date, closeDate, location, judge, showType);
-
-        name = "Test showEvent 2";
-        date = LocalDate.of(2017, 6, 15);
-        closeDate = LocalDate.of(2017, 4, 15);
-        location = "Surhuisterveen";
-        judge = " Test Judge ";
-        showType = ShowType.HALTERSHOW;
-
-        ShowEvent showEvent2 = new ShowEvent(name, date, closeDate, location, judge, showType);
-
-        showEventRepository.add(showEvent1);
-        showEventRepository.add(showEvent2);
-
-        assertEquals(2, showEventRepository.getAllShowEvents().size());
 
     }
 }
