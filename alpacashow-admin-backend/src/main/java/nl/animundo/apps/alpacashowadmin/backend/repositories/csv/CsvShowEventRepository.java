@@ -55,20 +55,18 @@ public class CsvShowEventRepository extends ShowEventRepository {
 
         while ((nextLine = csvReader.readNext()) != null) {
 
+            String nameCln = StringUtils.trimToNull(nextLine[COL_NAME]);
             String dateCln = StringUtils.trimToNull(nextLine[COL_DATE]);
             String closeDateCln = StringUtils.trimToNull(nextLine[COL_CLOSEDATE]);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date = LocalDate.parse(dateCln, formatter);
             LocalDate closeDate = LocalDate.parse(closeDateCln, formatter);
-            ShowType showType = ShowType.valueOf(StringUtils.trimToNull(nextLine[COL_SHOWTYPE]));
+            String locationCln = StringUtils.trimToNull(nextLine[COL_LOCATION]);
+            String judgeCln = StringUtils.trimToNull(nextLine[COL_JUDGE]);
+            ShowType showTypeCln = ShowType.valueOf(StringUtils.trimToNull(nextLine[COL_SHOWTYPE]));
 
-            add(new ShowEvent(nextLine[COL_NAME], date, closeDate, nextLine[COL_LOCATION], nextLine[COL_JUDGE], showType));
+            add(new ShowEvent(nameCln, date, closeDate, locationCln, judgeCln, showTypeCln));
         }
-
         csvReader.close();
-
     }
-
-
-
 }

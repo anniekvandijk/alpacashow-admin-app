@@ -13,9 +13,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-/**
- * Created by Anniek van Dijk on 18-7-2016.
- */
 public class CsvShowEventRepositoryTest {
 
     final String workingDir = System.getProperty("user.dir");
@@ -28,7 +25,7 @@ public class CsvShowEventRepositoryTest {
     @Test
     public void importShowEventsFromFile() throws IOException {
 
-        File file = new File(workingDir + testFileDir + "SHOWEVENTS_repoimporttest.csv");
+        File file = new File(workingDir + testFileDir + "SHOWEVENTS_import.csv");
 
         assertTrue(file.isFile() && file.exists() && file.canRead());
         Reader reader = new FileReader(file) ;
@@ -36,18 +33,22 @@ public class CsvShowEventRepositoryTest {
         ShowEventRepository repo = CsvShowEventRepository.importData(reader);
         assertEquals(2, repo.getAllShowEvents().size());
 
-        String searchForKey = "2017-05-01_HALTERSHOW";
-        ShowEvent showEvent = repo.getShowEventByKeySet(searchForKey);
+        String key = "2017-04-24_MALE_PROGENY_SHOW";
+        ShowEvent showEvent = repo.getShowEventByKeySet(key);
         assertNotNull(showEvent);
-        assertEquals("Meppel", showEvent.getLocation());
-
+        assertEquals("Hapert 2017", showEvent.getName());
+        assertEquals("2017-04-24", showEvent.getDate().toString());
+        assertEquals("2017-03-20", showEvent.getCloseDate().toString());
+        assertEquals("Hapert", showEvent.getLocation());
+        assertEquals("Judge X", showEvent.getJudge());
+        assertEquals("MALE_PROGENY_SHOW", showEvent.getShowType().toString());
     }
 
     @Test
     public void exportShowEventsToFile() throws IOException {
 
-        File importFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoimporttest.csv");
-        File exportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoexporttest.csv");
+        File importFile = new File(workingDir + testFileDir + "SHOWEVENTS_import.csv");
+        File exportFile = new File(workingDir + testFileDir + "SHOWEVENTS_export.csv");
 
         if (exportFile.exists()) {
             exportFile.delete();
@@ -57,7 +58,6 @@ public class CsvShowEventRepositoryTest {
         Reader reader = new FileReader(importFile) ;
 
         ShowEventRepository repo = CsvShowEventRepository.importData(reader);
-        assertEquals(2, repo.getAllShowEvents().size());
 
         String name = "Test showEvent";
         LocalDate date = LocalDate.of(2017, 7, 1);
@@ -69,13 +69,13 @@ public class CsvShowEventRepositoryTest {
         repo.add(new ShowEvent(name, date, closeDate, location, judge, showType));
         assertEquals(3, repo.getAllShowEvents().size());
 
-        File newExportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoexporttest.csv");
+        File newExportFile = new File(workingDir + testFileDir + "SHOWEVENTS_export.csv");
         FileWriter writer = new FileWriter(newExportFile);
         CsvShowEventRepository.exportData(writer, repo);
         writer.flush();
         writer.close();
 
-        File newImportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoexporttest.csv");
+        File newImportFile = new File(workingDir + testFileDir + "SHOWEVENTS_export.csv");
 
         assertTrue(newImportFile.isFile() && newImportFile.exists() && newImportFile.canRead());
         reader = new FileReader(newImportFile) ;
@@ -83,8 +83,8 @@ public class CsvShowEventRepositoryTest {
         ShowEventRepository newRepo = CsvShowEventRepository.importData(reader);
         assertEquals(3, newRepo.getAllShowEvents().size());
 
-        String searchForKey = "2017-07-01_FLEECESHOW";
-        ShowEvent showEvent = newRepo.getShowEventByKeySet(searchForKey);
+        String key = "2017-07-01_FLEECESHOW";
+        ShowEvent showEvent = newRepo.getShowEventByKeySet(key);
         assertNotNull(showEvent);
         assertEquals("Surhuisterveen", showEvent.getLocation());
 
