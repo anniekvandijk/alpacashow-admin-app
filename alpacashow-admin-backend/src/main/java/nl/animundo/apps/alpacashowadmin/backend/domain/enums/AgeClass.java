@@ -8,10 +8,10 @@ import java.time.temporal.ChronoUnit;
 
 public enum AgeClass {
 
-    JUNIOR (6, 12),
-    INTERMEDIATE (12, 24),
-    ADULT (24, 48),
-    SENIOR (48, 72),
+    JUNIOR (6, 11),
+    INTERMEDIATE (12, 23),
+    ADULT (24, 47),
+    SENIOR (48, 71),
     MATURE (72, 600);
 
     private final int monthMin;

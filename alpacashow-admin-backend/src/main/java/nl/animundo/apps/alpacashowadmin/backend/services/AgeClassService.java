@@ -17,7 +17,7 @@ public class AgeClassService {
         long ageInMonths = getAgeInMonthHaltershow(showDate, dateOfBirth);
 
         for (AgeClass ageClass : AgeClass.values()) {
-            if (ageInMonths >= ageClass.getMonthMin() && ageInMonths < ageClass.getMonthMax()) {
+            if (ageInMonths >= ageClass.getMonthMin() && ageInMonths <= ageClass.getMonthMax()) {
                 logger.info("AgeClass = " + ageClass);
                 return ageClass;
             }
