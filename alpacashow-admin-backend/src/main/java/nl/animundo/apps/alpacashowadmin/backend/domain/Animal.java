@@ -1,27 +1,37 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
+import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateDeserializer;
+import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateSerializer;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
 
 public class Animal {
 
-
     private final String name;
     private final BreedClass breedClass;
     private final SexClass sexClass;
     private final ColorClass colorClass;
+    @JsonDeserialize(using = JsonDateDeserializer.class)
+    @JsonSerialize(using = JsonDateSerializer.class)
     private final LocalDate dateOfBirth;
     private final String microchip;
     private final String registration;
     private final String sire;
     private final String dam;
 
-    public Animal(final String name, final BreedClass breedClass, final SexClass sexClass, final ColorClass colorClass,
-                  final LocalDate dateOfBirth, final String microchip, final String registration, final String sire, final String dam) {
+    @JsonCreator
+    public Animal(@JsonProperty("name") final String name, @JsonProperty("breedClass") final BreedClass breedClass,
+                  @JsonProperty("sexClass") final SexClass sexClass, @JsonProperty("colorClass") final ColorClass colorClass,
+                  @JsonProperty("dateOfBirth") final LocalDate dateOfBirth, @JsonProperty("microchip") final String microchip,
+                  @JsonProperty("registration") final String registration, @JsonProperty("sire") final String sire, @JsonProperty("dam") final String dam) {
 
         final String nameCln = StringUtils.trimToNull(name);
         if (nameCln == null) {

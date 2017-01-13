@@ -1,5 +1,7 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +18,8 @@ public class Participant {
         this(name, new HashSet<Animal>());
     }
 
-    public Participant(final String name, final Set<Animal> animals) {
+    @JsonCreator
+    public Participant(@JsonProperty("name") final String name, @JsonProperty("animals") final Set<Animal> animals) {
 
         final String nameCln = StringUtils.trimToNull(name);
         if (nameCln == null) {
