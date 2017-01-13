@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ShowEventRepositoryTest {
     private static Logger logger = LoggerFactory.getLogger(ShowEventRepositoryTest.class);
@@ -96,7 +97,32 @@ public class ShowEventRepositoryTest {
     }
 
     @Test
-    public void notKnownShowEvent() {
+    public void deleteShowEventWithNotKnownKey() {
+
+        exception.expect(NullPointerException.class);
+
+        String name = "Test showEvent to delete";
+        LocalDate date = LocalDate.of(2017, 6, 12);
+        LocalDate closeDate = LocalDate.of(2017, 4, 15);
+        String location = "Surhuisterveen";
+        String judge = " Test Judge ";
+        ShowType showType = ShowType.MALE_PROGENY_SHOW;
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEventRepository showEventRepository = new ShowEventRepository();
+        showEventRepository.add(showEvent);
+
+        assertEquals(1, showEventRepository.getAllShowEvents().size());
+
+        String key = "2017-06-15_MALE_PROGENY_SHOW";
+        showEventRepository.delete(key);
+
+        assertEquals(1, showEventRepository.getAllShowEvents().size());
+        assertEquals(null, showEventRepository.delete(key).toString());
+    }
+
+    @Test
+    public void getNotKnownShowEvent() {
 
         exception.expect(NullPointerException.class);
 
@@ -114,6 +140,38 @@ public class ShowEventRepositoryTest {
 
         String key = "2017-06-14_FLEECESHOW";
         showEventRepository.getShowEventByKeySet(key).getName();
+
+    }
+
+    @Test
+    public void getAllShowEventsByKeySet() {
+
+        ShowEventRepository showEventRepository = new ShowEventRepository();
+
+        String name = "Test showEvent 1";
+        LocalDate date = LocalDate.of(2017, 6, 15);
+        LocalDate closeDate = LocalDate.of(2017, 4, 15);
+        String location = "Surhuisterveen";
+        String judge = " Test Judge ";
+        ShowType showType = ShowType.FLEECESHOW;
+
+        ShowEvent showEvent1 = new ShowEvent(name, date, closeDate, location, judge, showType);
+
+        name = "Test showEvent 2";
+        date = LocalDate.of(2017, 6, 15);
+        closeDate = LocalDate.of(2017, 4, 15);
+        location = "Surhuisterveen";
+        judge = " Test Judge ";
+        showType = ShowType.HALTERSHOW;
+
+        ShowEvent showEvent2 = new ShowEvent(name, date, closeDate, location, judge, showType);
+
+        showEventRepository.add(showEvent1);
+        showEventRepository.add(showEvent2);
+
+        assertEquals(2, showEventRepository.getAllShowEventsByKeySet().size());
+        assertTrue(showEventRepository.getAllShowEventsByKeySet().contains("2017-06-15_HALTERSHOW"));
+        assertTrue(showEventRepository.getAllShowEventsByKeySet().contains("2017-06-15_FLEECESHOW"));
 
     }
 
