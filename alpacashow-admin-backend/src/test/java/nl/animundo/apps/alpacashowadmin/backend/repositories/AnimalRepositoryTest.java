@@ -42,8 +42,7 @@ public class AnimalRepositoryTest {
         animalRepository.add(animal);
 
         String key = "123456789";
-        assertEquals("SURI", animalRepository.getAnimalByKeySet(key).getBreedClass().toString());
-
+        assertEquals("SURI", animalRepository.getAnimalByKeySet(key).getBreed().toString());
     }
 
     @Test
