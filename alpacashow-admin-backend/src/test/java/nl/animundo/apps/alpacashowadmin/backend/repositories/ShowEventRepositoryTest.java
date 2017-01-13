@@ -19,7 +19,7 @@ public class ShowEventRepositoryTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void addShow() {
+    public void addShowEvent() {
 
         String name = "Test showEvent";
         LocalDate date = LocalDate.of(2017, 6, 15);
@@ -31,15 +31,42 @@ public class ShowEventRepositoryTest {
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
         ShowEventRepository showEventRepository = new ShowEventRepository();
 
+        assertEquals(0, showEventRepository.getAllShowEvents().size());
+
         showEventRepository.add(showEvent);
 
         String key = "2017-06-15_FLEECESHOW";
+
+        assertEquals(1, showEventRepository.getAllShowEvents().size());
         assertEquals("Test showEvent", showEventRepository.getShowEventByKeySet(key).getName());
+    }
+
+    @Test
+    public void deleteShowEvent() {
+
+        String name = "Test showEvent to delete";
+        LocalDate date = LocalDate.of(2017, 6, 12);
+        LocalDate closeDate = LocalDate.of(2017, 4, 15);
+        String location = "Surhuisterveen";
+        String judge = " Test Judge ";
+        ShowType showType = ShowType.MALE_PROGENY_SHOW;
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEventRepository showEventRepository = new ShowEventRepository();
+        showEventRepository.add(showEvent);
+
+        assertEquals(1, showEventRepository.getAllShowEvents().size());
+        String key = "2017-06-12_MALE_PROGENY_SHOW";
+        assertEquals("Test showEvent to delete", showEventRepository.getShowEventByKeySet(key).getName());
+
+        showEventRepository.delete(key);
+
+        assertEquals(0, showEventRepository.getAllShowEvents().size());
 
     }
 
     @Test
-    public void AddShowWithSameKey() {
+    public void AddShowEventWithSameKey() {
 
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Showevent with same date and showtype already exists");
@@ -69,7 +96,7 @@ public class ShowEventRepositoryTest {
     }
 
     @Test
-    public void getNotKnownShow() {
+    public void notKnownShowEvent() {
 
         exception.expect(NullPointerException.class);
 
