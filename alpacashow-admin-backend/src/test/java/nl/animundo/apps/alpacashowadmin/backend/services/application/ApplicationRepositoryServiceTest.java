@@ -47,7 +47,7 @@ public class ApplicationRepositoryServiceTest {
         ShowEventRepository showEventRepo;
         showEventRepo = ApplicationRepositoryService.loadShowEventRepository();
 
-        assertEquals(2, showEventRepo.size());
+        assertEquals(2, showEventRepo.getAllShowEvents().size());
 
     }
 }

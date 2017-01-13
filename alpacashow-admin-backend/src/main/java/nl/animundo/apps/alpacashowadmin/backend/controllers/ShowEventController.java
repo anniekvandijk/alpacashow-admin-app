@@ -51,7 +51,7 @@ public class ShowEventController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShowEventByKey(@PathParam("key") String key) throws IOException {
         loadRepository();
-        ShowEvent event = showEventRepo.getShowEventsByKeySet(key);
+        ShowEvent event = showEventRepo.getShowEventByKeySet(key);
 
         if (event != null) {
             return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(event)).build();

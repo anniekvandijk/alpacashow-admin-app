@@ -35,8 +35,8 @@ public class CsvShowEventRepository extends ShowEventRepository {
                 .append("JUDGE").append(";")
                 .append("SHOWTYPE").append("\n");
 
-        for (String showEvent : showEventRepo.getShowEvents()) {
-            ShowEvent show = showEventRepo.getShowEventsByKeySet(showEvent);
+        for (String showEvent : showEventRepo.getAllShowEventsByKeySet()) {
+            ShowEvent show = showEventRepo.getShowEventByKeySet(showEvent);
             writer  .append(show.getName()).append(";")
                     .append(show.getDate().toString()).append(";")
                     .append(show.getCloseDate().toString()).append(";")

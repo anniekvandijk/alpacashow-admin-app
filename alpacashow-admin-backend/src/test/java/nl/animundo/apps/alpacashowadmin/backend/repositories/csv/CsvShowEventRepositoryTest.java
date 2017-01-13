@@ -34,10 +34,10 @@ public class CsvShowEventRepositoryTest {
         Reader reader = new FileReader(file) ;
 
         ShowEventRepository repo = CsvShowEventRepository.importData(reader);
-        assertEquals(2, repo.size());
+        assertEquals(2, repo.getAllShowEvents().size());
 
         String searchForKey = "2017-05-01_HALTERSHOW";
-        ShowEvent showEvent = repo.search(searchForKey);
+        ShowEvent showEvent = repo.getShowEventByKeySet(searchForKey);
         assertNotNull(showEvent);
         assertEquals("Meppel", showEvent.getLocation());
 
@@ -57,7 +57,7 @@ public class CsvShowEventRepositoryTest {
         Reader reader = new FileReader(importFile) ;
 
         ShowEventRepository repo = CsvShowEventRepository.importData(reader);
-        assertEquals(2, repo.size());
+        assertEquals(2, repo.getAllShowEvents().size());
 
         String name = "Test showEvent";
         LocalDate date = LocalDate.of(2017, 7, 1);
@@ -67,7 +67,7 @@ public class CsvShowEventRepositoryTest {
         ShowType showType = ShowType.FLEECESHOW;
 
         repo.add(new ShowEvent(name, date, closeDate, location, judge, showType));
-        assertEquals(3, repo.size());
+        assertEquals(3, repo.getAllShowEvents().size());
 
         File newExportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoexporttest.csv");
         FileWriter writer = new FileWriter(newExportFile);
@@ -81,10 +81,10 @@ public class CsvShowEventRepositoryTest {
         reader = new FileReader(newImportFile) ;
 
         ShowEventRepository newRepo = CsvShowEventRepository.importData(reader);
-        assertEquals(3, newRepo.size());
+        assertEquals(3, newRepo.getAllShowEvents().size());
 
         String searchForKey = "2017-07-01_FLEECESHOW";
-        ShowEvent showEvent = newRepo.search(searchForKey);
+        ShowEvent showEvent = newRepo.getShowEventByKeySet(searchForKey);
         assertNotNull(showEvent);
         assertEquals("Surhuisterveen", showEvent.getLocation());
 
@@ -104,7 +104,7 @@ public class CsvShowEventRepositoryTest {
         Reader reader = new FileReader(importFile) ;
 
         ShowEventRepository repo = CsvShowEventRepository.importData(reader);
-        assertEquals(2, repo.size());
+        assertEquals(2, repo.getAllShowEvents().size());
 
         repo.delete("2017-04-24_MALE_PROGENY_SHOW");
 
@@ -120,7 +120,7 @@ public class CsvShowEventRepositoryTest {
         reader = new FileReader(newImportFile) ;
 
         ShowEventRepository newRepo = CsvShowEventRepository.importData(reader);
-        assertEquals(1, newRepo.size());
+        assertEquals(1, newRepo.getAllShowEvents().size());
 
     }
 

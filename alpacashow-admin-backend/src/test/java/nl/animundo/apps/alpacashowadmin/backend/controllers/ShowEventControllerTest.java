@@ -3,8 +3,6 @@ package nl.animundo.apps.alpacashowadmin.backend.controllers;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ws.rs.core.Response;
@@ -63,7 +61,7 @@ public class ShowEventControllerTest {
     public void addAndDeleteShowEvent() throws IOException {
 
         loadRepository();
-        assertEquals(2, showEventRepo.size());
+        assertEquals(2, showEventRepo.getAllShowEvents().size());
 
         ShowEventController controller = new ShowEventController();
 
@@ -71,15 +69,15 @@ public class ShowEventControllerTest {
         controller.addShowEvent(showEvent);
 
         loadRepository();
-        assertEquals(3, showEventRepo.size());
+        assertEquals(3, showEventRepo.getAllShowEvents().size());
 
-        ShowEvent event = showEventRepo.search("2017-03-01_HALTERSHOW");
+        ShowEvent event = showEventRepo.getShowEventByKeySet("2017-03-01_HALTERSHOW");
         assertEquals("Test 2017", event.getName());
 
         controller.deleteShowEvent("2017-03-01_HALTERSHOW");
 
         loadRepository();
-        assertEquals(2, showEventRepo.size());
+        assertEquals(2, showEventRepo.getAllShowEvents().size());
 
     }
 
@@ -101,7 +99,7 @@ public class ShowEventControllerTest {
     public void updateShowEvent() throws IOException {
 
         loadRepository();
-        assertEquals(2, showEventRepo.size());
+        assertEquals(2, showEventRepo.getAllShowEvents().size());
 
         ShowEventController controller = new ShowEventController();
 
@@ -109,16 +107,16 @@ public class ShowEventControllerTest {
         controller.addShowEvent(showEvent);
 
         loadRepository();
-        assertEquals(3, showEventRepo.size());
+        assertEquals(3, showEventRepo.getAllShowEvents().size());
 
-        ShowEvent event = showEventRepo.search("2017-03-01_HALTERSHOW");
+        ShowEvent event = showEventRepo.getShowEventByKeySet("2017-03-01_HALTERSHOW");
         assertEquals("Test 2017", event.getName());
 
         String showEvent2 = readJsonfile("update_showevent.json");
         controller.updateShowEvent("2017-03-01_HALTERSHOW", showEvent2);
 
         loadRepository();
-        ShowEvent getEvent3 = showEventRepo.getShowEventsByKeySet("2017-03-01_HALTERSHOW");
+        ShowEvent getEvent3 = showEventRepo.getShowEventByKeySet("2017-03-01_HALTERSHOW");
         assertEquals("Test update", getEvent3.getLocation());
 
         controller.deleteShowEvent("2017-03-01_HALTERSHOW");

@@ -14,7 +14,7 @@ public class ShowEventRepository {
     public void add(final ShowEvent showEvent) {
 
         String showEventKey = showEvent.getDate() + "_" + showEvent.getShowType();
-        if (getShowEventsByKeySet(showEventKey) == null) {
+        if (getShowEventByKeySet(showEventKey) == null) {
             showEvents.put(showEventKey, showEvent);
             logger.info("Added showEvent '" + showEventKey + "' to showEventRepo");
         } else {
@@ -24,7 +24,7 @@ public class ShowEventRepository {
 
     public String delete(final String showEventKey) {
 
-        ShowEvent showEventToDelete = getShowEventsByKeySet(showEventKey);
+        ShowEvent showEventToDelete = getShowEventByKeySet(showEventKey);
         if (showEventToDelete != null) {
             showEvents.remove(showEventToDelete.getDate() + "_" + showEventToDelete.getShowType());
             logger.info("Deleted showEvent '" + showEventKey + "' from showEventRepo");
@@ -34,21 +34,7 @@ public class ShowEventRepository {
         }
     }
 
-    public ShowEvent search(final String searchForKey) {
-
-        ShowEvent showEventToSearchFor = getShowEventsByKeySet(searchForKey);
-        if (showEventToSearchFor != null) {
-            return showEventToSearchFor;
-        } else {
-            return null;
-        }
-    }
-
-    public int size() {
-        return showEvents.size();
-    }
-
-    public Set<String> getShowEvents() {
+    public Set<String> getAllShowEventsByKeySet() {
         return showEvents.keySet();
     }
 
@@ -57,7 +43,7 @@ public class ShowEventRepository {
     }
 
 
-    public ShowEvent getShowEventsByKeySet(final String keySet) {
+    public ShowEvent getShowEventByKeySet(final String keySet) {
         return showEvents.get(keySet);
     }
 
