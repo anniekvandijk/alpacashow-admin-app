@@ -64,6 +64,23 @@ public class ParticipantTest {
         assertEquals(animals, participant.getAnimals());
     }
 
+    @Test
+    public void participantNotEmpty() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field participant can not be empty");
+
+        String name = "  ";
+        String farmName = "farm";
+        String email = "farm@farm.nl";
+        String telephone = "06-12345678";
+        String address = "some address";
+        String zipCode = "1234 AA";
+        String city = "some City";
+        String country = "Netherlands";
+
+        new Participant(name, farmName, email, telephone, address, zipCode, city, country);
+    }
 
     @Test
     public void participantNotNull() {

@@ -54,6 +54,25 @@ public class AnimalTest {
     }
 
     @Test
+    public void nameNotEmpty() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field name can not be empty");
+
+        name            = "";
+        breedClass      = BreedClass.HUACAYA;
+        sexClass        = SexClass.FEMALE;
+        colorClass      = ColorClass.WHITE;
+        dateOfBirth     = LocalDate.now().minusMonths(6);
+        microchip       = "982000123169930";
+        registration    = "BAF12345";
+        sire            = "Alpaca father";
+        dam             = "Alpaca mother";
+
+        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+    }
+
+    @Test
     public void nameNotNull() {
 
         exception.expect(IllegalArgumentException.class);
@@ -149,6 +168,25 @@ public class AnimalTest {
     }
 
     @Test
+    public void microchipNotEmpty() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field microchip can not be empty");
+
+        name            = "Animal";
+        breedClass      = BreedClass.SURI;
+        sexClass        = SexClass.MALE;
+        colorClass      = ColorClass.BROWN;
+        dateOfBirth     = LocalDate.now().minusMonths(6);
+        microchip       = " ";
+        registration    = "BAF12345";
+        sire            = "Alpaca father";
+        dam             = "Alpaca mother";
+
+        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+    }
+
+    @Test
     public void microchipNotNull() {
 
         exception.expect(IllegalArgumentException.class);
@@ -162,6 +200,26 @@ public class AnimalTest {
         microchip       = null;
         registration    = "BAF12345";
         sire            = "Alpaca father";
+        dam             = "Alpaca mother";
+
+        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+    }
+
+
+    @Test
+    public void sireNotEmpty() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field sire can not be empty");
+
+        name            = "Animal";
+        breedClass      = BreedClass.SURI;
+        sexClass        = SexClass.MALE;
+        colorClass      = ColorClass.BROWN;
+        dateOfBirth     = LocalDate.now().minusMonths(6);
+        microchip       = "123456789";
+        registration    = "BAF12345";
+        sire            = " ";
         dam             = "Alpaca mother";
 
         new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
@@ -182,6 +240,25 @@ public class AnimalTest {
         registration    = "BAF12345";
         sire            = null;
         dam             = "Alpaca mother";
+
+        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+    }
+
+    @Test
+    public void damNotEmpty() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field dam can not be empty");
+
+        name            = "Animal";
+        breedClass      = BreedClass.SURI;
+        sexClass        = SexClass.MALE;
+        colorClass      = ColorClass.BROWN;
+        dateOfBirth     = LocalDate.now().minusMonths(6);
+        microchip       = "123456789";
+        registration    = "BAF12345";
+        sire            = "Alpaca father";
+        dam             = "";
 
         new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
     }

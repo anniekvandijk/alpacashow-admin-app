@@ -257,6 +257,22 @@ public class ShowEventTest {
     }
 
     @Test
+    public void showJudgeNotEmpty() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field judge can not be empty");
+
+        name = "Test showEvent";
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
+        location = "  Surhuisterveen ";
+        judge = "  ";
+        showType = ShowType.HALTERSHOW;
+
+        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
+    }
+
+    @Test
     public void showJudgeNotNull() {
 
         exception.expect(IllegalArgumentException.class);
