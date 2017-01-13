@@ -53,8 +53,8 @@ public class ShowEventTest {
         judge = "Test Judge ";
         showType = ShowType.HALTERSHOW;
         participants = new HashSet<>();
-        participants.add(new Participant("Test participant"));
-        participants.add(new Participant("Test participant2"));
+        participants.add(new Participant("Test participant", "", "", "", "", "", "", ""));
+        participants.add(new Participant("Test participant2", "", "", "", "", "", "", ""));
 
         ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType, participants);
 

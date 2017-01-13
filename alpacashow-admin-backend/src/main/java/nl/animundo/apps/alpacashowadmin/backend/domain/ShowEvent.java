@@ -58,11 +58,9 @@ public class ShowEvent {
         if (closeDate == null) {
             throw new IllegalArgumentException("Field closeDate can not be empty");
         }
-
         if (locationCln == null) {
             throw new IllegalArgumentException("Field location can not be empty");
         }
-
         if (judgeCln == null) {
             throw new IllegalArgumentException("Field judge can not be empty");
         }

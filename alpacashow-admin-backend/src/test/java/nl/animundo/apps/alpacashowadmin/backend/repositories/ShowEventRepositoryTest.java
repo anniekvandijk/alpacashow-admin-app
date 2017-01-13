@@ -19,7 +19,7 @@ public class ShowEventRepositoryTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void searchForShow() {
+    public void addShow() {
 
         String name = "Test showEvent";
         LocalDate date = LocalDate.of(2017, 6, 15);
@@ -33,8 +33,8 @@ public class ShowEventRepositoryTest {
 
         showEventRepository.add(showEvent);
 
-        String searchForKey = "2017-06-15_FLEECESHOW";
-        assertEquals("Test showEvent", showEventRepository.getShowEventByKeySet(searchForKey).getName());
+        String key = "2017-06-15_FLEECESHOW";
+        assertEquals("Test showEvent", showEventRepository.getShowEventByKeySet(key).getName());
 
     }
 
@@ -69,7 +69,7 @@ public class ShowEventRepositoryTest {
     }
 
     @Test
-    public void searchForNotKnownShow() {
+    public void getNotKnownShow() {
 
         exception.expect(NullPointerException.class);
 
@@ -85,8 +85,8 @@ public class ShowEventRepositoryTest {
 
         showEventRepository.add(showEvent);
 
-        String searchForKey = "2017-06-14_FLEECESHOW";
-        showEventRepository.getShowEventByKeySet(searchForKey).getName();
+        String key = "2017-06-14_FLEECESHOW";
+        showEventRepository.getShowEventByKeySet(key).getName();
 
     }
 
