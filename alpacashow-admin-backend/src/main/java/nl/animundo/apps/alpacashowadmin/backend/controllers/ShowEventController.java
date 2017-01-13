@@ -100,21 +100,22 @@ public class ShowEventController {
         String showDelete = showEventRepo.delete(key);
         if (showDelete == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
-        }
-        ObjectMapper mapper = new ObjectMapper();
-        ShowEvent event = null;
-        try {
-            event = mapper.readValue(showEvent, ShowEvent.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if (event != null) {
-            showEventRepo.add(event);
-            saveRepository();
-            return Response.status(Response.Status.OK).build();
         } else {
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            ObjectMapper mapper = new ObjectMapper();
+            ShowEvent event = null;
+            try {
+                event = mapper.readValue(showEvent, ShowEvent.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if (event != null) {
+                showEventRepo.add(event);
+                saveRepository();
+                return Response.status(Response.Status.OK).build();
+            } else {
+                return Response.status(Response.Status.BAD_REQUEST).build();
+            }
         }
     }
 

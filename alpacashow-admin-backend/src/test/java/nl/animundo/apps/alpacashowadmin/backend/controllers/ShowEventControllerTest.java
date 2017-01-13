@@ -128,6 +128,7 @@ public class ShowEventControllerTest {
     @Test
     public void updateShowEventWithWrongKey() throws IOException {
 
+        loadRepository();
         ShowEventController controller = new ShowEventController();
 
         String showEvent = readJsonfile("update_showevent.json");
@@ -139,6 +140,7 @@ public class ShowEventControllerTest {
     @Test
     public void updateShowEventWithWrongData() throws IOException {
 
+        loadRepository();
         ShowEventController controller = new ShowEventController();
 
         String showEvent = readJsonfile("update_showeventWrong.json");
