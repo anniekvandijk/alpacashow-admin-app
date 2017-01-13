@@ -18,7 +18,7 @@ public class CsvShowEventRepository extends ShowEventRepository {
     private static final int COL_CLOSEDATE = 2;
     private static final int COL_LOCATION = 3;
     private static final int COL_JUDGE = 4;
-    private static final int COL_SHOWTYPES = 5;
+    private static final int COL_SHOWTYPE = 5;
 
     public static ShowEventRepository importData(Reader reader) throws IOException {
 
@@ -28,12 +28,12 @@ public class CsvShowEventRepository extends ShowEventRepository {
     }
 
     public static void exportData(final Writer writer, final ShowEventRepository showEventRepo) throws IOException {
-        writer  .append("NAAM").append(";")
-                .append("DATUM").append(";")
-                .append("SLUITDATUM").append(";")
-                .append("LOCATIE").append(";")
-                .append("JURY").append(";")
-                .append("SHOWTYPEN").append("\n");
+        writer  .append("NAME").append(";")
+                .append("DATE").append(";")
+                .append("CLOSEDATE").append(";")
+                .append("LOCATION").append(";")
+                .append("JUDGE").append(";")
+                .append("SHOWTYPE").append("\n");
 
         for (String showEvent : showEventRepo.getShowEvents()) {
             ShowEvent show = showEventRepo.getShowEventsByKeySet(showEvent);
@@ -60,7 +60,7 @@ public class CsvShowEventRepository extends ShowEventRepository {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date = LocalDate.parse(dateCln, formatter);
             LocalDate closeDate = LocalDate.parse(closeDateCln, formatter);
-            ShowType showType = ShowType.valueOf(StringUtils.trimToNull(nextLine[COL_SHOWTYPES]));
+            ShowType showType = ShowType.valueOf(StringUtils.trimToNull(nextLine[COL_SHOWTYPE]));
 
             add(new ShowEvent(nextLine[COL_NAME], date, closeDate, nextLine[COL_LOCATION], nextLine[COL_JUDGE], showType));
         }

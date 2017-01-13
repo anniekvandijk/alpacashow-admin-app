@@ -42,7 +42,7 @@ public class ApplicationRepositoryServiceTest {
     }
 
     @Test
-    public void getDevCsvShowEventRepo() throws IOException {
+    public void getCsvShowEventRepo() throws IOException {
 
         ShowEventRepository showEventRepo;
         showEventRepo = ApplicationRepositoryService.loadShowEventRepository();

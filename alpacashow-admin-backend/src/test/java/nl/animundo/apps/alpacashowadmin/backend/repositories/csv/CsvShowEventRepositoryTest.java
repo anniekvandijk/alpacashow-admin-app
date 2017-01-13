@@ -90,48 +90,6 @@ public class CsvShowEventRepositoryTest {
 
     }
 
-//    @Test
-//    public void updateShowEvent() throws IOException {
-//
-//        File importFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoimporttest.csv");
-//        File exportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repouodatetest.csv");
-//
-//        if (exportFile.exists()) {
-//            exportFile.delete();
-//        }
-//
-//        assertTrue(importFile.isFile() && importFile.exists() && importFile.canRead());
-//        Reader reader = new FileReader(importFile) ;
-//
-//        ShowEventRepository repo = CsvShowEventRepository.importData(reader);
-//        assertEquals(2, repo.size());
-//
-//        String selectShowEvent = "2017-05-01_HALTERSHOW";
-//        ShowEvent showEventToUpdate = repo.getShowEventsByKeySet(selectShowEvent);
-//        showEventToUpdate.setName("Internationale alpacashowshow Meppel 2017");
-//        showEventToUpdate.setJudge("Some other judge");
-//
-//        File newExportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoupdatetest.csv");
-//        FileWriter writer = new FileWriter(newExportFile);
-//        CsvShowEventRepository.exportData(writer, repo);
-//        writer.flush();
-//        writer.close();
-//
-//        File newImportFile = new File(workingDir + testFileDir + "SHOWEVENTS_repoupdatetest.csv");
-//
-//        assertTrue(newImportFile.isFile() && newImportFile.exists() && newImportFile.canRead());
-//        reader = new FileReader(newImportFile) ;
-//
-//        ShowEventRepository newRepo = CsvShowEventRepository.importData(reader);
-//        assertEquals(2, newRepo.size());
-//
-//        String searchForKey = "2017-05-01_HALTERSHOW";
-//        ShowEvent showEvent = newRepo.search(searchForKey);
-//        assertNotNull(showEvent);
-//        assertEquals("Some other judge", showEvent.getJudge());
-//
-//    }
-
     @Test
     public void deleteShowEvent() throws IOException {
 
