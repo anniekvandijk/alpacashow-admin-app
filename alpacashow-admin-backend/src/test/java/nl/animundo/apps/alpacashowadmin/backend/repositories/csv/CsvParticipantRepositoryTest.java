@@ -8,7 +8,7 @@ import org.junit.rules.ExpectedException;
 import java.io.*;
 import static org.junit.Assert.*;
 
-public class CsvParticipantsRepositoryTest {
+public class CsvParticipantRepositoryTest {
 
     final String workingDir = System.getProperty("user.dir");
     final String testFileDir = "/src/test/resources/csv/";

@@ -270,9 +270,9 @@ public class AnimalTest {
         exception.expectMessage("Field dam can not be empty");
 
         name            = "Animal";
-        breed      = BreedClass.SURI;
-        sex        = SexClass.MALE;
-        color      = ColorClass.BROWN;
+        breed           = BreedClass.SURI;
+        sex             = SexClass.MALE;
+        color           = ColorClass.BROWN;
         dateOfBirth     = LocalDate.now().minusMonths(6);
         microchip       = "123456789";
         registration    = "BAF12345";
