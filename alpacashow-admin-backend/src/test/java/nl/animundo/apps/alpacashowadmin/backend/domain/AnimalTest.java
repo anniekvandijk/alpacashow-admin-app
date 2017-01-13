@@ -14,9 +14,9 @@ import static org.junit.Assert.assertEquals;
 public class AnimalTest {
 
     String name;
-    BreedClass breedClass;
-    SexClass sexClass;
-    ColorClass colorClass;
+    BreedClass breed;
+    SexClass sex;
+    ColorClass color;
     LocalDate dateOfBirth;
     String microchip;
     String registration;
@@ -30,21 +30,21 @@ public class AnimalTest {
     public void newAnimalWithTrim() {
 
         name            = "Alpacaname  ";
-        breedClass      = BreedClass.HUACAYA;
-        sexClass        = SexClass.FEMALE;
-        colorClass      = ColorClass.WHITE;
+        breed      = BreedClass.HUACAYA;
+        sex        = SexClass.FEMALE;
+        color      = ColorClass.WHITE;
         dateOfBirth     = LocalDate.now().minusMonths(6);
         microchip       = "   982000123169930";
         registration    = " BAF12345 ";
         sire            = "Alpaca father ";
         dam             = " Alpaca mother";
 
-        Animal animal = new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        Animal animal = new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam);
 
         assertEquals("Alpacaname", animal.getName());
-        assertEquals(BreedClass.HUACAYA, animal.getBreedClass());
-        assertEquals(SexClass.FEMALE, animal.getSexClass());
-        assertEquals(ColorClass.WHITE, animal.getColorClass());
+        assertEquals(BreedClass.HUACAYA, animal.getBreed());
+        assertEquals(SexClass.FEMALE, animal.getSex());
+        assertEquals(ColorClass.WHITE, animal.getColor());
         assertEquals(LocalDate.now().minusMonths(6), animal.getDateOfBirth());
         assertEquals("982000123169930", animal.getMicrochip());
         assertEquals("BAF12345", animal.getRegistration());
@@ -60,16 +60,16 @@ public class AnimalTest {
         exception.expectMessage("Field name can not be empty");
 
         name            = "";
-        breedClass      = BreedClass.HUACAYA;
-        sexClass        = SexClass.FEMALE;
-        colorClass      = ColorClass.WHITE;
+        breed      = BreedClass.HUACAYA;
+        sex        = SexClass.FEMALE;
+        color      = ColorClass.WHITE;
         dateOfBirth     = LocalDate.now().minusMonths(6);
         microchip       = "982000123169930";
         registration    = "BAF12345";
         sire            = "Alpaca father";
         dam             = "Alpaca mother";
 
-        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam);
     }
 
     @Test
@@ -79,73 +79,73 @@ public class AnimalTest {
         exception.expectMessage("Field name can not be empty");
 
         name            = null;
-        breedClass      = BreedClass.HUACAYA;
-        sexClass        = SexClass.FEMALE;
-        colorClass      = ColorClass.WHITE;
+        breed      = BreedClass.HUACAYA;
+        sex        = SexClass.FEMALE;
+        color      = ColorClass.WHITE;
         dateOfBirth     = LocalDate.now().minusMonths(6);
         microchip       = "982000123169930";
         registration    = "BAF12345";
         sire            = "Alpaca father";
         dam             = "Alpaca mother";
 
-        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam);
     }
 
     @Test
-    public void breedClassNotNull() {
+    public void breedNotNull() {
 
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field breed can not be empty");
 
         name            = "Animal";
-        breedClass      = null;
-        sexClass        = SexClass.FEMALE;
-        colorClass      = ColorClass.WHITE;
+        breed      = null;
+        sex        = SexClass.FEMALE;
+        color      = ColorClass.WHITE;
         dateOfBirth     = LocalDate.now().minusMonths(6);
         microchip       = "982000123169930";
         registration    = "BAF12345";
         sire            = "Alpaca father";
         dam             = "Alpaca mother";
 
-        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam);
     }
 
     @Test
-    public void sexClassNotNull() {
+    public void sexNotNull() {
 
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field sex can not be empty");
 
         name            = "Animal";
-        breedClass      = BreedClass.SURI;
-        sexClass        = null;
-        colorClass      = ColorClass.WHITE;
+        breed      = BreedClass.SURI;
+        sex        = null;
+        color      = ColorClass.WHITE;
         dateOfBirth     = LocalDate.now().minusMonths(6);
         microchip       = "982000123169930";
         registration    = "BAF12345";
         sire            = "Alpaca father";
         dam             = "Alpaca mother";
 
-        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam);
     }
 
     @Test
-    public void colorClassNotNull() {
+    public void colorNotNull() {
 
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field color can not be empty");
 
         name            = "Animal";
-        breedClass      = BreedClass.SURI;
-        sexClass        = SexClass.MALE;
-        colorClass      = null;
+        breed      = BreedClass.SURI;
+        sex        = SexClass.MALE;
+        color      = null;
         dateOfBirth     = LocalDate.now().minusMonths(6);
         microchip       = "982000123169930";
         registration    = "BAF12345";
         sire            = "Alpaca father";
         dam             = "Alpaca mother";
 
-        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam);
     }
 
     @Test
@@ -155,16 +155,16 @@ public class AnimalTest {
         exception.expectMessage("Field date of birth can not be empty");
 
         name            = "Animal";
-        breedClass      = BreedClass.SURI;
-        sexClass        = SexClass.MALE;
-        colorClass      = ColorClass.BROWN;
+        breed      = BreedClass.SURI;
+        sex        = SexClass.MALE;
+        color      = ColorClass.BROWN;
         dateOfBirth     = null;
         microchip       = "982000123169930";
         registration    = "BAF12345";
         sire            = "Alpaca father";
         dam             = "Alpaca mother";
 
-        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam);
     }
 
     @Test
@@ -174,16 +174,16 @@ public class AnimalTest {
         exception.expectMessage("Field microchip can not be empty");
 
         name            = "Animal";
-        breedClass      = BreedClass.SURI;
-        sexClass        = SexClass.MALE;
-        colorClass      = ColorClass.BROWN;
+        breed      = BreedClass.SURI;
+        sex        = SexClass.MALE;
+        color      = ColorClass.BROWN;
         dateOfBirth     = LocalDate.now().minusMonths(6);
         microchip       = " ";
         registration    = "BAF12345";
         sire            = "Alpaca father";
         dam             = "Alpaca mother";
 
-        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam);
     }
 
     @Test
@@ -193,16 +193,16 @@ public class AnimalTest {
         exception.expectMessage("Field microchip can not be empty");
 
         name            = "Animal";
-        breedClass      = BreedClass.SURI;
-        sexClass        = SexClass.MALE;
-        colorClass      = ColorClass.BROWN;
+        breed      = BreedClass.SURI;
+        sex        = SexClass.MALE;
+        color      = ColorClass.BROWN;
         dateOfBirth     = LocalDate.now().minusMonths(6);
         microchip       = null;
         registration    = "BAF12345";
         sire            = "Alpaca father";
         dam             = "Alpaca mother";
 
-        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam);
     }
 
 
@@ -213,16 +213,16 @@ public class AnimalTest {
         exception.expectMessage("Field sire can not be empty");
 
         name            = "Animal";
-        breedClass      = BreedClass.SURI;
-        sexClass        = SexClass.MALE;
-        colorClass      = ColorClass.BROWN;
+        breed      = BreedClass.SURI;
+        sex        = SexClass.MALE;
+        color      = ColorClass.BROWN;
         dateOfBirth     = LocalDate.now().minusMonths(6);
         microchip       = "123456789";
         registration    = "BAF12345";
         sire            = " ";
         dam             = "Alpaca mother";
 
-        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam);
     }
 
     @Test
@@ -232,16 +232,16 @@ public class AnimalTest {
         exception.expectMessage("Field sire can not be empty");
 
         name            = "Animal";
-        breedClass      = BreedClass.SURI;
-        sexClass        = SexClass.MALE;
-        colorClass      = ColorClass.BROWN;
+        breed      = BreedClass.SURI;
+        sex        = SexClass.MALE;
+        color      = ColorClass.BROWN;
         dateOfBirth     = LocalDate.now().minusMonths(6);
         microchip       = "123456789";
         registration    = "BAF12345";
         sire            = null;
         dam             = "Alpaca mother";
 
-        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam);
     }
 
     @Test
@@ -251,16 +251,16 @@ public class AnimalTest {
         exception.expectMessage("Field dam can not be empty");
 
         name            = "Animal";
-        breedClass      = BreedClass.SURI;
-        sexClass        = SexClass.MALE;
-        colorClass      = ColorClass.BROWN;
+        breed      = BreedClass.SURI;
+        sex        = SexClass.MALE;
+        color      = ColorClass.BROWN;
         dateOfBirth     = LocalDate.now().minusMonths(6);
         microchip       = "123456789";
         registration    = "BAF12345";
         sire            = "Alpaca father";
         dam             = "";
 
-        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam);
     }
 
     @Test
@@ -270,16 +270,16 @@ public class AnimalTest {
         exception.expectMessage("Field dam can not be empty");
 
         name            = "Animal";
-        breedClass      = BreedClass.SURI;
-        sexClass        = SexClass.MALE;
-        colorClass      = ColorClass.BROWN;
+        breed      = BreedClass.SURI;
+        sex        = SexClass.MALE;
+        color      = ColorClass.BROWN;
         dateOfBirth     = LocalDate.now().minusMonths(6);
         microchip       = "123456789";
         registration    = "BAF12345";
         sire            = "Alpaca father";
         dam             = null;
 
-        new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam);
     }
 
 

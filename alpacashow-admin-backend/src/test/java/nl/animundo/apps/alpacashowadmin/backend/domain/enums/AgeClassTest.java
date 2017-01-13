@@ -15,28 +15,28 @@ public class AgeClassTest {
     public void junior() {
 
         assertEquals(6, AgeClass.JUNIOR.getMonthMin());
-        assertEquals(12, AgeClass.JUNIOR.getMonthMax());
+        assertEquals(11, AgeClass.JUNIOR.getMonthMax());
     }
 
     @Test
     public void intermediate() {
 
         assertEquals(12, AgeClass.INTERMEDIATE.getMonthMin());
-        assertEquals(24, AgeClass.INTERMEDIATE.getMonthMax());
+        assertEquals(23, AgeClass.INTERMEDIATE.getMonthMax());
     }
 
     @Test
     public void adult() {
 
         assertEquals(24, AgeClass.ADULT.getMonthMin());
-        assertEquals(48, AgeClass.ADULT.getMonthMax());
+        assertEquals(47, AgeClass.ADULT.getMonthMax());
     }
 
     @Test
     public void senior() {
 
         assertEquals(48, AgeClass.SENIOR.getMonthMin());
-        assertEquals(72, AgeClass.SENIOR.getMonthMax());
+        assertEquals(71, AgeClass.SENIOR.getMonthMax());
     }
 
     @Test

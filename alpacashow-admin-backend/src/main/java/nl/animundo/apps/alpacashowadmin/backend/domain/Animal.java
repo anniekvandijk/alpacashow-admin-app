@@ -16,9 +16,9 @@ import java.time.LocalDate;
 public class Animal {
 
     private final String name;
-    private final BreedClass breedClass;
-    private final SexClass sexClass;
-    private final ColorClass colorClass;
+    private final BreedClass breed;
+    private final SexClass sex;
+    private final ColorClass color;
     @JsonDeserialize(using = JsonDateDeserializer.class)
     @JsonSerialize(using = JsonDateSerializer.class)
     private final LocalDate dateOfBirth;
@@ -28,8 +28,8 @@ public class Animal {
     private final String dam;
 
     @JsonCreator
-    public Animal(@JsonProperty("name") final String name, @JsonProperty("breedClass") final BreedClass breedClass,
-                  @JsonProperty("sexClass") final SexClass sexClass, @JsonProperty("colorClass") final ColorClass colorClass,
+    public Animal(@JsonProperty("name") final String name, @JsonProperty("breed") final BreedClass breed,
+                  @JsonProperty("sex") final SexClass sex, @JsonProperty("color") final ColorClass color,
                   @JsonProperty("dateOfBirth") final LocalDate dateOfBirth, @JsonProperty("microchip") final String microchip,
                   @JsonProperty("registration") final String registration, @JsonProperty("sire") final String sire, @JsonProperty("dam") final String dam) {
 
@@ -37,13 +37,13 @@ public class Animal {
         if (nameCln == null) {
             throw new IllegalArgumentException("Field name can not be empty");
         }
-        if (breedClass == null) {
+        if (breed == null) {
             throw new IllegalArgumentException("Field breed can not be empty");
         }
-        if (sexClass == null) {
+        if (sex == null) {
             throw new IllegalArgumentException("Field sex can not be empty");
         }
-        if (colorClass == null) {
+        if (color == null) {
             throw new IllegalArgumentException("Field color can not be empty");
         }
         if (dateOfBirth == null) {
@@ -64,9 +64,9 @@ public class Animal {
         }
 
         this.name = nameCln;
-        this.breedClass = breedClass;
-        this.sexClass = sexClass;
-        this.colorClass = colorClass;
+        this.breed = breed;
+        this.sex = sex;
+        this.color = color;
         this.dateOfBirth = dateOfBirth;
         this.microchip = microchipCln;
         this.registration = registrationCln;
@@ -78,16 +78,16 @@ public class Animal {
         return name;
     }
 
-    public BreedClass getBreedClass() {
-        return breedClass;
+    public BreedClass getBreed() {
+        return breed;
     }
 
-    public SexClass getSexClass() {
-        return sexClass;
+    public SexClass getSex() {
+        return sex;
     }
 
-    public ColorClass getColorClass() {
-        return colorClass;
+    public ColorClass getColor() {
+        return color;
     }
 
     public LocalDate getDateOfBirth() {
