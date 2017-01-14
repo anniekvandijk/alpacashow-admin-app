@@ -48,25 +48,26 @@ public class AnimalRepositoryTest {
     @Test
     public void AddAnimalWithSameKey() {
 
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Animal already exists");
-
         String name            = "Animal";
         BreedClass breedClass  = BreedClass.SURI;
         SexClass sexClass      = SexClass.MALE;
-        ColorClass colorClass  = ColorClass.BROWN;
+        ColorClass colorClass1  = ColorClass.BROWN;
+        ColorClass colorClass2  = ColorClass.FAWN;
         LocalDate dateOfBirth  = LocalDate.of(2014, 6, 12);
         String microchip       = "123456789";
         String registration    = "BAF12345";
         String sire            = "father";
         String dam             = "mother";
 
-        Animal animal1 = new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
-        Animal animal2 = new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        Animal animal1 = new Animal(name, breedClass, sexClass, colorClass1, dateOfBirth, microchip, registration, sire, dam);
+        Animal animal2 = new Animal(name, breedClass, sexClass, colorClass2, dateOfBirth, microchip, registration, sire, dam);
         AnimalRepository animalRepository = new AnimalRepository();
 
         animalRepository.add(animal1);
         animalRepository.add(animal2);
+
+        String key = "123456789";
+        assertEquals("FAWN", animalRepository.getAnimalByKeySet(key).getColor().toString());
     }
 
     @Test

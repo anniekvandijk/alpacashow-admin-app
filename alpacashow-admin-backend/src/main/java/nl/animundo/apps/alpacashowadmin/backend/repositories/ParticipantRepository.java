@@ -16,11 +16,13 @@ public class ParticipantRepository {
     public void add(final Participant participant) {
 
         String participantKey = participant.getName();
-        if (getParticipantByKeySet(participantKey) == null) {
+        if (getParticipantByKeySet(participantKey) != null) {
+            participants.remove(participantKey);
+            participants.put(participantKey, participant);
+            logger.info("Updated participant '" + participantKey + "' to participantRepo");
+        } else {
             participants.put(participantKey, participant);
             logger.info("Added participant '" + participantKey + "' to participantRepo");
-        } else {
-            throw new IllegalArgumentException("Participant already exists");
         }
     }
 

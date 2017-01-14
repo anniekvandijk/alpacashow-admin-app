@@ -40,24 +40,25 @@ public class ParticipantsRepositoryTest {
     @Test
     public void AddParticipantWithSameKey() {
 
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Participant already exists");
-
         String name = "Test participant";
         String farmName = "farm";
         String email = "farm@farm.nl";
         String telephone = "06-12345678";
-        String address = "some address";
+        String address1 = "some address";
+        String address2 = "some other address";
         String zipCode = "1234 AA";
         String city = "some City";
         String country = "Netherlands";
 
-        Participant participant1 = new Participant(name, farmName, email, telephone, address, zipCode, city, country);
-        Participant participant2 = new Participant(name, farmName, email, telephone, address, zipCode, city, country);
+        Participant participant1 = new Participant(name, farmName, email, telephone, address1, zipCode, city, country);
+        Participant participant2 = new Participant(name, farmName, email, telephone, address2, zipCode, city, country);
         ParticipantRepository participantRepository = new ParticipantRepository();
 
         participantRepository.add(participant1);
         participantRepository.add(participant2);
+
+        String key = "Test participant";
+        assertEquals("some other address", participantRepository.getParticipantByKeySet(key).getAddress());
     }
 
     @Test

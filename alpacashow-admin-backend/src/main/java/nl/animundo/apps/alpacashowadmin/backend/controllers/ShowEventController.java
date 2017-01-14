@@ -5,7 +5,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.AnimalRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
 import org.slf4j.Logger;
@@ -22,6 +25,8 @@ public class ShowEventController {
 
     private static Logger logger = LoggerFactory.getLogger(ShowEventController.class);
     private ShowEventRepository showEventRepository;
+    private ParticipantRepository participantRepository;
+    private AnimalRepository animalRepository;
 
     // TODO: if response != 200, put some information in the response body what went wrong.
 
@@ -140,10 +145,14 @@ public class ShowEventController {
     private void loadRepository() throws IOException {
 
         showEventRepository = ApplicationRepositoryService.loadShowEventRepository();
+        participantRepository = ApplicationRepositoryService.loadParticipantRepository();
+        animalRepository = ApplicationRepositoryService.loadAnimalRepository();
     }
 
     private void saveRepository() throws IOException {
 
         ApplicationRepositoryService.saveShowEventRepository(showEventRepository);
+        ApplicationRepositoryService.saveParticipantRepository(participantRepository);
+        ApplicationRepositoryService.saveAnimalRepository(animalRepository);
     }
 }

@@ -1,0 +1,32 @@
+{
+  "name": "Full showevent",
+  "date": "2017-10-01",
+  "closeDate": "2017-09-15",
+  "location": "Test",
+  "judge": "judge Y",
+  "showType": "Haltershow",
+  "participants": [
+    {
+      "name" : "Meneer 1",
+      "farmName" : "Alpacafarmp nummer 3",
+      "email" : "farmnaam@iets.eu",
+      "telephone" : "038-1234567",
+      "address" : "thuis 100",
+      "zipCode" : "9876 ZZ",
+      "city" : "Grun",
+      "country" : "Nederland",
+      "animals" : [ ]
+    },
+    {
+      "name" : "Meneer 2",
+      "farmName" : "Alpacafarmp nummer 3",
+      "email" : "farmnaam@iets.eu",
+      "telephone" : "038-1234567",
+      "address" : "thuis 100",
+      "zipCode" : "9876 ZZ",
+      "city" : "Grun",
+      "country" : "Nederland",
+      "animals" : [ ]
+    }
+  ]
+}

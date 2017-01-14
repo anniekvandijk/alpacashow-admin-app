@@ -16,11 +16,13 @@ public class AnimalRepository {
     public void add(final Animal animal) {
 
         String animalKey = animal.getMicrochip();
-        if (getAnimalByKeySet(animalKey) == null) {
+        if (getAnimalByKeySet(animalKey) != null) {
+            animals.remove(animalKey);
+            animals.put(animalKey, animal);
+            logger.info("Updated animal '" + animalKey + "' to animalRepo");
+        } else {
             animals.put(animalKey, animal);
             logger.info("Added animal '" + animalKey + "' to animalRepo");
-        } else {
-            throw new IllegalArgumentException("Animal already exists");
         }
     }
 
