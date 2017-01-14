@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Alpie",
+    "breed": "Huacaya",
+    "sex": "Female",
+    "color": "White",
+    "dateOfBirth": "2015-10-23",
+    "microchip": "982000123169930",
+    "registration": "BAF12345",
+    "sire": "Alpaca father",
+    "dam": "Alpaca mother"
+  },
+  {
+  "name" : "My Alpaca 2",
+  "breed" : "Huacaya",
+  "sex" : "Female",
+  "color" : "Fancy",
+  "dateOfBirth" : "2016-05-08",
+  "microchip" : "12346",
+  "registration" : "BAF12304",
+  "sire" : "My father",
+  "dam" : "My mothertoo"
+ },
+  {
+    "name" : "My Alpaca 3",
+    "breed" : "Huacaya",
+    "sex" : "Male",
+    "color" : "Brown",
+    "dateOfBirth" : "2016-05-12",
+    "microchip" : "12347",
+    "registration" : "null",
+    "sire" : "My fathertoo",
+    "dam" : "My mother"
+  }
+]

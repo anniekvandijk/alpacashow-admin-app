@@ -1,0 +1,11 @@
+{
+  "name" : "Deelnemer 3",
+  "farmName" : "Alpacafarmp nummer 3",
+  "email" : "farmnaam@iets.eu",
+  "telephone" : "038-1234567",
+  "address" : "thuis 100",
+  "zipCode" : "9876 ZZ",
+  "city" : "Grun",
+  "country" : "Nederland",
+  "animals" : [ ]
+}

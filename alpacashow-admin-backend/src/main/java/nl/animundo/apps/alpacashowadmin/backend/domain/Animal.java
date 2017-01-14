@@ -4,11 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import nl.animundo.apps.alpacashowadmin.backend.deserializers.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
-import nl.animundo.apps.alpacashowadmin.backend.deserializers.JsonDateDeserializer;
-import nl.animundo.apps.alpacashowadmin.backend.deserializers.JsonDateSerializer;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
@@ -16,8 +15,14 @@ import java.time.LocalDate;
 public class Animal {
 
     private final String name;
+    @JsonDeserialize(using = JsonBreedClassDeserializer.class)
+    @JsonSerialize(using = JsonBreedClassSerializer.class)
     private final BreedClass breed;
+    @JsonDeserialize(using = JsonSexClassDeserializer.class)
+    @JsonSerialize(using = JsonSexClassSerializer.class)
     private final SexClass sex;
+    @JsonDeserialize(using = JsonColorClassDeserializer.class)
+    @JsonSerialize(using = JsonColorClassSerializer.class)
     private final ColorClass color;
     @JsonDeserialize(using = JsonDateDeserializer.class)
     @JsonSerialize(using = JsonDateSerializer.class)

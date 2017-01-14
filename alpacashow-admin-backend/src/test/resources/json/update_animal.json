@@ -1,0 +1,11 @@
+{
+  "name" : "My English alpaca",
+  "breed" : "Huacaya",
+  "sex" : "Female",
+  "color" : "Black",
+  "dateOfBirth" : "2014-07-08",
+  "microchip" : "chippie",
+  "registration" : "BASUK0001",
+  "sire" : "My English father",
+  "dam" : "My English mothert"
+}

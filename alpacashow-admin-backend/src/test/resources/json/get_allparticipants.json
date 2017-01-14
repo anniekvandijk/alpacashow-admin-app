@@ -1,0 +1,21 @@
+[ {
+  "name" : "Deelnemer 1",
+  "farmName" : "Alpacafarm 1",
+  "email" : "farmnaam@iets.nl",
+  "telephone" : "050-1234567",
+  "address" : "thuis 3a",
+  "zipCode" : "1111 BB",
+  "city" : "Surhuisterveen",
+  "country" : "Nederland",
+  "animals" : [ ]
+}, {
+  "name" : "Deelnemer 2",
+  "farmName" : "Alpacafarmpje 2",
+  "email" : "farmnaam@iets.eu",
+  "telephone" : "038-1234567",
+  "address" : "thuis 100",
+  "zipCode" : "9876 ZZ",
+  "city" : "Grun",
+  "country" : "Nederland",
+  "animals" : [ ]
+} ]

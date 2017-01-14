@@ -1,0 +1,11 @@
+{
+  "name" : "My Alpaca 2",
+  "breed" : "Huacaya",
+  "sex" : "Female",
+  "color" : "Fancy",
+  "dateOfBirth" : "2016-05-08",
+  "microchip" : "12346",
+  "registration" : "BAF12304",
+  "sire" : "My father",
+  "dam" : "My mothertoo"
+}

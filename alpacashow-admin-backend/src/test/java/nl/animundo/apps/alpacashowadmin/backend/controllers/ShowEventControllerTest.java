@@ -7,12 +7,12 @@ import org.junit.Test;
 
 import javax.ws.rs.core.Response;
 import java.io.*;
+
+import static nl.animundo.apps.alpacashowadmin.backend.controllers.JsonFileReaderHelper.readJsonfile;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ShowEventControllerTest {
-
-    // TODO Try to really post this.
 
     final String workingDir = System.getProperty("user.dir");
     final String testFileDir = "/src/test/resources/json/";
@@ -49,54 +49,7 @@ public class ShowEventControllerTest {
     }
 
     @Test
-    public void getShowEventByNotExistingKey() throws IOException {
-
-        ShowEventController controller = new ShowEventController();
-
-        Response resultCode = controller.getShowEventByKey("2017-04-01_HALTERSHOW");
-        assertEquals(404, resultCode.getStatus());
-    }
-
-    @Test
-    public void addAndDeleteShowEvent() throws IOException {
-
-        loadRepository();
-        assertEquals(2, showEventRepo.getAllShowEvents().size());
-
-        ShowEventController controller = new ShowEventController();
-
-        String showEvent = readJsonfile("add_showevent.json");
-        controller.addShowEvent(showEvent);
-
-        loadRepository();
-        assertEquals(3, showEventRepo.getAllShowEvents().size());
-
-        ShowEvent event = showEventRepo.getShowEventByKeySet("2017-03-01_HALTERSHOW");
-        assertEquals("Test 2017", event.getName());
-
-        controller.deleteShowEvent("2017-03-01_HALTERSHOW");
-
-        loadRepository();
-        assertEquals(2, showEventRepo.getAllShowEvents().size());
-
-    }
-
-    @Test
-    public void addShowEventWithWrongData() throws IOException {
-
-        loadRepository();
-
-        ShowEventController controller = new ShowEventController();
-
-        String showEvent = readJsonfile("add_showeventWrong.json");
-        Response resultCode = controller.addShowEvent(showEvent);
-
-        assertEquals(400, resultCode.getStatus());
-
-    }
-
-    @Test
-    public void updateShowEvent() throws IOException {
+    public void addDeleteUpdateShowEvent() throws IOException {
 
         loadRepository();
         assertEquals(2, showEventRepo.getAllShowEvents().size());
@@ -120,6 +73,29 @@ public class ShowEventControllerTest {
         assertEquals("Test update", getEvent3.getLocation());
 
         controller.deleteShowEvent("2017-03-01_HALTERSHOW");
+
+    }
+
+    @Test
+    public void getShowEventByNotExistingKey() throws IOException {
+
+        ShowEventController controller = new ShowEventController();
+
+        Response resultCode = controller.getShowEventByKey("2017-04-01_HALTERSHOW");
+        assertEquals(404, resultCode.getStatus());
+    }
+
+    @Test
+    public void addShowEventWithWrongData() throws IOException {
+
+        loadRepository();
+
+        ShowEventController controller = new ShowEventController();
+
+        String showEvent = readJsonfile("add_showeventWrong.json");
+        Response resultCode = controller.addShowEvent(showEvent);
+
+        assertEquals(400, resultCode.getStatus());
 
     }
 
@@ -162,19 +138,5 @@ public class ShowEventControllerTest {
     private void loadRepository() throws IOException {
 
         showEventRepo = ApplicationRepositoryService.loadShowEventRepository();
-    }
-
-    private String readJsonfile(String fileName) throws IOException {
-        File file = new File(workingDir + testFileDir + fileName);
-        assertTrue(file.isFile() && file.exists() && file.canRead());
-        BufferedReader reader = new BufferedReader (new FileReader(file));
-        StringBuilder builder = new StringBuilder();
-        String result = "";
-        String line = reader.readLine();
-        while (line != null) {
-            builder.append(line);
-            line = reader.readLine();
-        }
-        return builder.toString();
     }
 }
