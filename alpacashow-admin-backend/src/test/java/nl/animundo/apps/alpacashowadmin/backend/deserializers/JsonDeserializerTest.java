@@ -1,4 +1,4 @@
-package nl.animundo.apps.alpacashowadmin.backend.deserialisers;
+package nl.animundo.apps.alpacashowadmin.backend.deserializers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
