@@ -7,8 +7,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
-import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateDeserializer;
-import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateSerializer;
+import nl.animundo.apps.alpacashowadmin.backend.deserialisers.JsonDateDeserializer;
+import nl.animundo.apps.alpacashowadmin.backend.deserialisers.JsonDateSerializer;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;

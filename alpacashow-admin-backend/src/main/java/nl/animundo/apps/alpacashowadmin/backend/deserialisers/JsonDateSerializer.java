@@ -1,7 +1,6 @@
-package nl.animundo.apps.alpacashowadmin.backend.util;
+package nl.animundo.apps.alpacashowadmin.backend.deserialisers;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 

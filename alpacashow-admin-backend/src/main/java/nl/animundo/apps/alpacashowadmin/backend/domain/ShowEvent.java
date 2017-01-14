@@ -5,17 +5,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
-import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateDeserializer;
-import nl.animundo.apps.alpacashowadmin.backend.util.JsonDateSerializer;
-import nl.animundo.apps.alpacashowadmin.backend.util.JsonShowTypeDeserializer;
-import nl.animundo.apps.alpacashowadmin.backend.util.JsonShowTypeSerializer;
+import nl.animundo.apps.alpacashowadmin.backend.deserialisers.JsonDateDeserializer;
+import nl.animundo.apps.alpacashowadmin.backend.deserialisers.JsonDateSerializer;
+import nl.animundo.apps.alpacashowadmin.backend.deserialisers.JsonShowTypeDeserializer;
+import nl.animundo.apps.alpacashowadmin.backend.deserialisers.JsonShowTypeSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.commons.lang3.StringUtils;
 import java.time.*;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.SortedSet;
 
 public class ShowEvent {
     private static Logger logger = LoggerFactory.getLogger(ShowEvent.class);

@@ -1,4 +1,4 @@
-package nl.animundo.apps.alpacashowadmin.backend.util;
+package nl.animundo.apps.alpacashowadmin.backend.deserialisers;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -16,8 +16,6 @@ public class JsonShowTypeDeserializer extends JsonDeserializer<ShowType> {
         String incommingString = parser.getText();
         String replace = incommingString.replace(" ", "_");
         String output = replace.toUpperCase();
-        ShowType showType = ShowType.valueOf(output);
-        return showType;
-
+        return ShowType.valueOf(output);
     }
 }
