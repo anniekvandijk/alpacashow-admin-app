@@ -81,4 +81,32 @@ public class ApplicationRepositoryService {
             throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
         }
     }
+
+    public static void saveParticipantRepository(ParticipantRepository repo) throws IOException {
+
+        if ("csv".equalsIgnoreCase(fileStorage)) {
+            String csvParticipantsResource = fileDirService.getFilePath(fileStorage + "/PARTICIPANTS.csv");
+            FileWriter writer = new FileWriter(csvParticipantsResource);
+            CsvParticipantRepository.exportData(writer, repo);
+            writer.flush();
+            writer.close();
+            logger.info("Exported csvParticipantRepository");
+        } else {
+            throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
+        }
+    }
+
+    public static void saveAnimalRepository(AnimalRepository repo) throws IOException {
+
+        if ("csv".equalsIgnoreCase(fileStorage)) {
+            String csvAnimalsResource = fileDirService.getFilePath(fileStorage + "/ANIMALS.csv");
+            FileWriter writer = new FileWriter(csvAnimalsResource);
+            CsvAnimalRepository.exportData(writer, repo);
+            writer.flush();
+            writer.close();
+            logger.info("Exported csvAnimalRepository");
+        } else {
+            throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
+        }
+    }
 }

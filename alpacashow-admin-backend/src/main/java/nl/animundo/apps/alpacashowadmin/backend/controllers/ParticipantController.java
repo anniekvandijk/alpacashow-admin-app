@@ -5,35 +5,33 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
+import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.io.IOException;
-import java.util.Collection;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
+import java.util.Collection;
 
-@Api (value="Showevents")
-@Path("showevents")
-public class ShowEventController {
+@Api (value="Participants")
+@Path("participants")
+public class ParticipantController {
 
-    private static Logger logger = LoggerFactory.getLogger(ShowEventController.class);
-    private ShowEventRepository showEventRepository;
-
-    // TODO: if response != 200, put some information in the response body what went wrong.
+    private static Logger logger = LoggerFactory.getLogger(ParticipantController.class);
+    private ParticipantRepository participantRepository;
 
     @GET
-    @ApiOperation(value = "Get all showevents",
-            response = ShowEvent.class,
+    @ApiOperation(value = "Get all participants",
+            response = Participant.class,
             responseContainer = "List")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getShowEvents() throws IOException {
+    public Response getParticipants() throws IOException {
         loadRepository();
-        Collection<ShowEvent> listOfShowEvents=showEventRepository.getAllShowEvents();
-        String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfShowEvents);
+        Collection<Participant> listOfParticipants = participantRepository.getAllParticipants();
+        String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfParticipants);
         Response response = Response
                 .status(Response.Status.OK)
                 .header("Access-Control-Allow-Origin", "*")
@@ -45,41 +43,41 @@ public class ShowEventController {
 
     @GET
     @Path("/{key}")
-    @ApiOperation(value = "Get showevent by key")
+    @ApiOperation(value = "Get participant by key")
     @ApiResponses(value = {
-            @ApiResponse(code = 404, message = "Show not found") })
+            @ApiResponse(code = 404, message = "Participant not found") })
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getShowEventByKey(@PathParam("key") String key) throws IOException {
+    public Response getParticipantByKey(@PathParam("key") String key) throws IOException {
         loadRepository();
-        ShowEvent showEvent = showEventRepository.getShowEventByKeySet(key);
+        Participant participant = participantRepository.getParticipantByKeySet(key);
 
-        if (showEvent != null) {
-            return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(showEvent)).build();
+        if (participant != null) {
+            return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(participant)).build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
 
     @POST
-    @ApiOperation(value = "Add new showevent",
-            response = ShowEvent.class,
+    @ApiOperation(value = "Add new participant",
+            response = Participant.class,
             responseContainer = "List")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Bad request")})
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addShowEvent(String showEvent) throws IOException {
+    public Response addParticipant(String participant) throws IOException {
         loadRepository();
         ObjectMapper mapper = new ObjectMapper();
-        ShowEvent event = null;
+        Participant event = null;
         try {
-            event = mapper.readValue(showEvent, ShowEvent.class);
+            event = mapper.readValue(participant, Participant.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         if (event != null) {
-            showEventRepository.add(event);
+            participantRepository.add(event);
             saveRepository();
             return Response.status(Response.Status.OK).build();
         } else {
@@ -88,29 +86,29 @@ public class ShowEventController {
     }
 
     @PUT
-    @ApiOperation(value = "Update showevent by key")
+    @ApiOperation(value = "Update participant by key")
     @ApiResponses(value = {
-            @ApiResponse(code = 404, message = "Show not found"),
+            @ApiResponse(code = 404, message = "Participant not found"),
             @ApiResponse(code = 400, message = "Bad request")})
     @Path("/{key}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateShowEvent(@PathParam("key") String key, String showEvent) throws IOException {
+    public Response updateParticipant(@PathParam("key") String key, String participant) throws IOException {
         loadRepository();
-        String showDelete = showEventRepository.delete(key);
-        if (showDelete == null) {
+        String participantDelete = participantRepository.delete(key);
+        if (participantDelete == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
             ObjectMapper mapper = new ObjectMapper();
-            ShowEvent event = null;
+            Participant event = null;
             try {
-                event = mapper.readValue(showEvent, ShowEvent.class);
+                event = mapper.readValue(participant, Participant.class);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             if (event != null) {
-                showEventRepository.add(event);
+                participantRepository.add(event);
                 saveRepository();
                 return Response.status(Response.Status.OK).build();
             } else {
@@ -120,15 +118,15 @@ public class ShowEventController {
     }
 
     @DELETE
-    @ApiOperation(value = "Delete showevent by key")
+    @ApiOperation(value = "Delete participant by key")
     @ApiResponses(value = {
-            @ApiResponse(code = 404, message = "Show not found") })
+            @ApiResponse(code = 404, message = "Participant not found") })
     @Path("/{key}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteShowEvent(@PathParam("key") String key) throws IOException {
+    public Response deleteParticipant(@PathParam("key") String key) throws IOException {
         loadRepository();
-        String showDelete = showEventRepository.delete(key);
-        if (showDelete != null) {
+        String participantDelete = participantRepository.delete(key);
+        if (participantDelete != null) {
             saveRepository();
             return Response.status(Response.Status.OK).build();
         }
@@ -139,11 +137,11 @@ public class ShowEventController {
 
     private void loadRepository() throws IOException {
 
-        showEventRepository = ApplicationRepositoryService.loadShowEventRepository();
+        participantRepository = ApplicationRepositoryService.loadParticipantRepository();
     }
 
     private void saveRepository() throws IOException {
 
-        ApplicationRepositoryService.saveShowEventRepository(showEventRepository);
+        ApplicationRepositoryService.saveParticipantRepository(participantRepository);
     }
 }

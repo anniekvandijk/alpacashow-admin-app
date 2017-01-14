@@ -5,35 +5,36 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
+import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
+import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.AnimalRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.io.IOException;
-import java.util.Collection;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
+import java.util.Collection;
 
-@Api (value="Showevents")
-@Path("showevents")
-public class ShowEventController {
+@Api (value="Animals")
+@Path("animals")
+public class AnimalController {
 
-    private static Logger logger = LoggerFactory.getLogger(ShowEventController.class);
-    private ShowEventRepository showEventRepository;
-
-    // TODO: if response != 200, put some information in the response body what went wrong.
+    private static Logger logger = LoggerFactory.getLogger(AnimalController.class);
+    private AnimalRepository animalRepository;
 
     @GET
-    @ApiOperation(value = "Get all showevents",
-            response = ShowEvent.class,
+    @ApiOperation(value = "Get all animals",
+            response = Animal.class,
             responseContainer = "List")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getShowEvents() throws IOException {
+    public Response getAnimals() throws IOException {
         loadRepository();
-        Collection<ShowEvent> listOfShowEvents=showEventRepository.getAllShowEvents();
-        String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfShowEvents);
+        Collection<Animal> listOfAnimals = animalRepository.getAllAnimals();
+        String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfAnimals);
         Response response = Response
                 .status(Response.Status.OK)
                 .header("Access-Control-Allow-Origin", "*")
@@ -45,41 +46,41 @@ public class ShowEventController {
 
     @GET
     @Path("/{key}")
-    @ApiOperation(value = "Get showevent by key")
+    @ApiOperation(value = "Get animal by key")
     @ApiResponses(value = {
-            @ApiResponse(code = 404, message = "Show not found") })
+            @ApiResponse(code = 404, message = "Animal not found") })
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getShowEventByKey(@PathParam("key") String key) throws IOException {
+    public Response getAnimalByKey(@PathParam("key") String key) throws IOException {
         loadRepository();
-        ShowEvent showEvent = showEventRepository.getShowEventByKeySet(key);
+        Animal animal = animalRepository.getAnimalByKeySet(key);
 
-        if (showEvent != null) {
-            return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(showEvent)).build();
+        if (animal != null) {
+            return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(animal)).build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
 
     @POST
-    @ApiOperation(value = "Add new showevent",
-            response = ShowEvent.class,
+    @ApiOperation(value = "Add new animal",
+            response = Animal.class,
             responseContainer = "List")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Bad request")})
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addShowEvent(String showEvent) throws IOException {
+    public Response addAnimal(String animal) throws IOException {
         loadRepository();
         ObjectMapper mapper = new ObjectMapper();
-        ShowEvent event = null;
+        Animal event = null;
         try {
-            event = mapper.readValue(showEvent, ShowEvent.class);
+            event = mapper.readValue(animal, Animal.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         if (event != null) {
-            showEventRepository.add(event);
+            animalRepository.add(event);
             saveRepository();
             return Response.status(Response.Status.OK).build();
         } else {
@@ -88,29 +89,29 @@ public class ShowEventController {
     }
 
     @PUT
-    @ApiOperation(value = "Update showevent by key")
+    @ApiOperation(value = "Update animal by key")
     @ApiResponses(value = {
-            @ApiResponse(code = 404, message = "Show not found"),
+            @ApiResponse(code = 404, message = "Animal not found"),
             @ApiResponse(code = 400, message = "Bad request")})
     @Path("/{key}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateShowEvent(@PathParam("key") String key, String showEvent) throws IOException {
+    public Response updateAnimal(@PathParam("key") String key, String animal) throws IOException {
         loadRepository();
-        String showDelete = showEventRepository.delete(key);
-        if (showDelete == null) {
+        String animalDelete = animalRepository.delete(key);
+        if (animalDelete == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
             ObjectMapper mapper = new ObjectMapper();
-            ShowEvent event = null;
+            Animal event = null;
             try {
-                event = mapper.readValue(showEvent, ShowEvent.class);
+                event = mapper.readValue(animal, Animal.class);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             if (event != null) {
-                showEventRepository.add(event);
+                animalRepository.add(event);
                 saveRepository();
                 return Response.status(Response.Status.OK).build();
             } else {
@@ -120,15 +121,15 @@ public class ShowEventController {
     }
 
     @DELETE
-    @ApiOperation(value = "Delete showevent by key")
+    @ApiOperation(value = "Delete animal by key")
     @ApiResponses(value = {
-            @ApiResponse(code = 404, message = "Show not found") })
+            @ApiResponse(code = 404, message = "Animal not found") })
     @Path("/{key}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteShowEvent(@PathParam("key") String key) throws IOException {
+    public Response deleteAnimal(@PathParam("key") String key) throws IOException {
         loadRepository();
-        String showDelete = showEventRepository.delete(key);
-        if (showDelete != null) {
+        String animalDelete = animalRepository.delete(key);
+        if (animalDelete != null) {
             saveRepository();
             return Response.status(Response.Status.OK).build();
         }
@@ -139,11 +140,11 @@ public class ShowEventController {
 
     private void loadRepository() throws IOException {
 
-        showEventRepository = ApplicationRepositoryService.loadShowEventRepository();
+        animalRepository = ApplicationRepositoryService.loadAnimalRepository();
     }
 
     private void saveRepository() throws IOException {
 
-        ApplicationRepositoryService.saveShowEventRepository(showEventRepository);
+        ApplicationRepositoryService.saveAnimalRepository(animalRepository);
     }
 }
