@@ -1,6 +1,10 @@
 package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
+import nl.animundo.apps.alpacashowadmin.backend.repositories.AnimalRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvAnimalRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvParticipantRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvShowEventRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,10 +16,11 @@ import static com.sun.xml.bind.v2.util.ClassLoaderRetriever.getClassLoader;
 public class ApplicationRepositoryService {
 
     private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
-    private static Properties prop = new Properties();
     private static ApplicationFileDirService fileDirService = new ApplicationFileDirService();
     private static String fileStorage = "csv";
     private static ShowEventRepository showEventRepo = new ShowEventRepository();
+    private static ParticipantRepository participantRepo = new ParticipantRepository();
+    private static AnimalRepository animalRepo = new AnimalRepository();
 
     private ApplicationRepositoryService() throws InstantiationException {
         throw new InstantiationException("Instances of this type are forbidden!");
@@ -33,6 +38,34 @@ public class ApplicationRepositoryService {
             throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
         }
         return showEventRepo;
+    }
+
+    public static ParticipantRepository loadParticipantRepository() throws IOException {
+
+        if ("csv".equalsIgnoreCase(fileStorage)) {
+            String csvParticipantsResource =  fileDirService.getFilePath(fileStorage + "/PARTICIPANTS.csv");
+            FileReader csvReader = new FileReader(String.valueOf(csvParticipantsResource));
+            participantRepo = CsvParticipantRepository.importData(csvReader);
+            csvReader.close();
+            logger.info("Imported csvParticipantRepository");
+        } else {
+            throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
+        }
+        return participantRepo;
+    }
+
+    public static AnimalRepository loadAnimalRepository() throws IOException {
+
+        if ("csv".equalsIgnoreCase(fileStorage)) {
+            String csvAnimalsResource =  fileDirService.getFilePath(fileStorage + "/ANIMALS.csv");
+            FileReader csvReader = new FileReader(String.valueOf(csvAnimalsResource));
+            animalRepo = CsvAnimalRepository.importData(csvReader);
+            csvReader.close();
+            logger.info("Imported csvAnimalRepository");
+        } else {
+            throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
+        }
+        return animalRepo;
     }
 
     public static void saveShowEventRepository(ShowEventRepository repo) throws IOException {

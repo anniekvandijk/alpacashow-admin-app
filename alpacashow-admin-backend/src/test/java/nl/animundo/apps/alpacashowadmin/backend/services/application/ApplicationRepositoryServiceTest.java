@@ -1,5 +1,7 @@
 package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
+import nl.animundo.apps.alpacashowadmin.backend.repositories.AnimalRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import org.junit.Rule;
 import org.junit.Test;
@@ -42,12 +44,29 @@ public class ApplicationRepositoryServiceTest {
     }
 
     @Test
-    public void getCsvShowEventRepo() throws IOException {
+    public void getShowEventRepo() throws IOException {
 
-        ShowEventRepository showEventRepo;
-        showEventRepo = ApplicationRepositoryService.loadShowEventRepository();
+        ShowEventRepository showEventRepo = ApplicationRepositoryService.loadShowEventRepository();
 
         assertEquals(2, showEventRepo.getAllShowEvents().size());
+
+    }
+
+    @Test
+    public void getParticipantRepo() throws IOException {
+
+        ParticipantRepository participantRepo = ApplicationRepositoryService.loadParticipantRepository();
+
+        assertEquals(2, participantRepo.getAllParticipants().size());
+
+    }
+
+    @Test
+    public void getAnimalRepo() throws IOException {
+
+        AnimalRepository animalRepo = ApplicationRepositoryService.loadAnimalRepository();
+
+        assertEquals(3, animalRepo.getAllAnimals().size());
 
     }
 }
