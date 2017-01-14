@@ -17,7 +17,7 @@
       "country" : "Nederland",
       "animals" : [
         {
-          "name" : "Meneer 1 anamal 1",
+          "name" : "Meneer 1 animal 1",
           "breed" : "Suri",
           "sex" : "Female",
           "color" : "Black",
@@ -28,7 +28,7 @@
           "dam" : "My English mothert"
         },
         {
-          "name" : "Meneer 1 anamal 2",
+          "name" : "Meneer 1 animal 2",
           "breed" : "Suri",
           "sex" : "Female",
           "color" : "Black",
@@ -51,7 +51,7 @@
       "country" : "Nederland",
       "animals" : [
         {
-          "name" : "Meneer 2 anamal 1",
+          "name" : "Meneer 2 animal 1",
           "breed" : "Suri",
           "sex" : "Female",
           "color" : "Black",
@@ -62,7 +62,7 @@
           "dam" : "My English mothert"
         },
         {
-          "name" : "Meneer 1 anamal 2",
+          "name" : "Meneer 2 animal 2",
           "breed" : "Suri",
           "sex" : "Female",
           "color" : "Black",

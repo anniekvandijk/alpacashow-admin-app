@@ -28,8 +28,6 @@ public class ShowEventController {
     private ParticipantRepository participantRepository;
     private AnimalRepository animalRepository;
 
-    // TODO: if response != 200, put some information in the response body what went wrong.
-
     @GET
     @ApiOperation(value = "Get all showevents",
             response = ShowEvent.class,
@@ -56,10 +54,10 @@ public class ShowEventController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShowEventByKey(@PathParam("key") String key) throws IOException {
         loadRepository();
-        ShowEvent showEvent = showEventRepository.getShowEventByKeySet(key);
+        ShowEvent event = showEventRepository.getShowEventByKeySet(key);
 
-        if (showEvent != null) {
-            return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(showEvent)).build();
+        if (event != null) {
+            return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(event)).build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
@@ -82,11 +80,10 @@ public class ShowEventController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         if (event != null) {
-            showEventRepository.add(event);
+            String showEventKey = showEventRepository.add(event);
             saveRepository();
-            return Response.status(Response.Status.OK).build();
+            return Response.status(Response.Status.OK).entity("Added showevent with key '" + showEventKey + "'").build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
@@ -104,7 +101,7 @@ public class ShowEventController {
         loadRepository();
         String showDelete = showEventRepository.delete(key);
         if (showDelete == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND).entity("Showevent with key '" + key + "' not found").build();
         } else {
             ObjectMapper mapper = new ObjectMapper();
             ShowEvent event = null;
@@ -115,9 +112,9 @@ public class ShowEventController {
             }
 
             if (event != null) {
-                showEventRepository.add(event);
+                String showEventKey = showEventRepository.add(event);
                 saveRepository();
-                return Response.status(Response.Status.OK).build();
+                return Response.status(Response.Status.OK).entity("Updated showevent with key '" + showEventKey + "'").build();
             } else {
                 return Response.status(Response.Status.BAD_REQUEST).build();
             }
@@ -135,24 +132,18 @@ public class ShowEventController {
         String showDelete = showEventRepository.delete(key);
         if (showDelete != null) {
             saveRepository();
-            return Response.status(Response.Status.OK).build();
+            return Response.status(Response.Status.OK).entity("Deleted showevent with key '" + key + "'").build();
         }
         else {
-            return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND).entity("Showevent with key '" + key + "' not found").build();
         }
     }
 
     private void loadRepository() throws IOException {
-
         showEventRepository = ApplicationRepositoryService.loadShowEventRepository();
-        participantRepository = ApplicationRepositoryService.loadParticipantRepository();
-        animalRepository = ApplicationRepositoryService.loadAnimalRepository();
     }
 
     private void saveRepository() throws IOException {
-
         ApplicationRepositoryService.saveShowEventRepository(showEventRepository);
-        ApplicationRepositoryService.saveParticipantRepository(participantRepository);
-        ApplicationRepositoryService.saveAnimalRepository(animalRepository);
     }
 }

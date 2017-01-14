@@ -11,12 +11,13 @@ public class ShowEventRepository {
     private Map<String, ShowEvent> showEvents = new HashMap<>();
 
 
-    public void add(final ShowEvent showEvent) {
+    public String add(final ShowEvent showEvent) {
 
         String showEventKey = showEvent.getDate() + "_" + showEvent.getShowType();
         if (getShowEventByKeySet(showEventKey) == null) {
             showEvents.put(showEventKey, showEvent);
             logger.info("Added showEvent '" + showEventKey + "' to showEventRepo");
+            return showEventKey;
         } else {
             throw new IllegalArgumentException("Showevent with same date and showtype already exists");
         }
