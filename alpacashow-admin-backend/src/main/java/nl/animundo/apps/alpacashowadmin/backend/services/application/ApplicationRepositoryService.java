@@ -13,6 +13,7 @@ public class ApplicationRepositoryService {
 
     private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
     private static Properties prop = new Properties();
+    private static ApplicationFileDirService fileDirService = new ApplicationFileDirService();
     private static String fileStorage = "csv";
     private static ShowEventRepository showEventRepo = new ShowEventRepository();
 
@@ -23,7 +24,7 @@ public class ApplicationRepositoryService {
     public static ShowEventRepository loadShowEventRepository() throws IOException {
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
-            String csvShowEventsResource =  getCsvShowEventResourcePath(fileStorage);
+            String csvShowEventsResource =  fileDirService.getFilePath(fileStorage + "/SHOWEVENTS.csv");
             FileReader csvReader = new FileReader(String.valueOf(csvShowEventsResource));
             showEventRepo = CsvShowEventRepository.importData(csvReader);
             csvReader.close();
@@ -37,7 +38,7 @@ public class ApplicationRepositoryService {
     public static void saveShowEventRepository(ShowEventRepository repo) throws IOException {
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
-            String csvShowEventsResource = getCsvShowEventResourcePath(fileStorage);
+            String csvShowEventsResource = fileDirService.getFilePath(fileStorage + "/SHOWEVENTS.csv");
             FileWriter writer = new FileWriter(csvShowEventsResource);
             CsvShowEventRepository.exportData(writer, repo);
             writer.flush();
@@ -46,14 +47,5 @@ public class ApplicationRepositoryService {
         } else {
             throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
         }
-    }
-
-    private static String getCsvShowEventResourcePath(String fileStorage) throws IOException {
-
-        String csvPath = ApplicationRepositoryService.class.getClassLoader().getResource(fileStorage + "/SHOWEVENTS.csv").getPath();
-        if (csvPath == null) {
-            throw new IOException ("File '" + csvPath + "' not found!");
-        }
-        return csvPath;
     }
 }

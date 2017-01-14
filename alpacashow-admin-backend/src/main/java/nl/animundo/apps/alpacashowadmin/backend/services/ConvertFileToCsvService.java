@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationUserDirService;
+import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationFileDirService;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.xssf.usermodel.*;
 
@@ -18,10 +18,9 @@ import javax.imageio.IIOException;
 public class ConvertFileToCsvService {
 
     private static List<List<XSSFCell>> cellGrid;
-    private static String workingDir = ApplicationUserDirService.getUserDir();
-    private final static String fileLocation = workingDir + "/src/test/resources/";
     private static FileInputStream myInput;
     private static File outputFile;
+    private static ApplicationFileDirService fileDirService = new ApplicationFileDirService();
 
     private ConvertFileToCsvService() throws InstantiationException {
         throw new InstantiationException("Instances of this type are forbidden!");
@@ -29,12 +28,12 @@ public class ConvertFileToCsvService {
 
     public static void convertFileToCsv(String file) throws IOException {
 
-        String ext = FilenameUtils.getExtension(file);
+        String fileExtension = FilenameUtils.getExtension(file);
         String filename = FilenameUtils.getBaseName(file);
-         if (ext.equalsIgnoreCase("xlsx")) {
+         if (fileExtension.equalsIgnoreCase("xlsx")) {
             convertExcelToCsv(file, filename);
         } else {
-            throw new IIOException("Upload filetype " + ext + " not allowed");
+            throw new IIOException("Upload filetype " + fileExtension + " not allowed");
         }
     }
 
@@ -43,11 +42,11 @@ public class ConvertFileToCsvService {
         try {
             cellGrid = new ArrayList<>();
 
-            myInput = new FileInputStream(fileLocation + "fileupload/" + excelFile);
+        myInput = new FileInputStream(fileDirService.getFilePath("fileupload/" + excelFile));
 
-            XSSFWorkbook myWorkBook = new XSSFWorkbook(myInput);
-            XSSFSheet mySheet = myWorkBook.getSheetAt(0);
-            Iterator<?> rowIter = mySheet.rowIterator();
+        XSSFWorkbook myWorkBook = new XSSFWorkbook(myInput);
+        XSSFSheet mySheet = myWorkBook.getSheetAt(0);
+        Iterator<?> rowIter = mySheet.rowIterator();
 
             while (rowIter.hasNext()) {
                 XSSFRow myRow = (XSSFRow) rowIter.next();
@@ -59,13 +58,14 @@ public class ConvertFileToCsvService {
                 }
                 cellGrid.add(cellRowList);
             }
-        } catch (FileNotFoundException e) {
+        } catch (NullPointerException e) {
             throw new FileNotFoundException("File does not excist in upload directory");
         }
 
-        outputFile = new File(fileLocation + "csv/" + filename + ".csv");
+        String newCsvFile = "csv";
+        outputFile = new File(fileDirService.getFilePath(newCsvFile));
 
-        PrintStream stream = new PrintStream(outputFile);
+        PrintStream stream = new PrintStream(outputFile + "/" + filename + ".csv");
         for (int i = 0; i < cellGrid.size(); i++) {
             List<XSSFCell> cellRowList = cellGrid.get(i);
             for (int j = 0; j < cellRowList.size(); j++) {
@@ -77,5 +77,4 @@ public class ConvertFileToCsvService {
         }
         stream.close();
     }
-
 }
