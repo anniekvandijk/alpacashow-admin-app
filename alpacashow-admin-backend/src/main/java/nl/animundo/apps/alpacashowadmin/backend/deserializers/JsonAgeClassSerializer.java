@@ -3,15 +3,15 @@ package nl.animundo.apps.alpacashowadmin.backend.deserializers;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeSexClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import java.io.IOException;
 
-public class JsonAgeSexClassSerializer extends JsonSerializer<AgeSexClass> {
+public class JsonAgeClassSerializer extends JsonSerializer<AgeClass> {
 
     @Override
-    public void serialize(AgeSexClass ageSexClass, JsonGenerator generator, SerializerProvider provider) throws IOException {
+    public void serialize(AgeClass ageClass, JsonGenerator generator, SerializerProvider provider) throws IOException {
 
-            String replace = ageSexClass.toString();
+            String replace = ageClass.toString();
             String output = replace.substring(0, 1).toUpperCase() + replace.substring(1).toLowerCase();
             generator.writeString(output);
     }
