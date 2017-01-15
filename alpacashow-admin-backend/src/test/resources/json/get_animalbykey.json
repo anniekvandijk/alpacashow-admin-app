@@ -7,5 +7,7 @@
   "microchip" : "12346",
   "registration" : "BAF12304",
   "sire" : "My father",
-  "dam" : "My mothertoo"
+  "dam" : "My mothertoo",
+  "sheerDate": null,
+  "beforeSheerDate": null
 }

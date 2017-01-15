@@ -8,7 +8,9 @@
     "microchip": "982000123169930",
     "registration": "BAF12345",
     "sire": "Alpaca father",
-    "dam": "Alpaca mother"
+    "dam": "Alpaca mother",
+    "sheerDate": null,
+    "beforeSheerDate": null
   },
   {
   "name" : "My Alpaca 2",
@@ -19,7 +21,9 @@
   "microchip" : "12346",
   "registration" : "BAF12304",
   "sire" : "My father",
-  "dam" : "My mothertoo"
+  "dam" : "My mothertoo",
+  "sheerDate": null,
+  "beforeSheerDate": null
  },
   {
     "name" : "My Alpaca 3",
@@ -30,6 +34,8 @@
     "microchip" : "12347",
     "registration" : "null",
     "sire" : "My fathertoo",
-    "dam" : "My mother"
+    "dam" : "My mother",
+    "sheerDate": null,
+    "beforeSheerDate": null
   }
 ]

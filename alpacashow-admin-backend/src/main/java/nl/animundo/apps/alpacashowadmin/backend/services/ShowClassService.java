@@ -2,6 +2,8 @@ package nl.animundo.apps.alpacashowadmin.backend.services;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.*;
 
+import java.time.LocalDate;
+
 public class ShowClassService {
 
     private ShowClassService() throws InstantiationException {
@@ -10,10 +12,19 @@ public class ShowClassService {
 
     public static int getShowClassCode(int breedCode, int ageSexCode, int colorCode) {
 
-        int showClassCode;
+        return Integer.valueOf(breedCode + "" + ageSexCode + "" + colorCode);
+    }
 
-        showClassCode = Integer.valueOf(breedCode + "" + ageSexCode + "" + colorCode);
-        return showClassCode;
+    public static int getShowClassCode(BreedClass breed, SexClass sex, ColorClass color, LocalDate showDate, LocalDate sheerOrBirthDate) {
+
+        AgeClass ageClass = AgeClassService.getAgeClass(showDate, sheerOrBirthDate);
+        String ageSex = ageClass + "_" + sex;
+
+        int ageSexCode = AgeSexClass.valueOf(ageSex).getAgeSexCode();
+        int breedCode = breed.getBreedCode();
+        int colorCode = color.getColorCode();
+
+        return Integer.valueOf(breedCode + "" + ageSexCode + "" + colorCode);
     }
 
     public static String getShowClassName(BreedClass breed, AgeClass ageClass, SexClass sex, ColorClass color)

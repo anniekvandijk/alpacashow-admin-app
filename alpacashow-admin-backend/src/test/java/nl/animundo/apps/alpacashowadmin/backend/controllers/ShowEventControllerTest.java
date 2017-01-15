@@ -14,8 +14,6 @@ import static org.junit.Assert.assertTrue;
 
 public class ShowEventControllerTest {
 
-    final String workingDir = System.getProperty("user.dir");
-    final String testFileDir = "/src/test/resources/json/";
     private ShowEventRepository showEventRepo;
 
     @Test

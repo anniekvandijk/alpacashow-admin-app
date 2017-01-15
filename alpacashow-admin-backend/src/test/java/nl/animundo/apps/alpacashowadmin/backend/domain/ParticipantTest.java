@@ -16,20 +16,29 @@ import static org.junit.Assert.assertEquals;
 
 public class ParticipantTest {
 
+    private String name;
+    private String farmName;
+    private String email;
+    private String telephone;
+    private String address;
+    private String zipCode;
+    private String city;
+    private String country;
+
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
     @Test
     public void newParticipantWithTrim() {
 
-        String name = " New Participant";
-        String farmName = "farm";
-        String email = " farm@farm.nl ";
-        String telephone = "06-12345678";
-        String address = "some address";
-        String zipCode = "1234 AA";
-        String city = "some City";
-        String country = "Netherlands   ";
+        name        = " New Participant";
+        farmName    = "farm";
+        email       = " farm@farm.nl ";
+        telephone   = "06-12345678";
+        address     = "some address";
+        zipCode     = "1234 AA";
+        city        = "some City";
+        country     = "Netherlands   ";
 
         Participant participant = new Participant(name, farmName, email, telephone, address, zipCode, city, country);
 
@@ -46,14 +55,14 @@ public class ParticipantTest {
     @Test
     public void newParticipantWithAnimals() {
 
-        String name = "New Participant";
-        String farmName = "farm";
-        String email = "farm@farm.nl";
-        String telephone = "06-12345678";
-        String address = "some address";
-        String zipCode = "1234 AA";
-        String city = "some City";
-        String country = "Netherlands";
+        name        = "New Participant";
+        farmName    = "farm";
+        email       = "farm@farm.nl";
+        telephone   = "06-12345678";
+        address     = "some address";
+        zipCode     = "1234 AA";
+        city        = "some City";
+        country     = "Netherlands";
 
         Set<Animal> animals = new HashSet<>();
         animals.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.now().minusYears(1), "123456789", null, "Vader", "Moeder"));
@@ -70,14 +79,14 @@ public class ParticipantTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field participant can not be empty");
 
-        String name = "  ";
-        String farmName = "farm";
-        String email = "farm@farm.nl";
-        String telephone = "06-12345678";
-        String address = "some address";
-        String zipCode = "1234 AA";
-        String city = "some City";
-        String country = "Netherlands";
+        name        = "  ";
+        farmName    = "farm";
+        email       = "farm@farm.nl";
+        telephone   = "06-12345678";
+        address     = "some address";
+        zipCode     = "1234 AA";
+        city        = "some City";
+        country     = "Netherlands";
 
         new Participant(name, farmName, email, telephone, address, zipCode, city, country);
     }
@@ -88,14 +97,14 @@ public class ParticipantTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field participant can not be empty");
 
-        String name = null;
-        String farmName = "farm";
-        String email = "farm@farm.nl";
-        String telephone = "06-12345678";
-        String address = "some address";
-        String zipCode = "1234 AA";
-        String city = "some City";
-        String country = "Netherlands";
+        name        = null;
+        farmName    = "farm";
+        email       = "farm@farm.nl";
+        telephone   = "06-12345678";
+        address     = "some address";
+        zipCode     = "1234 AA";
+        city        = "some City";
+        country     = "Netherlands";
 
         new Participant(name, farmName, email, telephone, address, zipCode, city, country);
     }

@@ -12,9 +12,9 @@ public class AgeClassService {
     private static Logger logger = LoggerFactory.getLogger(AgeClassService.class);
 
 
-    public static AgeClass getAgeClassHaltershow(final LocalDate showDate, final LocalDate dateOfBirth) {
+    public static AgeClass getAgeClass(final LocalDate showDate, final LocalDate sheerOrBirthDate) {
 
-        long ageInMonths = getAgeInMonthHaltershow(showDate, dateOfBirth);
+        long ageInMonths = getAgeInMonths(showDate, sheerOrBirthDate);
 
         for (AgeClass ageClass : AgeClass.values()) {
             if (ageInMonths >= ageClass.getMonthMin() && ageInMonths <= ageClass.getMonthMax()) {
@@ -23,12 +23,12 @@ public class AgeClassService {
             }
         }
         // If enums are changed, code will break. Throw exeption.
-        throw new IllegalArgumentException("Unable to determen AgeClass, for given showDate '" + showDate + "' and dateOfBirth '" + dateOfBirth + "'");
+        throw new IllegalArgumentException("Unable to determen AgeClass, for given showDate '" + showDate + "' and dateOfBirth '" + sheerOrBirthDate + "'");
     }
 
-    private static long getAgeInMonthHaltershow(final LocalDate showDate, final LocalDate dateOfBirth) {
+    private static long getAgeInMonths(final LocalDate showDate, final LocalDate sheerOrBirthDate) {
 
-        final long ageInMonths = ChronoUnit.MONTHS.between(dateOfBirth, showDate);
+        final long ageInMonths = ChronoUnit.MONTHS.between(sheerOrBirthDate, showDate);
         logger.info("Age in months = " + ageInMonths);
 
         if (ageInMonths < 0 ) {

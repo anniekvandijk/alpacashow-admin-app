@@ -18,7 +18,7 @@ public class ShowEventRegistration {
     private LocalDate beforeSheerDate;
 
     public ShowEventRegistration (final String showEventKey, final String participantKey, final String animalKey, final AgeClass ageClass,
-                                    final int showClassCode, final LocalDate sheerDate, final LocalDate beforeSheerDate)
+                                  final int showClassCode, final LocalDate sheerDate, final LocalDate beforeSheerDate)
     {
         if (showEventKey == null || showEventKey.isEmpty()) {
             throw new IllegalArgumentException("ShowEventKey can not be empty");
@@ -35,31 +35,6 @@ public class ShowEventRegistration {
         if (showClassCode == 0) {
             throw new IllegalArgumentException("ShowClassCode can not be empty");
         }
-        if (sheerDate != null)
-        {
-            if (sheerDate.isEqual(LocalDate.now()) || sheerDate.isAfter(LocalDate.now())) {
-                throw new IllegalArgumentException("Sheerdate is today or later");
-            }
-        }
-        if (beforeSheerDate != null)
-        {
-            if (beforeSheerDate.isEqual(LocalDate.now()) || beforeSheerDate.isAfter(LocalDate.now())) {
-                throw new IllegalArgumentException("Before sheerdate is today or later");
-            }
-        }
-        if (sheerDate != null && beforeSheerDate != null) {
-            if (beforeSheerDate.isEqual(sheerDate)) {
-                throw new IllegalArgumentException("Sheerdate and before sheerdate can not be the same");
-            }
-            if (beforeSheerDate.isAfter(sheerDate)) {
-                throw new IllegalArgumentException("Before sheerdate is after sheerdate");
-            }
-        }
-        // TODO: more validation on sheerdate
-        // sheerdate is before birth
-        // sheerdate and birth do not match
-        // beforesheerdate and birth do not match
-        // If Fleeceshow, sheerdate must be filled
 
         this.showEventKey = showEventKey;
         this.participantKey = participantKey;

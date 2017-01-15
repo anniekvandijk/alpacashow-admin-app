@@ -1,7 +1,9 @@
 package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
+import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventRegistration;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.AnimalRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRegistrationRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvAnimalRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvParticipantRepository;
