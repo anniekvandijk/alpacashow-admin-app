@@ -48,6 +48,16 @@ public class CsvShowEventRegistrationRepositoryTest {
         assertEquals("2016-05-01", showEventRegistration.getSheerDate().toString());
         assertEquals(null, showEventRegistration.getBeforeSheerDate());
 
+        String key2 = "2017-05-01_HALTERSHOW_Deelnemer 2_12347";
+        ShowEventRegistration showEventRegistration2 = repo.getShowEventRegistrationByKeySet(key2);
+        assertEquals("2016-04-30", showEventRegistration2.getSheerDate().toString());
+        assertEquals("2015-05-02", showEventRegistration2.getBeforeSheerDate().toString());
+
+        String key3 = "2017-05-01_HALTERSHOW_Deelnemer 1_982000123169930";
+        ShowEventRegistration showEventRegistration3 = repo.getShowEventRegistrationByKeySet(key3);
+        assertEquals(null, showEventRegistration3.getSheerDate());
+        assertEquals(null, showEventRegistration3.getBeforeSheerDate());
+
         String showEventKey = "2017-06-04_FLEECESHOW";
         String participantKey = "Deelnemer 3";
         String animalKey = "8888";
@@ -74,10 +84,10 @@ public class CsvShowEventRegistrationRepositoryTest {
         ShowEventRegistrationRepository newRepo = CsvShowEventRegistrationRepository.importData(reader);
         reader.close();
 
-        String key2 = "2017-06-04_FLEECESHOW_Deelnemer 3_8888";
-        ShowEventRegistration showEventRegistration2 = newRepo.getShowEventRegistrationByKeySet(key2);
-        assertNotNull(showEventRegistration2);
-        assertEquals(210, showEventRegistration2.getShowClassCode());
+        String key4 = "2017-06-04_FLEECESHOW_Deelnemer 3_8888";
+        ShowEventRegistration showEventRegistration4 = newRepo.getShowEventRegistrationByKeySet(key4);
+        assertNotNull(showEventRegistration4);
+        assertEquals(210, showEventRegistration4.getShowClassCode());
 
     }
 

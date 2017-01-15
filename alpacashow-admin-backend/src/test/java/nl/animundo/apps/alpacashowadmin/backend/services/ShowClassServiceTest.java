@@ -8,6 +8,7 @@ import org.junit.rules.ExpectedException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
+import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -47,6 +48,17 @@ public class ShowClassServiceTest {
         int ageSexCode = AgeSexClass.JUNIOR_MALE.getAgeSexCode();
         int colorCode = ColorClass.WHITE.getColorCode();
         assertEquals(110, ShowClassService.getShowClassCode(breedCode, ageSexCode, colorCode));
+    }
+
+    @Test
+    public void huacayaJuniorMaleWhiteClassCode2() {
+
+        SexClass sex = SexClass.MALE;
+        BreedClass breed = BreedClass.HUACAYA;
+        ColorClass color = ColorClass.WHITE;
+        LocalDate showDate = LocalDate.of(2017, 05, 01);
+        LocalDate dateOfBirth = LocalDate.of(2016, 06, 04);
+        assertEquals(110, ShowClassService.getShowClassCode(breed, sex, color, showDate, dateOfBirth));
     }
 
     @Test

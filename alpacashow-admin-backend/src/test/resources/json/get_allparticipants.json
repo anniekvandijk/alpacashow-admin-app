@@ -8,14 +8,25 @@
   "city" : "Surhuisterveen",
   "country" : "Nederland",
   "animals" : [ ]
-}, {
-  "name" : "Deelnemer 2",
-  "farmName" : "Alpacafarmpje 2",
-  "email" : "farmnaam@iets.eu",
-  "telephone" : "038-1234567",
-  "address" : "thuis 100",
-  "zipCode" : "9876 ZZ",
-  "city" : "Grun",
-  "country" : "Nederland",
+},
+  {
+    "name": "Deelnemer 2",
+    "farmName": "Alpacafarmpje 2",
+    "email": "farmnaam@iets.eu",
+    "telephone": "038-1234567",
+    "address": "thuis 100",
+    "zipCode": "9876 ZZ",
+    "city": "Grun",
+    "country": "Nederland",
+    "animals": []
+  }, {
+  "name" : "Deelnemer 5",
+  "farmName" : null,
+  "email" : null,
+  "telephone" : null,
+  "address" : null,
+  "zipCode" : null,
+  "city" : null,
+  "country" : null,
   "animals" : [ ]
 } ]

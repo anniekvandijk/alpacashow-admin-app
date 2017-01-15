@@ -47,7 +47,7 @@ public class ParticipantControllerTest {
     public void addDeleteUpdateParticipant() throws IOException {
 
         loadRepository();
-        assertEquals(2, participantRepository.getAllParticipants().size());
+        assertEquals(3, participantRepository.getAllParticipants().size());
 
         ParticipantController controller = new ParticipantController();
 
@@ -55,7 +55,7 @@ public class ParticipantControllerTest {
         controller.addParticipant(file);
 
         loadRepository();
-        assertEquals(3, participantRepository.getAllParticipants().size());
+        assertEquals(4, participantRepository.getAllParticipants().size());
 
         Participant participant = participantRepository.getParticipantByKeySet("Deelnemer 3");
         assertEquals("Grun", participant.getCity());

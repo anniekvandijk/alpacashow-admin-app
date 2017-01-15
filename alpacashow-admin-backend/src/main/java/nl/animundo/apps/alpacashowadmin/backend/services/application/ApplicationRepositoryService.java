@@ -36,8 +36,6 @@ public class ApplicationRepositoryService {
             showEventRepo = CsvShowEventRepository.importData(csvReader);
             csvReader.close();
             logger.info("Imported csvShowEventRepository");
-        } else {
-            throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
         }
         return showEventRepo;
     }
@@ -50,8 +48,6 @@ public class ApplicationRepositoryService {
             participantRepo = CsvParticipantRepository.importData(csvReader);
             csvReader.close();
             logger.info("Imported csvParticipantRepository");
-        } else {
-            throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
         }
         return participantRepo;
     }
@@ -64,8 +60,6 @@ public class ApplicationRepositoryService {
             animalRepo = CsvAnimalRepository.importData(csvReader);
             csvReader.close();
             logger.info("Imported csvAnimalRepository");
-        } else {
-            throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
         }
         return animalRepo;
     }
@@ -79,8 +73,6 @@ public class ApplicationRepositoryService {
             writer.flush();
             writer.close();
             logger.info("Exported csvShowEventRepository");
-        } else {
-            throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
         }
     }
 
@@ -93,8 +85,6 @@ public class ApplicationRepositoryService {
             writer.flush();
             writer.close();
             logger.info("Exported csvParticipantRepository");
-        } else {
-            throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
         }
     }
 
@@ -107,8 +97,6 @@ public class ApplicationRepositoryService {
             writer.flush();
             writer.close();
             logger.info("Exported csvAnimalRepository");
-        } else {
-            throw new IllegalArgumentException("Not known filestorage property: " + fileStorage);
         }
     }
 }

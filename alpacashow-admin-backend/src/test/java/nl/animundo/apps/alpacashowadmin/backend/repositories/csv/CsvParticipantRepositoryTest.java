@@ -32,7 +32,7 @@ public class CsvParticipantRepositoryTest {
 
         ParticipantRepository repo = CsvParticipantRepository.importData(reader);
         reader.close();
-        assertEquals(2, repo.getAllParticipants().size());
+        assertEquals(3, repo.getAllParticipants().size());
 
         String key = "Deelnemer 1";
         Participant participant = repo.getParticipantByKeySet(key);
@@ -55,7 +55,7 @@ public class CsvParticipantRepositoryTest {
         String country = "Netherlands";
 
         repo.add(new Participant(name, farmName, email, telephone, address, zipCode, city, country));
-        assertEquals(3, repo.getAllParticipants().size());
+        assertEquals(4, repo.getAllParticipants().size());
 
         File newExportFile = new File(workingDir + testFileDir + "PARTICIPANTS_export.csv");
         FileWriter writer = new FileWriter(newExportFile);
@@ -70,7 +70,7 @@ public class CsvParticipantRepositoryTest {
 
         ParticipantRepository newRepo = CsvParticipantRepository.importData(reader);
         reader.close();
-        assertEquals(3, newRepo.getAllParticipants().size());
+        assertEquals(4, newRepo.getAllParticipants().size());
 
         String key2 = "Test participant";
         Participant participant2 = newRepo.getParticipantByKeySet(key2);

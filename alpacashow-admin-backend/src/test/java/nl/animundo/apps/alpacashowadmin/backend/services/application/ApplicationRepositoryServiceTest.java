@@ -57,7 +57,7 @@ public class ApplicationRepositoryServiceTest {
 
         ParticipantRepository participantRepo = ApplicationRepositoryService.loadParticipantRepository();
 
-        assertEquals(2, participantRepo.getAllParticipants().size());
+        assertEquals(3, participantRepo.getAllParticipants().size());
 
     }
 

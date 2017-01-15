@@ -11,19 +11,22 @@ public class AgeClassService {
 
     private static Logger logger = LoggerFactory.getLogger(AgeClassService.class);
 
+    private AgeClassService() throws InstantiationException {
+        throw new InstantiationException("Instances of this type are forbidden!");
+    }
 
     public static AgeClass getAgeClass(final LocalDate showDate, final LocalDate sheerOrBirthDate) {
 
         long ageInMonths = getAgeInMonths(showDate, sheerOrBirthDate);
 
-        for (AgeClass ageClass : AgeClass.values()) {
-            if (ageInMonths >= ageClass.getMonthMin() && ageInMonths <= ageClass.getMonthMax()) {
-                logger.info("AgeClass = " + ageClass);
-                return ageClass;
+        AgeClass ageClass = null;
+        for (AgeClass ageClassValue : AgeClass.values()) {
+            if (ageInMonths >= ageClassValue.getMonthMin() && ageInMonths <= ageClassValue.getMonthMax()) {
+                logger.info("AgeClass = " + ageClassValue);
+                ageClass = ageClassValue;
             }
         }
-        // If enums are changed, code will break. Throw exeption.
-        throw new IllegalArgumentException("Unable to determen AgeClass, for given showDate '" + showDate + "' and dateOfBirth '" + sheerOrBirthDate + "'");
+        return ageClass;
     }
 
     private static long getAgeInMonths(final LocalDate showDate, final LocalDate sheerOrBirthDate) {

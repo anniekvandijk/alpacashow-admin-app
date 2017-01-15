@@ -44,14 +44,35 @@ public class CsvParticipantRepository extends ParticipantRepository {
 
         for (String participant : participantRepo.getAllParticipantsByKeySet()) {
             Participant part = participantRepo.getParticipantByKeySet(participant);
-            writer  .append(part.getName()).append(";")
-                    .append(part.getFarmName().toString()).append(";")
-                    .append(part.getEmail().toString()).append(";")
-                    .append(part.getTelephone()).append(";")
-                    .append(part.getAddress()).append(";")
-                    .append(part.getZipCode()).append(";")
-                    .append(part.getCity()).append(";")
-                    .append(part.getCountry().toString()).append("\n");
+            writer.append(part.getName()).append(";");
+            if (part.getFarmName() != null) {
+                writer.append(part.getFarmName());
+            }
+            writer.append(";");
+            if (part.getEmail() != null) {
+                writer.append(part.getEmail());
+            }
+            writer.append(";");
+            if (part.getTelephone() != null) {
+                writer.append(part.getTelephone());
+            }
+            writer.append(";");
+            if (part.getAddress() != null) {
+                writer.append(part.getAddress());
+            }
+            writer.append(";");
+            if (part.getZipCode() != null) {
+                writer.append(part.getZipCode());
+            }
+            writer.append(";");
+            if (part.getCity() != null) {
+                writer.append(part.getCity());
+            }
+            writer.append(";");
+            if (part.getCountry() != null) {
+                writer.append(part.getCountry());
+            }
+            writer.append("\n");
         }
     }
 

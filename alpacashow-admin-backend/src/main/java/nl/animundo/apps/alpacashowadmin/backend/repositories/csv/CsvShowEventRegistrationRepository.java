@@ -49,7 +49,7 @@ public class CsvShowEventRegistrationRepository extends ShowEventRegistrationRep
                     .append(registration.getAgeClass().name()).append(";")
                     .append(String.valueOf(registration.getShowClassCode())).append(";");
                     if (registration.getSheerDate() != null) {
-                    writer.append(registration.getSheerDate().toString());
+                        writer.append(registration.getSheerDate().toString());
                     }
                     writer.append(";");
                     if (registration.getBeforeSheerDate() != null) {
