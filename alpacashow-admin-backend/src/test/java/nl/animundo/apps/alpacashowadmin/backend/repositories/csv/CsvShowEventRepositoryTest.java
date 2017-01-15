@@ -36,6 +36,7 @@ public class CsvShowEventRepositoryTest {
         Reader reader = new FileReader(importFile) ;
 
         ShowEventRepository repo = CsvShowEventRepository.importData(reader);
+        reader.close();
         assertEquals(2, repo.getAllShowEvents().size());
 
         String key = "2017-04-24_MALE_PROGENY_SHOW";
@@ -70,6 +71,7 @@ public class CsvShowEventRepositoryTest {
         reader = new FileReader(newImportFile) ;
 
         ShowEventRepository newRepo = CsvShowEventRepository.importData(reader);
+        reader.close();
         assertEquals(3, newRepo.getAllShowEvents().size());
 
         String key2 = "2017-07-01_FLEECESHOW";

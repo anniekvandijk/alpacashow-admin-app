@@ -31,6 +31,7 @@ public class CsvParticipantRepositoryTest {
         Reader reader = new FileReader(importFile) ;
 
         ParticipantRepository repo = CsvParticipantRepository.importData(reader);
+        reader.close();
         assertEquals(2, repo.getAllParticipants().size());
 
         String key = "Deelnemer 1";
@@ -68,6 +69,7 @@ public class CsvParticipantRepositoryTest {
         reader = new FileReader(newImportFile) ;
 
         ParticipantRepository newRepo = CsvParticipantRepository.importData(reader);
+        reader.close();
         assertEquals(3, newRepo.getAllParticipants().size());
 
         String key2 = "Test participant";

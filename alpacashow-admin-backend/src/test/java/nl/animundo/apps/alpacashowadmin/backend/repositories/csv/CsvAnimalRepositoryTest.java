@@ -38,6 +38,7 @@ public class CsvAnimalRepositoryTest {
 
         assertTrue(importFile.isFile() && importFile.exists() && importFile.canRead());
         Reader reader = new FileReader(importFile) ;
+        reader.close();
 
         AnimalRepository repo = CsvAnimalRepository.importData(reader);
         assertEquals(3, repo.getAllAnimals().size());
@@ -82,6 +83,7 @@ public class CsvAnimalRepositoryTest {
         reader = new FileReader(newImportFile) ;
 
         AnimalRepository newRepo = CsvAnimalRepository.importData(reader);
+        reader.close();
         assertEquals(3, newRepo.getAllAnimals().size());
 
         String key2 = "982000123169930";

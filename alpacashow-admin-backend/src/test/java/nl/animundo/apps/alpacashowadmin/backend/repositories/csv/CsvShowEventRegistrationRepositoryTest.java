@@ -1,11 +1,8 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventRegistration;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRegistrationRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -24,7 +21,7 @@ public class CsvShowEventRegistrationRepositoryTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void importExportShowEventsToFile() throws IOException {
+    public void importExportShowEventRegistrationsToFile() throws IOException {
 
         File importFile = new File(workingDir + testFileDir + "SHOWEVENTS_REGISTRATIONS_import.csv");
         File exportFile = new File(workingDir + testFileDir + "SHOWEVENTS_REGISTRATIONS_export.csv");
@@ -34,9 +31,10 @@ public class CsvShowEventRegistrationRepositoryTest {
         }
 
         assertTrue(importFile.isFile() && importFile.exists() && importFile.canRead());
-        Reader reader = new FileReader(importFile) ;
+        Reader reader = new FileReader(importFile);
 
         ShowEventRegistrationRepository repo = CsvShowEventRegistrationRepository.importData(reader);
+        reader.close();
         assertEquals(5, repo.getAllShowEventRegistrations().size());
 
         String key = "2017-04-01_MALE_PROGENY_SHOW_Deelnemer 1_982000123169930";
@@ -59,7 +57,7 @@ public class CsvShowEventRegistrationRepositoryTest {
         LocalDate beforeSheerDate = null;
 
         repo.add(new ShowEventRegistration(showEventKey, participantKey, animalKey,
-                        ageClass, showClassCode, sheerDate, beforeSheerDate));
+                ageClass, showClassCode, sheerDate, beforeSheerDate));
         repo.delete("2017-05-01_HALTERSHOW_Deelnemer 2_12347");
 
         File newExportFile = new File(workingDir + testFileDir + "SHOWEVENTS_REGISTRATIONS_export.csv");
@@ -71,9 +69,10 @@ public class CsvShowEventRegistrationRepositoryTest {
         File newImportFile = new File(workingDir + testFileDir + "SHOWEVENTS_REGISTRATIONS_export.csv");
 
         assertTrue(newImportFile.isFile() && newImportFile.exists() && newImportFile.canRead());
-        reader = new FileReader(newImportFile) ;
+        reader = new FileReader(newImportFile);
 
         ShowEventRegistrationRepository newRepo = CsvShowEventRegistrationRepository.importData(reader);
+        reader.close();
 
         String key2 = "2017-06-04_FLEECESHOW_Deelnemer 3_8888";
         ShowEventRegistration showEventRegistration2 = newRepo.getShowEventRegistrationByKeySet(key2);
@@ -81,4 +80,28 @@ public class CsvShowEventRegistrationRepositoryTest {
         assertEquals(210, showEventRegistration2.getShowClassCode());
 
     }
+
+    @Test
+    public void importEmptyFile() throws IOException {
+
+        File importFile = new File(workingDir + testFileDir + "SHOWEVENTS_REGISTRATIONS_importEmpty.csv");
+
+        Reader reader = new FileReader(importFile);
+        ShowEventRegistrationRepository repo = CsvShowEventRegistrationRepository.importData(reader);
+        reader.close();
+        assertEquals(0,repo.getAllShowEventRegistrations().size());
+    }
+
+    @Test
+    public void importFileWithOnlyHeader() throws IOException {
+
+        File importFile = new File(workingDir + testFileDir + "SHOWEVENTS_REGISTRATIONS_importOnlyHeader.csv");
+
+        Reader reader = new FileReader(importFile);
+        ShowEventRegistrationRepository repo = CsvShowEventRegistrationRepository.importData(reader);
+        reader.close();
+        assertEquals(0,repo.getAllShowEventRegistrations().size());
+    }
 }
+
+
