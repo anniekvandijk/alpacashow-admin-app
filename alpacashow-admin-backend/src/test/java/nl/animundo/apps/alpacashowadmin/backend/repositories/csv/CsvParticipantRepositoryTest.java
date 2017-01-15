@@ -18,12 +18,17 @@ public class CsvParticipantRepositoryTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void importParticipantsFromFile() throws IOException {
+    public void importExportParticipantsToFile() throws IOException {
 
-        File file = new File(workingDir + testFileDir + "PARTICIPANTS_import.csv");
+        File importFile = new File(workingDir + testFileDir + "PARTICIPANTS_import.csv");
+        File exportFile = new File(workingDir + testFileDir + "PARTICIPANTS_export.csv");
 
-        assertTrue(file.isFile() && file.exists() && file.canRead());
-        Reader reader = new FileReader(file) ;
+        if (exportFile.exists()) {
+            exportFile.delete();
+        }
+
+        assertTrue(importFile.isFile() && importFile.exists() && importFile.canRead());
+        Reader reader = new FileReader(importFile) ;
 
         ParticipantRepository repo = CsvParticipantRepository.importData(reader);
         assertEquals(2, repo.getAllParticipants().size());
@@ -38,22 +43,6 @@ public class CsvParticipantRepositoryTest {
         assertEquals("1111 BB", participant.getZipCode());
         assertEquals("Surhuisterveen", participant.getCity());
         assertEquals("Nederland", participant.getCountry());
-    }
-
-    @Test
-    public void exportParticipantsToFile() throws IOException {
-
-        File importFile = new File(workingDir + testFileDir + "PARTICIPANTS_import.csv");
-        File exportFile = new File(workingDir + testFileDir + "PARTICIPANTS_export.csv");
-
-        if (exportFile.exists()) {
-            exportFile.delete();
-        }
-
-        assertTrue(importFile.isFile() && importFile.exists() && importFile.canRead());
-        Reader reader = new FileReader(importFile) ;
-
-        ParticipantRepository repo = CsvParticipantRepository.importData(reader);
 
         String name = "Test participant";
         String farmName = "farm";
@@ -81,10 +70,10 @@ public class CsvParticipantRepositoryTest {
         ParticipantRepository newRepo = CsvParticipantRepository.importData(reader);
         assertEquals(3, newRepo.getAllParticipants().size());
 
-        String key = "Test participant";
-        Participant participant = newRepo.getParticipantByKeySet(key);
-        assertNotNull(participant);
-        assertEquals("some City", participant.getCity());
+        String key2 = "Test participant";
+        Participant participant2 = newRepo.getParticipantByKeySet(key2);
+        assertNotNull(participant2);
+        assertEquals("some City", participant2.getCity());
 
     }
 }

@@ -27,12 +27,17 @@ public class CsvAnimalRepositoryTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void importAnimalsFromFile() throws IOException {
+    public void importExportAnimalsToFile() throws IOException {
 
-        File file = new File(workingDir + testFileDir + "ANIMALS_import.csv");
+        File importFile = new File(workingDir + testFileDir + "ANIMALS_import.csv");
+        File exportFile = new File(workingDir + testFileDir + "ANIMALS_export.csv");
 
-        assertTrue(file.isFile() && file.exists() && file.canRead());
-        Reader reader = new FileReader(file) ;
+        if (exportFile.exists()) {
+            exportFile.delete();
+        }
+
+        assertTrue(importFile.isFile() && importFile.exists() && importFile.canRead());
+        Reader reader = new FileReader(importFile) ;
 
         AnimalRepository repo = CsvAnimalRepository.importData(reader);
         assertEquals(3, repo.getAllAnimals().size());
@@ -48,22 +53,6 @@ public class CsvAnimalRepositoryTest {
         assertEquals("BAF12304", animal.getRegistration());
         assertEquals("My father", animal.getSire());
         assertEquals("My mothertoo", animal.getDam());
-    }
-
-    @Test
-    public void exportAnimalsToFile() throws IOException {
-
-        File importFile = new File(workingDir + testFileDir + "ANIMALS_import.csv");
-        File exportFile = new File(workingDir + testFileDir + "ANIMALS_export.csv");
-
-        if (exportFile.exists()) {
-            exportFile.delete();
-        }
-
-        assertTrue(importFile.isFile() && importFile.exists() && importFile.canRead());
-        Reader reader = new FileReader(importFile) ;
-
-        AnimalRepository repo = CsvAnimalRepository.importData(reader);
 
         String name            = "Alpie";
         BreedClass breed       = BreedClass.HUACAYA;
@@ -95,10 +84,10 @@ public class CsvAnimalRepositoryTest {
         AnimalRepository newRepo = CsvAnimalRepository.importData(reader);
         assertEquals(3, newRepo.getAllAnimals().size());
 
-        String key = "982000123169930";
-        Animal animal = newRepo.getAnimalByKeySet(key);
-        assertNotNull(animal);
-        assertEquals("BAF12345", animal.getRegistration());
+        String key2 = "982000123169930";
+        Animal animal2 = newRepo.getAnimalByKeySet(key2);
+        assertNotNull(animal2);
+        assertEquals("BAF12345", animal2.getRegistration());
 
     }
 }

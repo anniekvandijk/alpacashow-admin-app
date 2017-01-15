@@ -35,22 +35,31 @@ public class ShowEventRegistration {
         if (showClassCode == 0) {
             throw new IllegalArgumentException("ShowClassCode can not be empty");
         }
-        if (sheerDate.isEqual(LocalDate.now()) || sheerDate.isAfter(LocalDate.now())) {
-            throw new IllegalArgumentException("Sheerdate is today or later");
+        if (sheerDate != null)
+        {
+            if (sheerDate.isEqual(LocalDate.now()) || sheerDate.isAfter(LocalDate.now())) {
+                throw new IllegalArgumentException("Sheerdate is today or later");
+            }
         }
-        if (beforeSheerDate.isEqual(LocalDate.now()) || beforeSheerDate.isAfter(LocalDate.now())) {
-            throw new IllegalArgumentException("Before sheerdate is today or later");
+        if (beforeSheerDate != null)
+        {
+            if (beforeSheerDate.isEqual(LocalDate.now()) || beforeSheerDate.isAfter(LocalDate.now())) {
+                throw new IllegalArgumentException("Before sheerdate is today or later");
+            }
         }
-        if (beforeSheerDate.isEqual(sheerDate)) {
-            throw new IllegalArgumentException("Sheerdate and before sheerdate can not be the same");
-        }
-        if (beforeSheerDate.isAfter(sheerDate)) {
-            throw new IllegalArgumentException("Before sheerdate is after sheerdate");
+        if (sheerDate != null && beforeSheerDate != null) {
+            if (beforeSheerDate.isEqual(sheerDate)) {
+                throw new IllegalArgumentException("Sheerdate and before sheerdate can not be the same");
+            }
+            if (beforeSheerDate.isAfter(sheerDate)) {
+                throw new IllegalArgumentException("Before sheerdate is after sheerdate");
+            }
         }
         // TODO: more validation on sheerdate
         // sheerdate is before birth
         // sheerdate and birth do not match
         // beforesheerdate and birth do not match
+        // If Fleeceshow, sheerdate must be filled
 
         this.showEventKey = showEventKey;
         this.participantKey = participantKey;
