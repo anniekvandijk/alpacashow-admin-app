@@ -25,8 +25,6 @@ public class ShowEventController {
 
     private static Logger logger = LoggerFactory.getLogger(ShowEventController.class);
     private ShowEventRepository showEventRepository;
-    private ParticipantRepository participantRepository;
-    private AnimalRepository animalRepository;
 
     @GET
     @ApiOperation(value = "Get all showevents",

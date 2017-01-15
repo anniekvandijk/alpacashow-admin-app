@@ -26,6 +26,8 @@ public class AnimalController {
     private static Logger logger = LoggerFactory.getLogger(AnimalController.class);
     private AnimalRepository animalRepository;
 
+    // TODO: if response != 200, put some information in the response body what went wrong.
+
     @GET
     @ApiOperation(value = "Get all animals",
             response = Animal.class,

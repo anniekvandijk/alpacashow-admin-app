@@ -23,6 +23,8 @@ public class ParticipantController {
     private static Logger logger = LoggerFactory.getLogger(ParticipantController.class);
     private ParticipantRepository participantRepository;
 
+    // TODO: if response != 200, put some information in the response body what went wrong.
+
     @GET
     @ApiOperation(value = "Get all participants",
             response = Participant.class,
