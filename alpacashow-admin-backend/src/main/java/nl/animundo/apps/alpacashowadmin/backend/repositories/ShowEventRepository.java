@@ -27,7 +27,7 @@ public class ShowEventRepository {
 
         ShowEvent showEventToDelete = getShowEventByKeySet(showEventKey);
         if (showEventToDelete != null) {
-            showEvents.remove(showEventToDelete.getDate() + "_" + showEventToDelete.getShowType());
+            showEvents.remove(showEventKey);
             logger.info("Deleted showEvent '" + showEventKey + "' from showEventRepo");
             return showEventToDelete.getName();
         } else {

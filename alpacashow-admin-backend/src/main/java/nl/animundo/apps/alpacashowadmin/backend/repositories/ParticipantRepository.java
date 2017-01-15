@@ -31,7 +31,7 @@ public class ParticipantRepository {
 
         Participant participantToDelete = getParticipantByKeySet(participantKey);
         if (participantToDelete != null) {
-            participants.remove(participantToDelete.getName());
+            participants.remove(participantKey);
             logger.info("Deleted participant '" + participantKey + "' from participantRepo");
             return participantToDelete.getName();
         } else {

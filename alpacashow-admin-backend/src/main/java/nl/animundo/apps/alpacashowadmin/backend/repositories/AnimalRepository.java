@@ -31,7 +31,7 @@ public class AnimalRepository {
 
         Animal animalToDelete = getAnimalByKeySet(animalKey);
         if (animalToDelete != null) {
-            animals.remove(animalToDelete.getMicrochip());
+            animals.remove(animalKey);
             logger.info("Deleted animal '" + animalKey + "' from animalRepo");
             return animalToDelete.getMicrochip();
         } else {
