@@ -46,8 +46,6 @@ public class CsvShowEventRepository extends ShowEventRepository {
         }
     }
 
-    // FIXME niet klappen als de csv leeg is!!!!
-
     private void read(Reader reader) throws IOException {
         CSVReader csvReader = new CSVReader(reader, ';');
 
