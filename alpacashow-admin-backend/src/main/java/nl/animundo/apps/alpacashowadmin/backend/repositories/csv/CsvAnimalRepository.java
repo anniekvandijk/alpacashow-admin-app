@@ -51,8 +51,11 @@ public class CsvAnimalRepository extends AnimalRepository {
                     .append(ani.getSex().toString()).append(";")
                     .append(ani.getColor().toString()).append(";")
                     .append(ani.getDateOfBirth().toString()).append(";")
-                    .append(ani.getMicrochip()).append(";")
-                    .append(ani.getRegistration()).append(";")
+                    .append(ani.getMicrochip()).append(";");
+                    if (ani.getRegistration() != null) {
+                        writer.append(ani.getRegistration());
+                    }
+                    writer.append(";")
                     .append(ani.getSire()).append(";")
                     .append(ani.getDam()).append("\n");
         }
