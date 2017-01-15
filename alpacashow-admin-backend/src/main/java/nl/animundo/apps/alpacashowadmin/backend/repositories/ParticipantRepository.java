@@ -13,7 +13,7 @@ public class ParticipantRepository {
     private Map<String, Participant> participants = new HashMap<>();
 
 
-    public void add(final Participant participant) {
+    public String add(final Participant participant) {
 
         String participantKey = participant.getName();
         if (getParticipantByKeySet(participantKey) != null) {
@@ -24,6 +24,7 @@ public class ParticipantRepository {
             participants.put(participantKey, participant);
             logger.info("Added participant '" + participantKey + "' to participantRepo");
         }
+        return participantKey;
     }
 
     public String delete(final String participantKey) {

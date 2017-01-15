@@ -13,7 +13,7 @@ public class AnimalRepository {
     private Map<String, Animal> animals = new HashMap<>();
 
 
-    public void add(final Animal animal) {
+    public String add(final Animal animal) {
 
         String animalKey = animal.getMicrochip();
         if (getAnimalByKeySet(animalKey) != null) {
@@ -24,6 +24,7 @@ public class AnimalRepository {
             animals.put(animalKey, animal);
             logger.info("Added animal '" + animalKey + "' to animalRepo");
         }
+        return animalKey;
     }
 
     public String delete(final String animalKey) {

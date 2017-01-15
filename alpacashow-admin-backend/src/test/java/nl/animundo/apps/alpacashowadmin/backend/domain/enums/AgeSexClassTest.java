@@ -13,61 +13,61 @@ public class AgeSexClassTest {
     @Test
     public void juniorFemale() {
 
-        assertEquals(0, AgeSexClass.JUNIORFEMALE.getAgeSexCode());
+        assertEquals(0, AgeSexClass.JUNIOR_FEMALE.getAgeSexCode());
     }
 
     @Test
     public void juniorMale() {
 
-        assertEquals(1, AgeSexClass.JUNIORMALE.getAgeSexCode());
+        assertEquals(1, AgeSexClass.JUNIOR_MALE.getAgeSexCode());
 
     }
 
     @Test
     public void intermediateFemale() {
 
-        assertEquals(2, AgeSexClass.INTERMEDIATEFEMALE.getAgeSexCode());
+        assertEquals(2, AgeSexClass.INTERMEDIATE_FEMALE.getAgeSexCode());
     }
 
     @Test
     public void intermediateMale() {
 
-        assertEquals(3, AgeSexClass.INTERMEDIATEMALE.getAgeSexCode());
+        assertEquals(3, AgeSexClass.INTERMEDIATE_MALE.getAgeSexCode());
     }
 
     @Test
     public void adultFemale() {
 
-        assertEquals(4, AgeSexClass.ADULTFEMALE.getAgeSexCode());
+        assertEquals(4, AgeSexClass.ADULT_FEMALE.getAgeSexCode());
     }
 
     @Test
     public void adultMale() {
 
-        assertEquals(5, AgeSexClass.ADULTMALE.getAgeSexCode());
+        assertEquals(5, AgeSexClass.ADULT_MALE.getAgeSexCode());
     }
 
     @Test
     public void seniorFemale() {
 
-        assertEquals(6, AgeSexClass.SENIORFEMALE.getAgeSexCode());
+        assertEquals(6, AgeSexClass.SENIOR_FEMALE.getAgeSexCode());
     }
 
     @Test
     public void seniorMale() {
 
-        assertEquals(7, AgeSexClass.SENIORMALE.getAgeSexCode());
+        assertEquals(7, AgeSexClass.SENIOR_MALE.getAgeSexCode());
     }
 
     @Test
     public void matureFemale() {
 
-        assertEquals(8, AgeSexClass.MATUREFEMALE.getAgeSexCode());
+        assertEquals(8, AgeSexClass.MATURE_FEMALE.getAgeSexCode());
     }
 
     @Test
     public void matureMale() {
 
-        assertEquals(9, AgeSexClass.MATUREMALE.getAgeSexCode());
+        assertEquals(9, AgeSexClass.MATURE_MALE.getAgeSexCode());
     }
 }

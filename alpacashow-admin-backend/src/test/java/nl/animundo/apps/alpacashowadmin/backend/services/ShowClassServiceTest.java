@@ -1,8 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeSexClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.*;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -17,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by Anniek van Dijk on 3-6-2016.
  */
-public class AnimalClassCodeServiceTest {
+public class ShowClassServiceTest {
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
@@ -28,7 +26,7 @@ public class AnimalClassCodeServiceTest {
         exception.expect(InstantiationException.class);
         exception.expectMessage("Instances of this type are forbidden!");
 
-        Constructor<AnimalClassCodeService> constructor = AnimalClassCodeService.class.getDeclaredConstructor();
+        Constructor<ShowClassService> constructor = ShowClassService.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
 
@@ -46,62 +44,72 @@ public class AnimalClassCodeServiceTest {
     public void huacayaJuniorMaleWhiteClassCode() {
 
         int breedCode = BreedClass.HUACAYA.getBreedCode();
-        int ageSexCode = AgeSexClass.JUNIORMALE.getAgeSexCode();
+        int ageSexCode = AgeSexClass.JUNIOR_MALE.getAgeSexCode();
         int colorCode = ColorClass.WHITE.getColorCode();
-        assertEquals(110, AnimalClassCodeService.getAnimalClassCode(breedCode, ageSexCode, colorCode));
+        assertEquals(110, ShowClassService.getShowClassCode(breedCode, ageSexCode, colorCode));
+    }
+
+    @Test
+    public void huacayaJuniorMaleWhiteClassName() {
+
+        BreedClass breed = BreedClass.HUACAYA;
+        AgeClass ageClass = AgeClass.JUNIOR;
+        SexClass sex = SexClass.MALE;
+        ColorClass color = ColorClass.WHITE;
+        assertEquals("Huacaya Junior Male White", ShowClassService.getShowClassName(breed, ageClass, sex, color));
     }
 
     @Test
     public void suriIntermediateFemaleBeigeClassCode() {
 
         int breedCode = BreedClass.SURI.getBreedCode();
-        int ageSexCode = AgeSexClass.INTERMEDIATEFEMALE.getAgeSexCode();
+        int ageSexCode = AgeSexClass.INTERMEDIATE_FEMALE.getAgeSexCode();
         int colorCode = ColorClass.BEIGE.getColorCode();
-        assertEquals(226, AnimalClassCodeService.getAnimalClassCode(breedCode, ageSexCode, colorCode));
+        assertEquals(226, ShowClassService.getShowClassCode(breedCode, ageSexCode, colorCode));
     }
 
     @Test
     public void huacayaFleeceSeniorMaleBrownClassCode() {
 
         int breedCode = BreedClass.HUACAYAFLEECE.getBreedCode();
-        int ageSexCode = AgeSexClass.SENIORMALE.getAgeSexCode();
+        int ageSexCode = AgeSexClass.SENIOR_MALE.getAgeSexCode();
         int colorCode = ColorClass.BROWN.getColorCode();
-        assertEquals(372, AnimalClassCodeService.getAnimalClassCode(breedCode, ageSexCode, colorCode));
+        assertEquals(372, ShowClassService.getShowClassCode(breedCode, ageSexCode, colorCode));
     }
 
     @Test
     public void suriFleeceAdultFemaleFawnClassCode() {
 
         int breedCode = BreedClass.SURIFLEECE.getBreedCode();
-        int ageSexCode = AgeSexClass.ADULTFEMALE.getAgeSexCode();
+        int ageSexCode = AgeSexClass.ADULT_FEMALE.getAgeSexCode();
         int colorCode = ColorClass.FAWN.getColorCode();
-        assertEquals(441, AnimalClassCodeService.getAnimalClassCode(breedCode, ageSexCode, colorCode));
+        assertEquals(441, ShowClassService.getShowClassCode(breedCode, ageSexCode, colorCode));
     }
 
     @Test
     public void huacayaMatureMaleGreyClassCode() {
 
         int breedCode = BreedClass.HUACAYA.getBreedCode();
-        int ageSexCode = AgeSexClass.MATUREMALE.getAgeSexCode();
+        int ageSexCode = AgeSexClass.MATURE_MALE.getAgeSexCode();
         int colorCode = ColorClass.GREY.getColorCode();
-        assertEquals(193, AnimalClassCodeService.getAnimalClassCode(breedCode, ageSexCode, colorCode));
+        assertEquals(193, ShowClassService.getShowClassCode(breedCode, ageSexCode, colorCode));
     }
 
     @Test
     public void suriMatureMaleBlackClassCode() {
 
         int breedCode = BreedClass.SURI.getBreedCode();
-        int ageSexCode = AgeSexClass.MATUREMALE.getAgeSexCode();
+        int ageSexCode = AgeSexClass.MATURE_MALE.getAgeSexCode();
         int colorCode = ColorClass.BLACK.getColorCode();
-        assertEquals(294, AnimalClassCodeService.getAnimalClassCode(breedCode, ageSexCode, colorCode));
+        assertEquals(294, ShowClassService.getShowClassCode(breedCode, ageSexCode, colorCode));
     }
 
     @Test
     public void huacayaFleeceSeniorFemaleFancyClassCode() {
 
         int breedCode = BreedClass.HUACAYAFLEECE.getBreedCode();
-        int ageSexCode = AgeSexClass.SENIORFEMALE.getAgeSexCode();
+        int ageSexCode = AgeSexClass.SENIOR_FEMALE.getAgeSexCode();
         int colorCode = ColorClass.FANCY.getColorCode();
-        assertEquals(365, AnimalClassCodeService.getAnimalClassCode(breedCode, ageSexCode, colorCode));
+        assertEquals(365, ShowClassService.getShowClassCode(breedCode, ageSexCode, colorCode));
     }
 }
