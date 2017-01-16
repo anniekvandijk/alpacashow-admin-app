@@ -26,28 +26,7 @@ public class ShowEventRepository {
         if (getShowEventByKeySet(showEventKey) == null) {
             showEvents.put(showEventKey, showEvent);
             logger.info("Added showEvent '" + showEventKey + "' to showEventRepo");
-
-            // TODO: Dit hieronder moet verplaatst worden en moet goed bekeken worden!!
-            Set <Participant> participants = showEvent.getParticipants();
-            for (Participant participant : participants)
-            {
-                Set <Animal> animals = participant.getAnimals();
-                for (Animal animal : animals) {
-
-                    LocalDate sheerOrBirthDate;
-                    if (showEvent.getShowType().toString().equals("FLEECESHOW")) {
-                        sheerOrBirthDate = animal.getSheerDate();
-                    }
-                    else {
-                        sheerOrBirthDate = animal.getDateOfBirth();
-                    }
-                    AgeClass ageClass = AgeClassService.getAgeClass(showEvent.getDate(), sheerOrBirthDate);
-                    int showClass = ShowClassService.getShowClassCode(animal.getBreed(), animal.getSex(), animal.getColor(), showEvent.getDate(), sheerOrBirthDate);
-                    ShowEventRegistration registration = new ShowEventRegistration(showEventKey, participant.getName(), animal.getMicrochip(), ageClass, showClass, animal.getSheerDate(), animal.getBeforeSheerDate());
-                    showEventRegistrationRepository.add(registration);
-                }
-            }
-
+            showEventRegistrationRepository.AddRegistrationsIfComplete(showEvent, showEventKey);
             return showEventKey;
         } else {
             throw new IllegalArgumentException("Showevent with same date and showtype already exists");
@@ -60,6 +39,7 @@ public class ShowEventRepository {
         if (showEventToDelete != null) {
             showEvents.remove(showEventKey);
             logger.info("Deleted showEvent '" + showEventKey + "' from showEventRepo");
+            showEventRegistrationRepository.deleteAllRegistrationsForShowEvent(showEventKey);
             return showEventToDelete.getName();
         } else {
             return null;
