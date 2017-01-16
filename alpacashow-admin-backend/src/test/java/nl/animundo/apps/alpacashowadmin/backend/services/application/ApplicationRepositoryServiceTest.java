@@ -45,8 +45,7 @@ public class ApplicationRepositoryServiceTest {
 
     @After
     public void DeleteShowEvents () throws IOException {
-  //      helper.DeleteCompleteShowEvent();
-
+        helper.DeleteCompleteShowEvent();
     }
 
     @Rule

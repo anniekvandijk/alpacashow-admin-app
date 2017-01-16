@@ -1,8 +1,11 @@
 package nl.animundo.apps.alpacashowadmin.backend.controllers;
 
+import nl.animundo.apps.alpacashowadmin.backend.IThelper;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
@@ -11,8 +14,19 @@ import static org.junit.Assert.assertEquals;
 
 public class ParticipantControllerTest {
 
+    private IThelper helper = new IThelper();
     private ParticipantRepository participantRepository;
     private ApplicationRepositoryService service = new ApplicationRepositoryService();
+
+    @Before
+    public void AddShowEvents () throws IOException {
+        helper.AddCompleteShowEvent();
+    }
+
+    @After
+    public void DeleteShowEvents () throws IOException {
+        helper.DeleteCompleteShowEvent();
+    }
 
     @Test
     public void getAllParticipants() throws IOException {
