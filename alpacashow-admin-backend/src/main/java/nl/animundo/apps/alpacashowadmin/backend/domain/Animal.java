@@ -43,6 +43,11 @@ public class Animal {
     {
         this(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, null, null);
     }
+    public Animal (final String name, final BreedClass breed, final SexClass sex, final ColorClass color, final LocalDate dateOfBirth,
+                   final String microchip, final String registration, final String sire, final String dam, final LocalDate sheerDate)
+    {
+        this(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, sheerDate, null);
+    }
 
     @JsonCreator
     public Animal(@JsonProperty("name") final String name, @JsonProperty("breed") final BreedClass breed,

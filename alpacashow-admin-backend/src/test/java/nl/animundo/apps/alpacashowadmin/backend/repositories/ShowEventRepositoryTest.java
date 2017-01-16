@@ -86,7 +86,7 @@ public class ShowEventRepositoryTest {
         ShowType showType = ShowType.HALTERSHOW;
 
         Set <Animal> animals = new HashSet<>();
-        animals.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.now().minusYears(1), "123456789", null, "Vader", "Moeder"));
+        animals.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.now().minusYears(1), "123456789", null, "Vader", "Moeder", LocalDate.now().minusMonths(2)));
         animals.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.now().minusYears(2), "987654321", "BAF12345", "Vader2", "Moeder2"));
 
         Set<Participant> participants = new HashSet<>();

@@ -80,7 +80,7 @@ public class ShowEventRegistrationRepository {
         ShowEventRegistration showEventRegistrationToDelete = getShowEventRegistrationByKeySet(showEventRegistrationKey);
         if (showEventRegistrationToDelete != null) {
             showEventRegistrations.remove(showEventRegistrationKey);
-            logger.info("Deleted showEvent '" + showEventRegistrationKey + "' from showEventRepo");
+            logger.info("Deleted showEventRegistration '" + showEventRegistrationKey + "' from showEventRegistrationRepo");
             return showEventRegistrationToDelete.getShowEventKey();
         } else {
             return null;
