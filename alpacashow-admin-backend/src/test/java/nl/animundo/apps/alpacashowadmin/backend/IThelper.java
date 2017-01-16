@@ -74,13 +74,12 @@ public class IThelper {
 
         ShowEvent showEvent2 = new ShowEvent(name2, date2, closeDate2, location2, judge2, showType2, participants2);
 
-        showEventRepository.add(showEvent1);
-        showEventRepository.add(showEvent2);
+        Set<ShowEvent> set = new HashSet<>();
+        set.add(showEvent1);
+        set.add(showEvent2);
 
-        for (String showEventKey : showEventRepository.getAllShowEventsByKeySet()) {
-
-            ShowEvent showEvent = showEventRepository.getShowEventByKeySet(showEventKey);
-
+        for (ShowEvent showEvent : set) {
+            String showEventKey = showEventRepository.add(showEvent);
             for (Participant participant : showEvent.getParticipants()) {
                 String participantKey = participantRepository.add(participant);
                 for (Animal animal : participant.getAnimals()) {
