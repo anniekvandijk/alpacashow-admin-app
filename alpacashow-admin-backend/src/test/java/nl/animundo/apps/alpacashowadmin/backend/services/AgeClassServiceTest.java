@@ -74,6 +74,17 @@ public class AgeClassServiceTest {
     }
 
     @Test
+    public void AgeInMonths5() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Animals under the age of 6 can not participate");
+
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(5);
+        Assert.assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDate, dateOfBirth));
+    }
+
+    @Test
     public void AgeInMonths1() {
 
         exception.expect(IllegalArgumentException.class);
@@ -83,7 +94,6 @@ public class AgeClassServiceTest {
         dateOfBirth = LocalDate.now().minusMonths(2).plusDays(1);
         AgeClassService.getAgeClass(showDate, dateOfBirth);
     }
-
 
     @Test
     public void AgeInMonths6MinusOneDay() {
