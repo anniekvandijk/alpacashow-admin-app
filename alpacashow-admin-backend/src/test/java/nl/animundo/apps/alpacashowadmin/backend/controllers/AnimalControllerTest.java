@@ -15,19 +15,13 @@ import static org.junit.Assert.assertEquals;
 public class AnimalControllerTest {
 
     private IThelper helper = new IThelper();
-    private AnimalRepository animalRepository;
     private ApplicationRepositoryService service = new ApplicationRepositoryService();
+    private AnimalRepository animalRepository;
 
     @Before
     public void AddShowEvents () throws IOException {
         helper.AddCompleteShowEvent();
     }
-
-    @After
-    public void DeleteShowEvents () throws IOException {
-        helper.DeleteCompleteShowEvent();
-    }
-
 
     @Test
     public void getAllAnimals() throws IOException {
@@ -71,6 +65,7 @@ public class AnimalControllerTest {
         controller.addAnimal(file);
 
         loadRepository();
+
         assertEquals(5, animalRepository.getAllAnimals().size());
 
         Animal animal = animalRepository.getAnimalByKeySet("chippie");
