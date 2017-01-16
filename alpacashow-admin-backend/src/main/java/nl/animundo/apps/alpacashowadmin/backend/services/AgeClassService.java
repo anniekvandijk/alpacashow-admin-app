@@ -36,7 +36,7 @@ public class AgeClassService {
         if (ageInMonths < 0 ) {
             throw new IllegalArgumentException("Age below zero months. Check date of birth.");
         }
-        if (ageInMonths >= 0 && ageInMonths < 6) {
+        if (ageInMonths < 6) {
             throw new IllegalArgumentException("Animals under 6 months can not participate.");
         }
         if (ageInMonths >= 600  ) {
