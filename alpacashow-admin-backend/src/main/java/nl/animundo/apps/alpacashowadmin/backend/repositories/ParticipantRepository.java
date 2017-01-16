@@ -11,10 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class ParticipantRepository {
     private static Logger logger = LoggerFactory.getLogger(ParticipantRepository.class);
@@ -55,7 +52,11 @@ public class ParticipantRepository {
     }
 
     public Collection<Participant> getAllParticipants() {
-        return participants.values();
+
+        List list = new ArrayList(participants.values());
+        Comparator comparator = Comparator.comparing(Participant::getFarmName);
+        Collections.sort(list, comparator);
+        return list;
     }
 
     public Participant getParticipantByKeySet(final String keySet) {

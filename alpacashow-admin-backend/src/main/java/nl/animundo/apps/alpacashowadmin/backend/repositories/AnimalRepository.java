@@ -1,12 +1,11 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
+import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+
+import java.util.*;
 
 public class AnimalRepository {
     private static Logger logger = LoggerFactory.getLogger(AnimalRepository.class);
@@ -48,7 +47,11 @@ public class AnimalRepository {
     }
 
     public Collection<Animal> getAllAnimals() {
-        return animals.values();
+
+        List list = new ArrayList(animals.values());
+        Comparator comparator = Comparator.comparing(Animal::getDateOfBirth);
+        Collections.sort(list, comparator);
+        return list;
     }
 
     public Animal getAnimalByKeySet(final String keySet) {

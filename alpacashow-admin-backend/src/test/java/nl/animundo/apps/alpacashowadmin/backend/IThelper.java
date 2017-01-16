@@ -64,8 +64,8 @@ public class IThelper {
         animals1.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "4321", "BAF12345", "Vader2", "Moeder2", LocalDate.of(2016, 4, 1), LocalDate.of(2015, 5, 1)));
 
         Set<Animal> animals2 = new HashSet<>();
-        animals2.add(new Animal("Alpaca3", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 12), "4444", null, "Vader", "Moeder", LocalDate.of(2016, 5, 1)));
-        animals2.add(new Animal("Alpaca4", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2016, 7, 5), "5555", "BAF12346", "Vader2", "Moeder2"));
+        animals2.add(new Animal("Alpaca3", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 13), "4444", null, "Vader", "Moeder", LocalDate.of(2016, 5, 1)));
+        animals2.add(new Animal("Alpaca4", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2016, 7, 6), "5555", "BAF12346", "Vader2", "Moeder2"));
 
 
         Set<Participant> participants2 = new HashSet<>();

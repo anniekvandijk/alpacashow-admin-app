@@ -10,10 +10,7 @@ import nl.animundo.apps.alpacashowadmin.backend.services.ShowClassService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class ShowEventRegistrationRepository {
     private static Logger logger = LoggerFactory.getLogger(ShowEventRegistrationRepository.class);
@@ -52,7 +49,11 @@ public class ShowEventRegistrationRepository {
     }
 
     public Collection<ShowEventRegistration> getAllShowEventRegistrations() {
-        return showEventRegistrations.values();
+
+        List list = new ArrayList(showEventRegistrations.values());
+        Comparator comparator = Comparator.comparing(ShowEventRegistration::getAgeClass);
+        Collections.sort(list, comparator);
+        return list;
     }
 
     public ShowEventRegistration getShowEventRegistrationByKeySet(final String keySet) {

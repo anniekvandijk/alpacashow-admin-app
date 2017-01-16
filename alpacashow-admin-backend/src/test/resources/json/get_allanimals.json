@@ -1,18 +1,5 @@
 [
   {
-    "name": "Alpaca1",
-    "breed": "Huacaya",
-    "sex": "Female",
-    "color": "Black",
-    "dateOfBirth": "2015-04-12",
-    "microchip": "8765",
-    "registration": null,
-    "sire": "Vader",
-    "dam": "Moeder",
-    "sheerDate": null,
-    "beforeSheerDate": null
-  },
-  {
     "name": "Alpaca2",
     "breed": "Suri",
     "sex": "Male",
@@ -26,11 +13,25 @@
     "beforeSheerDate": null
   },
   {
-    "name": "Alpaca3",
+    "name": "Alpaca1",
     "breed": "Huacaya",
     "sex": "Female",
     "color": "Black",
     "dateOfBirth": "2015-04-12",
+    "microchip": "8765",
+    "registration": null,
+    "sire": "Vader",
+    "dam": "Moeder",
+    "sheerDate": null,
+    "beforeSheerDate": null
+  },
+
+  {
+    "name": "Alpaca3",
+    "breed": "Huacaya",
+    "sex": "Female",
+    "color": "Black",
+    "dateOfBirth": "2015-04-13",
     "microchip": "4444",
     "registration": null,
     "sire": "Vader",
@@ -43,7 +44,7 @@
     "breed": "Suri",
     "sex": "Male",
     "color": "Fancy",
-    "dateOfBirth": "2016-07-05",
+    "dateOfBirth": "2016-07-06",
     "microchip": "5555",
     "registration": "BAF12346",
     "sire": "Vader2",
