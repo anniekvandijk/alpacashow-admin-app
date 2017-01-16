@@ -44,7 +44,9 @@ public class Participant {
         if (nameCln == null) {
             throw new IllegalArgumentException("Field participant can not be empty");
         }
-        logger.info("\n Participant: " + name + "\n Animal(s): " + animals);
+        if (farmNameCln == null) {
+            throw new IllegalArgumentException("Field farmName can not be empty");
+        }
         this.name = nameCln;
         this.farmName = farmNameCln;
         this.email = emailCln;

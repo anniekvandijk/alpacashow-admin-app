@@ -74,7 +74,7 @@ public class ParticipantTest {
     }
 
     @Test
-    public void participantNotEmpty() {
+    public void nameNotEmpty() {
 
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field participant can not be empty");
@@ -92,13 +92,49 @@ public class ParticipantTest {
     }
 
     @Test
-    public void participantNotNull() {
+    public void nameNotNull() {
 
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field participant can not be empty");
 
         name        = null;
         farmName    = "farm";
+        email       = "farm@farm.nl";
+        telephone   = "06-12345678";
+        address     = "some address";
+        zipCode     = "1234 AA";
+        city        = "some City";
+        country     = "Netherlands";
+
+        new Participant(name, farmName, email, telephone, address, zipCode, city, country);
+    }
+
+    @Test
+    public void farmNameNotEmpty() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field farmName can not be empty");
+
+        name        = "Participant";
+        farmName    = "";
+        email       = "farm@farm.nl";
+        telephone   = "06-12345678";
+        address     = "some address";
+        zipCode     = "1234 AA";
+        city        = "some City";
+        country     = "Netherlands";
+
+        new Participant(name, farmName, email, telephone, address, zipCode, city, country);
+    }
+
+    @Test
+    public void farmNameNotNull() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field farmName can not be empty");
+
+        name        = "Participant";
+        farmName    = null;
         email       = "farm@farm.nl";
         telephone   = "06-12345678";
         address     = "some address";

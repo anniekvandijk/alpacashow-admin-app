@@ -17,22 +17,21 @@ public class AgeClassService {
 
     public static AgeClass getAgeClass(final LocalDate showDate, final LocalDate sheerOrBirthDate) {
 
-        long ageInMonths = getAgeInMonths(showDate, sheerOrBirthDate);
+        int ageInMonths = getAgeInMonths(showDate, sheerOrBirthDate);
 
         AgeClass ageClass = null;
         for (AgeClass ageClassValue : AgeClass.values()) {
             if (ageInMonths >= ageClassValue.getMonthMin() && ageInMonths <= ageClassValue.getMonthMax()) {
-                logger.info("AgeClass = " + ageClassValue);
+                logger.info("Age in months = " + ageInMonths + ", AgeClass = " + ageClassValue);
                 ageClass = ageClassValue;
             }
         }
         return ageClass;
     }
 
-    private static long getAgeInMonths(final LocalDate showDate, final LocalDate sheerOrBirthDate) {
+    private static int getAgeInMonths(final LocalDate showDate, final LocalDate sheerOrBirthDate) {
 
         final long ageInMonths = ChronoUnit.MONTHS.between(sheerOrBirthDate, showDate);
-        logger.info("Age in months = " + ageInMonths);
 
         if (ageInMonths < 0 ) {
             throw new IllegalArgumentException("Age below zero months. Check date of birth.");
@@ -43,11 +42,9 @@ public class AgeClassService {
         if (ageInMonths >= 600  ) {
             throw new IllegalArgumentException("Animal age to high. Check the date of birth.");
         }
-
-        else {
-            return ageInMonths;
-
+        else
+        {
+            return (int) ageInMonths;
         }
-
     }
 }
