@@ -48,8 +48,8 @@ public class AnimalControllerTest {
 
         AnimalController controller = new AnimalController(animalRepository);
 
-        Response resultCode = controller.getAnimalByKey("12346");
-        String result = (String) controller.getAnimalByKey("12346").getEntity();
+        Response resultCode = controller.getAnimalByKey("4444");
+        String result = (String) controller.getAnimalByKey("4444").getEntity();
         String resultTrim = result.replaceAll("\\s", "");
         String fileName = "get_animalbykey.json";
         String expected = readJsonfile(fileName);
@@ -63,7 +63,7 @@ public class AnimalControllerTest {
     public void addDeleteUpdateAnimal() throws IOException {
 
         loadRepository();
-        assertEquals(3, animalRepository.getAllAnimals().size());
+        assertEquals(4, animalRepository.getAllAnimals().size());
 
         AnimalController controller = new AnimalController(animalRepository);
 
@@ -71,7 +71,7 @@ public class AnimalControllerTest {
         controller.addAnimal(file);
 
         loadRepository();
-        assertEquals(4, animalRepository.getAllAnimals().size());
+        assertEquals(5, animalRepository.getAllAnimals().size());
 
         Animal animal = animalRepository.getAnimalByKeySet("chippie");
         assertEquals("SURI", animal.getBreed().toString());
@@ -129,7 +129,7 @@ public class AnimalControllerTest {
         AnimalController controller = new AnimalController(animalRepository);
 
         String file = readJsonfile("update_animalWrong.json");
-        Response resultCode = controller.updateAnimal("12347", file);
+        Response resultCode = controller.updateAnimal("5555", file);
 
         assertEquals(400, resultCode.getStatus());
     }

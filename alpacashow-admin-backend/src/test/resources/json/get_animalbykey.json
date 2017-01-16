@@ -1,13 +1,13 @@
 {
-  "name" : "My Alpaca 2",
-  "breed" : "Huacaya",
-  "sex" : "Female",
-  "color" : "Fancy",
-  "dateOfBirth" : "2016-05-08",
-  "microchip" : "12346",
-  "registration" : "BAF12304",
-  "sire" : "My father",
-  "dam" : "My mothertoo",
+  "name": "Alpaca3",
+  "breed": "Huacaya",
+  "sex": "Female",
+  "color": "Black",
+  "dateOfBirth": "2015-04-12",
+  "microchip": "4444",
+  "registration": null,
+  "sire": "Vader",
+  "dam": "Moeder",
   "sheerDate": null,
   "beforeSheerDate": null
 }

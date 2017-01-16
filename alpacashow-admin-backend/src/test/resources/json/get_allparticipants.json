@@ -1,14 +1,15 @@
-[ {
-  "name" : "Deelnemer 1",
-  "farmName" : "Alpacafarm 1",
-  "email" : "farmnaam@iets.nl",
-  "telephone" : "050-1234567",
-  "address" : "thuis 3a",
-  "zipCode" : "1111 BB",
-  "city" : "Surhuisterveen",
-  "country" : "Nederland",
-  "animals" : [ ]
-},
+[
+  {
+    "name": "Deelnemer 1",
+    "farmName": "Alpacafarm 1",
+    "email": "farmnaam@iets.nl",
+    "telephone": "050-1234567",
+    "address": "thuis 3a",
+    "zipCode": "1111 BB",
+    "city": "Surhuisterveen",
+    "country": "Nederland",
+    "animals": []
+  },
   {
     "name": "Deelnemer 2",
     "farmName": "Alpacafarmpje 2",
@@ -19,14 +20,27 @@
     "city": "Grun",
     "country": "Nederland",
     "animals": []
-  }, {
-  "name" : "Deelnemer 5",
-  "farmName" : null,
-  "email" : null,
-  "telephone" : null,
-  "address" : null,
-  "zipCode" : null,
-  "city" : null,
-  "country" : null,
-  "animals" : [ ]
-} ]
+  },
+  {
+    "name": "Test participant 2",
+    "farmName": "Testfarm 2",
+    "email": null,
+    "telephone": null,
+    "address": null,
+    "zipCode": null,
+    "city": null,
+    "country": null,
+    "animals": []
+  },
+  {
+    "name": "Test participant 1",
+    "farmName": "Testfarm 1",
+    "email": null,
+    "telephone": null,
+    "address": null,
+    "zipCode": null,
+    "city": null,
+    "country": null,
+    "animals": []
+  }
+]

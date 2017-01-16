@@ -56,7 +56,7 @@ public class ApplicationRepositoryServiceTest {
 
         showEventRepository = service.loadShowEventRepository();
 
-        assertEquals(1, showEventRepository.getAllShowEvents().size());
+        assertEquals(2, showEventRepository.getAllShowEvents().size());
         assertEquals("Test showEvent met registraties", showEventRepository.getShowEventByKeySet("2017-06-15_HALTERSHOW").getName());
 
     }
@@ -66,7 +66,7 @@ public class ApplicationRepositoryServiceTest {
 
         participantRepository = service.loadParticipantRepository();
 
-        assertEquals(2, participantRepository.getAllParticipants().size());
+        assertEquals(4, participantRepository.getAllParticipants().size());
         assertEquals("Test participant 2", participantRepository.getParticipantByKeySet("Test participant 2").getName());
         assertEquals("Testfarm 2", participantRepository.getParticipantByKeySet("Test participant 2").getFarmName());
 

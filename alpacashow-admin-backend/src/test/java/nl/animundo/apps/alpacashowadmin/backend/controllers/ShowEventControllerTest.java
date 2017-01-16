@@ -28,7 +28,7 @@ public class ShowEventControllerTest {
 
     @After
     public void DeleteShowEvents () throws IOException {
-        helper.DeleteCompleteShowEvent();
+//        helper.DeleteCompleteShowEvent();
     }
 
     @Test

@@ -1,17 +1,20 @@
-[ {
-  "name" : "Assen 2017",
-  "date" : "2017-05-01",
-  "closeDate" : "2017-04-01",
-  "location" : "Assen",
-  "judge" : "Rob Bettinson",
-  "showType": "Haltershow",
-  "participants" : [ ]
-}, {
-  "name" : "Breda 2017",
-  "date" : "2017-04-01",
-  "closeDate" : "2017-03-01",
-  "location" : "Breda",
-  "judge" : "Shirley Bettinson",
-  "showType": "Male progeny show",
-  "participants" : [ ]
-} ]
+[
+  {
+    "name" : "Breda 2017",
+    "date" : "2017-04-01",
+    "closeDate" : "2017-03-01",
+    "location" : "Breda",
+    "judge" : "Shirley Bettinson",
+    "showType": "Male progeny show",
+    "participants" : [ ]
+  },
+  {
+    "name": "Test showEvent met registraties",
+    "date": "2017-06-15",
+    "closeDate": "2017-04-15",
+    "location": "Surhuisterveen",
+    "judge": "Test Judge",
+    "showType": "Haltershow",
+    "participants": []
+  }
+]
