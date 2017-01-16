@@ -55,7 +55,7 @@ public class AgeClassServiceTest {
     public void AgeInMonths0() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Animals under the age of 6 can not participate");
+        exception.expectMessage("Animals under 6 months can not participate.");
 
         showDate = LocalDate.now();
         dateOfBirth = LocalDate.now();
@@ -66,7 +66,7 @@ public class AgeClassServiceTest {
     public void AgeInMonthsAlso0() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Animals under the age of 6 can not participate");
+        exception.expectMessage("Animals under 6 months can not participate.");
 
         showDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(1).plusDays(1);
@@ -74,21 +74,10 @@ public class AgeClassServiceTest {
     }
 
     @Test
-    public void AgeInMonths5() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Animals under the age of 6 can not participate");
-
-        showDate = LocalDate.now();
-        dateOfBirth = LocalDate.now().minusMonths(5);
-        Assert.assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDate, dateOfBirth));
-    }
-
-    @Test
     public void AgeInMonths1() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Animals under the age of 6 can not participate");
+        exception.expectMessage("Animals under 6 months can not participate.");
 
         showDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(2).plusDays(1);
@@ -96,10 +85,32 @@ public class AgeClassServiceTest {
     }
 
     @Test
+    public void AgeInMonths1too() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Animals under 6 months can not participate.");
+
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(1);
+        AgeClassService.getAgeClass(showDate, dateOfBirth);
+    }
+
+    @Test
+    public void AgeInMonths5() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Animals under 6 months can not participate.");
+
+        showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusMonths(5);
+        Assert.assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDate, dateOfBirth));
+    }
+
+    @Test
     public void AgeInMonths6MinusOneDay() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Animals under the age of 6 can not participate");
+        exception.expectMessage("Animals under 6 months can not participate.");
 
         showDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(6).plusDays(1);
