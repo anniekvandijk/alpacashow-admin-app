@@ -45,10 +45,7 @@ public class CsvParticipantRepository extends ParticipantRepository {
         for (String participant : participantRepo.getAllParticipantsByKeySet()) {
             Participant part = participantRepo.getParticipantByKeySet(participant);
             writer.append(part.getName()).append(";");
-            if (part.getFarmName() != null) {
-                writer.append(part.getFarmName());
-            }
-            writer.append(";");
+            writer.append(part.getFarmName()).append(";");
             if (part.getEmail() != null) {
                 writer.append(part.getEmail());
             }

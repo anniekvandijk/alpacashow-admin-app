@@ -18,8 +18,8 @@ public class AgeClassService {
     public static AgeClass getAgeClass(final LocalDate showDate, final LocalDate sheerOrBirthDate) {
 
         int ageInMonths = getAgeInMonths(showDate, sheerOrBirthDate);
-
         AgeClass ageClass = null;
+
         for (AgeClass ageClassValue : AgeClass.values()) {
             if (ageInMonths >= ageClassValue.getMonthMin() && ageInMonths <= ageClassValue.getMonthMax()) {
                 logger.info("Age in months = " + ageInMonths + ", AgeClass = " + ageClassValue);
