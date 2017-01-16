@@ -24,7 +24,12 @@ import java.util.Collection;
 public class AnimalController {
 
     private static Logger logger = LoggerFactory.getLogger(AnimalController.class);
+    private ApplicationRepositoryService service = new ApplicationRepositoryService();
     private AnimalRepository animalRepository;
+
+    public AnimalController (AnimalRepository animalRepository) {
+        this.animalRepository = animalRepository;
+    }
 
     // TODO: if response != 200, put some information in the response body what went wrong.
 
@@ -142,11 +147,11 @@ public class AnimalController {
 
     private void loadRepository() throws IOException {
 
-        animalRepository = ApplicationRepositoryService.loadAnimalRepository();
+        animalRepository = service.loadAnimalRepository();
     }
 
     private void saveRepository() throws IOException {
 
-        ApplicationRepositoryService.saveAnimalRepository(animalRepository);
+        service.saveAnimalRepository();
     }
 }

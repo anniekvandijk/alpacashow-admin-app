@@ -21,7 +21,12 @@ import java.util.Collection;
 public class ParticipantController {
 
     private static Logger logger = LoggerFactory.getLogger(ParticipantController.class);
+    private ApplicationRepositoryService service = new ApplicationRepositoryService();
     private ParticipantRepository participantRepository;
+
+    public ParticipantController (ParticipantRepository participantRepository) {
+        this.participantRepository = participantRepository;
+    }
 
     // TODO: if response != 200, put some information in the response body what went wrong.
 
@@ -139,11 +144,11 @@ public class ParticipantController {
 
     private void loadRepository() throws IOException {
 
-        participantRepository = ApplicationRepositoryService.loadParticipantRepository();
+        participantRepository = service.loadParticipantRepository();
     }
 
     private void saveRepository() throws IOException {
 
-        ApplicationRepositoryService.saveParticipantRepository(participantRepository);
+        service.saveParticipantRepository();
     }
 }

@@ -15,11 +15,12 @@ import static org.junit.Assert.assertTrue;
 public class ShowEventControllerTest {
 
     private ShowEventRepository showEventRepo;
+    private ApplicationRepositoryService service = new ApplicationRepositoryService();
 
     @Test
     public void getAllShowEvents() throws IOException {
 
-        ShowEventController controller = new ShowEventController();
+        ShowEventController controller = new ShowEventController(showEventRepo);
 
         String result = (String)controller.getShowEvents().getEntity();
         String resultTrim = result.replaceAll("\\s", "");
@@ -33,7 +34,7 @@ public class ShowEventControllerTest {
     @Test
     public void getShowEventByKey() throws IOException {
 
-        ShowEventController controller = new ShowEventController();
+        ShowEventController controller = new ShowEventController(showEventRepo);
 
         Response resultCode = controller.getShowEventByKey("2017-04-01_MALE_PROGENY_SHOW");
         String result = (String) controller.getShowEventByKey("2017-04-01_MALE_PROGENY_SHOW").getEntity();
@@ -52,7 +53,7 @@ public class ShowEventControllerTest {
         loadRepository();
         assertEquals(2, showEventRepo.getAllShowEvents().size());
 
-        ShowEventController controller = new ShowEventController();
+        ShowEventController controller = new ShowEventController(showEventRepo);
 
         String showEvent = readJsonfile("add_showevent.json");
         controller.addShowEvent(showEvent);
@@ -77,7 +78,7 @@ public class ShowEventControllerTest {
     @Test
     public void getShowEventByNotExistingKey() throws IOException {
 
-        ShowEventController controller = new ShowEventController();
+        ShowEventController controller = new ShowEventController(showEventRepo);
 
         Response resultCode = controller.getShowEventByKey("2017-04-01_HALTERSHOW");
         assertEquals(404, resultCode.getStatus());
@@ -88,7 +89,7 @@ public class ShowEventControllerTest {
 
         loadRepository();
 
-        ShowEventController controller = new ShowEventController();
+        ShowEventController controller = new ShowEventController(showEventRepo);
 
         String showEvent = readJsonfile("add_showeventWrong.json");
         Response resultCode = controller.addShowEvent(showEvent);
@@ -101,7 +102,7 @@ public class ShowEventControllerTest {
     public void updateShowEventWithWrongKey() throws IOException {
 
         loadRepository();
-        ShowEventController controller = new ShowEventController();
+        ShowEventController controller = new ShowEventController(showEventRepo);
 
         String showEvent = readJsonfile("update_showevent.json");
         Response resultCode = controller.updateShowEvent("Breda 2017_2018-04-01", showEvent);
@@ -113,7 +114,7 @@ public class ShowEventControllerTest {
     public void updateShowEventWithWrongData() throws IOException {
 
         loadRepository();
-        ShowEventController controller = new ShowEventController();
+        ShowEventController controller = new ShowEventController(showEventRepo);
 
         String showEvent = readJsonfile("update_showeventWrong.json");
         Response resultCode = controller.updateShowEvent("2017-04-01_MALE_PROGENY_SHOW", showEvent);
@@ -126,7 +127,7 @@ public class ShowEventControllerTest {
 
         loadRepository();
 
-        ShowEventController controller = new ShowEventController();
+        ShowEventController controller = new ShowEventController(showEventRepo);
         Response resultCode = controller.deleteShowEvent("2017-03-01_HALTERSHO");
 
         assertEquals(404, resultCode.getStatus());
@@ -135,6 +136,6 @@ public class ShowEventControllerTest {
 
     private void loadRepository() throws IOException {
 
-        showEventRepo = ApplicationRepositoryService.loadShowEventRepository();
+        showEventRepo = service.loadShowEventRepository();
     }
 }

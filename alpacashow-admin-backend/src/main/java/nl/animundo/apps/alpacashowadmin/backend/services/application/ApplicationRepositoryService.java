@@ -1,17 +1,27 @@
 package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
+import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
+import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
+import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventRegistration;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.AnimalRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRegistrationRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvAnimalRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvParticipantRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvShowEventRegistrationRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvShowEventRepository;
+import nl.animundo.apps.alpacashowadmin.backend.services.AgeClassService;
+import nl.animundo.apps.alpacashowadmin.backend.services.ShowClassService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.*;
+import java.time.LocalDate;
 import java.util.Properties;
+import java.util.Set;
+
 import static com.sun.xml.bind.v2.util.ClassLoaderRetriever.getClassLoader;
 
 
@@ -20,83 +30,111 @@ public class ApplicationRepositoryService {
     private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
     private static ApplicationFileDirService fileDirService = new ApplicationFileDirService();
     private static String fileStorage = "csv";
-    private static ShowEventRepository showEventRepo = new ShowEventRepository();
-    private static ParticipantRepository participantRepo = new ParticipantRepository();
-    private static AnimalRepository animalRepo = new AnimalRepository();
+    private ShowEventRepository showEventRepository;
+    private ParticipantRepository participantRepository;
+    private AnimalRepository animalRepository;
+    private ShowEventRegistrationRepository showEventRegistrationRepository;
 
-    private ApplicationRepositoryService() throws InstantiationException {
-        throw new InstantiationException("Instances of this type are forbidden!");
+    public ApplicationRepositoryService() {
+        showEventRepository = new ShowEventRepository();
+        participantRepository = new ParticipantRepository();
+        animalRepository = new AnimalRepository();
+        showEventRegistrationRepository = new ShowEventRegistrationRepository();
     }
 
-    public static ShowEventRepository loadShowEventRepository() throws IOException {
+    public ShowEventRepository loadShowEventRepository() throws IOException {
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
             String csvShowEventsResource =  fileDirService.getFilePath(fileStorage + "/SHOWEVENTS.csv");
             FileReader csvReader = new FileReader(String.valueOf(csvShowEventsResource));
-            showEventRepo = CsvShowEventRepository.importData(csvReader);
+            showEventRepository = CsvShowEventRepository.importData(csvReader);
             csvReader.close();
             logger.info("Imported csvShowEventRepository");
         }
-        return showEventRepo;
+        return showEventRepository;
     }
 
-    public static ParticipantRepository loadParticipantRepository() throws IOException {
+    public ParticipantRepository loadParticipantRepository() throws IOException {
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
             String csvParticipantsResource =  fileDirService.getFilePath(fileStorage + "/PARTICIPANTS.csv");
             FileReader csvReader = new FileReader(String.valueOf(csvParticipantsResource));
-            participantRepo = CsvParticipantRepository.importData(csvReader);
+            participantRepository = CsvParticipantRepository.importData(csvReader);
             csvReader.close();
             logger.info("Imported csvParticipantRepository");
         }
-        return participantRepo;
+        return participantRepository;
     }
 
-    public static AnimalRepository loadAnimalRepository() throws IOException {
+    public AnimalRepository loadAnimalRepository() throws IOException {
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
             String csvAnimalsResource =  fileDirService.getFilePath(fileStorage + "/ANIMALS.csv");
             FileReader csvReader = new FileReader(String.valueOf(csvAnimalsResource));
-            animalRepo = CsvAnimalRepository.importData(csvReader);
+            animalRepository = CsvAnimalRepository.importData(csvReader);
             csvReader.close();
             logger.info("Imported csvAnimalRepository");
         }
-        return animalRepo;
+        return animalRepository;
     }
 
-    public static void saveShowEventRepository(ShowEventRepository repo) throws IOException {
+    public ShowEventRegistrationRepository loadShowEventRegistrationRepository() throws IOException {
+
+        if ("csv".equalsIgnoreCase(fileStorage)) {
+            String csvShowEventRegistrationResource =  fileDirService.getFilePath(fileStorage + "/SHOWEVENTS_REGISTRATIONS.csv");
+            FileReader csvReader = new FileReader(String.valueOf(csvShowEventRegistrationResource));
+            showEventRegistrationRepository = CsvShowEventRegistrationRepository.importData(csvReader);
+            csvReader.close();
+            logger.info("Imported csvShowEventRegistrationRepository");
+        }
+        return showEventRegistrationRepository;
+    }
+
+    public void saveShowEventRepository() throws IOException {
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
             String csvShowEventsResource = fileDirService.getFilePath(fileStorage + "/SHOWEVENTS.csv");
             FileWriter writer = new FileWriter(csvShowEventsResource);
-            CsvShowEventRepository.exportData(writer, repo);
+            CsvShowEventRepository.exportData(writer, showEventRepository);
             writer.flush();
             writer.close();
             logger.info("Exported csvShowEventRepository");
         }
     }
 
-    public static void saveParticipantRepository(ParticipantRepository repo) throws IOException {
+    public void saveParticipantRepository() throws IOException {
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
             String csvParticipantsResource = fileDirService.getFilePath(fileStorage + "/PARTICIPANTS.csv");
             FileWriter writer = new FileWriter(csvParticipantsResource);
-            CsvParticipantRepository.exportData(writer, repo);
+            CsvParticipantRepository.exportData(writer, participantRepository);
             writer.flush();
             writer.close();
             logger.info("Exported csvParticipantRepository");
         }
     }
 
-    public static void saveAnimalRepository(AnimalRepository repo) throws IOException {
+    public void saveAnimalRepository() throws IOException {
 
         if ("csv".equalsIgnoreCase(fileStorage)) {
             String csvAnimalsResource = fileDirService.getFilePath(fileStorage + "/ANIMALS.csv");
             FileWriter writer = new FileWriter(csvAnimalsResource);
-            CsvAnimalRepository.exportData(writer, repo);
+            CsvAnimalRepository.exportData(writer, animalRepository);
             writer.flush();
             writer.close();
             logger.info("Exported csvAnimalRepository");
+        }
+    }
+
+    public void saveShowEventRegistrationRepository() throws IOException {
+
+        if ("csv".equalsIgnoreCase(fileStorage)) {
+            String csvShowEventRegistrationResource = fileDirService.getFilePath(fileStorage + "/SHOWEVENTS_REGISTRATIONS.csv");
+            FileWriter writer = new FileWriter(csvShowEventRegistrationResource);
+            CsvShowEventRegistrationRepository.exportData(writer, showEventRegistrationRepository);
+            writer.flush();
+            writer.close();
+            logger.info("Exported csvShowEventRegistrationRepository");
         }
     }
 }

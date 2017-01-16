@@ -11,6 +11,7 @@ import org.junit.rules.ExpectedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +26,7 @@ public class ShowEventRepositoryTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void addShowEvent() {
+    public void addShowEvent() throws IOException {
 
         String name = "Test showEvent";
         LocalDate date = LocalDate.of(2017, 6, 15);
@@ -49,67 +50,7 @@ public class ShowEventRepositoryTest {
     }
 
     @Test
-    public void addShowEventWithParticipants() {
-
-        String name = "Test showEvent";
-        LocalDate date = LocalDate.of(2017, 6, 15);
-        LocalDate closeDate = LocalDate.of(2017, 4, 15);
-        String location = "Surhuisterveen";
-        String judge = " Test Judge ";
-        ShowType showType = ShowType.FLEECESHOW;
-        Set<Participant> participants = new HashSet<>();
-        participants.add(new Participant("Test participant", "", "", "", "", "", "", ""));
-        participants.add(new Participant("Test participant2", "", "", "", "", "", "", ""));
-
-
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType, participants);
-        ShowEventRepository showEventRepository = new ShowEventRepository();
-
-        assertEquals(0, showEventRepository.getAllShowEvents().size());
-
-        showEventRepository.add(showEvent);
-
-        String key = "2017-06-15_FLEECESHOW";
-
-        assertEquals(1, showEventRepository.getAllShowEvents().size());
-        assertEquals("Test showEvent", showEventRepository.getShowEventByKeySet(key).getName());
-    }
-
-    @Test
-    public void addShowEventWithParticipantsAndAnimals() {
-
-        String name = "Test showEvent";
-        LocalDate date = LocalDate.of(2017, 6, 15);
-        LocalDate closeDate = LocalDate.of(2017, 4, 15);
-        String location = "Surhuisterveen";
-        String judge = " Test Judge ";
-        ShowType showType = ShowType.HALTERSHOW;
-
-        Set <Animal> animals = new HashSet<>();
-        animals.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.now().minusYears(1), "123456789", null, "Vader", "Moeder", LocalDate.now().minusMonths(2)));
-        animals.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.now().minusYears(2), "987654321", "BAF12345", "Vader2", "Moeder2"));
-
-        Set<Participant> participants = new HashSet<>();
-        participants.add(new Participant("Test participant", "", "", "", "", "", "", "", animals));
-        participants.add(new Participant("Test participant2", "", "", "", "", "", "", ""));
-
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType, participants);
-        ShowEventRepository showEventRepository = new ShowEventRepository();
-
-        assertEquals(0, showEventRepository.getAllShowEvents().size());
-
-        showEventRepository.add(showEvent);
-
-        String key = "2017-06-15_HALTERSHOW";
-
-        assertEquals(1, showEventRepository.getAllShowEvents().size());
-        assertEquals("Test showEvent", showEventRepository.getShowEventByKeySet(key).getName());
-    }
-
-
-
-    @Test
-    public void AddShowEventWithSameKey() {
+    public void AddShowEventWithSameKey() throws IOException {
 
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Showevent with same date and showtype already exists");
@@ -130,7 +71,7 @@ public class ShowEventRepositoryTest {
     }
 
     @Test
-    public void deleteShowEvent() {
+    public void deleteShowEvent() throws IOException {
 
         String name = "Test showEvent to delete";
         LocalDate date = LocalDate.of(2017, 6, 12);
@@ -153,7 +94,7 @@ public class ShowEventRepositoryTest {
     }
 
     @Test
-    public void deleteShowEventWithNotKnownKey() {
+    public void deleteShowEventWithNotKnownKey() throws IOException {
 
         exception.expect(NullPointerException.class);
 
@@ -178,7 +119,7 @@ public class ShowEventRepositoryTest {
     }
 
     @Test
-    public void getNotKnownShowEvent() {
+    public void getNotKnownShowEvent() throws IOException {
 
         exception.expect(NullPointerException.class);
 
@@ -200,7 +141,7 @@ public class ShowEventRepositoryTest {
     }
 
     @Test
-    public void getAllShowEventsByKeySet() {
+    public void getAllShowEventsByKeySet() throws IOException {
 
         ShowEventRepository showEventRepository = new ShowEventRepository();
 

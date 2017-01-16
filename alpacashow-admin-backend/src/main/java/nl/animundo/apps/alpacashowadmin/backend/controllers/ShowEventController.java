@@ -24,7 +24,12 @@ import javax.ws.rs.core.Response;
 public class ShowEventController {
 
     private static Logger logger = LoggerFactory.getLogger(ShowEventController.class);
+    private ApplicationRepositoryService service = new ApplicationRepositoryService();
     private ShowEventRepository showEventRepository;
+
+    public ShowEventController (ShowEventRepository showEventRepository) {
+        this.showEventRepository = showEventRepository;
+    }
 
     @GET
     @ApiOperation(value = "Get all showevents",
@@ -138,10 +143,10 @@ public class ShowEventController {
     }
 
     private void loadRepository() throws IOException {
-        showEventRepository = ApplicationRepositoryService.loadShowEventRepository();
+        showEventRepository = service.loadShowEventRepository();
     }
 
     private void saveRepository() throws IOException {
-        ApplicationRepositoryService.saveShowEventRepository(showEventRepository);
+        service.saveShowEventRepository();
     }
 }

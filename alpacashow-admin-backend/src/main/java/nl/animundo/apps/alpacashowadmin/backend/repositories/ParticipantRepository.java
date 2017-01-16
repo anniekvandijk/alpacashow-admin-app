@@ -1,8 +1,16 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
+import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
+import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
+import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventRegistration;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
+import nl.animundo.apps.alpacashowadmin.backend.services.AgeClassService;
+import nl.animundo.apps.alpacashowadmin.backend.services.ShowClassService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +19,6 @@ import java.util.Set;
 public class ParticipantRepository {
     private static Logger logger = LoggerFactory.getLogger(ParticipantRepository.class);
     private Map<String, Participant> participants = new HashMap<>();
-
 
     public String add(final Participant participant) {
 
@@ -37,6 +44,10 @@ public class ParticipantRepository {
         } else {
             return null;
         }
+    }
+
+    public void deleteAll () {
+        participants.clear();
     }
 
     public Set<String> getAllParticipantsByKeySet() {

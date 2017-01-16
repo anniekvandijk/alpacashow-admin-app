@@ -19,37 +19,6 @@ public class ShowEventRegistrationRepository {
     private static Logger logger = LoggerFactory.getLogger(ShowEventRegistrationRepository.class);
     private Map<String, ShowEventRegistration> showEventRegistrations = new HashMap<>();
 
-    /**
-     * Add registrations if complete.
-     * The showEvent must have at least 1 participant
-     * with at least 1 animal to start showEventRegistration.
-     *
-     * @param showEvent    the show event
-     * @param showEventKey the show event key
-     */
-    public void AddRegistrationsIfComplete (ShowEvent showEvent, String showEventKey) {
-
-        Set <Participant> participants = showEvent.getParticipants();
-        for (Participant participant : participants)
-        {
-            Set <Animal> animals = participant.getAnimals();
-            for (Animal animal : animals) {
-
-                LocalDate sheerOrBirthDate;
-                if (showEvent.getShowType().toString().equals("FLEECESHOW")) {
-                    sheerOrBirthDate = animal.getSheerDate();
-                }
-                else {
-                    sheerOrBirthDate = animal.getDateOfBirth();
-                }
-                AgeClass ageClass = AgeClassService.getAgeClass(showEvent.getDate(), sheerOrBirthDate);
-                int showClass = ShowClassService.getShowClassCode(animal.getBreed(), animal.getSex(), animal.getColor(), showEvent.getDate(), sheerOrBirthDate);
-                ShowEventRegistration registration = new ShowEventRegistration(showEventKey, participant.getName(), animal.getMicrochip(), ageClass, showClass, animal.getSheerDate(), animal.getBeforeSheerDate());
-                add(registration);
-            }
-        }
-    }
-
     public String add(final ShowEventRegistration showEventRegistration) {
 
         String showEventRegistrationKey = showEventRegistration.getShowEventKey() + "_" + showEventRegistration.getParticipantKey() + "_" + showEventRegistration.getAnimalKey();
@@ -59,19 +28,6 @@ public class ShowEventRegistrationRepository {
             return showEventRegistrationKey;
         } else {
             throw new IllegalArgumentException("Showevent registration with same keys already exists");
-        }
-    }
-
-    public void deleteAllRegistrationsForShowEvent(String showEventKey)
-    {
-        Collection<ShowEventRegistration> registrations = getAllShowEventRegistrations();
-        for (ShowEventRegistration registration : registrations)
-        {
-            if (registration.getShowEventKey().equals(showEventKey))
-            {
-                String key = registration.getShowEventKey() + "_" + registration.getParticipantKey() + "_" + registration.getAnimalKey();
-                delete(key);
-            }
         }
     }
 
@@ -85,6 +41,10 @@ public class ShowEventRegistrationRepository {
         } else {
             return null;
         }
+    }
+
+    public void deleteAll () {
+        showEventRegistrations.clear();
     }
 
     public Set<String> getAllShowEventRegistrationsByKeySet() {
