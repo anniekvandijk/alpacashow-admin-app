@@ -74,9 +74,6 @@ public class IThelper {
 
         ShowEvent showEvent2 = new ShowEvent(name2, date2, closeDate2, location2, judge2, showType2, participants2);
 
-        showEventRepository.delete("2017-04-01_MALE_PROGENY_SHOW");
-        showEventRepository.delete("2017-06-15_HALTERSHOW");
-
         showEventRepository.add(showEvent1);
         showEventRepository.add(showEvent2);
 

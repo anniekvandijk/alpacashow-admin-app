@@ -23,11 +23,6 @@ public class ParticipantControllerTest {
         helper.AddCompleteShowEvent();
     }
 
-    @After
-    public void DeleteShowEvents () throws IOException {
-        helper.DeleteCompleteShowEvent();
-    }
-
     @Test
     public void getAllParticipants() throws IOException {
 

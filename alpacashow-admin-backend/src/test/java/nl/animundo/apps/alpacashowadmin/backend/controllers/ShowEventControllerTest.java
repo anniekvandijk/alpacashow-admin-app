@@ -26,11 +26,6 @@ public class ShowEventControllerTest {
         helper.AddCompleteShowEvent();
     }
 
-    @After
-    public void DeleteShowEvents () throws IOException {
-//        helper.DeleteCompleteShowEvent();
-    }
-
     @Test
     public void getAllShowEvents() throws IOException {
 
