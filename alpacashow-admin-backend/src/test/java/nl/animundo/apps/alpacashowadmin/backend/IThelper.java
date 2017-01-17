@@ -89,6 +89,7 @@ public class IThelper {
         set.add(showEvent2);
         set.add(showEvent3);
 
+        // Add registrations if we have participants and animals
         for (ShowEvent showEvent : set) {
             String showEventKey = showEventRepository.add(showEvent);
             for (Participant participant : showEvent.getParticipants()) {
@@ -104,7 +105,6 @@ public class IThelper {
                     }
                     AgeClass ageClass = AgeClassService.getAgeClass(showEvent.getDate(), sheerOrBirthDate);
                     int showClass = ShowClassService.getShowClassCode(animal.getBreed(), animal.getSex(), animal.getColor(), showEvent.getDate(), sheerOrBirthDate);
-
                     ShowEventRegistration registration = new ShowEventRegistration(showEventKey, participantKey, animalKey, ageClass, showClass, animal.getSheerDate(), animal.getBeforeSheerDate());
                     showEventRegistrationRepository.add(registration);
                 }
