@@ -63,9 +63,6 @@ public class ShowEvent {
         if (judgeCln == null) {
             throw new IllegalArgumentException("Field judge can not be empty");
         }
-        if (date.isBefore(LocalDate.now()) || date.isEqual(LocalDate.now()) || closeDate.isBefore(LocalDate.now()) || closeDate.isEqual(LocalDate.now())) {
-            throw new IllegalArgumentException("Date is (before) today");
-        }
         if (date.isBefore(closeDate) || date.isEqual(closeDate)) {
             throw new IllegalArgumentException("Date show before or same as close date subscriptions");
         }

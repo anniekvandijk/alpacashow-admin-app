@@ -24,7 +24,7 @@ public class ShowEventRegistrationRepositoryTest {
     @Test
     public void addShowEventRegistration() {
 
-        String showEventKey = "2017-05-01_HALTERSHOW";
+        String showEventKey = "2030-05-01_HALTERSHOW";
         String participantKey = "Deelnemer 1";
         String animalKey = "12345";
         AgeClass ageClass = AgeClass.JUNIOR;
@@ -40,7 +40,7 @@ public class ShowEventRegistrationRepositoryTest {
 
         showEventRegistrationRepository.add(showEventRegistration);
 
-        String key = "2017-05-01_HALTERSHOW_Deelnemer 1_12345";
+        String key = "2030-05-01_HALTERSHOW_Deelnemer 1_12345";
 
         assertEquals(1, showEventRegistrationRepository.getAllShowEventRegistrations().size());
         assertEquals(100, showEventRegistrationRepository.getShowEventRegistrationByKeySet(key).getShowClassCode());
@@ -52,7 +52,7 @@ public class ShowEventRegistrationRepositoryTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Showevent registration with same keys already exists");
 
-        String showEventKey = "2017-05-01_HALTERSHOW";
+        String showEventKey = "2030-05-01_HALTERSHOW";
         String participantKey = "Deelnemer 1";
         String animalKey = "12345";
         AgeClass ageClass = AgeClass.JUNIOR;
@@ -74,7 +74,7 @@ public class ShowEventRegistrationRepositoryTest {
     @Test
     public void deleteShowEventRegistration() {
 
-        String showEventKey = "2017-05-01_HALTERSHOW";
+        String showEventKey = "2030-05-01_HALTERSHOW";
         String participantKey = "Deelnemer 1";
         String animalKey = "12345";
         AgeClass ageClass = AgeClass.JUNIOR;
@@ -90,7 +90,7 @@ public class ShowEventRegistrationRepositoryTest {
 
         assertEquals(1, showEventRegistrationRepository.getAllShowEventRegistrations().size());
 
-        String key = "2017-05-01_HALTERSHOW_Deelnemer 1_12345";
+        String key = "2030-05-01_HALTERSHOW_Deelnemer 1_12345";
 
         showEventRegistrationRepository.delete(key);
 
@@ -102,7 +102,7 @@ public class ShowEventRegistrationRepositoryTest {
 
         exception.expect(NullPointerException.class);
 
-        String showEventKey = "2017-05-01_HALTERSHOW";
+        String showEventKey = "2030-05-01_HALTERSHOW";
         String participantKey = "Deelnemer 1";
         String animalKey = "12345";
         AgeClass ageClass = AgeClass.JUNIOR;
@@ -118,7 +118,7 @@ public class ShowEventRegistrationRepositoryTest {
 
         assertEquals(1, showEventRegistrationRepository.getAllShowEventRegistrations().size());
 
-        String key = "2017-05-01_HALTERSHOW_Deelnemer 1_12346";
+        String key = "2030-05-01_HALTERSHOW_Deelnemer 1_12346";
 
         showEventRegistrationRepository.delete(key);
 
@@ -131,7 +131,7 @@ public class ShowEventRegistrationRepositoryTest {
 
         exception.expect(NullPointerException.class);
 
-        String showEventKey = "2017-05-01_HALTERSHOW";
+        String showEventKey = "2030-05-01_HALTERSHOW";
         String participantKey = "Deelnemer 1";
         String animalKey = "12345";
         AgeClass ageClass = AgeClass.JUNIOR;
@@ -147,7 +147,7 @@ public class ShowEventRegistrationRepositoryTest {
 
         assertEquals(1, showEventRegistrationRepository.getAllShowEventRegistrations().size());
 
-        String key = "2017-05-01_HALTERSHOW_Deelnemer 1_12346";
+        String key = "2030-05-01_HALTERSHOW_Deelnemer 1_12346";
         showEventRegistrationRepository.getShowEventRegistrationByKeySet(key).getAnimalKey();
 
     }
@@ -157,8 +157,8 @@ public class ShowEventRegistrationRepositoryTest {
 
         ShowEventRepository showEventRepository = new ShowEventRepository();
 
-        String showEventKey1 = "2017-05-01_HALTERSHOW";
-        String showEventKey2 = "2017-05-01_FLEECESHOW";
+        String showEventKey1 = "2030-05-01_HALTERSHOW";
+        String showEventKey2 = "2030-05-01_FLEECESHOW";
         String participantKey = "Deelnemer 1";
         String animalKey = "12345";
         AgeClass ageClass = AgeClass.JUNIOR;
@@ -176,8 +176,8 @@ public class ShowEventRegistrationRepositoryTest {
         showEventRegistrationRepository.add(showEventRegistration2);
 
         assertEquals(2, showEventRegistrationRepository.getAllShowEventRegistrationsByKeySet().size());
-        assertTrue(showEventRegistrationRepository.getAllShowEventRegistrationsByKeySet().contains("2017-05-01_HALTERSHOW_Deelnemer 1_12345"));
-        assertTrue(showEventRegistrationRepository.getAllShowEventRegistrationsByKeySet().contains("2017-05-01_FLEECESHOW_Deelnemer 1_12345"));
+        assertTrue(showEventRegistrationRepository.getAllShowEventRegistrationsByKeySet().contains("2030-05-01_HALTERSHOW_Deelnemer 1_12345"));
+        assertTrue(showEventRegistrationRepository.getAllShowEventRegistrationsByKeySet().contains("2030-05-01_FLEECESHOW_Deelnemer 1_12345"));
 
     }
 }

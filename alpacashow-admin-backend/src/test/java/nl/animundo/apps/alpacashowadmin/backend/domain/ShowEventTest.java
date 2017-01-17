@@ -94,39 +94,6 @@ public class ShowEventTest {
     }
 
     @Test
-    public void showDateBeforeNow() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Date is (before) today");
-
-        name = "Test showEvent";
-        date = LocalDate.now().minusDays(1);
-        closeDate = LocalDate.now().plusMonths(6);
-        location = "Surhuisterveen ";
-        judge = "Test Judge";
-        showType = ShowType.HALTERSHOW;
-
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
-    }
-
-    @Test
-    public void showDateNow() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Date is (before) today");
-
-        name = "Test showEvent";
-        date = LocalDate.now();
-        closeDate = LocalDate.now().plusMonths(6);
-        location = "Surhuisterveen ";
-        judge = "Test Judge";
-        showType = ShowType.HALTERSHOW;
-
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
-    }
-
-
-    @Test
     public void showDateNotNull() {
 
         exception.expect(IllegalArgumentException.class);
@@ -135,38 +102,6 @@ public class ShowEventTest {
         name = "Test showEvent";
         date = null;
         closeDate = LocalDate.now().plusMonths(6);
-        location = "Surhuisterveen ";
-        judge = "Test Judge";
-        showType = ShowType.HALTERSHOW;
-
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
-    }
-
-    @Test
-    public void showCloseDateBeforeNow() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Date is (before) today");
-
-        name = "Test showEvent";
-        date = LocalDate.now().plusMonths(8);
-        closeDate = LocalDate.now().minusDays(1);
-        location = "Surhuisterveen ";
-        judge = "Test Judge";
-        showType = ShowType.HALTERSHOW;
-
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
-    }
-
-    @Test
-    public void showCloseDateNow() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Date is (before) today");
-
-        name = "Test showEvent";
-        date = LocalDate.now().plusMonths(8);
-        closeDate = LocalDate.now();
         location = "Surhuisterveen ";
         judge = "Test Judge";
         showType = ShowType.HALTERSHOW;
