@@ -144,7 +144,7 @@ public class ApplicationRepositoryService {
                     String animalKey = animalRepository.add(animal);
 
                     AgeClass ageClass = AgeClassService.ageClass(showEvent, animal);
-                    int showClass = ShowClassService.getShowClassCode(animal.getBreed(), animal.getSex(), animal.getColor(), ageClass);
+                    int showClass = ShowClassService.getShowClassCode(animal.getBreed(), ageClass, animal.getSex(), animal.getColor());
                     ShowEventRegistration registration = new ShowEventRegistration(showEventKey, participantKey, animalKey, ageClass, showClass, animal.getSheerDate(), animal.getBeforeSheerDate());
 
                     showEventRegistrationRepository.add(registration);
