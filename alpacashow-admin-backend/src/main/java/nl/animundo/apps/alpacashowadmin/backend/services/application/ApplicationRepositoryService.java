@@ -161,14 +161,29 @@ public class ApplicationRepositoryService {
 
         loadShowEventParticipantRepository();
         loadParticipantRepository();
+        loadShowEventRegistrationRepository();
+        loadAnimalRepository();
 
         for (String showEventKey : showEventRepository.getAllShowEventsByKeySet()) {
             ShowEvent showEvent = showEventRepository.getShowEventByKeySet(showEventKey);
             Set<Participant> participants = new HashSet<>();
+
             for (ShowEventParticipant showEventParticipant : showEventParticipantRepository.getAllShowEventParticipants()) {
                 if (showEventKey.equals(showEventParticipant.getShowEventKey())) {
                     Participant participant = participantRepository.getParticipantByKeySet(showEventParticipant.getParticipantKey());
                     participants.add(participant);
+
+                    Set<Animal> animals = new HashSet<>();
+
+                    for (ShowEventRegistration showEventRegistration : showEventRegistrationRepository.getAllShowEventRegistrations()) {
+                        if (showEventKey.equals(showEventRegistration.getShowEventKey()) &&
+                                showEventParticipant.getParticipantKey().equals(showEventRegistration.getParticipantKey()))
+                        {
+                            Animal animal = animalRepository.getAnimalByKeySet(showEventRegistration.getAnimalKey());
+                            animals.add(animal);
+                        }
+                    }
+                    participant.setAnimals(animals);
                 }
             }
             showEvent.setParticipants(participants);

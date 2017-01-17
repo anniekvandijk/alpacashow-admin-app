@@ -1,4 +1,5 @@
 NAME;FARMNAME;EMAIL;TELEPHONE;ADDRESS;ZIPCODE;CITY;COUNTRY
-Deelnemer nummer 1;Alpacafarm 1;farmnaam@iets.nl;050-1234567;thuis 3a;1111 BB;Surhuisterveen;Nederland
-Deelnemer nummer 2;Alpacafarmpje 2;farmnaam@iets.eu;038-1234567;thuis 100;9876 ZZ;Grun;Nederland
-Deelnemer nummer 3;Alpacafarmpje 3;farmnaam@iets.eu;038-1234567;thuis 100;9876 ZZ;Groningen;Nederland
+Deelnemer 1;Alpacafarm 1;farmnaam@iets.nl;050-1234567;thuis 3a;1111 BB;Surhuisterveen;Nederland
+Deelnemer 2;Alpacafarmpje 2;farmnaam@iets.eu;038-1234567;thuis 100;9876 ZZ;Grun;Nederland
+Test participant 2;Testfarm 2;;;;;;
+Test participant 1;Testfarm 1;;;;;;

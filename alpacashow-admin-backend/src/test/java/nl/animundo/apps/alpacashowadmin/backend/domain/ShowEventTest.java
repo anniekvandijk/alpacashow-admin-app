@@ -6,6 +6,7 @@ import org.junit.rules.ExpectedException;
 import java.time.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 import static org.junit.Assert.*;
@@ -52,7 +53,7 @@ public class ShowEventTest {
         location = "Surhuisterveen";
         judge = "Test Judge ";
         showType = ShowType.HALTERSHOW;
-        participants = new HashSet<>();
+        participants = new HashSet<Participant>();
         participants.add(new Participant("Test participant", "farm 1", "", "", "", "", "", ""));
         participants.add(new Participant("Test participant2", "farm 2", "", "", "", "", "", ""));
 

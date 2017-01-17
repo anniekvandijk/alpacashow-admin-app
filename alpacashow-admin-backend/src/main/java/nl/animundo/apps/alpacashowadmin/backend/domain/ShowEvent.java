@@ -105,4 +105,8 @@ public class ShowEvent {
     public Set<Participant> getParticipants() {
         return participants;
     }
+
+    public void setParticipants(Set<Participant> participants) {
+        this.participants = participants;
+    }
 }

@@ -94,6 +94,7 @@ public class Participant {
         return animals;
     }
 
-
-
+    public void setAnimals(Set<Animal> animals) {
+        this.animals = animals;
+    }
 }
