@@ -60,4 +60,35 @@ public class ShowEventParticipantRepository {
         return showEventParticipants.get(keySet);
     }
 
+    public Collection<ShowEventParticipant> getShowEventParticipantsByShowEvent(final String showEventKey)
+    {
+        Collection<ShowEventParticipant> showEventPart = showEventParticipants.values();
+        List list = new ArrayList();
+        for (ShowEventParticipant part : showEventPart) {
+            if (part.getShowEventKey().equals(showEventKey))
+            {
+                list.add(part);
+            }
+        }
+        return list;
+    }
+
+    public String deleteAllShowEventParticipantByShowEvent(final String showEventKey) throws IOException {
+
+        Collection <ShowEventParticipant> showEventParticipantsToDelete = getShowEventParticipantsByShowEvent(showEventKey);
+        if (showEventParticipantsToDelete != null) {
+            for (ShowEventParticipant part : showEventParticipantsToDelete)
+            {
+                if (part.getShowEventKey().equals(showEventKey))
+                {
+                    showEventParticipants.remove(part);
+                    logger.info("Deleted showEventParticipants from '" + showEventKey + "' from showEventParticipantRepo");
+                }
+            }
+            return showEventKey;
+        } else {
+            return null;
+        }
+    }
+
 }
