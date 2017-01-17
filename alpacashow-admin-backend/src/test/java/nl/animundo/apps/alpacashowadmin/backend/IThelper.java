@@ -80,41 +80,18 @@ public class IThelper {
 
         ShowEvent showEvent3 = new ShowEvent(name3, date3, closeDate3, location3, judge3, showType3);
 
-
         Set<ShowEvent> set = new HashSet<>();
         set.add(showEvent1);
         set.add(showEvent2);
         set.add(showEvent3);
 
-        // Add registrations if we have participants, and animals
         for (ShowEvent showEvent : set) {
             String showEventKey = showEventRepository.add(showEvent);
-            for (Participant participant : showEvent.getParticipants()) {
-                String participantKey = participantRepository.add(participant);
-                ShowEventParticipant part = new ShowEventParticipant(showEventKey, participantKey);
-                String showEventParticipantKey = showEventParticipantRepository.add(part);
-                for (Animal animal : participant.getAnimals()) {
-                    String animalKey = animalRepository.add(animal);
-
-                    LocalDate sheerOrBirthDate;
-                    if (showEvent.getShowType().toString().equals("FLEECESHOW")) {
-                        sheerOrBirthDate = animal.getSheerDate();
-                    } else {
-                        sheerOrBirthDate = animal.getDateOfBirth();
-                    }
-                    AgeClass ageClass = AgeClassService.getAgeClass(showEvent.getDate(), sheerOrBirthDate);
-                    int showClass = ShowClassService.getShowClassCode(animal.getBreed(), animal.getSex(), animal.getColor(), showEvent.getDate(), sheerOrBirthDate);
-                    ShowEventRegistration registration = new ShowEventRegistration(showEventKey, participantKey, animalKey, ageClass, showClass, animal.getSheerDate(), animal.getBeforeSheerDate());
-                    showEventRegistrationRepository.add(registration);
-                }
-            }
         }
 
         service.saveShowEventRepository();
         service.saveParticipantRepository();
         service.saveAnimalRepository();
-        service.saveShowEventParticipantRepository();
-        service.saveShowEventRegistrationRepository();
     }
 
     public void DeleteCompleteShowEvent () throws IOException {
