@@ -38,9 +38,9 @@ public class IThelper {
         animalRepository.deleteAll();
         showEventRegistrationRepository.deleteAll();
 
-        String name1 = "Breda 2017";
-        LocalDate date1 = LocalDate.of(2017, 4, 1);
-        LocalDate closeDate1 = LocalDate.of(2017, 3, 1);
+        String name1 = "ShowEvent met deelnemers";
+        LocalDate date1 = LocalDate.of(2030, 4, 1);
+        LocalDate closeDate1 = LocalDate.of(2030, 3, 1);
         String location1 = "Breda";
         String judge1 = " Shirley Bettinson";
         ShowType showType1 = ShowType.MALE_PROGENY_SHOW;
@@ -52,9 +52,9 @@ public class IThelper {
 
         ShowEvent showEvent1 = new ShowEvent(name1, date1, closeDate1, location1, judge1, showType1, participants1);
 
-        String name2 = "Test showEvent met registraties";
-        LocalDate date2 = LocalDate.of(2017, 6, 15);
-        LocalDate closeDate2 = LocalDate.of(2017, 4, 15);
+        String name2 = "ShowEvent met deelnemers en dieren";
+        LocalDate date2 = LocalDate.of(2030, 6, 15);
+        LocalDate closeDate2 = LocalDate.of(2030, 4, 15);
         String location2 = "Surhuisterveen";
         String judge2 = " Test Judge ";
         ShowType showType2 = ShowType.HALTERSHOW;
@@ -74,9 +74,20 @@ public class IThelper {
 
         ShowEvent showEvent2 = new ShowEvent(name2, date2, closeDate2, location2, judge2, showType2, participants2);
 
+        String name3 = "ShowEvent zonder deelnemers";
+        LocalDate date3 = LocalDate.of(2030, 3, 15);
+        LocalDate closeDate3 = LocalDate.of(2030, 1, 1);
+        String location3 = "Breda";
+        String judge3 = " Shirley Bettinson";
+        ShowType showType3 = ShowType.MALE_PROGENY_SHOW;
+
+        ShowEvent showEvent3 = new ShowEvent(name3, date3, closeDate3, location3, judge3, showType3);
+
+
         Set<ShowEvent> set = new HashSet<>();
         set.add(showEvent1);
         set.add(showEvent2);
+        set.add(showEvent3);
 
         for (ShowEvent showEvent : set) {
             String showEventKey = showEventRepository.add(showEvent);

@@ -56,8 +56,8 @@ public class ApplicationRepositoryServiceTest {
 
         showEventRepository = service.loadShowEventRepository();
 
-        assertEquals(2, showEventRepository.getAllShowEvents().size());
-        assertEquals("Test showEvent met registraties", showEventRepository.getShowEventByKeySet("2017-06-15_HALTERSHOW").getName());
+        assertEquals(3, showEventRepository.getAllShowEvents().size());
+        assertEquals("ShowEvent met deelnemers en dieren", showEventRepository.getShowEventByKeySet("2030-06-15_HALTERSHOW").getName());
 
     }
 

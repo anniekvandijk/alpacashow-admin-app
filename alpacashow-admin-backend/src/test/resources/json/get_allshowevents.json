@@ -1,17 +1,26 @@
 [
   {
-    "name" : "Breda 2017",
-    "date" : "2017-04-01",
-    "closeDate" : "2017-03-01",
+    "name" : "ShowEvent zonder deelnemers",
+    "date" : "2030-03-15",
+    "closeDate" : "2030-01-01",
     "location" : "Breda",
     "judge" : "Shirley Bettinson",
     "showType": "Male progeny show",
     "participants" : [ ]
   },
   {
-    "name": "Test showEvent met registraties",
-    "date": "2017-06-15",
-    "closeDate": "2017-04-15",
+    "name" : "ShowEvent met deelnemers",
+    "date" : "2030-04-01",
+    "closeDate" : "2030-03-01",
+    "location" : "Breda",
+    "judge" : "Shirley Bettinson",
+    "showType": "Male progeny show",
+    "participants" : [ ]
+  },
+  {
+    "name": "ShowEvent met deelnemers en dieren",
+    "date": "2030-06-15",
+    "closeDate": "2030-04-15",
     "location": "Surhuisterveen",
     "judge": "Test Judge",
     "showType": "Haltershow",

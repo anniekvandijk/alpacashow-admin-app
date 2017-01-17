@@ -39,19 +39,19 @@ public class CsvShowEventRepositoryTest {
         reader.close();
         assertEquals(2, repo.getAllShowEvents().size());
 
-        String key = "2017-04-24_MALE_PROGENY_SHOW";
+        String key = "2030-04-24_MALE_PROGENY_SHOW";
         ShowEvent showEvent = repo.getShowEventByKeySet(key);
         assertNotNull(showEvent);
         assertEquals("Hapert 2017", showEvent.getName());
-        assertEquals("2017-04-24", showEvent.getDate().toString());
-        assertEquals("2017-03-20", showEvent.getCloseDate().toString());
+        assertEquals("2030-04-24", showEvent.getDate().toString());
+        assertEquals("2030-03-20", showEvent.getCloseDate().toString());
         assertEquals("Hapert", showEvent.getLocation());
         assertEquals("Judge X", showEvent.getJudge());
         assertEquals("MALE_PROGENY_SHOW", showEvent.getShowType().toString());
 
         String name = "Test showEvent";
-        LocalDate date = LocalDate.of(2017, 7, 1);
-        LocalDate closeDate = LocalDate.of(2017, 5, 15);
+        LocalDate date = LocalDate.of(2030, 7, 1);
+        LocalDate closeDate = LocalDate.of(2030, 5, 15);
         String location = "Surhuisterveen";
         String judge = " Test Judge ";
         ShowType showType = ShowType.FLEECESHOW;
@@ -74,7 +74,7 @@ public class CsvShowEventRepositoryTest {
         reader.close();
         assertEquals(3, newRepo.getAllShowEvents().size());
 
-        String key2 = "2017-07-01_FLEECESHOW";
+        String key2 = "2030-07-01_FLEECESHOW";
         ShowEvent showEvent2 = newRepo.getShowEventByKeySet(key2);
         assertNotNull(showEvent2);
         assertEquals("Surhuisterveen", showEvent2.getLocation());
