@@ -19,13 +19,15 @@ public class ShowEventRegistrationRepository {
     public String add(final ShowEventRegistration showEventRegistration) {
 
         String showEventRegistrationKey = showEventRegistration.getShowEventKey() + "_" + showEventRegistration.getParticipantKey() + "_" + showEventRegistration.getAnimalKey();
-        if (getShowEventRegistrationByKeySet(showEventRegistrationKey) == null) {
+        if (getShowEventRegistrationByKeySet(showEventRegistrationKey) != null) {
+            showEventRegistrations.remove(showEventRegistrationKey);
+            showEventRegistrations.put(showEventRegistrationKey, showEventRegistration);
+            logger.info("Updated showEventRegistratiom '" + showEventRegistrationKey + "' to showEventRegistrationRepo");
+        } else {
             showEventRegistrations.put(showEventRegistrationKey, showEventRegistration);
             logger.info("Added showEventRegistratiom '" + showEventRegistrationKey + "' to showEventRegistrationRepo");
-            return showEventRegistrationKey;
-        } else {
-            throw new IllegalArgumentException("Showevent registration with same keys already exists");
         }
+        return showEventRegistrationKey;
     }
 
     public String delete(final String showEventRegistrationKey) {

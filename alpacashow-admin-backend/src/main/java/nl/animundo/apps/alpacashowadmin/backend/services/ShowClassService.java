@@ -15,9 +15,9 @@ public class ShowClassService {
         return Integer.valueOf(breedCode + "" + ageSexCode + "" + colorCode);
     }
 
-    public static int getShowClassCode(BreedClass breed, SexClass sex, ColorClass color, LocalDate showDate, LocalDate sheerOrBirthDate) {
+    public static int getShowClassCode(BreedClass breed, SexClass sex, ColorClass color, LocalDate showDate, LocalDate BirthDate) {
 
-        AgeClass ageClass = AgeClassService.getAgeClass(showDate, sheerOrBirthDate);
+        AgeClass ageClass = AgeClassService.getAgeClass(showDate, BirthDate);
         String ageSex = ageClass + "_" + sex;
 
         int ageSexCode = AgeSexClass.valueOf(ageSex).getAgeSexCode();

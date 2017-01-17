@@ -5,7 +5,7 @@
     "closeDate" : "2030-01-01",
     "location" : "Breda",
     "judge" : "Shirley Bettinson",
-    "showType": "Male progeny show",
+    "showType": "Female progeny show",
     "participants" : [ ]
   },
   {
@@ -18,9 +18,18 @@
     "participants" : [ ]
   },
   {
-    "name": "ShowEvent met deelnemers en dieren",
+    "name": "Fleeceshow ShowEvent met deelnemers en dieren",
     "date": "2030-06-15",
     "closeDate": "2030-04-15",
+    "location": "Surhuisterveen",
+    "judge": "Test Judge",
+    "showType": "Fleeceshow",
+    "participants": []
+  },
+  {
+    "name": "Haltershow ShowEvent met deelnemers en dieren",
+    "date": "2030-08-15",
+    "closeDate": "2030-07-15",
     "location": "Surhuisterveen",
     "judge": "Test Judge",
     "showType": "Haltershow",

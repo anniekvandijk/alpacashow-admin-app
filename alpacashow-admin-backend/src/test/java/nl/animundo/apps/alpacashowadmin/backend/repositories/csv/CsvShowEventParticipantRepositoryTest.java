@@ -65,8 +65,10 @@ public class CsvShowEventParticipantRepositoryTest {
         ShowEventParticipantRepository newRepo = CsvShowEventParticipantRepository.importData(reader);
         reader.close();
 
+
         String key4 = "2017-06-04_FLEECESHOW_Deelnemer 3";
         ShowEventParticipant showEventParticipant4 = newRepo.getShowEventParticipantByKeySet(key4);
+        assertEquals(4, repo.getAllShowEventParticipants().size());
         assertNotNull(showEventParticipant4);
         assertEquals("Deelnemer 3", showEventParticipant4.getParticipantKey());
 

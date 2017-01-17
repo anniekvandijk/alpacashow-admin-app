@@ -49,9 +49,6 @@ public class ShowEventRegistrationRepositoryTest {
     @Test
     public void AddShowEventRegistrationWithSameKey() {
 
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Showevent registration with same keys already exists");
-
         String showEventKey = "2030-05-01_HALTERSHOW";
         String participantKey = "Deelnemer 1";
         String animalKey = "12345";

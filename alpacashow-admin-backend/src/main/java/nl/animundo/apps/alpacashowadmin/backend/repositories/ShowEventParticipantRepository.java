@@ -17,10 +17,8 @@ public class ShowEventParticipantRepository {
         if (getShowEventParticipantByKeySet(showEventParticipantKey) == null) {
             showEventParticipants.put(showEventParticipantKey, showEventParticipant);
             logger.info("Added showEventParticipant '" + showEventParticipantKey + "' to showEventParticipantRepo");
-            return showEventParticipantKey;
-        } else {
-            throw new IllegalArgumentException("Participant already exists for showEvent");
         }
+        return showEventParticipantKey;
     }
 
     public String delete(final String showEventParticipantKey) throws IOException {

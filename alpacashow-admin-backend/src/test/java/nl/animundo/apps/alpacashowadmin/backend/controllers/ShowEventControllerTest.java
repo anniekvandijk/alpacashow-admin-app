@@ -60,7 +60,7 @@ public class ShowEventControllerTest {
     public void addDeleteUpdateShowEvent() throws IOException {
 
         loadRepository();
-        assertEquals(3, showEventRepository.getAllShowEvents().size());
+        assertEquals(4, showEventRepository.getAllShowEvents().size());
 
         ShowEventController controller = new ShowEventController(showEventRepository);
 
@@ -68,7 +68,7 @@ public class ShowEventControllerTest {
         controller.addShowEvent(showEvent);
 
         loadRepository();
-        assertEquals(4, showEventRepository.getAllShowEvents().size());
+        assertEquals(5, showEventRepository.getAllShowEvents().size());
 
         ShowEvent event = showEventRepository.getShowEventByKeySet("2017-03-01_HALTERSHOW");
         assertEquals("Test 2017", event.getName());

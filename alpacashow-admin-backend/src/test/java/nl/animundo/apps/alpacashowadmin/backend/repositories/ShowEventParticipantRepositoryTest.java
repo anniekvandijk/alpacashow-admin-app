@@ -41,23 +41,6 @@ public class ShowEventParticipantRepositoryTest {
     }
 
     @Test
-    public void AddShowEventParticipantWithSameKey() throws IOException {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Participant already exists for showEvent");
-
-        String showEventKey = "2030-05-01_HALTERSHOW";
-        String participantKey = "Deelnemer 1";
-
-        ShowEventParticipant showEventParticipant1 = new ShowEventParticipant(showEventKey, participantKey);
-        ShowEventParticipant showEventParticipant2 = new ShowEventParticipant(showEventKey, participantKey);
-        ShowEventParticipantRepository showEventParticipantRepository = new ShowEventParticipantRepository();
-
-        showEventParticipantRepository.add(showEventParticipant1);
-        showEventParticipantRepository.add(showEventParticipant2);
-    }
-
-    @Test
     public void deleteShowEventParticipant() throws IOException {
 
         String showEventKey = "2030-05-01_HALTERSHOW";

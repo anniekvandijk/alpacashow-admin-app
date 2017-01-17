@@ -23,7 +23,7 @@ public class ApplicationRepositoryServiceTest {
     private ShowEventRegistrationRepository showEventRegistrationRepository;
 
     @Before
-    public void AddShowEvents () throws IOException {
+    public void AddShowEvents() throws IOException {
         helper.AddCompleteShowEvent();
     }
 
@@ -35,8 +35,8 @@ public class ApplicationRepositoryServiceTest {
 
         showEventRepository = service.loadShowEventRepository();
 
-        assertEquals(3, showEventRepository.getAllShowEvents().size());
-        assertEquals("ShowEvent met deelnemers en dieren", showEventRepository.getShowEventByKeySet("2030-06-15_HALTERSHOW").getName());
+        assertEquals(4, showEventRepository.getAllShowEvents().size());
+        assertEquals("Fleeceshow ShowEvent met deelnemers en dieren", showEventRepository.getShowEventByKeySet("2030-06-15_FLEECESHOW").getName());
 
     }
 
