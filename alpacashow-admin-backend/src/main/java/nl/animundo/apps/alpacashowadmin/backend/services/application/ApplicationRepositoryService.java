@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.time.LocalDate;
+import java.util.*;
 
 public class ApplicationRepositoryService {
 
@@ -37,6 +38,7 @@ public class ApplicationRepositoryService {
         FileReader csvReader = new FileReader(String.valueOf(csvShowEventsResource));
         showEventRepository = CsvShowEventRepository.importData(csvReader);
         csvReader.close();
+        loadCrossRepoForShowEvent();
         logger.info("Imported csvShowEventRepository");
         return showEventRepository;
     }
@@ -153,5 +155,23 @@ public class ApplicationRepositoryService {
         }
         saveShowEventParticipantRepository();
         saveShowEventRegistrationRepository();
+    }
+
+    private void loadCrossRepoForShowEvent () throws IOException {
+
+        loadShowEventParticipantRepository();
+        loadParticipantRepository();
+
+        for (String showEventKey : showEventRepository.getAllShowEventsByKeySet()) {
+            ShowEvent showEvent = showEventRepository.getShowEventByKeySet(showEventKey);
+            Set<Participant> participants = new HashSet<>();
+            for (ShowEventParticipant showEventParticipant : showEventParticipantRepository.getAllShowEventParticipants()) {
+                if (showEventKey.equals(showEventParticipant.getShowEventKey())) {
+                    Participant participant = participantRepository.getParticipantByKeySet(showEventParticipant.getParticipantKey());
+                    participants.add(participant);
+                }
+            }
+            showEvent.setParticipants(participants);
+        }
     }
 }
