@@ -43,11 +43,6 @@ public class ApplicationRepositoryServiceTest {
         helper.AddCompleteShowEvent();
     }
 
-    @After
-    public void DeleteShowEvents () throws IOException {
-        helper.DeleteCompleteShowEvent();
-    }
-
     @Rule
     public ExpectedException exception = ExpectedException.none();
 

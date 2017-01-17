@@ -54,9 +54,14 @@ public class ParticipantRepository {
     public Collection<Participant> getAllParticipants() {
 
         List list = new ArrayList(participants.values());
-        Comparator comparator = Comparator.comparing(Participant::getFarmName);
-        Collections.sort(list, comparator);
-        return list;
+        if (list.isEmpty()) {
+            return list;
+        }
+        else {
+            Comparator comparator = Comparator.comparing(Participant::getFarmName);
+            Collections.sort(list, comparator);
+            return list;
+        }
     }
 
     public Participant getParticipantByKeySet(final String keySet) {

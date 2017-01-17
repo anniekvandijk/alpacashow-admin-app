@@ -25,6 +25,9 @@ import javax.ws.rs.core.Response;
 @Path("showevents")
 public class ShowEventController {
 
+    // Todo: check if new or changed showevent data is after today.
+    // This can not be validated in the ShowEvent class, because you then can't handle histroic data.
+
     private static Logger logger = LoggerFactory.getLogger(ShowEventController.class);
     private ApplicationRepositoryService service = new ApplicationRepositoryService();
     private ShowEventRepository showEventRepository;

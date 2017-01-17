@@ -1,14 +1,8 @@
 package nl.animundo.apps.alpacashowadmin.backend;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
-import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventRegistration;
+import nl.animundo.apps.alpacashowadmin.backend.domain.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.*;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.AnimalRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRegistrationRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
 import nl.animundo.apps.alpacashowadmin.backend.services.AgeClassService;
 import nl.animundo.apps.alpacashowadmin.backend.services.ShowClassService;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
@@ -25,6 +19,7 @@ public class IThelper {
     private ShowEventRepository showEventRepository;
     private ParticipantRepository participantRepository;
     private AnimalRepository animalRepository;
+    private ShowEventParticipantRepository showEventParticipantRepository;
     private ShowEventRegistrationRepository showEventRegistrationRepository;
 
     public void AddCompleteShowEvent () throws IOException {
@@ -32,10 +27,12 @@ public class IThelper {
         showEventRepository = service.loadShowEventRepository();
         participantRepository = service.loadParticipantRepository();
         animalRepository = service.loadAnimalRepository();
+        showEventParticipantRepository = service.loadShowEventParticipantRepository();
         showEventRegistrationRepository = service.loadShowEventRegistrationRepository();
         showEventRepository.deleteAll();
         participantRepository.deleteAll();
         animalRepository.deleteAll();
+        showEventParticipantRepository.deleteAll();
         showEventRegistrationRepository.deleteAll();
 
         String name1 = "ShowEvent met deelnemers";
@@ -89,11 +86,13 @@ public class IThelper {
         set.add(showEvent2);
         set.add(showEvent3);
 
-        // Add registrations if we have participants and animals
+        // Add registrations if we have participants, and animals
         for (ShowEvent showEvent : set) {
             String showEventKey = showEventRepository.add(showEvent);
             for (Participant participant : showEvent.getParticipants()) {
                 String participantKey = participantRepository.add(participant);
+                ShowEventParticipant part = new ShowEventParticipant(showEventKey, participantKey);
+                String showEventParticipantKey = showEventParticipantRepository.add(part);
                 for (Animal animal : participant.getAnimals()) {
                     String animalKey = animalRepository.add(animal);
 
@@ -114,6 +113,7 @@ public class IThelper {
         service.saveShowEventRepository();
         service.saveParticipantRepository();
         service.saveAnimalRepository();
+        service.saveShowEventParticipantRepository();
         service.saveShowEventRegistrationRepository();
     }
 
@@ -122,16 +122,19 @@ public class IThelper {
         showEventRepository = service.loadShowEventRepository();
         participantRepository = service.loadParticipantRepository();
         animalRepository = service.loadAnimalRepository();
+        showEventParticipantRepository = service.loadShowEventParticipantRepository();
         showEventRegistrationRepository = service.loadShowEventRegistrationRepository();
 
         showEventRepository.deleteAll();
         participantRepository.deleteAll();
         animalRepository.deleteAll();
+        showEventParticipantRepository.deleteAll();
         showEventRegistrationRepository.deleteAll();
 
         service.saveShowEventRepository();
         service.saveParticipantRepository();
         service.saveAnimalRepository();
+        service.saveShowEventParticipantRepository();
         service.saveShowEventRegistrationRepository();
     }
 }

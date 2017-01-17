@@ -51,9 +51,14 @@ public class ShowEventRegistrationRepository {
     public Collection<ShowEventRegistration> getAllShowEventRegistrations() {
 
         List list = new ArrayList(showEventRegistrations.values());
-        Comparator comparator = Comparator.comparing(ShowEventRegistration::getAgeClass);
-        Collections.sort(list, comparator);
-        return list;
+        if (list.isEmpty()) {
+            return list;
+        }
+        else {
+            Comparator comparator = Comparator.comparing(ShowEventRegistration::getAgeClass);
+            Collections.sort(list, comparator);
+            return list;
+        }
     }
 
     public ShowEventRegistration getShowEventRegistrationByKeySet(final String keySet) {

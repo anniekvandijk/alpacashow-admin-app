@@ -46,9 +46,14 @@ public class ShowEventRepository  {
     public Collection<ShowEvent> getAllShowEvents() {
 
         List list = new ArrayList(showEvents.values());
-        Comparator comparator = Comparator.comparing(ShowEvent::getDate);
-        Collections.sort(list, comparator);
-        return list;
+        if (list.isEmpty()) {
+            return list;
+        }
+        else {
+            Comparator comparator = Comparator.comparing(ShowEvent::getDate);
+            Collections.sort(list, comparator);
+            return list;
+        }
     }
 
     public ShowEvent getShowEventByKeySet(final String keySet) {

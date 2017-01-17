@@ -5,14 +5,8 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventRegistration;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.AnimalRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRegistrationRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvAnimalRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvParticipantRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvShowEventRegistrationRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.CsvShowEventRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.*;
 import nl.animundo.apps.alpacashowadmin.backend.services.AgeClassService;
 import nl.animundo.apps.alpacashowadmin.backend.services.ShowClassService;
 import org.slf4j.Logger;
@@ -33,12 +27,14 @@ public class ApplicationRepositoryService {
     private ShowEventRepository showEventRepository;
     private ParticipantRepository participantRepository;
     private AnimalRepository animalRepository;
+    private ShowEventParticipantRepository showEventParticipantRepository;
     private ShowEventRegistrationRepository showEventRegistrationRepository;
 
     public ApplicationRepositoryService() {
         showEventRepository = new ShowEventRepository();
         participantRepository = new ParticipantRepository();
         animalRepository = new AnimalRepository();
+        showEventParticipantRepository = new ShowEventParticipantRepository();
         showEventRegistrationRepository = new ShowEventRegistrationRepository();
     }
 
@@ -70,6 +66,16 @@ public class ApplicationRepositoryService {
         csvReader.close();
         logger.info("Imported csvAnimalRepository");
         return animalRepository;
+    }
+
+    public ShowEventParticipantRepository loadShowEventParticipantRepository() throws IOException {
+
+        String csvShowEventParticipantResource =  fileDirService.getFilePath(fileStorage + "/SHOWEVENTS_PARTICIPANTS.csv");
+        FileReader csvReader = new FileReader(String.valueOf(csvShowEventParticipantResource));
+        showEventParticipantRepository = CsvShowEventParticipantRepository.importData(csvReader);
+        csvReader.close();
+        logger.info("Imported csvShowEventParticipantRepository");
+        return showEventParticipantRepository;
     }
 
     public ShowEventRegistrationRepository loadShowEventRegistrationRepository() throws IOException {
@@ -120,5 +126,15 @@ public class ApplicationRepositoryService {
         writer.flush();
         writer.close();
         logger.info("Exported csvShowEventRegistrationRepository");
+    }
+
+    public void saveShowEventParticipantRepository() throws IOException {
+
+        String csvShowEventParticipantResource = fileDirService.getFilePath(fileStorage + "/SHOWEVENTS_PARTICIPANTS.csv");
+        FileWriter writer = new FileWriter(csvShowEventParticipantResource);
+        CsvShowEventParticipantRepository.exportData(writer, showEventParticipantRepository);
+        writer.flush();
+        writer.close();
+        logger.info("Exported csvShowEventParticipantRepository");
     }
 }
