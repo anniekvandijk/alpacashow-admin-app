@@ -1,4 +1,6 @@
-# Alpaca showmanagement application
+# Alpaca show management application
+
+For the practice with Java, this is an application which brings my love for alpacas and computers together. I do not know if this app will ever be used, but it's fun to build this app.
 
 ##Application status
 
@@ -18,17 +20,19 @@
 * [X] Webservice to access and manage registrations
 
 #### Showevent administration
+* [ ] Ring sorting datatable
 * [ ] Handle showrings
 * [ ] Handle prizes
 * [ ] Export of certificates, ringinformation
 
 #### Helpers
-* [ ] Services to calculate showclasses
-* [ ] Sorting of rings
+* [X] Services to calculate showclasses
+* [ ] Handle Sorting of rings
 
 ### Frontend
+* [ ] Webclients to access backend
 * [ ] View and manage registrations
-* [ ] Import showdata?
+* [ ] Import showdata from file?
 * [ ] Manage showring sort
 * [ ] Manage rings and prizes
 * [ ] Print documents 
