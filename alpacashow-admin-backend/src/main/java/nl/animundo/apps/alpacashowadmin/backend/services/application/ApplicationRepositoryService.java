@@ -131,20 +131,20 @@ public class ApplicationRepositoryService {
         logger.info("Exported csvShowEventRegistrationRepository");
     }
 
-    public void saveCrossRepoForShowEvent (ShowEventRepository showEventRepository) throws IOException {
+    private void saveCrossRepoForShowEvent (ShowEventRepository showEventRepository) throws IOException {
 
         for (String showEventKey : showEventRepository.getAllShowEventsByKeySet()) {
             ShowEvent showEvent = showEventRepository.getShowEventByKeySet(showEventKey);
             for (Participant participant : showEvent.getParticipants()) {
                 String participantKey = participantRepository.add(participant);
                 ShowEventParticipant part = new ShowEventParticipant(showEventKey, participantKey);
-                String showEventParticipantKey = showEventParticipantRepository.add(part);
+                showEventParticipantRepository.add(part);
                 for (Animal animal : participant.getAnimals()) {
                     String animalKey = animalRepository.add(animal);
 
                     // Todo: add more testcases to ITHelper to cover sheerOrBirthDate
                     LocalDate sheerOrBirthDate;
-                    if (showEvent.getShowType().toString().equals("FLEECESHOW")) {
+                    if ("FLEECESHOW".equals(showEvent.getShowType().toString())) {
                         if (animal.getSheerDate() == null) {
                             sheerOrBirthDate = animal.getDateOfBirth();
                         } else {
