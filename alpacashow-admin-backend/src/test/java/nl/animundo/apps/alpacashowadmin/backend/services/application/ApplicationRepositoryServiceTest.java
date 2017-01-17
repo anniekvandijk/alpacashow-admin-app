@@ -66,7 +66,7 @@ public class ApplicationRepositoryServiceTest {
 
         showEventRegistrationRepository = service.loadShowEventRegistrationRepository();
 
-        assertEquals(4, showEventRegistrationRepository.getAllShowEventRegistrations().size());
+        assertEquals(6, showEventRegistrationRepository.getAllShowEventRegistrations().size());
 
     }
 }

@@ -88,12 +88,12 @@ public class IThelper {
         ShowType showType4 = ShowType.HALTERSHOW;
 
         Set<Animal> animals3 = new HashSet<>();
-        animals1.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 12), "8765", null, "Vader", "Moeder", LocalDate.of(2016, 5, 1)));
-        animals1.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "4321", "BAF12345", "Vader2", "Moeder2", LocalDate.of(2016, 4, 1), LocalDate.of(2015, 5, 1)));
+        animals3.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 12), "8765", null, "Vader", "Moeder", LocalDate.of(2016, 5, 1)));
+        animals3.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "4321", "BAF12345", "Vader2", "Moeder2", LocalDate.of(2016, 4, 1), LocalDate.of(2015, 5, 1)));
 
         Set<Participant> participants3 = new HashSet<>();
-        participants2.add(new Participant("Test participant 1", "Testfarm 1", "", "", "", "", "", "", animals3));
-        participants2.add(new Participant("Test participant 2", "Testfarm 2", "", "", "", "", "", ""));
+        participants3.add(new Participant("Test participant 1", "Testfarm 1", "", "", "", "", "", "", animals3));
+        participants3.add(new Participant("Test participant 2", "Testfarm 2", "", "", "", "", "", ""));
 
         ShowEvent showEvent4 = new ShowEvent(name4, date4, closeDate4, location4, judge4, showType4, participants3);
 

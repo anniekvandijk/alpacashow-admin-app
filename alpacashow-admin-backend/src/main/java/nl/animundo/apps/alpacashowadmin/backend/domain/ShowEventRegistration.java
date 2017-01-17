@@ -35,7 +35,6 @@ public class ShowEventRegistration {
         if (showClassCode == 0) {
             throw new IllegalArgumentException("ShowClassCode can not be empty");
         }
-
         this.showEventKey = showEventKey;
         this.participantKey = participantKey;
         this.animalKey = animalKey;

@@ -15,12 +15,31 @@ public class ShowClassService {
         return Integer.valueOf(breedCode + "" + ageSexCode + "" + colorCode);
     }
 
-    public static int getShowClassCode(BreedClass breed, SexClass sex, ColorClass color, LocalDate showDate, LocalDate BirthDate) {
+    public static int getShowClassCode(BreedClass breed, SexClass sex, ColorClass color, LocalDate showDate, LocalDate birthDate) {
 
-        AgeClass ageClass = AgeClassService.getAgeClass(showDate, BirthDate);
+        AgeClass ageClass = AgeClassService.getAgeClass(showDate, birthDate);
         String ageSex = ageClass + "_" + sex;
 
         int ageSexCode = AgeSexClass.valueOf(ageSex).getAgeSexCode();
+        int breedCode = breed.getBreedCode();
+        int colorCode = color.getColorCode();
+
+        return Integer.valueOf(breedCode + "" + ageSexCode + "" + colorCode);
+    }
+
+    public static int getShowClassCode(BreedClass breed, SexClass sex, ColorClass color, AgeClass ageClass) {
+
+        String ageSex = ageClass + "_" + sex;
+        int ageSexCode = AgeSexClass.valueOf(ageSex).getAgeSexCode();
+        int breedCode = breed.getBreedCode();
+        int colorCode = color.getColorCode();
+
+        return Integer.valueOf(breedCode + "" + ageSexCode + "" + colorCode);
+    }
+
+    public static int getShowClassCode(BreedClass breed, AgeSexClass ageSexClass, ColorClass color) {
+
+        int ageSexCode = ageSexClass.getAgeSexCode();
         int breedCode = breed.getBreedCode();
         int colorCode = color.getColorCode();
 

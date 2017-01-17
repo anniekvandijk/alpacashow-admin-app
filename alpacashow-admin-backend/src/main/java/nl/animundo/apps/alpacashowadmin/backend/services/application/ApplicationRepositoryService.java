@@ -2,6 +2,7 @@ package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.*;
 import nl.animundo.apps.alpacashowadmin.backend.services.AgeClassService;
@@ -142,20 +143,10 @@ public class ApplicationRepositoryService {
                 for (Animal animal : participant.getAnimals()) {
                     String animalKey = animalRepository.add(animal);
 
-                    // Todo: add more testcases to ITHelper to cover sheerOrBirthDate
-                    LocalDate sheerOrBirthDate;
-                    if ("FLEECESHOW".equals(showEvent.getShowType().toString())) {
-                        if (animal.getSheerDate() == null) {
-                            sheerOrBirthDate = animal.getDateOfBirth();
-                        } else {
-                            sheerOrBirthDate = animal.getSheerDate();
-                        }
-                    } else {
-                        sheerOrBirthDate = animal.getDateOfBirth();
-                    }
-                    AgeClass ageClass = AgeClassService.getAgeClass(showEvent.getDate(), sheerOrBirthDate);
-                    int showClass = ShowClassService.getShowClassCode(animal.getBreed(), animal.getSex(), animal.getColor(), showEvent.getDate(), sheerOrBirthDate);
+                    AgeClass ageClass = AgeClassService.ageClass(showEvent, animal);
+                    int showClass = ShowClassService.getShowClassCode(animal.getBreed(), animal.getSex(), animal.getColor(), ageClass);
                     ShowEventRegistration registration = new ShowEventRegistration(showEventKey, participantKey, animalKey, ageClass, showClass, animal.getSheerDate(), animal.getBeforeSheerDate());
+
                     showEventRegistrationRepository.add(registration);
                 }
             }

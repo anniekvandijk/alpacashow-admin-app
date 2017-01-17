@@ -57,7 +57,7 @@ public class ShowEventRegistrationRepository {
             return list;
         }
         else {
-            Comparator comparator = Comparator.comparing(ShowEventRegistration::getAgeClass);
+            Comparator comparator = Comparator.comparing(ShowEventRegistration::getShowEventKey).thenComparing(ShowEventRegistration::getShowClassCode);
             Collections.sort(list, comparator);
             return list;
         }
