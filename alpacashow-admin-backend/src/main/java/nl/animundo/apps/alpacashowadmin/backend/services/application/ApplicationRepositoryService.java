@@ -142,9 +142,14 @@ public class ApplicationRepositoryService {
                 for (Animal animal : participant.getAnimals()) {
                     String animalKey = animalRepository.add(animal);
 
+                    // Todo: add more testcases to ITHelper to cover sheerOrBirthDate
                     LocalDate sheerOrBirthDate;
                     if (showEvent.getShowType().toString().equals("FLEECESHOW")) {
-                        sheerOrBirthDate = animal.getSheerDate();
+                        if (animal.getSheerDate() == null) {
+                            sheerOrBirthDate = animal.getDateOfBirth();
+                        } else {
+                            sheerOrBirthDate = animal.getSheerDate();
+                        }
                     } else {
                         sheerOrBirthDate = animal.getDateOfBirth();
                     }
