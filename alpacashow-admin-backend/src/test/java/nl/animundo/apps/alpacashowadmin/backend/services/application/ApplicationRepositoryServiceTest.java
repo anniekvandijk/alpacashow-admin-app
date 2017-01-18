@@ -45,7 +45,7 @@ public class ApplicationRepositoryServiceTest {
 
         participantRepository = service.loadParticipantRepository();
 
-        assertEquals(4, participantRepository.getAllParticipants().size());
+        assertEquals(5, participantRepository.getAllParticipants().size());
         assertEquals("Test participant 2", participantRepository.getParticipantByKeySet("Test participant 2").getName());
         assertEquals("Testfarm 2", participantRepository.getParticipantByKeySet("Test participant 2").getFarmName());
 
@@ -56,7 +56,7 @@ public class ApplicationRepositoryServiceTest {
 
         animalRepository = service.loadAnimalRepository();
 
-        assertEquals(4, animalRepository.getAllAnimals().size());
+        assertEquals(5, animalRepository.getAllAnimals().size());
         assertEquals("Alpaca3", animalRepository.getAnimalByKeySet("4444").getName());
 
     }

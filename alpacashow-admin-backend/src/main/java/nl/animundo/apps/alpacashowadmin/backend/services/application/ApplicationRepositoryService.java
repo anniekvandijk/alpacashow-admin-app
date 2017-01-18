@@ -182,7 +182,9 @@ public class ApplicationRepositoryService {
                 {
                     String showKey = showEventParticipant.getShowEventKey();
                     String partKey = showEventParticipant.getParticipantKey();
-                    if (showEventKey.equals(showKey) && participantKey.equals(partKey)) {
+                    if (showEventKey.equals(showKey) && participantKey.equals(partKey))
+                    {
+
                         Participant participant = participantRepository.getParticipantByKeySet(participantKey);
 
                         SortedSet<Animal> animals = new TreeSet<>(new AnimalComparator());
@@ -202,8 +204,8 @@ public class ApplicationRepositoryService {
                                     animals.add(animal);
                                 }
                             }
+                            participant.setAnimals(animals);
                         }
-                        participant.setAnimals(animals);
                         participants.add(participant);
                     }
                 }

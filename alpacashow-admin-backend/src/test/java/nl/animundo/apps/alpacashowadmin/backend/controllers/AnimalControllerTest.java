@@ -57,7 +57,7 @@ public class AnimalControllerTest {
     public void addDeleteUpdateAnimal() throws IOException {
 
         loadRepository();
-        assertEquals(4, animalRepository.getAllAnimals().size());
+        assertEquals(5, animalRepository.getAllAnimals().size());
 
         AnimalController controller = new AnimalController(animalRepository);
 
@@ -66,7 +66,7 @@ public class AnimalControllerTest {
 
         loadRepository();
 
-        assertEquals(5, animalRepository.getAllAnimals().size());
+        assertEquals(6, animalRepository.getAllAnimals().size());
 
         Animal animal = animalRepository.getAnimalByKeySet("chippie");
         assertEquals("SURI", animal.getBreed().toString());

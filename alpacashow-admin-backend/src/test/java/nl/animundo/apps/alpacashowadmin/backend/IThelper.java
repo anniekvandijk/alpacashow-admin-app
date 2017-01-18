@@ -94,11 +94,11 @@ public class IThelper {
         SortedSet<Animal> animals3 = new TreeSet<>(new AnimalComparator());
         AnimalShowDetail animalShowDetail5 = new AnimalShowDetail(LocalDate.of(2015, 4, 1), LocalDate.of(2014, 5, 1));
         animals3.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 12), "8765", null, "Vader", "Moeder"));
-        animals3.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "4321", "BAF12345", "Vader2", "Moeder2", animalShowDetail5));
+        animals3.add(new Animal("Alpaca5", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "7659", "BAF1254", "Vader2", "Moeder2", animalShowDetail5));
 
         SortedSet<Participant> participants3 = new TreeSet<>(new ParticipantComparator());
         participants3.add(new Participant("Test participant 1", "Testfarm 1", "", "", "", "", "", "", animals3));
-        participants3.add(new Participant("Test participant 2", "Testfarm 2", "", "", "", "", "", ""));
+        participants3.add(new Participant("Test participant 3", "Testfarm 3", "", "", "", "", "", ""));
 
         ShowEvent showEvent4 = new ShowEvent(name4, date4, closeDate4, location4, judge4, showType4, participants3);
 
