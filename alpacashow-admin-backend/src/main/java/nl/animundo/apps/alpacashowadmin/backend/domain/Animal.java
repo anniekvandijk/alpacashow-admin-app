@@ -31,22 +31,12 @@ public class Animal {
     private final String registration;
     private final String sire;
     private final String dam;
-    @JsonDeserialize(using = JsonDateDeserializer.class)
-    @JsonSerialize(using = JsonDateSerializer.class)
-    private final LocalDate sheerDate;
-    @JsonDeserialize(using = JsonDateDeserializer.class)
-    @JsonSerialize(using = JsonDateSerializer.class)
-    private final LocalDate beforeSheerDate;
+    private final AnimalShowDetail animalShowDetail;
 
     public Animal (final String name, final BreedClass breed, final SexClass sex, final ColorClass color, final LocalDate dateOfBirth,
                    final String microchip, final String registration, final String sire, final String dam)
     {
-        this(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, null, null);
-    }
-    public Animal (final String name, final BreedClass breed, final SexClass sex, final ColorClass color, final LocalDate dateOfBirth,
-                   final String microchip, final String registration, final String sire, final String dam, final LocalDate sheerDate)
-    {
-        this(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, sheerDate, null);
+        this(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, new AnimalShowDetail(null, null));
     }
 
     @JsonCreator
@@ -54,7 +44,7 @@ public class Animal {
                   @JsonProperty("sex") final SexClass sex, @JsonProperty("color") final ColorClass color,
                   @JsonProperty("dateOfBirth") final LocalDate dateOfBirth, @JsonProperty("microchip") final String microchip,
                   @JsonProperty("registration") final String registration, @JsonProperty("sire") final String sire,
-                  @JsonProperty("dam") final String dam, @JsonProperty("sheerDate") final LocalDate sheerDate, @JsonProperty("beforeSheerDate") final LocalDate beforeSheerDate) {
+                  @JsonProperty("dam") final String dam, @JsonProperty("animalShowDetail") final AnimalShowDetail animalShowDetail) {
 
         final String nameCln = StringUtils.trimToNull(name);
         if (nameCln == null) {
@@ -85,31 +75,6 @@ public class Animal {
         if (damCln == null) {
             throw new IllegalArgumentException("Field dam can not be empty");
         }
-        if (sheerDate != null)
-        {
-            if (sheerDate.isEqual(LocalDate.now()) || sheerDate.isAfter(LocalDate.now())) {
-                throw new IllegalArgumentException("Sheerdate is today or later");
-            }
-        }
-        if (beforeSheerDate != null)
-        {
-            if (beforeSheerDate.isEqual(LocalDate.now()) || beforeSheerDate.isAfter(LocalDate.now())) {
-                throw new IllegalArgumentException("Before sheerdate is today or later");
-            }
-        }
-        if (sheerDate != null && beforeSheerDate != null) {
-            if (beforeSheerDate.isEqual(sheerDate)) {
-                throw new IllegalArgumentException("Sheerdate and before sheerdate can not be the same");
-            }
-            if (beforeSheerDate.isAfter(sheerDate)) {
-                throw new IllegalArgumentException("Before sheerdate is after sheerdate");
-            }
-        }
-        // TODO: more validation on sheerdate
-        // sheerdate is before birth
-        // sheerdate and birth do not match
-        // beforesheerdate and birth do not match
-        // If Fleeceshow, sheerdate must be filled
 
         this.name = nameCln;
         this.breed = breed;
@@ -120,8 +85,7 @@ public class Animal {
         this.registration = registrationCln;
         this.sire = sireCln;
         this.dam = damCln;
-        this.sheerDate = sheerDate;
-        this.beforeSheerDate = beforeSheerDate;
+        this.animalShowDetail = animalShowDetail;
     }
 
     public String getName() {
@@ -160,11 +124,8 @@ public class Animal {
         return dam;
     }
 
-    public LocalDate getSheerDate() {
-        return sheerDate;
+    public AnimalShowDetail getAnimalShowDetail() {
+        return animalShowDetail;
     }
 
-    public LocalDate getBeforeSheerDate() {
-        return beforeSheerDate;
-    }
 }

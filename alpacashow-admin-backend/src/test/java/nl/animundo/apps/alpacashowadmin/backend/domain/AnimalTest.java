@@ -23,6 +23,7 @@ public class AnimalTest {
     private String registration;
     private String sire;
     private String dam;
+    private AnimalShowDetail animalShowDetail;
     private LocalDate sheerDate;
     private LocalDate beforeSheerDate;
 
@@ -69,12 +70,13 @@ public class AnimalTest {
         sire                = "Alpaca father";
         dam                 = "Alpaca mother";
         sheerDate           = LocalDate.of(2016, 5, 1);
-        beforeSheerDate     = LocalDate.of(2015, 04, 27);
+        beforeSheerDate     = LocalDate.of(2015, 4, 27);
+        animalShowDetail = new AnimalShowDetail(sheerDate, beforeSheerDate);
 
-        Animal animal = new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, sheerDate, beforeSheerDate);
+        Animal animal = new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, animalShowDetail);
 
-        assertEquals(sheerDate, animal.getSheerDate());
-        assertEquals(beforeSheerDate, animal.getBeforeSheerDate());
+        assertEquals(sheerDate, animalShowDetail.getSheerDate());
+        assertEquals(beforeSheerDate, animalShowDetail.getBeforeSheerDate());
     }
 
     @Test
@@ -305,135 +307,4 @@ public class AnimalTest {
 
         new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam);
     }
-
-    @Test
-    public void sheerDateNotNow() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Sheerdate is today or later");
-
-        name            = "Animal";
-        breed           = BreedClass.SURI;
-        sex             = SexClass.MALE;
-        color           = ColorClass.BROWN;
-        dateOfBirth     = LocalDate.now().minusMonths(6);
-        microchip       = "123456789";
-        registration    = "BAF12345";
-        sire            = "Alpaca father";
-        dam             = "Mother";
-        sheerDate       = LocalDate.now();
-        beforeSheerDate = LocalDate.of(2015, 4, 29);
-
-        Animal animal = new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, sheerDate, beforeSheerDate);
-    }
-
-    @Test
-    public void sheerDateNotAfterToday() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Sheerdate is today or later");
-
-        name            = "Animal";
-        breed           = BreedClass.SURI;
-        sex             = SexClass.MALE;
-        color           = ColorClass.BROWN;
-        dateOfBirth     = LocalDate.now().minusMonths(6);
-        microchip       = "123456789";
-        registration    = "BAF12345";
-        sire            = "Alpaca father";
-        dam             = "Mother";
-        sheerDate       = LocalDate.now().plusDays(1);
-        beforeSheerDate = LocalDate.of(2015, 4, 29);
-
-        Animal animal = new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, sheerDate, beforeSheerDate);
-    }
-
-    @Test
-    public void beforeSheerDateNotNow() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Before sheerdate is today or later");
-
-        name            = "Animal";
-        breed           = BreedClass.SURI;
-        sex             = SexClass.MALE;
-        color           = ColorClass.BROWN;
-        dateOfBirth     = LocalDate.now().minusMonths(6);
-        microchip       = "123456789";
-        registration    = "BAF12345";
-        sire            = "Alpaca father";
-        dam             = "Mother";
-        sheerDate       = LocalDate.of(2016, 5, 1);
-        beforeSheerDate = LocalDate.now();
-
-        Animal animal = new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, sheerDate, beforeSheerDate);
-    }
-
-    @Test
-    public void beforeSheerDateNotAfterToday() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Before sheerdate is today or later");
-
-        name            = "Animal";
-        breed           = BreedClass.SURI;
-        sex             = SexClass.MALE;
-        color           = ColorClass.BROWN;
-        dateOfBirth     = LocalDate.now().minusMonths(6);
-        microchip       = "123456789";
-        registration    = "BAF12345";
-        sire            = "Alpaca father";
-        dam             = "Mother";
-        sheerDate       = LocalDate.of(2016, 5, 1);
-        beforeSheerDate = LocalDate.now().plusDays(1);
-
-        Animal animal = new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, sheerDate, beforeSheerDate);
-    }
-
-    @Test
-    public void beforeSheerDateAndSheerDateNotSame() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Sheerdate and before sheerdate can not be the same");
-
-        name = "Animal";
-        breed = BreedClass.SURI;
-        sex = SexClass.MALE;
-        color = ColorClass.BROWN;
-        dateOfBirth = LocalDate.now().minusMonths(6);
-        microchip = "123456789";
-        registration = "BAF12345";
-        sire = "Alpaca father";
-        dam = "Mother";
-        sheerDate = LocalDate.of(2016, 4, 1);
-        beforeSheerDate = LocalDate.of(2016, 4, 1);
-
-        Animal animal = new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, sheerDate, beforeSheerDate);
-    }
-
-    @Test
-    public void beforeSheerDateNotAfterSheerDate() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Before sheerdate is after sheerdate");
-
-        name            = "Animal";
-        breed           = BreedClass.SURI;
-        sex             = SexClass.MALE;
-        color           = ColorClass.BROWN;
-        dateOfBirth     = LocalDate.now().minusMonths(6);
-        microchip       = "123456789";
-        registration    = "BAF12345";
-        sire            = "Alpaca father";
-        dam             = "Mother";
-        sheerDate       = LocalDate.of(2015, 4, 1);
-        beforeSheerDate = LocalDate.of(2016, 4, 1);
-
-        Animal animal = new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, sheerDate, beforeSheerDate);
-    }
-
-
-
-
-
 }

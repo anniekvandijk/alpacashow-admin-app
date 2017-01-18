@@ -4,7 +4,6 @@ import nl.animundo.apps.alpacashowadmin.backend.Utilities.AnimalComparator;
 import nl.animundo.apps.alpacashowadmin.backend.Utilities.ParticipantComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.*;
 import nl.animundo.apps.alpacashowadmin.backend.services.AgeClassService;
@@ -149,7 +148,8 @@ public class ApplicationRepositoryService {
 
                     AgeClass ageClass = AgeClassService.ageClass(showEvent, animal);
                     int showClass = ShowClassService.getShowClassCode(animal.getBreed(), ageClass, animal.getSex(), animal.getColor());
-                    ShowEventRegistration registration = new ShowEventRegistration(showEventKey, participantKey, animalKey, ageClass, showClass, animal.getSheerDate(), animal.getBeforeSheerDate());
+                    ShowEventRegistration registration = new ShowEventRegistration(showEventKey, participantKey, animalKey,
+                            ageClass, showClass, animal.getAnimalShowDetail().getSheerDate(), animal.getAnimalShowDetail().getBeforeSheerDate() );
 
                     showEventRegistrationRepository.add(registration);
                 }
@@ -182,6 +182,7 @@ public class ApplicationRepositoryService {
                                 showEventParticipant.getParticipantKey().equals(showEventRegistration.getParticipantKey()))
                         {
                             Animal animal = animalRepository.getAnimalByKeySet(showEventRegistration.getAnimalKey());
+                            AnimalShowDetail animalShowDetail = new AnimalShowDetail(LocalDate.of(2016, 4, 1), null);
                             animals.add(animal);
                         }
                     }

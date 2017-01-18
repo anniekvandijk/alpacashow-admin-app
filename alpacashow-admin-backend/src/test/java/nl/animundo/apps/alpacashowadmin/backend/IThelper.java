@@ -6,8 +6,6 @@ import nl.animundo.apps.alpacashowadmin.backend.Utilities.ShowEventComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.*;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
-import nl.animundo.apps.alpacashowadmin.backend.services.AgeClassService;
-import nl.animundo.apps.alpacashowadmin.backend.services.ShowClassService;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
 
 import java.io.IOException;
@@ -58,12 +56,17 @@ public class IThelper {
         ShowType showType2 = ShowType.FLEECESHOW;
 
         SortedSet<Animal> animals1 = new TreeSet<>(new AnimalComparator());
-        animals1.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 12), "8765", null, "Vader", "Moeder", LocalDate.of(2016, 5, 1)));
-        animals1.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "4321", "BAF12345", "Vader2", "Moeder2", LocalDate.of(2016, 4, 1), LocalDate.of(2015, 5, 1)));
+
+        AnimalShowDetail animalShowDetail1 = new AnimalShowDetail(LocalDate.of(2016, 5, 1), null);
+        AnimalShowDetail animalShowDetail2 = new AnimalShowDetail(LocalDate.of(2016, 4, 1), LocalDate.of(2015, 5, 1));
+        animals1.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 12), "8765", null, "Vader", "Moeder", animalShowDetail1));
+        animals1.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "4321", "BAF12345", "Vader2", "Moeder2", animalShowDetail2));
 
         SortedSet<Animal> animals2 = new TreeSet<>(new AnimalComparator());
-        animals2.add(new Animal("Alpaca3", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 13), "4444", null, "Vader", "Moeder", LocalDate.of(2016, 5, 1)));
-        animals2.add(new Animal("Alpaca4", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2016, 7, 6), "5555", "BAF12346", "Vader2", "Moeder2"));
+        AnimalShowDetail animalShowDetail3 = new AnimalShowDetail(LocalDate.of(2016, 5, 1), null);
+        AnimalShowDetail animalShowDetail4 = new AnimalShowDetail(LocalDate.of(2016, 5, 1), null);
+        animals2.add(new Animal("Alpaca3", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 13), "4444", null, "Vader", "Moeder", animalShowDetail3));
+        animals2.add(new Animal("Alpaca4", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2016, 7, 6), "5555", "BAF12346", "Vader2", "Moeder2", animalShowDetail4));
 
 
         SortedSet<Participant> participants2 = new TreeSet<>(new ParticipantComparator());
@@ -89,8 +92,9 @@ public class IThelper {
         ShowType showType4 = ShowType.HALTERSHOW;
 
         SortedSet<Animal> animals3 = new TreeSet<>(new AnimalComparator());
-        animals3.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 12), "8765", null, "Vader", "Moeder", LocalDate.of(2016, 5, 1)));
-        animals3.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "4321", "BAF12345", "Vader2", "Moeder2", LocalDate.of(2016, 4, 1), LocalDate.of(2015, 5, 1)));
+        AnimalShowDetail animalShowDetail5 = new AnimalShowDetail(LocalDate.of(2016, 4, 1), LocalDate.of(2015, 5, 1));
+        animals3.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 12), "8765", null, "Vader", "Moeder"));
+        animals3.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "4321", "BAF12345", "Vader2", "Moeder2", animalShowDetail5));
 
         SortedSet<Participant> participants3 = new TreeSet<>(new ParticipantComparator());
         participants3.add(new Participant("Test participant 1", "Testfarm 1", "", "", "", "", "", "", animals3));

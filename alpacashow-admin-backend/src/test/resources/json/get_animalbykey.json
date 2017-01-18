@@ -8,6 +8,8 @@
   "registration": null,
   "sire": "Vader",
   "dam": "Moeder",
-  "sheerDate": null,
-  "beforeSheerDate": null
+  "animalShowDetail": {
+    "sheerDate": null,
+    "beforeSheerDate": null
+  }
 }

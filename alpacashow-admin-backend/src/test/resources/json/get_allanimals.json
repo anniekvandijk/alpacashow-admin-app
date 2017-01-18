@@ -9,8 +9,10 @@
     "registration": null,
     "sire": "Vader",
     "dam": "Moeder",
-    "sheerDate": null,
-    "beforeSheerDate": null
+    "animalShowDetail": {
+      "sheerDate": null,
+      "beforeSheerDate": null
+    }
   },
   {
     "name": "Alpaca2",
@@ -22,8 +24,10 @@
     "registration": "BAF12345",
     "sire": "Vader2",
     "dam": "Moeder2",
-    "sheerDate": null,
-    "beforeSheerDate": null
+    "animalShowDetail": {
+      "sheerDate": null,
+      "beforeSheerDate": null
+    }
   },
   {
     "name": "Alpaca3",
@@ -35,9 +39,11 @@
     "registration": null,
     "sire": "Vader",
     "dam": "Moeder",
-    "sheerDate": null,
-    "beforeSheerDate": null
- },
+    "animalShowDetail": {
+      "sheerDate": null,
+      "beforeSheerDate": null
+    }
+  },
   {
     "name": "Alpaca4",
     "breed": "Suri",
@@ -47,8 +53,9 @@
     "microchip": "5555",
     "registration": "BAF12346",
     "sire": "Vader2",
-    "dam": "Moeder2",
+    "dam": "Moeder2",    "animalShowDetail": {
     "sheerDate": null,
     "beforeSheerDate": null
+  }
   }
 ]
