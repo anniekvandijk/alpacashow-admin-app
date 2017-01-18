@@ -43,15 +43,7 @@ public class ShowEventParticipantRepository {
 
     public Collection<ShowEventParticipant> getAllShowEventParticipants() {
 
-        List list = new ArrayList(showEventParticipants.values());
-        if (list.isEmpty()) {
-            return list;
-        }
-        else {
-            Comparator comparator = Comparator.comparing(ShowEventParticipant::getShowEventKey);
-            Collections.sort(list, comparator);
-            return list;
-        }
+        return showEventParticipants.values();
     }
 
     public ShowEventParticipant getShowEventParticipantByKeySet(final String keySet) {

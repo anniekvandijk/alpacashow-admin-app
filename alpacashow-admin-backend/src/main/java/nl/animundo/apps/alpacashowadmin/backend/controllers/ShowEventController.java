@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.SortedSet;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -44,7 +45,7 @@ public class ShowEventController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShowEvents() throws IOException {
         loadRepository();
-        Collection<ShowEvent> listOfShowEvents=showEventRepository.getAllShowEvents();
+        SortedSet<ShowEvent> listOfShowEvents=showEventRepository.getAllShowEvents();
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfShowEvents);
         Response response = Response
                 .status(Response.Status.OK)

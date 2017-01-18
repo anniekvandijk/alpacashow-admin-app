@@ -1,12 +1,12 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import nl.animundo.apps.alpacashowadmin.backend.Utilities.AnimalComparator;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.*;
 
 public class Participant {
     private static Logger logger = LoggerFactory.getLogger(Participant.class);
@@ -19,11 +19,11 @@ public class Participant {
     private String zipCode;
     private String city;
     private String country;
-    private Set<Animal> animals;
+    private SortedSet<Animal> animals;
 
     public Participant(final String name, final String farmName, final String email, final String telephone,
                        final String address, final String zipCode, final String city, final String country) {
-        this(name, farmName, email, telephone, address, zipCode, city, country, new HashSet<Animal>());
+        this(name, farmName, email, telephone, address, zipCode, city, country, new TreeSet<Animal>(new AnimalComparator()));
     }
 
     @JsonCreator
@@ -31,7 +31,7 @@ public class Participant {
                        @JsonProperty("email") final String email, @JsonProperty("telephone") final String telephone,
                        @JsonProperty("address") final String address, @JsonProperty("zipCode") final String zipCode,
                        @JsonProperty("city") final String city, @JsonProperty("country") final String country,
-                       @JsonProperty("animals") final Set<Animal> animals) {
+                       @JsonProperty("animals") final SortedSet<Animal> animals) {
 
         final String nameCln = StringUtils.trimToNull(name);
         final String farmNameCln = StringUtils.trimToNull(farmName);
@@ -94,7 +94,7 @@ public class Participant {
         return animals;
     }
 
-    public void setAnimals(Set<Animal> animals) {
+    public void setAnimals(SortedSet<Animal> animals) {
         this.animals = animals;
     }
 }

@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.SortedSet;
 
 @Api (value="Animals")
 @Path("animals")
@@ -41,7 +42,7 @@ public class AnimalController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAnimals() throws IOException {
         loadRepository();
-        Collection<Animal> listOfAnimals = animalRepository.getAllAnimals();
+        SortedSet<Animal> listOfAnimals = animalRepository.getAllAnimals();
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfAnimals);
         Response response = Response
                 .status(Response.Status.OK)

@@ -15,7 +15,7 @@ For the practice with Java, this is an application which brings my love for alpa
 
 ### Backend
 #### Showevent registration
-* [ ] Handle show-, participant- and animalregistration
+* [ ] Handle show-, participant- and animalregistration 
 * [X] Data import and export of registrations
 * [X] Webservice to access and manage registrations
 

@@ -1,5 +1,7 @@
 package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
+import nl.animundo.apps.alpacashowadmin.backend.Utilities.AnimalComparator;
+import nl.animundo.apps.alpacashowadmin.backend.Utilities.ParticipantComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
@@ -166,14 +168,14 @@ public class ApplicationRepositoryService {
 
         for (String showEventKey : showEventRepository.getAllShowEventsByKeySet()) {
             ShowEvent showEvent = showEventRepository.getShowEventByKeySet(showEventKey);
-            Set<Participant> participants = new HashSet<>();
+            SortedSet<Participant> participants = new TreeSet<>(new ParticipantComparator());
 
             for (ShowEventParticipant showEventParticipant : showEventParticipantRepository.getAllShowEventParticipants()) {
                 if (showEventKey.equals(showEventParticipant.getShowEventKey())) {
                     Participant participant = participantRepository.getParticipantByKeySet(showEventParticipant.getParticipantKey());
                     participants.add(participant);
 
-                    Set<Animal> animals = new HashSet<>();
+                    SortedSet<Animal> animals = new TreeSet<>(new AnimalComparator());
 
                     for (ShowEventRegistration showEventRegistration : showEventRegistrationRepository.getAllShowEventRegistrations()) {
                         if (showEventKey.equals(showEventRegistration.getShowEventKey()) &&

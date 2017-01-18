@@ -1,5 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
+import nl.animundo.apps.alpacashowadmin.backend.Utilities.AnimalComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,19 +46,12 @@ public class AnimalRepository {
         return animals.keySet();
     }
 
-    public Collection<Animal> getAllAnimals() {
-
-        // Todo: Migrate this to ApplicationUtil class
-
-        List list = new ArrayList(animals.values());
-        if (list.isEmpty()) {
-            return list;
+    public SortedSet<Animal> getAllAnimals() {
+        SortedSet<Animal> animalSet = new TreeSet<>(new AnimalComparator());
+        for (Animal animal : animals.values()) {
+            animalSet.add(animal);
         }
-        else {
-            Comparator comparator = Comparator.comparing(Animal::getDateOfBirth);
-            Collections.sort(list, comparator);
-            return list;
-        }
+        return animalSet;
     }
 
     public Animal getAnimalByKeySet(final String keySet) {

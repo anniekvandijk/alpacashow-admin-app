@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import nl.animundo.apps.alpacashowadmin.backend.Utilities.ParticipantComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.deserializers.JsonDateDeserializer;
 import nl.animundo.apps.alpacashowadmin.backend.deserializers.JsonDateSerializer;
@@ -15,6 +16,8 @@ import org.apache.commons.lang3.StringUtils;
 import java.time.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class ShowEvent {
     private static Logger logger = LoggerFactory.getLogger(ShowEvent.class);
@@ -31,19 +34,19 @@ public class ShowEvent {
     @JsonDeserialize(using = JsonShowTypeDeserializer.class)
     @JsonSerialize(using = JsonShowTypeSerializer.class)
     private ShowType showType;
-    private Set<Participant> participants;
+    private SortedSet<Participant> participants;
 
     public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate,
                      final String location, final String judge, final ShowType showType)
     {
-        this(name, date, closeDate, location, judge, showType, new HashSet<Participant>());
+        this(name, date, closeDate, location, judge, showType, new TreeSet<Participant>(new ParticipantComparator()));
     }
 
     @JsonCreator
     public ShowEvent(@JsonProperty("name") final String name, @JsonProperty("date") final LocalDate date,
                      @JsonProperty("closeDate") final LocalDate closeDate, @JsonProperty("location") final String location,
                      @JsonProperty("judge") final String judge, @JsonProperty("showType") final ShowType showType,
-                     @JsonProperty("participants") final Set<Participant> participants ) {
+                     @JsonProperty("participants") final SortedSet<Participant> participants ) {
 
         final String nameCln = StringUtils.trimToNull(name);
         final String locationCln = StringUtils.trimToNull(location);
@@ -106,7 +109,7 @@ public class ShowEvent {
         return participants;
     }
 
-    public void setParticipants(Set<Participant> participants) {
+    public void setParticipants(SortedSet<Participant> participants) {
         this.participants = participants;
     }
 }

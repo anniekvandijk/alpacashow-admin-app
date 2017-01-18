@@ -1,5 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
+import nl.animundo.apps.alpacashowadmin.backend.Utilities.ShowEventComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,17 +44,12 @@ public class ShowEventRepository  {
         return showEvents.keySet();
     }
 
-    public Collection<ShowEvent> getAllShowEvents() {
-
-        List list = new ArrayList(showEvents.values());
-        if (list.isEmpty()) {
-            return list;
+    public SortedSet<ShowEvent> getAllShowEvents() {
+        SortedSet<ShowEvent> showEventSet = new TreeSet<>(new ShowEventComparator());
+        for (ShowEvent showEvent : showEvents.values()) {
+            showEventSet.add(showEvent);
         }
-        else {
-            Comparator comparator = Comparator.comparing(ShowEvent::getDate);
-            Collections.sort(list, comparator);
-            return list;
-        }
+        return showEventSet;
     }
 
     public ShowEvent getShowEventByKeySet(final String keySet) {

@@ -1,5 +1,7 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
+import nl.animundo.apps.alpacashowadmin.backend.Utilities.AnimalComparator;
+import nl.animundo.apps.alpacashowadmin.backend.Utilities.ParticipantComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
@@ -51,17 +53,13 @@ public class ParticipantRepository {
         return participants.keySet();
     }
 
-    public Collection<Participant> getAllParticipants() {
+    public SortedSet<Participant> getAllParticipants() {
 
-        List list = new ArrayList(participants.values());
-        if (list.isEmpty()) {
-            return list;
+        SortedSet<Participant> participantSet = new TreeSet<>(new ParticipantComparator());
+        for (Participant participant : participants.values()) {
+            participantSet.add(participant);
         }
-        else {
-            Comparator comparator = Comparator.comparing(Participant::getFarmName);
-            Collections.sort(list, comparator);
-            return list;
-        }
+        return participantSet;
     }
 
     public Participant getParticipantByKeySet(final String keySet) {

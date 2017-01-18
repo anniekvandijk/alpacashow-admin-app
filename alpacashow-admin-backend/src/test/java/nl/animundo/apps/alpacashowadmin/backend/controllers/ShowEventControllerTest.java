@@ -27,7 +27,7 @@ public class ShowEventControllerTest {
         helper.AddCompleteShowEvent();
     }
 
-    @Test @Ignore
+    @Test
     public void getAllShowEvents() throws IOException {
 
         ShowEventController controller = new ShowEventController(showEventRepository);
@@ -41,7 +41,7 @@ public class ShowEventControllerTest {
         assertEquals(expectedTrim, resultTrim);
     }
 
-    @Test @Ignore
+    @Test
     public void getShowEventByKey() throws IOException {
 
         ShowEventController controller = new ShowEventController(showEventRepository);

@@ -52,15 +52,7 @@ public class ShowEventRegistrationRepository {
 
     public Collection<ShowEventRegistration> getAllShowEventRegistrations() {
 
-        List list = new ArrayList(showEventRegistrations.values());
-        if (list.isEmpty()) {
-            return list;
-        }
-        else {
-            Comparator comparator = Comparator.comparing(ShowEventRegistration::getShowEventKey).thenComparing(ShowEventRegistration::getShowClassCode);
-            Collections.sort(list, comparator);
-            return list;
-        }
+        return showEventRegistrations.values();
     }
 
     public ShowEventRegistration getShowEventRegistrationByKeySet(final String keySet) {
