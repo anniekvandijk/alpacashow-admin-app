@@ -28,11 +28,6 @@ public class AnimalController {
     private ApplicationRepositoryService service = new ApplicationRepositoryService();
     private AnimalRepository animalRepository;
 
-    @Inject
-    public AnimalController (@InjectParam AnimalRepository animalRepository) {
-        this.animalRepository = animalRepository;
-    }
-
     // TODO: if response != 200, put some information in the response body what went wrong.
 
     @GET

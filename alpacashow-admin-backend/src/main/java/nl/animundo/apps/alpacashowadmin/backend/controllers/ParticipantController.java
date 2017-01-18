@@ -28,11 +28,6 @@ public class ParticipantController {
     private ApplicationRepositoryService service = new ApplicationRepositoryService();
     private ParticipantRepository participantRepository;
 
-    @Inject
-    public ParticipantController (@InjectParam ParticipantRepository participantRepository) {
-        this.participantRepository = participantRepository;
-    }
-
     // TODO: if response != 200, put some information in the response body what went wrong.
 
     @GET

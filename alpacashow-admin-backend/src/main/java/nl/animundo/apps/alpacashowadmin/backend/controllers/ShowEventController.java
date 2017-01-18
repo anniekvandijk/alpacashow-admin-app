@@ -33,11 +33,6 @@ public class ShowEventController {
     private ApplicationRepositoryService service = new ApplicationRepositoryService();
     private ShowEventRepository showEventRepository;
 
-    @Inject
-    public ShowEventController (@InjectParam ShowEventRepository showEventRepository) {
-        this.showEventRepository = showEventRepository;
-    }
-
     @GET
     @ApiOperation(value = "Get all showevents",
             response = ShowEvent.class,
