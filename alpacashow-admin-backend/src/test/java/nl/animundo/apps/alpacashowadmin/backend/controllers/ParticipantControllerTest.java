@@ -14,9 +14,9 @@ import static org.junit.Assert.assertEquals;
 
 public class ParticipantControllerTest {
 
-    private IThelper helper = new IThelper();
     private ParticipantRepository participantRepository;
     private ApplicationRepositoryService service = new ApplicationRepositoryService();
+    private IThelper helper = new IThelper(service);
 
     @Before
     public void AddShowEvents () throws IOException {

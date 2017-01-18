@@ -14,12 +14,18 @@ import java.util.*;
 
 public class IThelper {
 
-    private ApplicationRepositoryService service = new ApplicationRepositoryService();
+    private ApplicationRepositoryService service;
     private ShowEventRepository showEventRepository;
     private ParticipantRepository participantRepository;
     private AnimalRepository animalRepository;
     private ShowEventParticipantRepository showEventParticipantRepository;
     private ShowEventRegistrationRepository showEventRegistrationRepository;
+
+    public IThelper (ApplicationRepositoryService service)
+    {
+        this.service = service;
+    }
+
 
     public void AddCompleteShowEvent () throws IOException {
 
@@ -33,6 +39,11 @@ public class IThelper {
         animalRepository.deleteAll();
         showEventParticipantRepository.deleteAll();
         showEventRegistrationRepository.deleteAll();
+        service.saveShowEventRepository();
+        service.saveParticipantRepository();
+        service.saveAnimalRepository();
+        service.saveShowEventParticipantRepository();
+        service.saveShowEventRegistrationRepository();
 
         String name1 = "ShowEvent met deelnemers";
         LocalDate date1 = LocalDate.of(2030, 4, 1);
@@ -117,5 +128,11 @@ public class IThelper {
         service.saveAnimalRepository();
         service.saveShowEventParticipantRepository();
         service.saveShowEventRegistrationRepository();
+        showEventRepository.deleteAll();
+        participantRepository.deleteAll();
+        animalRepository.deleteAll();
+        showEventParticipantRepository.deleteAll();
+        showEventRegistrationRepository.deleteAll();
+
     }
 }

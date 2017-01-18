@@ -25,14 +25,6 @@ public class ApplicationRepositoryService {
     private ShowEventParticipantRepository showEventParticipantRepository;
     private ShowEventRegistrationRepository showEventRegistrationRepository;
 
-    public ApplicationRepositoryService() {
-        showEventRepository = new ShowEventRepository();
-        participantRepository = new ParticipantRepository();
-        animalRepository = new AnimalRepository();
-        showEventParticipantRepository = new ShowEventParticipantRepository();
-        showEventRegistrationRepository = new ShowEventRegistrationRepository();
-    }
-
     public ShowEventRepository loadShowEventRepository() throws IOException {
 
         String csvShowEventsResource = fileDirService.getFilePath(fileStorage + "/SHOWEVENTS.csv");

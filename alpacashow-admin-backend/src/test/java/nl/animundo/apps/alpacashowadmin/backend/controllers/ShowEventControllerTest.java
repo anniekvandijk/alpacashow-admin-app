@@ -18,9 +18,9 @@ import static org.junit.Assert.assertTrue;
 
 public class ShowEventControllerTest {
 
-    private IThelper helper = new IThelper();
     private ShowEventRepository showEventRepository;
     private ApplicationRepositoryService service = new ApplicationRepositoryService();
+    private IThelper helper = new IThelper(service);
 
     @Before
     public void AddShowEvents () throws IOException {

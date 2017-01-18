@@ -37,7 +37,9 @@ public class ShowEventRepository  {
     }
 
     public void deleteAll () {
-        showEvents.clear();
+        if (!showEvents.isEmpty()) {
+            showEvents.clear();
+        }
     }
 
     public Set<String> getAllShowEventsByKeySet() {

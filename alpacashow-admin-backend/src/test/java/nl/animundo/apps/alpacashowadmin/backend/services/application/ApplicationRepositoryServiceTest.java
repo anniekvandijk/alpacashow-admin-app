@@ -15,8 +15,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class ApplicationRepositoryServiceTest {
 
-    private IThelper helper = new IThelper();
     private ApplicationRepositoryService service = new ApplicationRepositoryService();
+    private IThelper helper = new IThelper(service);
     private ShowEventRepository showEventRepository;
     private ParticipantRepository participantRepository;
     private AnimalRepository animalRepository;

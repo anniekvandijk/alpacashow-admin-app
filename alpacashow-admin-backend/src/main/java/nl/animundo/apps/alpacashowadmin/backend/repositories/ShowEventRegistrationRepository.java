@@ -43,7 +43,9 @@ public class ShowEventRegistrationRepository {
     }
 
     public void deleteAll () {
-        showEventRegistrations.clear();
+        if (!showEventRegistrations.isEmpty()) {
+            showEventRegistrations.clear();
+        }
     }
 
     public Set<String> getAllShowEventRegistrationsByKeySet() {

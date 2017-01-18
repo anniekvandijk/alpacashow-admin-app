@@ -14,8 +14,8 @@ import static org.junit.Assert.assertEquals;
 
 public class AnimalControllerTest {
 
-    private IThelper helper = new IThelper();
     private ApplicationRepositoryService service = new ApplicationRepositoryService();
+    private IThelper helper = new IThelper(service);
     private AnimalRepository animalRepository;
 
     @Before

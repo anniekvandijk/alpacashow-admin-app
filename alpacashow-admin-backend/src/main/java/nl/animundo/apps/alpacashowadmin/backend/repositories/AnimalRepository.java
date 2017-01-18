@@ -39,7 +39,9 @@ public class AnimalRepository {
     }
 
     public void deleteAll () {
-        animals.clear();
+        if (!animals.isEmpty()) {
+            animals.clear();
+        }
     }
 
     public Set<String> getAllAnimalsByKeySet() {
