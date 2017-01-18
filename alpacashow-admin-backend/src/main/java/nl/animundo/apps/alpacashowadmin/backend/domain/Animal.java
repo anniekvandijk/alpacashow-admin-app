@@ -14,24 +14,24 @@ import java.time.LocalDate;
 
 public class Animal {
 
-    private final String name;
+    private String name;
     @JsonDeserialize(using = JsonBreedClassDeserializer.class)
     @JsonSerialize(using = JsonBreedClassSerializer.class)
-    private final BreedClass breed;
+    private BreedClass breed;
     @JsonDeserialize(using = JsonSexClassDeserializer.class)
     @JsonSerialize(using = JsonSexClassSerializer.class)
-    private final SexClass sex;
+    private SexClass sex;
     @JsonDeserialize(using = JsonColorClassDeserializer.class)
     @JsonSerialize(using = JsonColorClassSerializer.class)
-    private final ColorClass color;
+    private ColorClass color;
     @JsonDeserialize(using = JsonDateDeserializer.class)
     @JsonSerialize(using = JsonDateSerializer.class)
-    private final LocalDate dateOfBirth;
-    private final String microchip;
-    private final String registration;
-    private final String sire;
-    private final String dam;
-    private final AnimalShowDetail animalShowDetail;
+    private LocalDate dateOfBirth;
+    private String microchip;
+    private String registration;
+    private String sire;
+    private String dam;
+    private AnimalShowDetail animalShowDetail;
 
     public Animal (final String name, final BreedClass breed, final SexClass sex, final ColorClass color, final LocalDate dateOfBirth,
                    final String microchip, final String registration, final String sire, final String dam)
@@ -128,4 +128,7 @@ public class Animal {
         return animalShowDetail;
     }
 
+    public void setAnimalShowDetail(AnimalShowDetail animalShowDetail) {
+        this.animalShowDetail = animalShowDetail;
+    }
 }

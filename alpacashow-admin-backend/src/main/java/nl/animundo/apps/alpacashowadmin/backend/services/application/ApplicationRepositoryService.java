@@ -35,7 +35,7 @@ public class ApplicationRepositoryService {
 
     public ShowEventRepository loadShowEventRepository() throws IOException {
 
-        String csvShowEventsResource =  fileDirService.getFilePath(fileStorage + "/SHOWEVENTS.csv");
+        String csvShowEventsResource = fileDirService.getFilePath(fileStorage + "/SHOWEVENTS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvShowEventsResource));
         showEventRepository = CsvShowEventRepository.importData(csvReader);
         csvReader.close();
@@ -46,7 +46,7 @@ public class ApplicationRepositoryService {
 
     public ParticipantRepository loadParticipantRepository() throws IOException {
 
-        String csvParticipantsResource =  fileDirService.getFilePath(fileStorage + "/PARTICIPANTS.csv");
+        String csvParticipantsResource = fileDirService.getFilePath(fileStorage + "/PARTICIPANTS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvParticipantsResource));
         participantRepository = CsvParticipantRepository.importData(csvReader);
         csvReader.close();
@@ -56,7 +56,7 @@ public class ApplicationRepositoryService {
 
     public AnimalRepository loadAnimalRepository() throws IOException {
 
-        String csvAnimalsResource =  fileDirService.getFilePath(fileStorage + "/ANIMALS.csv");
+        String csvAnimalsResource = fileDirService.getFilePath(fileStorage + "/ANIMALS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvAnimalsResource));
         animalRepository = CsvAnimalRepository.importData(csvReader);
         csvReader.close();
@@ -66,7 +66,7 @@ public class ApplicationRepositoryService {
 
     public ShowEventParticipantRepository loadShowEventParticipantRepository() throws IOException {
 
-        String csvShowEventParticipantResource =  fileDirService.getFilePath(fileStorage + "/SHOWEVENTS_PARTICIPANTS.csv");
+        String csvShowEventParticipantResource = fileDirService.getFilePath(fileStorage + "/SHOWEVENTS_PARTICIPANTS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvShowEventParticipantResource));
         showEventParticipantRepository = CsvShowEventParticipantRepository.importData(csvReader);
         csvReader.close();
@@ -76,7 +76,7 @@ public class ApplicationRepositoryService {
 
     public ShowEventRegistrationRepository loadShowEventRegistrationRepository() throws IOException {
 
-        String csvShowEventRegistrationResource =  fileDirService.getFilePath(fileStorage + "/SHOWEVENTS_REGISTRATIONS.csv");
+        String csvShowEventRegistrationResource = fileDirService.getFilePath(fileStorage + "/SHOWEVENTS_REGISTRATIONS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvShowEventRegistrationResource));
         showEventRegistrationRepository = CsvShowEventRegistrationRepository.importData(csvReader);
         csvReader.close();
@@ -135,7 +135,7 @@ public class ApplicationRepositoryService {
         logger.info("Exported csvShowEventRegistrationRepository");
     }
 
-    private void saveCrossRepoForShowEvent (ShowEventRepository showEventRepository) throws IOException {
+    private void saveCrossRepoForShowEvent(ShowEventRepository showEventRepository) throws IOException {
 
         for (String showEventKey : showEventRepository.getAllShowEventsByKeySet()) {
             ShowEvent showEvent = showEventRepository.getShowEventByKeySet(showEventKey);
@@ -149,7 +149,7 @@ public class ApplicationRepositoryService {
                     AgeClass ageClass = AgeClassService.ageClass(showEvent, animal);
                     int showClass = ShowClassService.getShowClassCode(animal.getBreed(), ageClass, animal.getSex(), animal.getColor());
                     ShowEventRegistration registration = new ShowEventRegistration(showEventKey, participantKey, animalKey,
-                            ageClass, showClass, animal.getAnimalShowDetail().getSheerDate(), animal.getAnimalShowDetail().getBeforeSheerDate() );
+                            ageClass, showClass, animal.getAnimalShowDetail().getSheerDate(), animal.getAnimalShowDetail().getBeforeSheerDate());
 
                     showEventRegistrationRepository.add(registration);
                 }
@@ -159,37 +159,57 @@ public class ApplicationRepositoryService {
         saveShowEventRegistrationRepository();
     }
 
-    private void loadCrossRepoForShowEvent () throws IOException {
+    private void loadCrossRepoForShowEvent() throws IOException {
 
         loadShowEventParticipantRepository();
         loadParticipantRepository();
         loadShowEventRegistrationRepository();
         loadAnimalRepository();
 
-        for (String showEventKey : showEventRepository.getAllShowEventsByKeySet()) {
+        Set <String> showEventsByKey = showEventRepository.getAllShowEventsByKeySet();
+        Set <String> participantsByKey = participantRepository.getAllParticipantsByKeySet();
+        Set <String> animalsByKey = animalRepository.getAllAnimalsByKeySet();
+        Collection <ShowEventParticipant> showEventParticipants = showEventParticipantRepository.getAllShowEventParticipants();
+        Collection <ShowEventRegistration> showEventRegistrations = showEventRegistrationRepository.getAllShowEventRegistrations();
+
+        for (String showEventKey : showEventsByKey) {
             ShowEvent showEvent = showEventRepository.getShowEventByKeySet(showEventKey);
+
             SortedSet<Participant> participants = new TreeSet<>(new ParticipantComparator());
 
-            for (ShowEventParticipant showEventParticipant : showEventParticipantRepository.getAllShowEventParticipants()) {
-                if (showEventKey.equals(showEventParticipant.getShowEventKey())) {
-                    Participant participant = participantRepository.getParticipantByKeySet(showEventParticipant.getParticipantKey());
-                    participants.add(participant);
+            for (String participantKey : participantsByKey) {
+                for (ShowEventParticipant showEventParticipant : showEventParticipants)
+                {
+                    String showKey = showEventParticipant.getShowEventKey();
+                    String partKey = showEventParticipant.getParticipantKey();
+                    if (showEventKey.equals(showKey) && participantKey.equals(partKey)) {
+                        Participant participant = participantRepository.getParticipantByKeySet(participantKey);
 
-                    SortedSet<Animal> animals = new TreeSet<>(new AnimalComparator());
+                        SortedSet<Animal> animals = new TreeSet<>(new AnimalComparator());
 
-                    for (ShowEventRegistration showEventRegistration : showEventRegistrationRepository.getAllShowEventRegistrations()) {
-                        if (showEventKey.equals(showEventRegistration.getShowEventKey()) &&
-                                showEventParticipant.getParticipantKey().equals(showEventRegistration.getParticipantKey()))
-                        {
-                            Animal animal = animalRepository.getAnimalByKeySet(showEventRegistration.getAnimalKey());
-                            AnimalShowDetail animalShowDetail = new AnimalShowDetail(LocalDate.of(2016, 4, 1), null);
-                            animals.add(animal);
+                        for (String animalKey : animalsByKey) {
+                            for (ShowEventRegistration showEventRegistration : showEventRegistrations) {
+                                String show = showEventRegistration.getShowEventKey();
+                                String part = showEventRegistration.getParticipantKey();
+                                String ani = showEventRegistration.getAnimalKey();
+
+                                if (showEventKey.equals(show) && participantKey.equals(part) && animalKey.equals(ani)) {
+                                    Animal animal = animalRepository.getAnimalByKeySet(animalKey);
+                                    LocalDate sheerDate = showEventRegistration.getSheerDate();
+                                    LocalDate beforeSheerDate = showEventRegistration.getBeforeSheerDate();
+                                    AnimalShowDetail animalShowDetail = new AnimalShowDetail(sheerDate, beforeSheerDate);
+                                    animal.setAnimalShowDetail(animalShowDetail);
+                                    animals.add(animal);
+                                }
+                            }
                         }
+                        participant.setAnimals(animals);
+                        participants.add(participant);
                     }
-                    participant.setAnimals(animals);
                 }
             }
             showEvent.setParticipants(participants);
         }
     }
 }
+

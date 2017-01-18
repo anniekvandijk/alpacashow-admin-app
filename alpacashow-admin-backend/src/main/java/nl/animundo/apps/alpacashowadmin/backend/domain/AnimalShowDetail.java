@@ -15,10 +15,10 @@ public class AnimalShowDetail {
 
     @JsonDeserialize(using = JsonDateDeserializer.class)
     @JsonSerialize(using = JsonDateSerializer.class)
-    private final LocalDate sheerDate;
+    private LocalDate sheerDate;
     @JsonDeserialize(using = JsonDateDeserializer.class)
     @JsonSerialize(using = JsonDateSerializer.class)
-    private final LocalDate beforeSheerDate;
+    private LocalDate beforeSheerDate;
 
     @JsonCreator
     public AnimalShowDetail(@JsonProperty("sheerDate") final LocalDate sheerDate, @JsonProperty("beforeSheerDate") final LocalDate beforeSheerDate)
@@ -55,9 +55,16 @@ public class AnimalShowDetail {
         return sheerDate;
     }
 
+    public void setSheerDate(LocalDate sheerDate) {
+        this.sheerDate = sheerDate;
+    }
+
     public LocalDate getBeforeSheerDate() {
         return beforeSheerDate;
     }
 
+    public void setBeforeSheerDate(LocalDate beforeSheerDate) {
+        this.beforeSheerDate = beforeSheerDate;
+    }
 
 }
