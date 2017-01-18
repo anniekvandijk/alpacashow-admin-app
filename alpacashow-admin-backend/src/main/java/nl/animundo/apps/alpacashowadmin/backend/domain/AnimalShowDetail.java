@@ -32,12 +32,6 @@ public class AnimalShowDetail {
                 throw new IllegalArgumentException("Sheerdate is today or later");
             }
         }
-        if (beforeSheerDate != null)
-        {
-            if (beforeSheerDate.isEqual(LocalDate.now()) || beforeSheerDate.isAfter(LocalDate.now())) {
-                throw new IllegalArgumentException("Before sheerdate is today or later");
-            }
-        }
         if (sheerDate != null && beforeSheerDate != null) {
             if (beforeSheerDate.isEqual(sheerDate)) {
                 throw new IllegalArgumentException("Sheerdate and before sheerdate can not be the same");

@@ -63,4 +63,52 @@ public class AnimalShowDetailTest {
 
         AnimalShowDetail animalShowDetail = new AnimalShowDetail(sheerDate, beforeSheerDate);
     }
+
+    @Test
+    public void SheerDateToday() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Sheerdate is today or later");
+
+        sheerDate = LocalDate.now();
+        beforeSheerDate = null;
+
+        AnimalShowDetail animalShowDetail = new AnimalShowDetail(sheerDate, beforeSheerDate);
+    }
+
+    @Test
+    public void SheerDateAfterToday() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Sheerdate is today or later");
+
+        sheerDate = LocalDate.now().plusMonths(6);
+        beforeSheerDate = null;
+
+        AnimalShowDetail animalShowDetail = new AnimalShowDetail(sheerDate, beforeSheerDate);
+    }
+
+    @Test
+    public void SheerDateAndBeforeSheerDateSame() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Sheerdate and before sheerdate can not be the same");
+
+        sheerDate = LocalDate.now().minusMonths(6);
+        beforeSheerDate = LocalDate.now().minusMonths(6);
+
+        AnimalShowDetail animalShowDetail = new AnimalShowDetail(sheerDate, beforeSheerDate);
+    }
+
+    @Test
+    public void SheerDateBeforeBeforeSheerDate() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Before sheerdate is after sheerdate");
+
+        sheerDate = LocalDate.now().minusMonths(12);
+        beforeSheerDate = LocalDate.now().minusMonths(6);
+
+        AnimalShowDetail animalShowDetail = new AnimalShowDetail(sheerDate, beforeSheerDate);
+    }
 }
