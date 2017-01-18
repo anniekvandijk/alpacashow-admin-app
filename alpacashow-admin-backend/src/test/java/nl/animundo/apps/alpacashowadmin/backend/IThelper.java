@@ -115,5 +115,7 @@ public class IThelper {
         service.saveShowEventRepository();
         service.saveParticipantRepository();
         service.saveAnimalRepository();
+        service.saveShowEventParticipantRepository();
+        service.saveShowEventRegistrationRepository();
     }
 }

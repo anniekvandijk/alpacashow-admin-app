@@ -161,10 +161,11 @@ public class ApplicationRepositoryService {
 
     private void loadCrossRepoForShowEvent() throws IOException {
 
-        loadShowEventParticipantRepository();
         loadParticipantRepository();
-        loadShowEventRegistrationRepository();
+        loadShowEventParticipantRepository();
         loadAnimalRepository();
+        loadShowEventRegistrationRepository();
+
 
         Set <String> showEventsByKey = showEventRepository.getAllShowEventsByKeySet();
         Set <String> participantsByKey = participantRepository.getAllParticipantsByKeySet();
