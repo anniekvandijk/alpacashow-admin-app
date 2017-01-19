@@ -168,13 +168,13 @@
             }
           },
           {
-            "name": "Alpaca2",
+            "name": "Alpaca5",
             "breed": "Suri",
             "sex": "Male",
             "color": "Fancy",
             "dateOfBirth": "2014-04-29",
-            "microchip": "4321",
-            "registration": "BAF12345",
+            "microchip": "7659",
+            "registration": "BAF1254",
             "sire": "Vader2",
             "dam": "Moeder2",
             "animalShowDetail": {

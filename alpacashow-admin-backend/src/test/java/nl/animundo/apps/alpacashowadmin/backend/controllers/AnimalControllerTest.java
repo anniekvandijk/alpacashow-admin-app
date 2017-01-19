@@ -26,7 +26,7 @@ public class AnimalControllerTest {
     @Test
     public void getAllAnimals() throws IOException {
 
-        AnimalController controller = new AnimalController(animalRepository);
+        AnimalController controller = new AnimalController();
 
         String result = (String)controller.getAnimals().getEntity();
         String resultTrim = result.replaceAll("\\s", "");
@@ -40,7 +40,7 @@ public class AnimalControllerTest {
     @Test
     public void getAnimalByKey() throws IOException {
 
-        AnimalController controller = new AnimalController(animalRepository);
+        AnimalController controller = new AnimalController();
 
         Response resultCode = controller.getAnimalByKey("4444");
         String result = (String) controller.getAnimalByKey("4444").getEntity();
@@ -59,7 +59,7 @@ public class AnimalControllerTest {
         loadRepository();
         assertEquals(5, animalRepository.getAllAnimals().size());
 
-        AnimalController controller = new AnimalController(animalRepository);
+        AnimalController controller = new AnimalController();
 
         String file = readJsonfile("add_animal.json");
         controller.addAnimal(file);
@@ -85,7 +85,7 @@ public class AnimalControllerTest {
     @Test
     public void getAnimalByNotExistingKey() throws IOException {
 
-        AnimalController controller = new AnimalController(animalRepository);
+        AnimalController controller = new AnimalController();
 
         Response resultCode = controller.getAnimalByKey("Some not known animal");
         assertEquals(404, resultCode.getStatus());
@@ -96,7 +96,7 @@ public class AnimalControllerTest {
 
         loadRepository();
 
-        AnimalController controller = new AnimalController(animalRepository);
+        AnimalController controller = new AnimalController();
 
         String file = readJsonfile("add_animalWrong.json");
         Response resultCode = controller.addAnimal(file);
@@ -109,7 +109,7 @@ public class AnimalControllerTest {
     public void updateAnimalWithWrongKey() throws IOException {
 
         loadRepository();
-        AnimalController controller = new AnimalController(animalRepository);
+        AnimalController controller = new AnimalController();
 
         String file = readJsonfile("update_animal.json");
         Response resultCode = controller.updateAnimal("not known chip", file);
@@ -121,7 +121,7 @@ public class AnimalControllerTest {
     public void updateAnimalWithWrongData() throws IOException {
 
         loadRepository();
-        AnimalController controller = new AnimalController(animalRepository);
+        AnimalController controller = new AnimalController();
 
         String file = readJsonfile("update_animalWrong.json");
         Response resultCode = controller.updateAnimal("5555", file);
@@ -134,7 +134,7 @@ public class AnimalControllerTest {
 
         loadRepository();
 
-        AnimalController controller = new AnimalController(animalRepository);
+        AnimalController controller = new AnimalController();
         Response resultCode = controller.deleteAnimal("Animal X");
 
         assertEquals(404, resultCode.getStatus());

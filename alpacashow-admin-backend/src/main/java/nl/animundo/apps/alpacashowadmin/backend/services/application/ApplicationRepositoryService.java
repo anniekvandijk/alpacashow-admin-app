@@ -165,11 +165,13 @@ public class ApplicationRepositoryService {
         Collection <ShowEventParticipant> showEventParticipants = showEventParticipantRepository.getAllShowEventParticipants();
         Collection <ShowEventRegistration> showEventRegistrations = showEventRegistrationRepository.getAllShowEventRegistrations();
 
+        // Loop ShowEvents and get details
         for (String showEventKey : showEventsByKey) {
             ShowEvent showEvent = showEventRepository.getShowEventByKeySet(showEventKey);
 
             SortedSet<Participant> participants = new TreeSet<>(new ParticipantComparator());
 
+            // Loop participants and get participants for the show. Add participant details to show
             for (String participantKey : participantsByKey) {
                 for (ShowEventParticipant showEventParticipant : showEventParticipants)
                 {
@@ -182,6 +184,7 @@ public class ApplicationRepositoryService {
 
                         SortedSet<Animal> animals = new TreeSet<>(new AnimalComparator());
 
+                        // Loop animals and get animals for the participant. Add animal details to participant
                         for (String animalKey : animalsByKey) {
                             for (ShowEventRegistration showEventRegistration : showEventRegistrations) {
                                 String show = showEventRegistration.getShowEventKey();
@@ -190,16 +193,18 @@ public class ApplicationRepositoryService {
 
                                 if (showEventKey.equals(show) && participantKey.equals(part) && animalKey.equals(ani)) {
                                     Animal animal = animalRepository.getAnimalByKeySet(animalKey);
+                                    // If there is showDetail for the animal, add this to the animal
                                     LocalDate sheerDate = showEventRegistration.getSheerDate();
                                     LocalDate beforeSheerDate = showEventRegistration.getBeforeSheerDate();
                                     AnimalShowDetail animalShowDetail = new AnimalShowDetail(sheerDate, beforeSheerDate);
-                                    animal.setAnimalShowDetail(animalShowDetail);
-                                    animals.add(animal);
+
+                                    animals.add(new Animal(animal.getName(), animal.getBreed(), animal.getSex(), animal.getColor(), animal.getDateOfBirth(),
+                                            animal.getMicrochip(), animal.getRegistration(), animal.getSire(), animal.getDam(), animalShowDetail));
                                 }
                             }
-                            participant.setAnimals(animals);
                         }
-                        participants.add(participant);
+                        participants.add(new Participant(participant.getName(), participant.getFarmName(), participant.getEmail(), participant.getTelephone(),
+                                    participant.getAddress(), participant.getZipCode(), participant.getCity(), participant.getCountry(), animals));
                     }
                 }
             }
