@@ -73,7 +73,7 @@ public class AgeClassService {
         return ageClass;
     }
 
-    private static int getAgeInMonths(final LocalDate sheerOrShowDate, final LocalDate dateOfBirth) {
+    static int getAgeInMonths(final LocalDate sheerOrShowDate, final LocalDate dateOfBirth) {
 
         final long ageInMonths = ChronoUnit.MONTHS.between(dateOfBirth, sheerOrShowDate);
 
