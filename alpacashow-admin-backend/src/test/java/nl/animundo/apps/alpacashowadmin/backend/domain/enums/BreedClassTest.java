@@ -23,14 +23,14 @@ public class BreedClassTest {
     }
 
     @Test
-    public void huacayaFleeceBreedCode() {
+    public void HUACAYA_FLEECEBreedCode() {
 
-        assertEquals(3, BreedClass.HUACAYAFLEECE.getBreedCode());
+        assertEquals(3, BreedClass.HUACAYA_FLEECE.getBreedCode());
     }
 
     @Test
-    public void suriFleeceBreedCode() {
+    public void SURI_FLEECEBreedCode() {
 
-        assertEquals(4, BreedClass.SURIFLEECE.getBreedCode());
+        assertEquals(4, BreedClass.SURI_FLEECE.getBreedCode());
     }
 }

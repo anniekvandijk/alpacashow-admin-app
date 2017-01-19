@@ -66,9 +66,9 @@ public class ShowClassServiceTest {
     }
 
     @Test
-    public void huacayaFleeceSeniorMaleBrownClassCode() {
+    public void HUACAYA_FLEECESeniorMaleBrownClassCode() {
 
-        BreedClass breed    = BreedClass.HUACAYAFLEECE;
+        BreedClass breed    = BreedClass.HUACAYA_FLEECE;
         AgeClass ageClass   = AgeClass.SENIOR;
         SexClass sex        = SexClass.MALE;
         ColorClass color    = ColorClass.BROWN;
@@ -78,9 +78,9 @@ public class ShowClassServiceTest {
     }
 
     @Test
-    public void suriFleeceAdultFemaleFawnClassCode() {
+    public void SURI_FLEECEAdultFemaleFawnClassCode() {
 
-        BreedClass breed    = BreedClass.SURIFLEECE;
+        BreedClass breed    = BreedClass.SURI_FLEECE;
         AgeClass ageClass   = AgeClass.ADULT;
         SexClass sex        = SexClass.FEMALE;
         ColorClass color    = ColorClass.FAWN;
@@ -114,9 +114,9 @@ public class ShowClassServiceTest {
     }
 
     @Test
-    public void huacayaFleeceSeniorFemaleFancyClassCode() {
+    public void HUACAYA_FLEECESeniorFemaleFancyClassCode() {
 
-        BreedClass breed    = BreedClass.HUACAYAFLEECE;
+        BreedClass breed    = BreedClass.HUACAYA_FLEECE;
         AgeClass ageClass   = AgeClass.SENIOR;
         SexClass sex        = SexClass.FEMALE;
         ColorClass color    = ColorClass.FANCY;
@@ -126,12 +126,42 @@ public class ShowClassServiceTest {
     }
 
     @Test
-    public void huacayaJuniorMaleWhiteClassName() {
+    public void huacayaJuniorMaleWhiteClassNameWithSex() {
 
         BreedClass breed = BreedClass.HUACAYA;
         AgeClass ageClass = AgeClass.JUNIOR;
         SexClass sex = SexClass.MALE;
         ColorClass color = ColorClass.WHITE;
-        assertEquals("Huacaya Junior Male White", ShowClassService.getShowClassName(breed, ageClass, sex, color));
+        assertEquals("Huacaya Junior White Male", ShowClassService.getShowClassNameWithSex(breed, ageClass, sex, color));
+    }
+
+    @Test
+    public void huacayaJuniorMaleWhiteClassNameWithSexFleece() {
+
+        BreedClass breed = BreedClass.HUACAYA_FLEECE;
+        AgeClass ageClass = AgeClass.JUNIOR;
+        SexClass sex = SexClass.MALE;
+        ColorClass color = ColorClass.WHITE;
+        assertEquals("Huacaya Junior White Male Fleece", ShowClassService.getShowClassNameWithSex(breed, ageClass, sex, color));
+    }
+
+    @Test
+    public void huacayaJuniorMaleWhiteClassNameWithoutSex() {
+
+        BreedClass breed = BreedClass.SURI;
+        AgeClass ageClass = AgeClass.JUNIOR;
+        SexClass sex = SexClass.MALE;
+        ColorClass color = ColorClass.WHITE;
+        assertEquals("Suri Junior White", ShowClassService.getShowClassNameWithoutSex(breed, ageClass, color));
+    }
+
+    @Test
+    public void huacayaJuniorMaleWhiteClassNameWithoutSexFleece() {
+
+        BreedClass breed = BreedClass.SURI_FLEECE;
+        AgeClass ageClass = AgeClass.JUNIOR;
+        SexClass sex = SexClass.MALE;
+        ColorClass color = ColorClass.WHITE;
+        assertEquals("Suri Junior White Fleece", ShowClassService.getShowClassNameWithoutSex(breed, ageClass, color));
     }
 }

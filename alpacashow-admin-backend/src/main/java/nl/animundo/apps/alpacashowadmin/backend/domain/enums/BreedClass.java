@@ -4,8 +4,8 @@ public enum BreedClass {
 
     HUACAYA (1),
     SURI (2),
-    HUACAYAFLEECE (3),
-    SURIFLEECE (4);
+    HUACAYA_FLEECE (3),
+    SURI_FLEECE (4);
 
     private final int breedCode;
 

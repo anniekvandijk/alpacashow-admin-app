@@ -20,10 +20,8 @@ public class ShowClassService {
         return Integer.valueOf(String.format("%d%d%d", breedCode, ageSexCode, colorCode));
     }
 
-    public static String getShowClassName(BreedClass breed, AgeClass ageClass, SexClass sex, ColorClass color)
+    public static String getShowClassNameWithSex(BreedClass breed, AgeClass ageClass, SexClass sex, ColorClass color)
     {
-        String breedToString = breed.toString();
-        String breedName = breedToString.substring(0, 1).toUpperCase() + breedToString.substring(1).toLowerCase();
 
         String ageClassToString = ageClass.toString();
         String ageName = ageClassToString.substring(0, 1).toUpperCase() + ageClassToString.substring(1).toLowerCase();
@@ -34,7 +32,49 @@ public class ShowClassService {
         String colorToString = color.toString();
         String colorName = colorToString.substring(0, 1).toUpperCase() + colorToString.substring(1).toLowerCase();
 
-        return breedName + " " + ageName + " " + sexName + " " + colorName;
+
+        String breedToString = breed.toString();
+        String breedName;
+        String fleece;
+
+        if (breedToString.contains("_"))
+        {
+            String[] split = breedToString.split("_");
+            breedName = split[0].substring(0, 1).toUpperCase() + split[0].substring(1).toLowerCase();
+            fleece = split[1].substring(0, 1).toUpperCase() + split[1].substring(1).toLowerCase();
+            return breedName + " " + ageName + " " + colorName + " " + sexName + " " + fleece;
+        }
+        else {
+            breedName = breedToString.substring(0, 1).toUpperCase() + breedToString.substring(1).toLowerCase();
+            return breedName + " " + ageName + " " + colorName + " " + sexName;
+        }
     }
+
+    public static String getShowClassNameWithoutSex(BreedClass breed, AgeClass ageClass, ColorClass color)
+    {
+        String ageClassToString = ageClass.toString();
+        String ageName = ageClassToString.substring(0, 1).toUpperCase() + ageClassToString.substring(1).toLowerCase();
+
+        String colorToString = color.toString();
+        String colorName = colorToString.substring(0, 1).toUpperCase() + colorToString.substring(1).toLowerCase();
+
+        String breedToString = breed.toString();
+        String breedName;
+        String fleece;
+
+        if (breedToString.contains("_"))
+        {
+            String[] split = breedToString.split("_");
+            breedName = split[0].substring(0, 1).toUpperCase() + split[0].substring(1).toLowerCase();
+            fleece = split[1].substring(0, 1).toUpperCase() + split[1].substring(1).toLowerCase();
+            return breedName + " " + ageName + " " + colorName + " " + fleece;
+        }
+        else {
+            breedName = breedToString.substring(0, 1).toUpperCase() + breedToString.substring(1).toLowerCase();
+            return breedName + " " + ageName + " " + colorName;
+        }
+    }
+
+
 }
 
