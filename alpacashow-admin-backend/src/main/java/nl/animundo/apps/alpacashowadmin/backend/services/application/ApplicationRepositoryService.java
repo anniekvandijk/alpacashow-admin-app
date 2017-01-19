@@ -21,6 +21,7 @@ public class ApplicationRepositoryService {
     private AnimalRepository animalRepository;
     private ShowEventParticipantRepository showEventParticipantRepository;
     private ShowEventAnimalRepository showEventAnimalRepository;
+    private FleeceWeightPointsRepository fleeceWeightPointsRepository;
 
     public ShowEventRepository loadShowEventRepository() throws IOException {
 
@@ -71,6 +72,16 @@ public class ApplicationRepositoryService {
         csvReader.close();
         logger.info("Imported csvShowEventAnimalRepository");
         return showEventAnimalRepository;
+    }
+
+    public FleeceWeightPointsRepository loadFleeceWeightPointsRepository() throws IOException {
+
+        String csvFleeceWeightPointsResource = fileDirService.getFilePath(fileStorage + "/helpfiles/FLEECEWEIGHTPOINTS.csv");
+        FileReader csvReader = new FileReader(String.valueOf(csvFleeceWeightPointsResource));
+        fleeceWeightPointsRepository = CsvFleeceWeightPointsRepository.importData(csvReader);
+        csvReader.close();
+        logger.info("Imported csvFleeceWeightPointsRepository");
+        return fleeceWeightPointsRepository;
     }
 
     public void saveShowEventRepository() throws IOException {

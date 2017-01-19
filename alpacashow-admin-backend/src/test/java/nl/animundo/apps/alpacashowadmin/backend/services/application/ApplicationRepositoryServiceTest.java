@@ -1,10 +1,7 @@
 package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
 import nl.animundo.apps.alpacashowadmin.backend.IThelper;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.AnimalRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventAnimalRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 import java.io.IOException;
@@ -21,6 +18,7 @@ public class ApplicationRepositoryServiceTest {
     private ParticipantRepository participantRepository;
     private AnimalRepository animalRepository;
     private ShowEventAnimalRepository showEventAnimalRepository;
+    private FleeceWeightPointsRepository fleeceWeightPointsRepository;
 
     @Before
     public void AddShowEvents() throws IOException {
@@ -68,5 +66,15 @@ public class ApplicationRepositoryServiceTest {
 
         assertEquals(6, showEventAnimalRepository.getAllShowEventAnimals().size());
 
+    }
+
+    @Test @Ignore
+    public void getFleeceWeightPointsRepo() throws IOException {
+
+        // FIXME : er wordt niet alles geladen? Hoe langzamer de methode, hoe minder er geladen wordt.
+
+        fleeceWeightPointsRepository = service.loadFleeceWeightPointsRepository();
+
+       assertEquals(500, fleeceWeightPointsRepository.getAllFleeceWeightPointsByKeySet().size());
     }
 }
