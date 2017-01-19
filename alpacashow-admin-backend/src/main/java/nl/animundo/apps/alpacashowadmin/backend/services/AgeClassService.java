@@ -59,7 +59,7 @@ public class AgeClassService {
         return ageClass;
     }
 
-    public static AgeClass getAgeClass(final LocalDate sheerOrShowDate, final LocalDate dateOfBirth) {
+    static AgeClass getAgeClass(final LocalDate sheerOrShowDate, final LocalDate dateOfBirth) {
 
         int ageInMonths = getAgeInMonths(sheerOrShowDate, dateOfBirth);
         AgeClass ageClass = null;

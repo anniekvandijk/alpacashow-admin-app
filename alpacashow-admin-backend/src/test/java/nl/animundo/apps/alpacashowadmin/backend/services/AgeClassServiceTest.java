@@ -388,7 +388,7 @@ public class AgeClassServiceTest {
 
         ShowType showType = ShowType.FLEECESHOW;
         LocalDate showDate = LocalDate.now();
-        dateOfBirth = LocalDate.now().minusYears(4);
+        dateOfBirth = LocalDate.now().minusYears(6);
         LocalDate sheerDate = LocalDate.now().minusYears(3);
 
         ShowEvent showEvent = new ShowEvent("Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType);
