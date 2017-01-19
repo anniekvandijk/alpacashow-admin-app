@@ -14,43 +14,40 @@ public class ShowFleeceService {
         throw new InstantiationException("Instances of this type are forbidden!");
     }
 
-    public static double getCleanFleeceWeightPoints (Animal animal, double fleeceweight) {
+    public static float getCleanFleeceWeightPoints (Animal animal, float fleeceweight) {
 
         LocalDate dateOfBirth = animal.getDateOfBirth();
         LocalDate sheerDate = animal.getAnimalShowDetail().getSheerDate();
         LocalDate beforeSheerDate = animal.getAnimalShowDetail().getBeforeSheerDate();
+        BreedClass breed = animal.getBreed();
 
         if (beforeSheerDate == null) {
             beforeSheerDate = dateOfBirth;
         }
-        double cleanFleeceWeight = fleeceWeightCorrection(sheerDate, beforeSheerDate, fleeceweight);
 
-        NumberFormat format = new DecimalFormat("#.#");
+        int fleeceGrowthInDays = fleeceGrowthInDays(sheerDate, beforeSheerDate);
+        float cleanFleeceWeight = fleeceWeightCorrection(fleeceGrowthInDays, fleeceweight);
+        float fleeceWeightPoints = calculateFleeceWeightPoints(breed, sheerDate, dateOfBirth, cleanFleeceWeight);
 
-        BreedClass breed = animal.getBreed();
+        return (float) fleeceWeightPoints;
+    }
+
+
+    public static int fleeceGrowthInDays (LocalDate sheerDate, LocalDate beforeSheerDateOrDateOfBirth) {
+        return (int) ChronoUnit.DAYS.between(beforeSheerDateOrDateOfBirth, sheerDate);
+    }
+
+    public static float fleeceWeightCorrection (int fleeceGrowthInDays, float fleeceweight) {
+        return (float) (fleeceweight*365)/fleeceGrowthInDays;
+    }
+
+    public static float calculateFleeceWeightPoints (BreedClass breed, LocalDate sheerDate, LocalDate dateOfBirth, float cleanFleeceWeight) {
+
         AgeClass ageClass = AgeClassService.getAgeClass(sheerDate, dateOfBirth);
-
-        double fleeceWeightPoints = calculateFleeceWeightPoints(breed, ageClass, cleanFleeceWeight);
-
-        return Double.parseDouble(format.format(fleeceWeightPoints));
-    }
-
-    public static double fleeceWeightCorrection (LocalDate sheerDate, LocalDate beforeSheerDate, double fleeceweight) {
-
-        final long fleeceGrowthInDays = ChronoUnit.DAYS.between(sheerDate, beforeSheerDate);
-
-        double fleeceWeightCor = (fleeceweight*365)/fleeceGrowthInDays;
-
-        NumberFormat format = new DecimalFormat("#.#");
-        return Double.parseDouble(format.format(fleeceWeightCor));
-    }
-
-    public static double calculateFleeceWeightPoints (BreedClass breed, AgeClass ageClass, double cleanFleeceWeight) {
-
         // Read the table with points and return the points.
 
-        double weightPoints = 1.5;
-        return weightPoints;
+        return (float) 8.0;
 
     }
+
 }
