@@ -1,12 +1,10 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
-import nl.animundo.apps.alpacashowadmin.backend.Utilities.ParticipantComparator;
+import nl.animundo.apps.alpacashowadmin.backend.utilities.ParticipantComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 import java.time.*;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 

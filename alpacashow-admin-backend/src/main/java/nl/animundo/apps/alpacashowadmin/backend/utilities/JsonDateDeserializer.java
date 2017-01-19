@@ -1,4 +1,4 @@
-package nl.animundo.apps.alpacashowadmin.backend.deserializers;
+package nl.animundo.apps.alpacashowadmin.backend.utilities;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

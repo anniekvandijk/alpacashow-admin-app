@@ -1,11 +1,10 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
-import nl.animundo.apps.alpacashowadmin.backend.Utilities.ShowEventComparator;
+import nl.animundo.apps.alpacashowadmin.backend.utilities.ShowEventComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.*;
 
 public class ShowEventRepository  {

@@ -1,4 +1,4 @@
-package nl.animundo.apps.alpacashowadmin.backend.Utilities;
+package nl.animundo.apps.alpacashowadmin.backend.utilities;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 

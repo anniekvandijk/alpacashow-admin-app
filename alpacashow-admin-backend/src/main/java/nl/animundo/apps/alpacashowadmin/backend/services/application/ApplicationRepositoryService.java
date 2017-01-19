@@ -1,7 +1,7 @@
 package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
-import nl.animundo.apps.alpacashowadmin.backend.Utilities.AnimalComparator;
-import nl.animundo.apps.alpacashowadmin.backend.Utilities.ParticipantComparator;
+import nl.animundo.apps.alpacashowadmin.backend.utilities.AnimalComparator;
+import nl.animundo.apps.alpacashowadmin.backend.utilities.ParticipantComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.*;

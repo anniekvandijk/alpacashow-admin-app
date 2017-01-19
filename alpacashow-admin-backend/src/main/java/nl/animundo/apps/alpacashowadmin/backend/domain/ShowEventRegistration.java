@@ -3,7 +3,6 @@ package nl.animundo.apps.alpacashowadmin.backend.domain;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.time.LocalDate;
 
 public class ShowEventRegistration {

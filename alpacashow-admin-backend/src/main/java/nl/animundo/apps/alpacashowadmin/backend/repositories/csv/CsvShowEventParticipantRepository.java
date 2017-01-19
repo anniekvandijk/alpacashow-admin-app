@@ -2,17 +2,11 @@ package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
 import com.opencsv.CSVReader;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventParticipant;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventRegistration;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventParticipantRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRegistrationRepository;
 import org.apache.commons.lang3.StringUtils;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class CsvShowEventParticipantRepository extends ShowEventParticipantRepository {
 

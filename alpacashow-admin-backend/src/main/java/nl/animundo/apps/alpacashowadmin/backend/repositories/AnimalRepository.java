@@ -1,6 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
-import nl.animundo.apps.alpacashowadmin.backend.Utilities.AnimalComparator;
+import nl.animundo.apps.alpacashowadmin.backend.utilities.AnimalComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

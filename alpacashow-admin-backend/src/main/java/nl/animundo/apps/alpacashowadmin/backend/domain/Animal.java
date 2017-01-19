@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import nl.animundo.apps.alpacashowadmin.backend.deserializers.*;
+import nl.animundo.apps.alpacashowadmin.backend.utilities.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
@@ -128,7 +128,4 @@ public class Animal {
         return animalShowDetail;
     }
 
-    public void setAnimalShowDetail(AnimalShowDetail animalShowDetail) {
-        this.animalShowDetail = animalShowDetail;
-    }
 }
