@@ -1,8 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventParticipant;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventRegistration;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -10,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

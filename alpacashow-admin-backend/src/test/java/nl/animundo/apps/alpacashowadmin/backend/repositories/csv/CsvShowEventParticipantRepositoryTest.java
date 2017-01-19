@@ -1,16 +1,12 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventParticipant;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventRegistration;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventParticipantRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRegistrationRepository;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.io.*;
-import java.time.LocalDate;
 
 import static org.junit.Assert.*;
 

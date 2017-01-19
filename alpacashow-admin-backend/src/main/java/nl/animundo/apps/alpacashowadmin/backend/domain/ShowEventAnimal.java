@@ -1,23 +1,19 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 
-public class ShowEventRegistration {
-    private static Logger logger = LoggerFactory.getLogger(ShowEventRegistration.class);
+public class ShowEventAnimal {
+    private static Logger logger = LoggerFactory.getLogger(ShowEventAnimal.class);
 
     private String showEventKey;
     private String participantKey;
     private String animalKey;
-    private AgeClass ageClass;
-    private int showClassCode;
     private LocalDate sheerDate;
     private LocalDate beforeSheerDate;
 
-    public ShowEventRegistration (final String showEventKey, final String participantKey, final String animalKey, final AgeClass ageClass,
-                                  final int showClassCode, final LocalDate sheerDate, final LocalDate beforeSheerDate)
+    public ShowEventAnimal(final String showEventKey, final String participantKey, final String animalKey, final LocalDate sheerDate, final LocalDate beforeSheerDate)
     {
         if (showEventKey == null || showEventKey.isEmpty()) {
             throw new IllegalArgumentException("ShowEventKey can not be empty");
@@ -28,17 +24,9 @@ public class ShowEventRegistration {
         if (animalKey == null || animalKey.isEmpty()) {
             throw new IllegalArgumentException("AnimalKey can not be empty");
         }
-        if (ageClass == null) {
-            throw new IllegalArgumentException("AgeClass can not be empty");
-        }
-        if (showClassCode == 0) {
-            throw new IllegalArgumentException("ShowClassCode can not be empty");
-        }
         this.showEventKey = showEventKey;
         this.participantKey = participantKey;
         this.animalKey = animalKey;
-        this.ageClass = ageClass;
-        this.showClassCode = showClassCode;
         this.sheerDate = sheerDate;
         this.beforeSheerDate = beforeSheerDate;
     }
@@ -53,14 +41,6 @@ public class ShowEventRegistration {
 
     public String getAnimalKey() {
         return animalKey;
-    }
-
-    public AgeClass getAgeClass() {
-        return ageClass;
-    }
-
-    public int getShowClassCode() {
-        return showClassCode;
     }
 
     public LocalDate getSheerDate() {

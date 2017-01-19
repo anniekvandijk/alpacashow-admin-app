@@ -3,7 +3,7 @@ package nl.animundo.apps.alpacashowadmin.backend.services.application;
 import nl.animundo.apps.alpacashowadmin.backend.IThelper;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.AnimalRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRegistrationRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventAnimalRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
@@ -20,7 +20,7 @@ public class ApplicationRepositoryServiceTest {
     private ShowEventRepository showEventRepository;
     private ParticipantRepository participantRepository;
     private AnimalRepository animalRepository;
-    private ShowEventRegistrationRepository showEventRegistrationRepository;
+    private ShowEventAnimalRepository showEventAnimalRepository;
 
     @Before
     public void AddShowEvents() throws IOException {
@@ -62,11 +62,11 @@ public class ApplicationRepositoryServiceTest {
     }
 
     @Test
-    public void getShowEventRegistrationRepo() throws IOException {
+    public void getShowEventAnimalRepo() throws IOException {
 
-        showEventRegistrationRepository = service.loadShowEventRegistrationRepository();
+        showEventAnimalRepository = service.loadShowEventAnimalRepository();
 
-        assertEquals(6, showEventRegistrationRepository.getAllShowEventRegistrations().size());
+        assertEquals(6, showEventAnimalRepository.getAllShowEventAnimals().size());
 
     }
 }
