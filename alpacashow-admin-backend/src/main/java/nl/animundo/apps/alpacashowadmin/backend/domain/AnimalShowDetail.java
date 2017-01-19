@@ -55,16 +55,7 @@ public class AnimalShowDetail {
         return sheerDate;
     }
 
-    public void setSheerDate(LocalDate sheerDate) {
-        this.sheerDate = sheerDate;
-    }
-
     public LocalDate getBeforeSheerDate() {
         return beforeSheerDate;
     }
-
-    public void setBeforeSheerDate(LocalDate beforeSheerDate) {
-        this.beforeSheerDate = beforeSheerDate;
-    }
-
 }

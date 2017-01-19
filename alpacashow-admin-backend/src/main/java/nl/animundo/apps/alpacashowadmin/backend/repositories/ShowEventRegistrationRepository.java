@@ -35,12 +35,6 @@ public class ShowEventRegistrationRepository {
         }
     }
 
-    public void deleteAll () {
-        if (!showEventRegistrations.isEmpty()) {
-            showEventRegistrations.clear();
-        }
-    }
-
     public Set<String> getAllShowEventRegistrationsByKeySet() {
         return showEventRegistrations.keySet();
     }

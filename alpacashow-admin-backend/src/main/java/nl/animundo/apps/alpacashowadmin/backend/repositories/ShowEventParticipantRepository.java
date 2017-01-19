@@ -32,12 +32,6 @@ public class ShowEventParticipantRepository {
         }
     }
 
-    public void deleteAll () {
-        if (!showEventParticipants.isEmpty()) {
-            showEventParticipants.clear();
-        }
-    }
-
     public Set<String> getAllShowEventParticipantsByKeySet() {
         return showEventParticipants.keySet();
     }

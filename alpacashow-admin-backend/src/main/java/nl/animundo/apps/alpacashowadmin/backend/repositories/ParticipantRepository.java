@@ -36,12 +36,6 @@ public class ParticipantRepository {
         }
     }
 
-    public void deleteAll () {
-        if (!participants.isEmpty()) {
-            participants.clear();
-        }
-    }
-
     public Set<String> getAllParticipantsByKeySet() {
         return participants.keySet();
     }
