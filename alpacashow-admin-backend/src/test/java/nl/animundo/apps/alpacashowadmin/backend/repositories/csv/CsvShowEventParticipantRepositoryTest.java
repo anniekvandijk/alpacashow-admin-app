@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 public class CsvShowEventParticipantRepositoryTest {
 
     final String workingDir = System.getProperty("user.dir");
-    final String testFileDir = "/src/test/resources/csv/";
+    final String testFileDir = "/src/test/resources/csv/showregistration/";
 
     @Rule
     public ExpectedException exception = ExpectedException.none();

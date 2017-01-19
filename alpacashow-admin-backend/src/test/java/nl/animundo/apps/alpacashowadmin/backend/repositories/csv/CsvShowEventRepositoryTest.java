@@ -16,7 +16,7 @@ import static org.junit.Assert.assertNotNull;
 public class CsvShowEventRepositoryTest {
 
     final String workingDir = System.getProperty("user.dir");
-    final String testFileDir = "/src/test/resources/csv/";
+    final String testFileDir = "/src/test/resources/csv/showregistration/";
 
 
     @Rule

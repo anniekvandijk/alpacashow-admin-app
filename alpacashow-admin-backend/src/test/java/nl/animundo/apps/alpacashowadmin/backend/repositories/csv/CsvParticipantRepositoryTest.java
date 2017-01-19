@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class CsvParticipantRepositoryTest {
 
     final String workingDir = System.getProperty("user.dir");
-    final String testFileDir = "/src/test/resources/csv/";
+    final String testFileDir = "/src/test/resources/csv/showregistration/";
 
 
     @Rule
