@@ -36,9 +36,7 @@ public class ShowEventAnimalRepository {
     }
 
     public void deleteAll () {
-        if (!showEventAnimals.isEmpty()) {
             showEventAnimals.clear();
-        }
     }
 
     public Set<String> getAllShowEventAnimalsByKeySet() {
