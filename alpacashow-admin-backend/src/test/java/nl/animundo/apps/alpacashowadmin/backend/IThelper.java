@@ -24,20 +24,7 @@ public class IThelper {
     public void AddCompleteShowEvent () throws IOException {
 
         ShowEventRepository showEventRepository = service.loadShowEventRepository();
-        ParticipantRepository participantRepository = service.loadParticipantRepository();
-        AnimalRepository animalRepository = service.loadAnimalRepository();
-        ShowEventParticipantRepository showEventParticipantRepository = service.loadShowEventParticipantRepository();
-        ShowEventRegistrationRepository showEventRegistrationRepository = service.loadShowEventRegistrationRepository();
         showEventRepository.deleteAll();
-        participantRepository.deleteAll();
-        animalRepository.deleteAll();
-        showEventParticipantRepository.deleteAll();
-        showEventRegistrationRepository.deleteAll();
-        service.saveShowEventRepository();
-        service.saveParticipantRepository();
-        service.saveAnimalRepository();
-        service.saveShowEventParticipantRepository();
-        service.saveShowEventRegistrationRepository();
 
         String name1 = "ShowEvent met deelnemers";
         LocalDate date1 = LocalDate.of(2030, 4, 1);
@@ -122,11 +109,5 @@ public class IThelper {
         service.saveAnimalRepository();
         service.saveShowEventParticipantRepository();
         service.saveShowEventRegistrationRepository();
-        showEventRepository.deleteAll();
-        participantRepository.deleteAll();
-        animalRepository.deleteAll();
-        showEventParticipantRepository.deleteAll();
-        showEventRegistrationRepository.deleteAll();
-
     }
 }
