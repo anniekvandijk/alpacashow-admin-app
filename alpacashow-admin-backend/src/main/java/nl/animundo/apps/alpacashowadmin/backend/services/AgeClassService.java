@@ -18,10 +18,10 @@ public class AgeClassService {
         throw new InstantiationException("Instances of this type are forbidden!");
     }
 
-    public static AgeClass ageClass(final ShowEvent showEvent, final Animal animal) {
-
-    // FIXME: How to get animal showdetails which are dynamic for each show
-
+//    public static AgeClass ageClass(final ShowEvent showEvent, final Animal animal) {
+//
+//    // FIXME: How to get animal showdetails which are dynamic for each show
+//
 //        AgeClass ageClass = null;
 //        if ((ShowType.FLEECESHOW).equals(showEvent.getShowType())) {
 //            if (animal.getSheerDate() == null){
@@ -37,9 +37,7 @@ public class AgeClassService {
 //            ageClass = AgeClassService.getAgeClass(showEvent.getDate(), animal.getDateOfBirth());
 //        }
 //        return ageClass;
-
-        return AgeClassService.getAgeClass(showEvent.getDate(), animal.getDateOfBirth());
-    }
+//    }
 
     public static AgeClass getAgeClass(final LocalDate sheerOrShowDate, final LocalDate birthDate) {
 
