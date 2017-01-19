@@ -44,6 +44,8 @@ public class ShowFleeceService {
     public static float calculateFleeceWeightPoints (BreedClass breed, LocalDate sheerDate, LocalDate dateOfBirth, float cleanFleeceWeight) {
 
         AgeClass ageClass = AgeClassService.getAgeClass(sheerDate, dateOfBirth);
+
+        // TODO Implement me!
         // Read the table with points and return the points.
 
         return (float) 8.0;
