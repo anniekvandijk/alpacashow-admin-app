@@ -1,6 +1,9 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
+import nl.animundo.apps.alpacashowadmin.backend.domain.AnimalShowDetail;
+import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.*;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -14,7 +17,7 @@ import java.time.LocalDate;
 
 public class AgeClassServiceTest {
 
-    private LocalDate showDate;
+    private LocalDate showDateOrSheerDate;
     private LocalDate dateOfBirth;
 
     @Rule
@@ -46,9 +49,9 @@ public class AgeClassServiceTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Age below zero months. Check date of birth.");
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().plusMonths(1);
-        AgeClassService.getAgeClass(showDate, dateOfBirth);
+        AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth);
     }
 
     @Test
@@ -57,9 +60,9 @@ public class AgeClassServiceTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Animals under 6 months can not participate.");
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now();
-        AgeClassService.getAgeClass(showDate, dateOfBirth);
+        AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth);
     }
 
     @Test
@@ -68,9 +71,9 @@ public class AgeClassServiceTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Animals under 6 months can not participate.");
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(1).plusDays(1);
-        AgeClassService.getAgeClass(showDate, dateOfBirth);
+        AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth);
     }
 
     @Test
@@ -79,9 +82,9 @@ public class AgeClassServiceTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Animals under 6 months can not participate.");
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(2).plusDays(1);
-        AgeClassService.getAgeClass(showDate, dateOfBirth);
+        AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth);
     }
 
     @Test
@@ -90,9 +93,9 @@ public class AgeClassServiceTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Animals under 6 months can not participate.");
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(1);
-        AgeClassService.getAgeClass(showDate, dateOfBirth);
+        AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth);
     }
 
     @Test
@@ -101,9 +104,9 @@ public class AgeClassServiceTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Animals under 6 months can not participate.");
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(5);
-        Assert.assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        Assert.assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
@@ -112,161 +115,161 @@ public class AgeClassServiceTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Animals under 6 months can not participate.");
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(6).plusDays(1);
-        AgeClassService.getAgeClass(showDate, dateOfBirth);
+        AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth);
     }
 
     @Test
     public void AgeInMonths6() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(6);
-        Assert.assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        Assert.assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths7() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(7);
-        assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
    @Test
     public void AgeInMonths10() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(10);
-        assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths11() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(11);
-        assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths12() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(12);
-        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths13() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(13);
-        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths22() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(22);
-        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths23() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(23);
-        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths24() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(24);
-        assertEquals(AgeClass.ADULT, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.ADULT, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths25() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(25);
-        assertEquals(AgeClass.ADULT, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.ADULT, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths46() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(46);
-        assertEquals(AgeClass.ADULT, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.ADULT, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths47() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(47);
-        assertEquals(AgeClass.ADULT, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.ADULT, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths48() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(48);
-        assertEquals(AgeClass.SENIOR, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.SENIOR, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths49() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(49);
-        assertEquals(AgeClass.SENIOR, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.SENIOR, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths70() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(71);
-        assertEquals(AgeClass.SENIOR, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.SENIOR, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths71() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(71);
-        assertEquals(AgeClass.SENIOR, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.SENIOR, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths72() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(72);
-        assertEquals(AgeClass.MATURE, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.MATURE, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths73() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(73);
-        assertEquals(AgeClass.MATURE, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.MATURE, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths599() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(599);
-        assertEquals(AgeClass.MATURE, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.MATURE, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
@@ -275,9 +278,9 @@ public class AgeClassServiceTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Animal age to high. Check the date of birth.");
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(600);
-        AgeClassService.getAgeClass(showDate, dateOfBirth);
+        AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth);
     }
 
     @Test
@@ -286,58 +289,148 @@ public class AgeClassServiceTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Animal age to high. Check the date of birth.");
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(601);
-        AgeClassService.getAgeClass(showDate, dateOfBirth);
+        AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth);
     }
 
     @Test
     public void AgeInMonths12MinusOneDay() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(12).plusDays(1);
-        assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonthsSchrikkeljaarShowDate11() {
 
-        showDate = LocalDate.of(2016,2,29);
+        showDateOrSheerDate = LocalDate.of(2016,2,29);
         dateOfBirth = LocalDate.of(2015,3,1);
-        assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.JUNIOR, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonths12andOneDay() {
 
-        showDate = LocalDate.now();
+        showDateOrSheerDate = LocalDate.now();
         dateOfBirth = LocalDate.now().minusMonths(12).minusDays(1);
-        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonthsSchrikkeljaarShowDate12() {
 
-        showDate = LocalDate.of(2016,2,29);
+        showDateOrSheerDate = LocalDate.of(2016,2,29);
         dateOfBirth = LocalDate.of(2015,2,28);
-        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonthsSchrikkeljaarDateOfBrth12() {
 
-        showDate = LocalDate.of(2017,3,1);
+        showDateOrSheerDate = LocalDate.of(2017,3,1);
         dateOfBirth = LocalDate.of(2016,2,29);
-        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
     @Test
     public void AgeInMonthsSchrikkeljaarDateOfBrth11() {
 
-        showDate = LocalDate.of(2017, 3, 28);
+        showDateOrSheerDate = LocalDate.of(2017, 3, 28);
         dateOfBirth = LocalDate.of(2016, 2, 29);
-        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDate, dateOfBirth));
+        assertEquals(AgeClass.INTERMEDIATE, AgeClassService.getAgeClass(showDateOrSheerDate, dateOfBirth));
     }
 
+    @Test
+    public void ShowDateOrSheerDate () {
 
+        ShowType showType1  = ShowType.FLEECESHOW;
+        ShowType showType2  = ShowType.HALTERSHOW;
+        LocalDate showDate  = LocalDate.now();
+        dateOfBirth         = LocalDate.now().minusYears(1);
+        LocalDate sheerDate = LocalDate.now().minusMonths(2);
+
+        ShowEvent showEvent1 = new ShowEvent("Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType1);
+        ShowEvent showEvent2 = new ShowEvent("Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType2);
+        Animal animal = new Animal("Animal", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth, "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, null));
+
+        AgeClass ageClassFleeceShow = AgeClassService.ageClass(showEvent1, animal);
+        assertEquals(AgeClass.JUNIOR, ageClassFleeceShow);
+        AgeClass ageClassHalterShow = AgeClassService.ageClass(showEvent2, animal);
+        assertEquals(AgeClass.INTERMEDIATE, ageClassHalterShow);
+
+    }
+
+    @Test
+    public void SheerDateBeforeDateOfBirth () {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Sheerdate before date of birth");
+
+        ShowType showType = ShowType.FLEECESHOW;
+        LocalDate showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusYears(1);
+        LocalDate sheerDate = LocalDate.now().minusYears(2);
+
+        ShowEvent showEvent = new ShowEvent("Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType);
+        Animal animal = new Animal("Animal", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth, "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, null));
+
+        AgeClassService.ageClass(showEvent, animal);
+
+    }
+
+    @Test
+    public void SheerDateMoreThan3YearsAgo () {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Sheerdate more than 3 years ago");
+
+        ShowType showType = ShowType.FLEECESHOW;
+        LocalDate showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusYears(4);
+        LocalDate sheerDate = LocalDate.now().minusYears(3);
+
+        ShowEvent showEvent = new ShowEvent("Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType);
+        Animal animal = new Animal("Animal", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth, "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, null));
+
+        AgeClassService.ageClass(showEvent, animal);
+
+    }
+
+    @Test
+    public void SheerDateMustBefilledIfDoBMoreThan3YearsAgo () {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Sheerdate must be filled if date of birth is more than 3 years ago");
+
+        ShowType showType = ShowType.FLEECESHOW;
+        LocalDate showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusYears(3);
+        LocalDate sheerDate = null;
+
+        ShowEvent showEvent = new ShowEvent("Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType);
+        Animal animal = new Animal("Animal", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth, "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, null));
+
+        AgeClassService.ageClass(showEvent, animal);
+
+    }
+
+    @Test
+    public void SheerDateNotEmptyForFleeceShow () {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Sheerdate can not be empty for a fleeceshow");
+
+        ShowType showType = ShowType.FLEECESHOW;
+        LocalDate showDate = LocalDate.now();
+        dateOfBirth = LocalDate.now().minusYears(1);
+        LocalDate sheerDate = null;
+        ;
+
+        ShowEvent showEvent = new ShowEvent("Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType);
+        Animal animal = new Animal("Animal", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth, "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, null));
+
+        AgeClassService.ageClass(showEvent, animal);
+    }
 }

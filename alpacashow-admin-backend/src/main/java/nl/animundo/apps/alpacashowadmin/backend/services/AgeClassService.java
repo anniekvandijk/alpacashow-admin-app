@@ -18,30 +18,50 @@ public class AgeClassService {
         throw new InstantiationException("Instances of this type are forbidden!");
     }
 
-//    public static AgeClass ageClass(final ShowEvent showEvent, final Animal animal) {
-//
-//    // FIXME: How to get animal showdetails which are dynamic for each show
-//
-//        AgeClass ageClass = null;
-//        if ((ShowType.FLEECESHOW).equals(showEvent.getShowType())) {
-//            if (animal.getSheerDate() == null){
-//                 throw new IllegalArgumentException("Sheerdate can not be empty for a fleeceshow");
-//            }
-//            else
-//            {
-//                ageClass = AgeClassService.getAgeClass(animal.getSheerDate(), animal.getDateOfBirth());
-//            }
-//        }
-//        else
-//        {
-//            ageClass = AgeClassService.getAgeClass(showEvent.getDate(), animal.getDateOfBirth());
-//        }
-//        return ageClass;
-//    }
+    public static AgeClass ageClass(final ShowEvent showEvent, final Animal animal) {
 
-    public static AgeClass getAgeClass(final LocalDate sheerOrShowDate, final LocalDate birthDate) {
+        LocalDate showEventDate = showEvent.getDate();
+        ShowType showType = showEvent.getShowType();
+        LocalDate dateOfBirth = animal.getDateOfBirth();
+        LocalDate sheerDate = animal.getAnimalShowDetail().getSheerDate();
 
-        int ageInMonths = getAgeInMonths(sheerOrShowDate, birthDate);
+        if (sheerDate != null) {
+            if (sheerDate.isBefore(dateOfBirth)) {
+                throw new IllegalArgumentException("Sheerdate before date of birth");
+            }
+            long yearsBetweenSheeringAndShow = ChronoUnit.YEARS.between(sheerDate, showEventDate);
+            if (yearsBetweenSheeringAndShow >= 3) {
+                throw new IllegalArgumentException("Sheerdate more than 3 years ago");
+            }
+        }
+        if (sheerDate == null)
+        {
+            long yearsBetweenShowAndDateOfBirth = ChronoUnit.YEARS.between(dateOfBirth, showEventDate);
+            if (yearsBetweenShowAndDateOfBirth >= 3) {
+                throw new IllegalArgumentException("Sheerdate must be filled if date of birth is more than 3 years ago");
+            }
+        }
+
+        AgeClass ageClass = null;
+        if ((ShowType.FLEECESHOW).equals(showType)) {
+            if (sheerDate == null){
+                 throw new IllegalArgumentException("Sheerdate can not be empty for a fleeceshow");
+            }
+            else
+            {
+                ageClass = AgeClassService.getAgeClass(sheerDate, dateOfBirth);
+            }
+        }
+        else
+        {
+            ageClass = AgeClassService.getAgeClass(showEventDate, dateOfBirth);
+        }
+        return ageClass;
+    }
+
+    public static AgeClass getAgeClass(final LocalDate sheerOrShowDate, final LocalDate dateOfBirth) {
+
+        int ageInMonths = getAgeInMonths(sheerOrShowDate, dateOfBirth);
         AgeClass ageClass = null;
 
         for (AgeClass ageClassValue : AgeClass.values()) {
@@ -53,9 +73,9 @@ public class AgeClassService {
         return ageClass;
     }
 
-    private static int getAgeInMonths(final LocalDate sheerOrShowDate, final LocalDate birthDate) {
+    private static int getAgeInMonths(final LocalDate sheerOrShowDate, final LocalDate dateOfBirth) {
 
-        final long ageInMonths = ChronoUnit.MONTHS.between(birthDate, sheerOrShowDate);
+        final long ageInMonths = ChronoUnit.MONTHS.between(dateOfBirth, sheerOrShowDate);
 
         if (ageInMonths < 0 ) {
             throw new IllegalArgumentException("Age below zero months. Check date of birth.");

@@ -41,13 +41,6 @@ public class AnimalShowDetail {
             }
         }
 
-
-        // TODO: more validation on sheerdate
-        // sheerdate is before birth
-        // sheerdate and birth do not match
-        // beforesheerdate and birth do not match
-        // If Fleeceshow, sheerdate must be filled
-
         this.sheerDate = sheerDate;
         this.beforeSheerDate = beforeSheerDate;
     }
