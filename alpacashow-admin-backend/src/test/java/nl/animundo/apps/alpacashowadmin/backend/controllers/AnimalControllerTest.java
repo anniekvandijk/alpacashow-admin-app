@@ -24,7 +24,7 @@ public class AnimalControllerTest {
         helper.AddCompleteShowEvent();
     }
 
-    @Test @Ignore
+    @Test
     public void getAllAnimals() throws IOException {
 
         AnimalController controller = new AnimalController();

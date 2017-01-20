@@ -181,6 +181,26 @@ public class FleeceWeightPointsRepositoryTest {
         assertTrue(fleeceWeightPointsRepository.getAllFleeceWeightPointsByKeySet().contains("SURI_FLEECE_JUNIOR_1.5"));
 
     }
+
+    @Test
+    public void getAllFleeceWeightPointsSorted() {
+
+        BreedClass breed1 = BreedClass.HUACAYA_FLEECE;
+        BreedClass breed2 = BreedClass.SURI_FLEECE;
+        AgeClass ageClass = AgeClass.JUNIOR;
+        float cleanFleeceWeight = 1.5f;
+        float weightPoints = 9.0f;
+
+        FleeceWeightPoints fleeceWeightPoints1 = new FleeceWeightPoints(breed1, ageClass, cleanFleeceWeight, weightPoints);
+        FleeceWeightPoints fleeceWeightPoints2 = new FleeceWeightPoints(breed2, ageClass, cleanFleeceWeight, weightPoints);
+
+        FleeceWeightPointsRepository fleeceWeightPointsRepository = new FleeceWeightPointsRepository();
+
+        fleeceWeightPointsRepository.add(fleeceWeightPoints1);
+        fleeceWeightPointsRepository.add(fleeceWeightPoints2);
+
+        assertEquals(2, fleeceWeightPointsRepository.getAllFleeceWeightPointsSorted().size());
+    }
 }
 
 

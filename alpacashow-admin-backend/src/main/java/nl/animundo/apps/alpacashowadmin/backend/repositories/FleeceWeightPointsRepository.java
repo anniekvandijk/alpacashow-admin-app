@@ -1,11 +1,12 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
 import nl.animundo.apps.alpacashowadmin.backend.helpclasses.FleeceWeightPoints;
-import nl.animundo.apps.alpacashowadmin.backend.utilities.FleeceWeightPointsComparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+
+import static java.util.Comparator.comparing;
 
 public class FleeceWeightPointsRepository {
     private static Logger logger = LoggerFactory.getLogger(FleeceWeightPointsRepository.class);
@@ -43,6 +44,16 @@ public class FleeceWeightPointsRepository {
 
     public Collection<FleeceWeightPoints> getAllFleeceWeightPoints() {
         return fleeceWeightPointsMap.values();
+    }
+
+    public List<FleeceWeightPoints> getAllFleeceWeightPointsSorted() {
+
+        List<FleeceWeightPoints> fleeceWeightPointsList  = new ArrayList<>(fleeceWeightPointsMap.values());
+        fleeceWeightPointsList.sort(comparing(FleeceWeightPoints::getBreed)
+                .thenComparing(FleeceWeightPoints::getAgeClass)
+                .thenComparing(FleeceWeightPoints::getCleanFleeceWeight));
+        fleeceWeightPointsList.stream();
+        return fleeceWeightPointsList;
     }
 
     public FleeceWeightPoints getFleeceWeightPointsByKeySet(final String keySet) {

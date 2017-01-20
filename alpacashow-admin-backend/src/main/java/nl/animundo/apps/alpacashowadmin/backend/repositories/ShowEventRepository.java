@@ -1,11 +1,13 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
-import nl.animundo.apps.alpacashowadmin.backend.utilities.ShowEventComparator;
+import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.*;
+
+import static java.util.Comparator.comparing;
 
 public class ShowEventRepository  {
     private static Logger logger = LoggerFactory.getLogger(ShowEventRepository.class);
@@ -45,6 +47,14 @@ public class ShowEventRepository  {
 
     public Collection<ShowEvent> getAllShowEvents() {
         return showEvents.values();
+    }
+
+    public List<ShowEvent> getAllShowEventsSorted() {
+
+        List<ShowEvent> showEventList  = new ArrayList<>(showEvents.values());
+        showEventList.sort(comparing(ShowEvent::getDate));
+        showEventList.stream();
+        return showEventList;
     }
 
     public ShowEvent getShowEventByKeySet(final String keySet) {

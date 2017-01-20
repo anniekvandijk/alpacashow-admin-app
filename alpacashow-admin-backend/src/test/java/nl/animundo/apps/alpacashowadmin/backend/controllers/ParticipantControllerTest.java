@@ -24,7 +24,7 @@ public class ParticipantControllerTest {
         helper.AddCompleteShowEvent();
     }
 
-    @Test @Ignore
+    @Test
     public void getAllParticipants() throws IOException {
 
         ParticipantController controller = new ParticipantController();

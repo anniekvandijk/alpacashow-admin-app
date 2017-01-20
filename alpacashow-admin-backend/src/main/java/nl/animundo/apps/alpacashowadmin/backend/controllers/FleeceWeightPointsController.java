@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 
 @Api (value="Fleece Weight Points")
 @Path("fleeceweightpoints")
@@ -29,7 +30,7 @@ public class FleeceWeightPointsController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getFleeceWeightPoints() throws IOException {
         loadRepository();
-        Collection<FleeceWeightPoints> listOfFleeceWeightPoints = fleeceWeightPointsRepository.getAllFleeceWeightPoints();
+        List<FleeceWeightPoints> listOfFleeceWeightPoints = fleeceWeightPointsRepository.getAllFleeceWeightPointsSorted();
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfFleeceWeightPoints);
         Response response = Response
                 .status(Response.Status.OK)

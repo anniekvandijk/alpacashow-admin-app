@@ -1,10 +1,11 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
-import nl.animundo.apps.alpacashowadmin.backend.utilities.ParticipantComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.*;
+
+import static java.util.Comparator.comparing;
 
 public class ParticipantRepository {
     private static Logger logger = LoggerFactory.getLogger(ParticipantRepository.class);
@@ -46,6 +47,14 @@ public class ParticipantRepository {
 
     public Collection<Participant> getAllParticipants() {
         return participants.values();
+    }
+
+    public List<Participant> getAllParticipantsSorted() {
+
+        List<Participant> participantList  = new ArrayList<>(participants.values());
+        participantList.sort(comparing(Participant::getName));
+        participantList.stream();
+        return participantList;
     }
 
     public Participant getParticipantByKeySet(final String keySet) {

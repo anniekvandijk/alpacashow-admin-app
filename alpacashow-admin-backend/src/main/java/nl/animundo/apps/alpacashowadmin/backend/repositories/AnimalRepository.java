@@ -1,11 +1,10 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
-import nl.animundo.apps.alpacashowadmin.backend.utilities.AnimalComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.*;
+import static java.util.Comparator.comparing;
 
 public class AnimalRepository {
     private static Logger logger = LoggerFactory.getLogger(AnimalRepository.class);
@@ -48,6 +47,14 @@ public class AnimalRepository {
 
     public Collection<Animal> getAllAnimals() {
         return animals.values();
+    }
+
+    public List<Animal> getAllAnimalsSorted() {
+
+        List<Animal> AnimalList  = new ArrayList<>(animals.values());
+        AnimalList.sort(comparing(Animal::getName).thenComparing(Animal::getDateOfBirth));
+        AnimalList.stream();
+        return AnimalList;
     }
 
     public Animal getAnimalByKeySet(final String keySet) {

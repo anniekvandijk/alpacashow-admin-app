@@ -1,6 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
-import nl.animundo.apps.alpacashowadmin.backend.utilities.ParticipantComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
@@ -52,7 +51,7 @@ public class ShowEventTest {
         location = "Surhuisterveen";
         judge = "Test Judge ";
         showType = ShowType.HALTERSHOW;
-        participants = new TreeSet<>(new ParticipantComparator());
+        participants = new TreeSet<>();
         participants.add(new Participant("Test participant", "farm 1", "", "", "", "", "", ""));
         participants.add(new Participant("Test participant2", "farm 2", "", "", "", "", "", ""));
 
