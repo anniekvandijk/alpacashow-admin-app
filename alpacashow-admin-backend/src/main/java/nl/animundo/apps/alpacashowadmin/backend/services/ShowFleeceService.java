@@ -8,10 +8,7 @@ import nl.animundo.apps.alpacashowadmin.backend.repositories.FleeceWeightPointsR
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -46,8 +43,7 @@ public class ShowFleeceService {
         }
 
         int fleeceGrowthInDays = fleeceGrowthInDays(sheerDate, beforeSheerDate);
-        float cleanFleeceWeight = fleeceWeightCorrection(fleeceGrowthInDays, fleeceweight);
-
+        Float cleanFleeceWeight = fleeceWeightCorrection(fleeceGrowthInDays, fleeceweight);
         AgeClass ageClass = AgeClassService.getAgeClass(sheerDate, dateOfBirth);
 
         float weightPoints = 0.0f;
@@ -55,7 +51,7 @@ public class ShowFleeceService {
         for (FleeceWeightPoints fleeceWeightPoints : fleeceWeightPointsRepository.getAllFleeceWeightPoints()) {
             if (fleeceWeightPoints.getBreed().equals(breed) &&
                     fleeceWeightPoints.getAgeClass().equals(ageClass) &&
-                    fleeceWeightPoints.getCleanFleeceWeight() == cleanFleeceWeight)
+                    equality(fleeceWeightPoints.getCleanFleeceWeight(), cleanFleeceWeight, 0.05f))
             {
                 weightPoints = fleeceWeightPoints.getWeightPoints();
             }
@@ -68,7 +64,15 @@ public class ShowFleeceService {
         return (int) ChronoUnit.DAYS.between(beforeSheerDateOrDateOfBirth, sheerDate);
     }
 
-    public static float fleeceWeightCorrection (int fleeceGrowthInDays, float fleeceweight) {
-        return (float) (fleeceweight*365)/fleeceGrowthInDays;
+    public static Float fleeceWeightCorrection (int fleeceGrowthInDays, float fleeceweight) {
+
+        float weightcorrection = (fleeceweight*365)/fleeceGrowthInDays;
+
+        return weightcorrection;
+    }
+
+    private static boolean equality(float a, float b, float epsilon)
+    {
+        return Math.abs(a - b) < epsilon;
     }
 }

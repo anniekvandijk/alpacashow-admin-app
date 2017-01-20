@@ -2,7 +2,6 @@ package nl.animundo.apps.alpacashowadmin.backend.services;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
 import nl.animundo.apps.alpacashowadmin.backend.domain.AnimalShowDetail;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
@@ -59,11 +58,11 @@ public class ShowFleeceServiceTest {
     public void getCleanFleeceWeightPointsWithoutBeforeSheerDate () throws IOException {
 
         fleeceWeight = 1.567f;
-        dateOfBirth = LocalDate.of(2012, 5, 13);
+        dateOfBirth = LocalDate.of(2012, 8, 13);
         sheerDate = LocalDate.of(2013, 5, 25);
         beforeSheerDate = null;
         breed = BreedClass.HUACAYA_FLEECE;
-        cleanFleeceWeightPoints = 8.0f;
+        cleanFleeceWeightPoints = 12.5f;
 
         Animal animal = new Animal("Animal", breed, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth,
                 "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, beforeSheerDate));
@@ -77,9 +76,9 @@ public class ShowFleeceServiceTest {
         fleeceWeight = 1.567f;
         dateOfBirth = LocalDate.of(2012, 8, 13);
         sheerDate = LocalDate.of(2013, 5, 25);
-        beforeSheerDate = LocalDate.of(2012, 8, 25);;
-        breed = BreedClass.HUACAYA_FLEECE;
-        cleanFleeceWeightPoints = 8.0f;
+        beforeSheerDate = LocalDate.of(2012, 8, 13);;
+        breed = BreedClass.SURI_FLEECE;
+        cleanFleeceWeightPoints = 12.0f;
 
         Animal animal = new Animal("Animal", breed, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth,
                 "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, beforeSheerDate));
@@ -112,7 +111,7 @@ public class ShowFleeceServiceTest {
 
         fleeceWeight = 1.567f;
         fleeceGrowthInDays = 377;
-        cleanFleeceWeight = 1.5f;         // 1.517122
+        cleanFleeceWeight = 1.5f; // 1.517122
 
         assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(fleeceGrowthInDays, fleeceWeight), delta);
     }
