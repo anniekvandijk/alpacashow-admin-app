@@ -67,7 +67,7 @@ public class ShowFleeceServiceTest {
         Animal animal = new Animal("Animal", breed, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth,
                 "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, beforeSheerDate));
 
-        assertEquals(cleanFleeceWeightPoints, ShowFleeceService.getCleanFleeceWeightPoints(animal,fleeceWeight));
+        assertEquals(cleanFleeceWeightPoints, ShowFleeceService.getCleanFleeceWeightPoints(animal,fleeceWeight), 0);
     }
 
     @Test
@@ -83,7 +83,7 @@ public class ShowFleeceServiceTest {
         Animal animal = new Animal("Animal", breed, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth,
                 "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, beforeSheerDate));
 
-        assertEquals(cleanFleeceWeightPoints, ShowFleeceService.getCleanFleeceWeightPoints(animal,fleeceWeight));
+        assertEquals(cleanFleeceWeightPoints, ShowFleeceService.getCleanFleeceWeightPoints(animal,fleeceWeight), 0);
     }
 
     @Test

@@ -9,8 +9,11 @@ import nl.animundo.apps.alpacashowadmin.backend.services.application.Application
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Locale;
 
 public class ShowFleeceService {
     private static Logger logger = LoggerFactory.getLogger(FleeceWeightPointsRepository.class);
@@ -46,12 +49,17 @@ public class ShowFleeceService {
         Float cleanFleeceWeight = fleeceWeightCorrection(fleeceGrowthInDays, fleeceweight);
         AgeClass ageClass = AgeClassService.getAgeClass(sheerDate, dateOfBirth);
 
+        // Convert cleanFleeceWeight to String with dot as seperator
+        DecimalFormat decimalFormat = new DecimalFormat("#.0");
+        String cleanFleeceWeightConvert = decimalFormat.format(cleanFleeceWeight);
+        String cleanFleeceWeightConvertWithDot = cleanFleeceWeightConvert.replace(",", ".");
+
         float weightPoints = 0.0f;
         fleeceWeightPointsRepository = service.loadFleeceWeightPointsRepository();
         for (FleeceWeightPoints fleeceWeightPoints : fleeceWeightPointsRepository.getAllFleeceWeightPoints()) {
             if (fleeceWeightPoints.getBreed().equals(breed) &&
                     fleeceWeightPoints.getAgeClass().equals(ageClass) &&
-                    fleeceWeightPoints.getCleanFleeceWeight().equals(cleanFleeceWeight))
+                    fleeceWeightPoints.getCleanFleeceWeight().equals(cleanFleeceWeightConvertWithDot))
             {
                 weightPoints = fleeceWeightPoints.getWeightPoints();
             }
