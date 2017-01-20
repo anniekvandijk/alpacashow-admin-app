@@ -4,6 +4,7 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 import java.time.*;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -51,7 +52,7 @@ public class ShowEventTest {
         location = "Surhuisterveen";
         judge = "Test Judge ";
         showType = ShowType.HALTERSHOW;
-        participants = new TreeSet<>();
+        participants = new HashSet<>();
         participants.add(new Participant("Test participant", "farm 1", "", "", "", "", "", ""));
         participants.add(new Participant("Test participant2", "farm 2", "", "", "", "", "", ""));
 

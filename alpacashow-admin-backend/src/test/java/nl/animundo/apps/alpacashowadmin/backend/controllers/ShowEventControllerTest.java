@@ -41,7 +41,7 @@ public class ShowEventControllerTest {
         assertEquals(expectedTrim, resultTrim);
     }
 
-    @Test
+    @Test @Ignore
     public void getShowEventByKey() throws IOException {
 
         ShowEventController controller = new ShowEventController();
