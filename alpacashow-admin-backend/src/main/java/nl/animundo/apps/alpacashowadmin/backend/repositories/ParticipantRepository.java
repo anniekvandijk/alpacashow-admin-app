@@ -44,13 +44,8 @@ public class ParticipantRepository {
         return participants.keySet();
     }
 
-    public SortedSet<Participant> getAllParticipants() {
-
-        SortedSet<Participant> participantSet = new TreeSet<>(new ParticipantComparator());
-        for (Participant participant : participants.values()) {
-            participantSet.add(participant);
-        }
-        return participantSet;
+    public Collection<Participant> getAllParticipants() {
+        return participants.values();
     }
 
     public Participant getParticipantByKeySet(final String keySet) {

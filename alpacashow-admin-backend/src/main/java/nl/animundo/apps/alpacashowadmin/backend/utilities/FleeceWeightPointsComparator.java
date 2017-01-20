@@ -12,8 +12,6 @@ public class FleeceWeightPointsComparator implements Comparator<FleeceWeightPoin
 
         // TODO Sort FleeceWeightPoints by breed, ageClass, weight
 
-        int compare = fleeceWeightPoints1.getBreed().compareTo(fleeceWeightPoints2.getBreed());
-
-        return compare;
+        return fleeceWeightPoints1.getAgeClass().compareTo(fleeceWeightPoints2.getAgeClass());
     }
 }

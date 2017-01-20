@@ -174,7 +174,7 @@ public class ApplicationRepositoryService {
         for (String showEventKey : showEventsByKey) {
             ShowEvent showEvent = showEventRepository.getShowEventByKeySet(showEventKey);
 
-            SortedSet<Participant> participants = new TreeSet<>(new ParticipantComparator());
+            Set<Participant> participants = new HashSet<Participant>();
 
             // Loop participants and get participants for the show. Add participant details to show
             for (String participantKey : participantsByKey) {
@@ -187,7 +187,7 @@ public class ApplicationRepositoryService {
 
                         Participant participant = participantRepository.getParticipantByKeySet(participantKey);
 
-                        SortedSet<Animal> animals = new TreeSet<>(new AnimalComparator());
+                        Set<Animal> animals = new HashSet<Animal>();
 
                         // Loop animals and get animals for the participant. Add animal details to participant
                         for (String animalKey : animalsByKey) {

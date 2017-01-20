@@ -14,8 +14,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.commons.lang3.StringUtils;
 import java.time.*;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class ShowEvent {
@@ -33,19 +34,19 @@ public class ShowEvent {
     @JsonDeserialize(using = JsonShowTypeDeserializer.class)
     @JsonSerialize(using = JsonShowTypeSerializer.class)
     private ShowType showType;
-    private SortedSet<Participant> participants;
+    private Set<Participant> participants;
 
     public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate,
                      final String location, final String judge, final ShowType showType)
     {
-        this(name, date, closeDate, location, judge, showType, new TreeSet<Participant>(new ParticipantComparator()));
+        this(name, date, closeDate, location, judge, showType, new HashSet<Participant>());
     }
 
     @JsonCreator
     public ShowEvent(@JsonProperty("name") final String name, @JsonProperty("date") final LocalDate date,
                      @JsonProperty("closeDate") final LocalDate closeDate, @JsonProperty("location") final String location,
                      @JsonProperty("judge") final String judge, @JsonProperty("showType") final ShowType showType,
-                     @JsonProperty("participants") final SortedSet<Participant> participants ) {
+                     @JsonProperty("participants") final Set<Participant> participants ) {
 
         final String nameCln = StringUtils.trimToNull(name);
         final String locationCln = StringUtils.trimToNull(location);
@@ -108,7 +109,7 @@ public class ShowEvent {
         return participants;
     }
 
-    public void setParticipants(SortedSet<Participant> participants) {
+    public void setParticipants(Set<Participant> participants) {
         this.participants = participants;
     }
 }

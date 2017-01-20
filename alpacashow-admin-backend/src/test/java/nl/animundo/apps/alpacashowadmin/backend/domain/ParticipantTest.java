@@ -1,17 +1,14 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
-import nl.animundo.apps.alpacashowadmin.backend.utilities.AnimalComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
 import java.time.LocalDate;
-import java.util.SortedSet;
-import java.util.TreeSet;
-
+import java.util.HashSet;
+import java.util.Set;
 import static org.junit.Assert.assertEquals;
 
 
@@ -65,7 +62,7 @@ public class ParticipantTest {
         city        = "some City";
         country     = "Netherlands";
 
-        SortedSet<Animal> animals = new TreeSet<>(new AnimalComparator());
+        Set<Animal> animals = new HashSet<Animal>();
         animals.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.now().minusYears(1), "123456789", null, "Vader", "Moeder"));
         animals.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.now().minusYears(2), "987654321", "BAF12345", "Vader2", "Moeder2"));
 

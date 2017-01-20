@@ -74,5 +74,6 @@ public class ApplicationRepositoryServiceTest {
         fleeceWeightPointsRepository = service.loadFleeceWeightPointsRepository();
 
        assertEquals(450, fleeceWeightPointsRepository.getAllFleeceWeightPointsByKeySet().size());
+       assertEquals(450, fleeceWeightPointsRepository.getAllFleeceWeightPoints().size());
     }
 }

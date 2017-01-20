@@ -43,12 +43,8 @@ public class ShowEventRepository  {
         return showEvents.keySet();
     }
 
-    public SortedSet<ShowEvent> getAllShowEvents() {
-        SortedSet<ShowEvent> showEventSet = new TreeSet<>(new ShowEventComparator());
-        for (ShowEvent showEvent : showEvents.values()) {
-            showEventSet.add(showEvent);
-        }
-        return showEventSet;
+    public Collection<ShowEvent> getAllShowEvents() {
+        return showEvents.values();
     }
 
     public ShowEvent getShowEventByKeySet(final String keySet) {

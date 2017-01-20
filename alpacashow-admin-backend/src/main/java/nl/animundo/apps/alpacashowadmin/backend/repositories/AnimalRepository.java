@@ -46,12 +46,8 @@ public class AnimalRepository {
         return animals.keySet();
     }
 
-    public SortedSet<Animal> getAllAnimals() {
-        SortedSet<Animal> animalSet = new TreeSet<>(new AnimalComparator());
-        for (Animal animal : animals.values()) {
-            animalSet.add(animal);
-        }
-        return animalSet;
+    public Collection<Animal> getAllAnimals() {
+        return animals.values();
     }
 
     public Animal getAnimalByKeySet(final String keySet) {

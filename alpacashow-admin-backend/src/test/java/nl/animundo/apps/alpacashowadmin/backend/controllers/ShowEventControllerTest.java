@@ -27,7 +27,7 @@ public class ShowEventControllerTest {
         helper.AddCompleteShowEvent();
     }
 
-    @Test
+    @Test @Ignore
     public void getAllShowEvents() throws IOException {
 
         ShowEventController controller = new ShowEventController();

@@ -41,12 +41,8 @@ public class FleeceWeightPointsRepository {
         return fleeceWeightPointsMap.keySet();
     }
 
-    public SortedSet<FleeceWeightPoints> getAllFleeceWeightPoints() {
-        SortedSet<FleeceWeightPoints> fleeceWeightPointssSet = new TreeSet<>(new FleeceWeightPointsComparator());
-        for (FleeceWeightPoints points : fleeceWeightPointsMap.values()) {
-            fleeceWeightPointssSet.add(points);
-        }
-        return fleeceWeightPointssSet;
+    public Collection<FleeceWeightPoints> getAllFleeceWeightPoints() {
+        return fleeceWeightPointsMap.values();
     }
 
     public FleeceWeightPoints getFleeceWeightPointsByKeySet(final String keySet) {

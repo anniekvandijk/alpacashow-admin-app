@@ -11,7 +11,7 @@ import nl.animundo.apps.alpacashowadmin.backend.services.application.Application
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.IOException;
-import java.util.SortedSet;
+import java.util.Collection;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -34,7 +34,7 @@ public class ShowEventController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShowEvents() throws IOException {
         loadRepository();
-        SortedSet<ShowEvent> listOfShowEvents=showEventRepository.getAllShowEvents();
+        Collection<ShowEvent> listOfShowEvents=showEventRepository.getAllShowEvents();
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfShowEvents);
         Response response = Response
                 .status(Response.Status.OK)

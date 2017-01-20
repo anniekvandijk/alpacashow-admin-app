@@ -5,7 +5,7 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 import java.time.*;
-import java.util.SortedSet;
+import java.util.Set;
 import java.util.TreeSet;
 
 import static org.junit.Assert.*;
@@ -18,7 +18,7 @@ public class ShowEventTest {
     private String location;
     private String judge;
     private ShowType showType;
-    private SortedSet<Participant> participants;
+    private Set<Participant> participants;
 
     @Rule
     public ExpectedException exception = ExpectedException.none();

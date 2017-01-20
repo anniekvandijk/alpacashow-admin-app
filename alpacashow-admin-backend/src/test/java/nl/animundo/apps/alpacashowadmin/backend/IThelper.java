@@ -1,5 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend;
 
+import gherkin.lexer.Pa;
 import nl.animundo.apps.alpacashowadmin.backend.utilities.AnimalComparator;
 import nl.animundo.apps.alpacashowadmin.backend.utilities.ParticipantComparator;
 import nl.animundo.apps.alpacashowadmin.backend.utilities.ShowEventComparator;
@@ -41,7 +42,7 @@ public class IThelper {
         String judge1 = " Shirley Bettinson";
         ShowType showType1 = ShowType.MALE_PROGENY_SHOW;
 
-        SortedSet<Participant> participants1 = new TreeSet<>(new ParticipantComparator());
+        Set<Participant> participants1 = new HashSet<Participant>();
         participants1.add(new Participant("Deelnemer 1", "Alpacafarm 1", "farmnaam@iets.nl", "050-1234567", "thuis 3a", "1111 BB", "Surhuisterveen", "Nederland"));
         participants1.add(new Participant("Deelnemer 2", "Alpacafarmpje 2", "farmnaam@iets.eu", "038-1234567", "thuis 100", "9876 ZZ", "Grun", "Nederland"));
 
@@ -55,21 +56,21 @@ public class IThelper {
         String judge2 = " Test Judge ";
         ShowType showType2 = ShowType.FLEECESHOW;
 
-        SortedSet<Animal> animals1 = new TreeSet<>(new AnimalComparator());
+        Set<Animal> animals1 = new HashSet<Animal>();
 
         AnimalShowDetail animalShowDetail1 = new AnimalShowDetail(LocalDate.of(2016, 5, 1), null);
         AnimalShowDetail animalShowDetail2 = new AnimalShowDetail(LocalDate.of(2016, 4, 1), LocalDate.of(2015, 5, 1));
         animals1.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 12), "8765", null, "Vader", "Moeder", animalShowDetail1));
         animals1.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "4321", "BAF12345", "Vader2", "Moeder2", animalShowDetail2));
 
-        SortedSet<Animal> animals2 = new TreeSet<>(new AnimalComparator());
+        Set<Animal> animals2 = new HashSet<Animal>();
         AnimalShowDetail animalShowDetail3 = new AnimalShowDetail(LocalDate.of(2016, 5, 1), null);
         AnimalShowDetail animalShowDetail4 = new AnimalShowDetail(LocalDate.of(2016, 5, 1), null);
         animals2.add(new Animal("Alpaca3", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 13), "4444", null, "Vader", "Moeder", animalShowDetail3));
         animals2.add(new Animal("Alpaca4", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2016, 7, 6), "5555", "BAF12346", "Vader2", "Moeder2", animalShowDetail4));
 
 
-        SortedSet<Participant> participants2 = new TreeSet<>(new ParticipantComparator());
+        Set<Participant> participants2 = new HashSet<Participant>();
         participants2.add(new Participant("Test participant 1", "Testfarm 1", "", "", "", "", "", "", animals1));
         participants2.add(new Participant("Test participant 2", "Testfarm 2", "", "", "", "", "", "", animals2));
 
@@ -91,18 +92,18 @@ public class IThelper {
         String judge4 = " Test Judge ";
         ShowType showType4 = ShowType.HALTERSHOW;
 
-        SortedSet<Animal> animals3 = new TreeSet<>(new AnimalComparator());
+        Set<Animal> animals3 = new HashSet<Animal>();
         AnimalShowDetail animalShowDetail5 = new AnimalShowDetail(LocalDate.of(2015, 4, 1), LocalDate.of(2014, 5, 1));
         animals3.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 12), "8765", null, "Vader", "Moeder"));
         animals3.add(new Animal("Alpaca5", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "7659", "BAF1254", "Vader2", "Moeder2", animalShowDetail5));
 
-        SortedSet<Participant> participants3 = new TreeSet<>(new ParticipantComparator());
+        Set<Participant> participants3 = new HashSet<Participant>();
         participants3.add(new Participant("Test participant 1", "Testfarm 1", "", "", "", "", "", "", animals3));
         participants3.add(new Participant("Test participant 3", "Testfarm 3", "", "", "", "", "", ""));
 
         ShowEvent showEvent4 = new ShowEvent(name4, date4, closeDate4, location4, judge4, showType4, participants3);
 
-        SortedSet<ShowEvent> set = new TreeSet<>(new ShowEventComparator());
+        Set<ShowEvent> set = new HashSet<ShowEvent>();
         set.add(showEvent1);
         set.add(showEvent2);
         set.add(showEvent3);

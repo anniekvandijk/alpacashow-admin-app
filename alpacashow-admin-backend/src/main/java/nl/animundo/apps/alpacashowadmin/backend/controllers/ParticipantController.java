@@ -14,7 +14,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
-import java.util.SortedSet;
+import java.util.Collection;
 
 @Api (value="Participants")
 @Path("participants")
@@ -33,7 +33,7 @@ public class ParticipantController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getParticipants() throws IOException {
         loadRepository();
-        SortedSet<Participant> listOfParticipants = participantRepository.getAllParticipants();
+        Collection<Participant> listOfParticipants = participantRepository.getAllParticipants();
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfParticipants);
         Response response = Response
                 .status(Response.Status.OK)

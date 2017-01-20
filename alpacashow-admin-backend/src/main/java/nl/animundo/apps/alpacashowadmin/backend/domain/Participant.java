@@ -18,11 +18,11 @@ public class Participant {
     private String zipCode;
     private String city;
     private String country;
-    private SortedSet<Animal> animals;
+    private Set<Animal> animals;
 
     public Participant(final String name, final String farmName, final String email, final String telephone,
                        final String address, final String zipCode, final String city, final String country) {
-        this(name, farmName, email, telephone, address, zipCode, city, country, new TreeSet<Animal>(new AnimalComparator()));
+        this(name, farmName, email, telephone, address, zipCode, city, country, new HashSet<Animal>());
     }
 
     @JsonCreator
@@ -30,7 +30,7 @@ public class Participant {
                        @JsonProperty("email") final String email, @JsonProperty("telephone") final String telephone,
                        @JsonProperty("address") final String address, @JsonProperty("zipCode") final String zipCode,
                        @JsonProperty("city") final String city, @JsonProperty("country") final String country,
-                       @JsonProperty("animals") final SortedSet<Animal> animals) {
+                       @JsonProperty("animals") final Set<Animal> animals) {
 
         final String nameCln = StringUtils.trimToNull(name);
         final String farmNameCln = StringUtils.trimToNull(farmName);

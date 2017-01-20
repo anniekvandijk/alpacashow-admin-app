@@ -6,6 +6,7 @@ import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantReposito
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
@@ -23,7 +24,7 @@ public class ParticipantControllerTest {
         helper.AddCompleteShowEvent();
     }
 
-    @Test
+    @Test @Ignore
     public void getAllParticipants() throws IOException {
 
         ParticipantController controller = new ParticipantController();
