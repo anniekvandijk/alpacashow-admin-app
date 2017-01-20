@@ -55,12 +55,28 @@ public class ShowFleeceServiceTest {
     }
 
     @Test
-    public void getCleanFleeceWeightPoints () {
+    public void getCleanFleeceWeightPointsWithoutBeforeSheerDate () {
 
         fleeceWeight = 1.567f;
         dateOfBirth = LocalDate.of(2012, 5, 13);
         sheerDate = LocalDate.of(2013, 5, 25);
         beforeSheerDate = null;
+        breed = BreedClass.HUACAYA_FLEECE;
+        cleanFleeceWeightPoints = 8.0f;
+
+        Animal animal = new Animal("Animal", breed, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth,
+                "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, beforeSheerDate));
+
+        assertEquals(cleanFleeceWeightPoints, ShowFleeceService.getCleanFleeceWeightPoints(animal,fleeceWeight), delta);
+    }
+
+    @Test
+    public void getCleanFleeceWeightPointsWithBeforeSheerDate () {
+
+        fleeceWeight = 1.567f;
+        dateOfBirth = LocalDate.of(2012, 8, 13);
+        sheerDate = LocalDate.of(2013, 5, 25);
+        beforeSheerDate = LocalDate.of(2012, 8, 25);;
         breed = BreedClass.HUACAYA_FLEECE;
         cleanFleeceWeightPoints = 8.0f;
 
