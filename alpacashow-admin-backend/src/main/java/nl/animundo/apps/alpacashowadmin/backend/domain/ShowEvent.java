@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.apache.commons.lang3.StringUtils;
 import java.time.*;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -38,7 +38,7 @@ public class ShowEvent {
     public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate,
                      final String location, final String judge, final ShowType showType)
     {
-        this(name, date, closeDate, location, judge, showType, new HashSet<Participant>());
+        this(name, date, closeDate, location, judge, showType, new LinkedHashSet<Participant>());
     }
 
     @JsonCreator

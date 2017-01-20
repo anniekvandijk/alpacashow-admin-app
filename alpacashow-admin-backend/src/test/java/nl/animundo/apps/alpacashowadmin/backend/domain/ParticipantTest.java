@@ -7,7 +7,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import java.time.LocalDate;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import static org.junit.Assert.assertEquals;
 
@@ -62,7 +62,7 @@ public class ParticipantTest {
         city        = "some City";
         country     = "Netherlands";
 
-        Set<Animal> animals = new HashSet<Animal>();
+        Set<Animal> animals = new LinkedHashSet<Animal>();
         animals.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.now().minusYears(1), "123456789", null, "Vader", "Moeder"));
         animals.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.now().minusYears(2), "987654321", "BAF12345", "Vader2", "Moeder2"));
 

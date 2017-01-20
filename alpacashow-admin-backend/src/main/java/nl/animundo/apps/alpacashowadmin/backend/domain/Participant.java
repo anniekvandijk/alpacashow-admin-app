@@ -21,7 +21,7 @@ public class Participant {
 
     public Participant(final String name, final String farmName, final String email, final String telephone,
                        final String address, final String zipCode, final String city, final String country) {
-        this(name, farmName, email, telephone, address, zipCode, city, country, new HashSet<Animal>());
+        this(name, farmName, email, telephone, address, zipCode, city, country, new LinkedHashSet<Animal>());
     }
 
     @JsonCreator

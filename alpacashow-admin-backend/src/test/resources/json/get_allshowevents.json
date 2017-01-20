@@ -49,48 +49,6 @@
     "showType": "Fleeceshow",
     "participants": [
       {
-        "name": "Test participant 1",
-        "farmName": "Testfarm 1",
-        "email": null,
-        "telephone": null,
-        "address": null,
-        "zipCode": null,
-        "city": null,
-        "country": null,
-        "animals": [
-          {
-            "name": "Alpaca1",
-            "breed": "Huacaya",
-            "sex": "Female",
-            "color": "Black",
-            "dateOfBirth": "2015-04-12",
-            "microchip": "8765",
-            "registration": null,
-            "sire": "Vader",
-            "dam": "Moeder",
-            "animalShowDetail": {
-              "sheerDate": "2016-05-01",
-              "beforeSheerDate": null
-            }
-          },
-          {
-            "name": "Alpaca2",
-            "breed": "Suri",
-            "sex": "Male",
-            "color": "Fancy",
-            "dateOfBirth": "2014-04-29",
-            "microchip": "4321",
-            "registration": "BAF12345",
-            "sire": "Vader2",
-            "dam": "Moeder2",
-            "animalShowDetail": {
-              "sheerDate": "2016-04-01",
-              "beforeSheerDate": "2015-05-01"
-            }
-          }
-        ]
-      },
-      {
         "name": "Test participant 2",
         "farmName": "Testfarm 2",
         "email": null,
@@ -131,6 +89,48 @@
             }
           }
         ]
+      },
+      {
+        "name": "Test participant 1",
+        "farmName": "Testfarm 1",
+        "email": null,
+        "telephone": null,
+        "address": null,
+        "zipCode": null,
+        "city": null,
+        "country": null,
+        "animals": [
+          {
+            "name": "Alpaca1",
+            "breed": "Huacaya",
+            "sex": "Female",
+            "color": "Black",
+            "dateOfBirth": "2015-04-12",
+            "microchip": "8765",
+            "registration": null,
+            "sire": "Vader",
+            "dam": "Moeder",
+            "animalShowDetail": {
+              "sheerDate": "2016-05-01",
+              "beforeSheerDate": null
+            }
+          },
+          {
+            "name": "Alpaca2",
+            "breed": "Suri",
+            "sex": "Male",
+            "color": "Fancy",
+            "dateOfBirth": "2014-04-29",
+            "microchip": "4321",
+            "registration": "BAF12345",
+            "sire": "Vader2",
+            "dam": "Moeder2",
+            "animalShowDetail": {
+              "sheerDate": "2016-04-01",
+              "beforeSheerDate": "2015-05-01"
+            }
+          }
+        ]
       }
     ]
   },
@@ -142,6 +142,17 @@
     "judge": "Test Judge",
     "showType": "Haltershow",
     "participants": [
+      {
+        "name": "Test participant 3",
+        "farmName": "Testfarm 3",
+        "email": null,
+        "telephone": null,
+        "address": null,
+        "zipCode": null,
+        "city": null,
+        "country": null,
+        "animals": []
+      },
       {
         "name": "Test participant 1",
         "farmName": "Testfarm 1",
@@ -183,17 +194,6 @@
             }
           }
         ]
-      },
-      {
-        "name": "Test participant 3",
-        "farmName": "Testfarm 3",
-        "email": null,
-        "telephone": null,
-        "address": null,
-        "zipCode": null,
-        "city": null,
-        "country": null,
-        "animals": []
       }
     ]
   }
