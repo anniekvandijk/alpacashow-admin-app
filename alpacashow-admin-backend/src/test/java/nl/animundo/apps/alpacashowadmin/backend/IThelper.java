@@ -1,9 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend;
 
-import gherkin.lexer.Pa;
-import nl.animundo.apps.alpacashowadmin.backend.utilities.AnimalComparator;
-import nl.animundo.apps.alpacashowadmin.backend.utilities.ParticipantComparator;
-import nl.animundo.apps.alpacashowadmin.backend.utilities.ShowEventComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.*;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.*;

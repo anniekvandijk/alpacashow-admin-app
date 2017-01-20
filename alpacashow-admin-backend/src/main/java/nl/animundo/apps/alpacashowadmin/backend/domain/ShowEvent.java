@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import nl.animundo.apps.alpacashowadmin.backend.utilities.ParticipantComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.utilities.JsonDateDeserializer;
 import nl.animundo.apps.alpacashowadmin.backend.utilities.JsonDateSerializer;

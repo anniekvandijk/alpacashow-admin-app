@@ -1,7 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import nl.animundo.apps.alpacashowadmin.backend.utilities.AnimalComparator;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

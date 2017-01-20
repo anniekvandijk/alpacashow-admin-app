@@ -1,7 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
-import nl.animundo.apps.alpacashowadmin.backend.utilities.AnimalComparator;
-import nl.animundo.apps.alpacashowadmin.backend.utilities.ParticipantComparator;
 import nl.animundo.apps.alpacashowadmin.backend.domain.*;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.*;
