@@ -26,7 +26,7 @@ public class CsvFleeceWeightPointsRepositoryTest {
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
-    @Test @Ignore
+    @Test
     public void importExportShowEventsToFile() throws IOException {
 
         File importFile = new File(workingDir + testFileDir + "FLEECEWEIGHTPOINTS.csv");
