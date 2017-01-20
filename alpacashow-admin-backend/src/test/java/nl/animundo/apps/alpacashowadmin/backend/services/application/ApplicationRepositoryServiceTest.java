@@ -71,10 +71,8 @@ public class ApplicationRepositoryServiceTest {
     @Test @Ignore
     public void getFleeceWeightPointsRepo() throws IOException {
 
-        // FIXME : er wordt niet alles geladen? Hoe langzamer de methode, hoe minder er geladen wordt.
-
         fleeceWeightPointsRepository = service.loadFleeceWeightPointsRepository();
 
-       assertEquals(500, fleeceWeightPointsRepository.getAllFleeceWeightPointsByKeySet().size());
+       assertEquals(450, fleeceWeightPointsRepository.getAllFleeceWeightPointsByKeySet().size());
     }
 }
