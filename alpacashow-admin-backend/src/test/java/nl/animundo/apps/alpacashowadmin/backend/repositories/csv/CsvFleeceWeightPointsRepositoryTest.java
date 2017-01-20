@@ -26,7 +26,7 @@ public class CsvFleeceWeightPointsRepositoryTest {
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
-    @Test @Ignore
+    @Test
     public void importExportShowEventsToFile() throws IOException {
 
         File importFile = new File(workingDir + testFileDir + "FLEECEWEIGHTPOINTS.csv");
@@ -41,8 +41,6 @@ public class CsvFleeceWeightPointsRepositoryTest {
 
         FleeceWeightPointsRepository repo = CsvFleeceWeightPointsRepository.importData(reader);
         reader.close();
-
-        // TODO: Reader closes to soon? assertion fails, also not all records are exported. Wrong data or wrong code?
 
         assertEquals(450, repo.getAllFleeceWeightPoints().size());
 

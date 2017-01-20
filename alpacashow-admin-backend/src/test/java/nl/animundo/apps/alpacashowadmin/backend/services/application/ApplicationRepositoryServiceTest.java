@@ -68,7 +68,7 @@ public class ApplicationRepositoryServiceTest {
 
     }
 
-    @Test @Ignore
+    @Test
     public void getFleeceWeightPointsRepo() throws IOException {
 
         fleeceWeightPointsRepository = service.loadFleeceWeightPointsRepository();
