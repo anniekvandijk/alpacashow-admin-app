@@ -74,9 +74,6 @@ public class ShowFleeceService {
         // Convert cleanFleeceWeight to String with dot as seperator
         DecimalFormat decimalFormat = new DecimalFormat("#.0");
         String cleanFleeceWeightConvert = decimalFormat.format(weightcorrection);
-        String cleanFleeceWeightConvertWithDot = cleanFleeceWeightConvert.replace(",", ".");
-
-
-        return cleanFleeceWeightConvertWithDot;
+        return cleanFleeceWeightConvert.replace(",", ".");
     }
 }
