@@ -13,7 +13,7 @@ public class FleeceWeightPointsTest {
 
     private BreedClass breed;
     private AgeClass ageClass;
-    private float cleanFleeceWeight;
+    private String cleanFleeceWeight;
     private float weightPoints;
 
     @Rule
@@ -24,14 +24,14 @@ public class FleeceWeightPointsTest {
 
         breed               = BreedClass.HUACAYA_FLEECE;
         ageClass            = AgeClass.JUNIOR;
-        cleanFleeceWeight   = 1.5f;
+        cleanFleeceWeight   = "1.5";
         weightPoints        = 9.0f;
 
         FleeceWeightPoints fleeceWeightPoints = new FleeceWeightPoints(breed, ageClass,cleanFleeceWeight,weightPoints);
 
         assertEquals(breed, fleeceWeightPoints.getBreed());
         assertEquals(ageClass, fleeceWeightPoints.getAgeClass());
-        assertEquals(cleanFleeceWeight, fleeceWeightPoints.getCleanFleeceWeight(), 0.05);
+        assertEquals(cleanFleeceWeight, fleeceWeightPoints.getCleanFleeceWeight());
         assertEquals(weightPoints, fleeceWeightPoints.getWeightPoints(), 0.05);
     }
 }

@@ -14,6 +14,7 @@ import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class FleeceWeightPointsRepositoryTest {
     private static Logger logger = LoggerFactory.getLogger(FleeceWeightPointsRepositoryTest.class);
@@ -26,7 +27,7 @@ public class FleeceWeightPointsRepositoryTest {
 
         BreedClass breed          = BreedClass.HUACAYA_FLEECE;
         AgeClass ageClass         = AgeClass.JUNIOR;
-        float cleanFleeceWeight   = 1.5f;
+        String cleanFleeceWeight   = "1.5";
         float weightPoints        = 9.0f;
 
         FleeceWeightPoints fleeceWeightPoints = new FleeceWeightPoints(breed, ageClass,cleanFleeceWeight,weightPoints);
@@ -42,7 +43,7 @@ public class FleeceWeightPointsRepositoryTest {
 
         assertEquals(breed, fleeceWeightPointsRepository.getFleeceWeightPointsByKeySet(key).getBreed());
         assertEquals(ageClass, fleeceWeightPointsRepository.getFleeceWeightPointsByKeySet(key).getAgeClass());
-        assertEquals(cleanFleeceWeight, fleeceWeightPointsRepository.getFleeceWeightPointsByKeySet(key).getCleanFleeceWeight(), 0.05);
+        assertEquals(cleanFleeceWeight, fleeceWeightPointsRepository.getFleeceWeightPointsByKeySet(key).getCleanFleeceWeight());
         assertEquals(weightPoints, fleeceWeightPointsRepository.getFleeceWeightPointsByKeySet(key).getWeightPoints(), 0.05);
     }
 
@@ -51,7 +52,7 @@ public class FleeceWeightPointsRepositoryTest {
 
         BreedClass breed          = BreedClass.HUACAYA_FLEECE;
         AgeClass ageClass         = AgeClass.JUNIOR;
-        float cleanFleeceWeight   = 1.5f;
+        String cleanFleeceWeight   = "1.5";
         float weightPoints1        = 9.0f;
         float weightPoints2        = 7.0f;
 
@@ -71,7 +72,7 @@ public class FleeceWeightPointsRepositoryTest {
 
         assertEquals(breed, fleeceWeightPointsRepository.getFleeceWeightPointsByKeySet(key).getBreed());
         assertEquals(ageClass, fleeceWeightPointsRepository.getFleeceWeightPointsByKeySet(key).getAgeClass());
-        assertEquals(cleanFleeceWeight, fleeceWeightPointsRepository.getFleeceWeightPointsByKeySet(key).getCleanFleeceWeight(), 0.05);
+        assertEquals(cleanFleeceWeight, fleeceWeightPointsRepository.getFleeceWeightPointsByKeySet(key).getCleanFleeceWeight());
         assertEquals(weightPoints2, fleeceWeightPointsRepository.getFleeceWeightPointsByKeySet(key).getWeightPoints(), 0.05);
 
     }
@@ -81,7 +82,7 @@ public class FleeceWeightPointsRepositoryTest {
 
         BreedClass breed          = BreedClass.HUACAYA_FLEECE;
         AgeClass ageClass         = AgeClass.JUNIOR;
-        float cleanFleeceWeight   = 1.5f;
+        String cleanFleeceWeight   = "1.5";
         float weightPoints1        = 9.0f;
         float weightPoints2        = 7.0f;
 
@@ -112,7 +113,7 @@ public class FleeceWeightPointsRepositoryTest {
 
         BreedClass breed          = BreedClass.HUACAYA_FLEECE;
         AgeClass ageClass         = AgeClass.JUNIOR;
-        float cleanFleeceWeight   = 1.5f;
+        String cleanFleeceWeight   = "1.5";
         float weightPoints        = 9.0f;
 
         FleeceWeightPoints fleeceWeightPoints = new FleeceWeightPoints(breed, ageClass,cleanFleeceWeight,weightPoints);
@@ -139,7 +140,7 @@ public class FleeceWeightPointsRepositoryTest {
 
         BreedClass breed          = BreedClass.HUACAYA_FLEECE;
         AgeClass ageClass         = AgeClass.JUNIOR;
-        float cleanFleeceWeight   = 1.5f;
+        String cleanFleeceWeight   = "1.5";
         float weightPoints        = 9.0f;
 
         FleeceWeightPoints fleeceWeightPoints = new FleeceWeightPoints(breed, ageClass,cleanFleeceWeight,weightPoints);
@@ -163,7 +164,7 @@ public class FleeceWeightPointsRepositoryTest {
         BreedClass breed1          = BreedClass.HUACAYA_FLEECE;
         BreedClass breed2          = BreedClass.SURI_FLEECE;
         AgeClass ageClass         = AgeClass.JUNIOR;
-        float cleanFleeceWeight   = 1.5f;
+        String cleanFleeceWeight   = "1.5";
         float weightPoints        = 9.0f;
 
         FleeceWeightPoints fleeceWeightPoints1 = new FleeceWeightPoints(breed1, ageClass,cleanFleeceWeight,weightPoints);
@@ -188,7 +189,7 @@ public class FleeceWeightPointsRepositoryTest {
         BreedClass breed1 = BreedClass.HUACAYA_FLEECE;
         BreedClass breed2 = BreedClass.SURI_FLEECE;
         AgeClass ageClass = AgeClass.JUNIOR;
-        float cleanFleeceWeight = 1.5f;
+        String cleanFleeceWeight = "1.5";
         float weightPoints = 9.0f;
 
         FleeceWeightPoints fleeceWeightPoints1 = new FleeceWeightPoints(breed1, ageClass, cleanFleeceWeight, weightPoints);

@@ -12,12 +12,12 @@ public class FleeceWeightPoints {
 
     private BreedClass breed;
     private AgeClass ageClass;
-    private float cleanFleeceWeight;
+    private String cleanFleeceWeight;
     private float weightPoints;
 
     @JsonCreator
     public FleeceWeightPoints(@JsonProperty("breed") final BreedClass breed, @JsonProperty("ageClass") final AgeClass ageClass,
-                              @JsonProperty("cleanFleeceWeight") final float cleanFleeceWeight, @JsonProperty("weightPoints") final float weightPoints)
+                              @JsonProperty("cleanFleeceWeight") final String cleanFleeceWeight, @JsonProperty("weightPoints") final float weightPoints)
     {
         this.breed = breed;
         this.ageClass = ageClass;
@@ -33,7 +33,7 @@ public class FleeceWeightPoints {
         return ageClass;
     }
 
-    public float getCleanFleeceWeight() {
+    public String getCleanFleeceWeight() {
         return cleanFleeceWeight;
     }
 

@@ -51,7 +51,7 @@ public class ShowFleeceService {
         for (FleeceWeightPoints fleeceWeightPoints : fleeceWeightPointsRepository.getAllFleeceWeightPoints()) {
             if (fleeceWeightPoints.getBreed().equals(breed) &&
                     fleeceWeightPoints.getAgeClass().equals(ageClass) &&
-                    equality(fleeceWeightPoints.getCleanFleeceWeight(), cleanFleeceWeight, 0.05f))
+                    fleeceWeightPoints.getCleanFleeceWeight().equals(cleanFleeceWeight))
             {
                 weightPoints = fleeceWeightPoints.getWeightPoints();
             }

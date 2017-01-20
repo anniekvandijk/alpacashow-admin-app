@@ -40,7 +40,7 @@ public class CsvFleeceWeightPointsRepository extends FleeceWeightPointsRepositor
             FleeceWeightPoints points = fleeceWeightPointsRepository.getFleeceWeightPointsByKeySet(fleeceWeightPoints);
             writer  .append(points.getBreed().name()).append(";")
                     .append(points.getAgeClass().toString()).append(";")
-                    .append(Float.toString(points.getCleanFleeceWeight())).append(";")
+                    .append(points.getCleanFleeceWeight()).append(";")
                     .append(Float.toString(points.getWeightPoints())).append("\n");
         }
     }
@@ -55,7 +55,7 @@ public class CsvFleeceWeightPointsRepository extends FleeceWeightPointsRepositor
 
             BreedClass breedCln = BreedClass.valueOf(StringUtils.trimToNull(nextLine[COL_BREED]));
             AgeClass ageClassCln = AgeClass.valueOf(StringUtils.trimToNull(nextLine[COL_AGECLASS]));
-            float cleanWeight = Float.parseFloat(StringUtils.trimToNull(nextLine[COL_CLEANWEIGHT]));
+            String cleanWeight = StringUtils.trimToNull(nextLine[COL_CLEANWEIGHT]);
             float weightPoints = Float.parseFloat(StringUtils.trimToNull(nextLine[COL_WEIGHTPOINTS]));
 
             add(new FleeceWeightPoints(breedCln, ageClassCln, cleanWeight, weightPoints));

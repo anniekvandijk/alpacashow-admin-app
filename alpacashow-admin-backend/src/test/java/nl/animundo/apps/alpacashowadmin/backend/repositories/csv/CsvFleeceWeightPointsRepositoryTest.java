@@ -49,12 +49,12 @@ public class CsvFleeceWeightPointsRepositoryTest {
         assertNotNull(fleeceWeightPoints);
         assertEquals("HUACAYA", fleeceWeightPoints.getBreed().toString());
         assertEquals("INTERMEDIATE", fleeceWeightPoints.getAgeClass().toString());
-        assertEquals(1.3f, fleeceWeightPoints.getCleanFleeceWeight(), 0.05);
+        assertEquals("1.3", fleeceWeightPoints.getCleanFleeceWeight());
         assertEquals(6.0f, fleeceWeightPoints.getWeightPoints(), 0.05);
 
         BreedClass breed          = BreedClass.HUACAYA_FLEECE;
         AgeClass ageClass         = AgeClass.JUNIOR;
-        float cleanFleeceWeight   = 5.1f;
+        String cleanFleeceWeight   = "5.1";
         float weightPoints        = 17.0f;
 
         repo.add(new FleeceWeightPoints(breed, ageClass,cleanFleeceWeight,weightPoints));
