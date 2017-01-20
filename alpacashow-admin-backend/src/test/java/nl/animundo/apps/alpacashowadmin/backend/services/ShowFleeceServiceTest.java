@@ -26,7 +26,7 @@ public class ShowFleeceServiceTest {
     BreedClass breed;
     int fleeceGrowthInDays;
     float fleeceWeight;
-    float cleanFleeceWeight;
+    String cleanFleeceWeight;
     float cleanFleeceWeightPoints;
 
     float delta = 0.05f;
@@ -111,9 +111,9 @@ public class ShowFleeceServiceTest {
 
         fleeceWeight = 1.567f;
         fleeceGrowthInDays = 377;
-        cleanFleeceWeight = 1.5f; // 1.517122
+        cleanFleeceWeight = "1.5";
 
-        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(fleeceGrowthInDays, fleeceWeight), delta);
+        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(fleeceGrowthInDays, fleeceWeight));
     }
 
     @Test
@@ -121,8 +121,8 @@ public class ShowFleeceServiceTest {
 
         fleeceWeight = 1.567f;
         fleeceGrowthInDays = 275;
-        cleanFleeceWeight = 2.1f; // 2.0798364
+        cleanFleeceWeight = "2.1";
 
-        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(fleeceGrowthInDays, fleeceWeight), delta);
+        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(fleeceGrowthInDays, fleeceWeight));
     }
 }

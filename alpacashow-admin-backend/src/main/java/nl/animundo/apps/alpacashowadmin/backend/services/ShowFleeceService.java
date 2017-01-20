@@ -46,20 +46,15 @@ public class ShowFleeceService {
         }
 
         int fleeceGrowthInDays = fleeceGrowthInDays(sheerDate, beforeSheerDate);
-        Float cleanFleeceWeight = fleeceWeightCorrection(fleeceGrowthInDays, fleeceweight);
+        String cleanFleeceWeight = fleeceWeightCorrection(fleeceGrowthInDays, fleeceweight);
         AgeClass ageClass = AgeClassService.getAgeClass(sheerDate, dateOfBirth);
-
-        // Convert cleanFleeceWeight to String with dot as seperator
-        DecimalFormat decimalFormat = new DecimalFormat("#.0");
-        String cleanFleeceWeightConvert = decimalFormat.format(cleanFleeceWeight);
-        String cleanFleeceWeightConvertWithDot = cleanFleeceWeightConvert.replace(",", ".");
 
         float weightPoints = 0.0f;
         fleeceWeightPointsRepository = service.loadFleeceWeightPointsRepository();
         for (FleeceWeightPoints fleeceWeightPoints : fleeceWeightPointsRepository.getAllFleeceWeightPoints()) {
             if (fleeceWeightPoints.getBreed().equals(breed) &&
                     fleeceWeightPoints.getAgeClass().equals(ageClass) &&
-                    fleeceWeightPoints.getCleanFleeceWeight().equals(cleanFleeceWeightConvertWithDot))
+                    fleeceWeightPoints.getCleanFleeceWeight().equals(cleanFleeceWeight))
             {
                 weightPoints = fleeceWeightPoints.getWeightPoints();
             }
@@ -72,15 +67,16 @@ public class ShowFleeceService {
         return (int) ChronoUnit.DAYS.between(beforeSheerDateOrDateOfBirth, sheerDate);
     }
 
-    public static Float fleeceWeightCorrection (int fleeceGrowthInDays, float fleeceweight) {
+    public static String fleeceWeightCorrection (int fleeceGrowthInDays, float fleeceweight) {
 
         float weightcorrection = (fleeceweight*365)/fleeceGrowthInDays;
 
-        return weightcorrection;
-    }
+        // Convert cleanFleeceWeight to String with dot as seperator
+        DecimalFormat decimalFormat = new DecimalFormat("#.0");
+        String cleanFleeceWeightConvert = decimalFormat.format(weightcorrection);
+        String cleanFleeceWeightConvertWithDot = cleanFleeceWeightConvert.replace(",", ".");
 
-    private static boolean equality(float a, float b, float epsilon)
-    {
-        return Math.abs(a - b) < epsilon;
+
+        return cleanFleeceWeightConvertWithDot;
     }
 }
