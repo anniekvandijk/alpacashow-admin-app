@@ -18,6 +18,7 @@ public class AgeClassService {
         throw new InstantiationException("Instances of this type are forbidden!");
     }
 
+    // TODO: split this for showdate or sheerdate
     public static AgeClass ageClass(final ShowEvent showEvent, final Animal animal) {
 
         LocalDate showEventDate = showEvent.getDate();
@@ -59,7 +60,7 @@ public class AgeClassService {
         return ageClass;
     }
 
-    static AgeClass getAgeClass(final LocalDate sheerOrShowDate, final LocalDate dateOfBirth) {
+    public static AgeClass getAgeClass(final LocalDate sheerOrShowDate, final LocalDate dateOfBirth) {
 
         int ageInMonths = getAgeInMonths(sheerOrShowDate, dateOfBirth);
         AgeClass ageClass = null;

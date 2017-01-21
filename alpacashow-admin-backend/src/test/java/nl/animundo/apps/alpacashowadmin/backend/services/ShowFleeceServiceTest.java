@@ -26,7 +26,7 @@ public class ShowFleeceServiceTest {
     BreedClass breed;
     int fleeceGrowthInDays;
     float fleeceWeight;
-    String cleanFleeceWeight;
+    float cleanFleeceWeight;
     float cleanFleeceWeightPoints;
 
     float delta = 0.05f;
@@ -114,9 +114,9 @@ public class ShowFleeceServiceTest {
         sheerDate = LocalDate.of(2013, 5, 1);
         beforeSheerDate = LocalDate.of(2012, 4, 30);
         breed = BreedClass.SURI_FLEECE;
-        cleanFleeceWeight = "1.6";
+        cleanFleeceWeight = 1.6f;
 
-        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(dateOfBirth, sheerDate, beforeSheerDate, fleeceWeight));
+        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(dateOfBirth, sheerDate, beforeSheerDate, fleeceWeight), 0.05f);
     }
 
     @Test
@@ -127,8 +127,8 @@ public class ShowFleeceServiceTest {
         sheerDate = LocalDate.of(2013, 5, 1);
         beforeSheerDate = LocalDate.of(2012, 7, 30);
         breed = BreedClass.SURI_FLEECE;
-        cleanFleeceWeight = "2.1";
+        cleanFleeceWeight = 2.1f;
 
-        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(dateOfBirth, sheerDate, beforeSheerDate, fleeceWeight));
+        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(dateOfBirth, sheerDate, beforeSheerDate, fleeceWeight), 0.05f);
     }
 }

@@ -16,7 +16,6 @@ public class ShowFleeceService {
     private static Logger logger = LoggerFactory.getLogger(FleeceWeightPointsRepository.class);
 
     private static ApplicationRepositoryService service = new ApplicationRepositoryService();
-    private static FleeceWeightPointsRepository fleeceWeightPointsRepository;
 
     private ShowFleeceService() throws InstantiationException {
         throw new InstantiationException("Instances of this type are forbidden!");
@@ -33,20 +32,29 @@ public class ShowFleeceService {
             breed = BreedClass.SURI;
         }
 
-        String cleanFleeceWeight = fleeceWeightCorrection(dateOfBirth, sheerDate, beforeSheerDate, fleeceweight);
+        float cleanFleeceWeight = fleeceWeightCorrection(dateOfBirth, sheerDate, beforeSheerDate, fleeceweight);
+
+        if (cleanFleeceWeight > 5.0f) {
+            cleanFleeceWeight = 5.0f;
+        }
+        // Convert cleanFleeceWeight to String with dot as seperator
+        DecimalFormat decimalFormat = new DecimalFormat("#.0");
+        String cleanFleeceWeightConvert = decimalFormat.format(cleanFleeceWeight);
+        String cleanFleeceWeightConvertToPoint = cleanFleeceWeightConvert.replace(",", ".");
+
         AgeClass ageClass = AgeClassService.getAgeClass(sheerDate, dateOfBirth);
 
-        float weightPoints = 0.0f;
-        fleeceWeightPointsRepository = service.loadFleeceWeightPointsRepository();
+        float cleanFleeceWeightPoints = 0.0f;
+        FleeceWeightPointsRepository fleeceWeightPointsRepository = service.loadFleeceWeightPointsRepository();
         for (FleeceWeightPoints fleeceWeightPoints : fleeceWeightPointsRepository.getAllFleeceWeightPoints()) {
             if (fleeceWeightPoints.getBreed().equals(breed) &&
                     fleeceWeightPoints.getAgeClass().equals(ageClass) &&
-                    fleeceWeightPoints.getCleanFleeceWeight().equals(cleanFleeceWeight))
+                    fleeceWeightPoints.getCleanFleeceWeight().equals(cleanFleeceWeightConvertToPoint))
             {
-                weightPoints = fleeceWeightPoints.getWeightPoints();
+                cleanFleeceWeightPoints = fleeceWeightPoints.getWeightPoints();
             }
         }
-        return weightPoints;
+        return cleanFleeceWeightPoints;
     }
 
 
@@ -59,14 +67,9 @@ public class ShowFleeceService {
         return (int) ChronoUnit.DAYS.between(beforeSheerDate, sheerDate);
     }
 
-    public static String fleeceWeightCorrection (LocalDate dateOfBirth, LocalDate sheerDate, LocalDate beforeSheerDate, float fleeceweight) {
+    public static float fleeceWeightCorrection (LocalDate dateOfBirth, LocalDate sheerDate, LocalDate beforeSheerDate, float fleeceweight) {
 
         int fleeceGrowthInDays = fleeceGrowthInDays(dateOfBirth, sheerDate, beforeSheerDate);
-        float weightcorrection = (fleeceweight*365)/fleeceGrowthInDays;
-
-        // Convert cleanFleeceWeight to String with dot as seperator
-        DecimalFormat decimalFormat = new DecimalFormat("#.0");
-        String cleanFleeceWeightConvert = decimalFormat.format(weightcorrection);
-        return cleanFleeceWeightConvert.replace(",", ".");
+        return (fleeceweight*365)/fleeceGrowthInDays;
     }
 }

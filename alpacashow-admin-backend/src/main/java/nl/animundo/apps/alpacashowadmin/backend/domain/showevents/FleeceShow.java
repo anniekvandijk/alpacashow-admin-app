@@ -1,35 +1,60 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain.showevents;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeSexClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimal;
+import nl.animundo.apps.alpacashowadmin.backend.services.AgeClassService;
+import nl.animundo.apps.alpacashowadmin.backend.services.ShowClassService;
 import nl.animundo.apps.alpacashowadmin.backend.services.ShowFleeceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class FleeceShow extends Show {
     private static Logger logger = LoggerFactory.getLogger(ShowEventAnimal.class);
 
+    private AgeClass ageClass;
+    private int showClass;
     private LocalDate sheerDate;
     private LocalDate beforeSheerdate;
     private float fleeceWeight;
     private int fleeceGrowthInDays;
-    private String fleeceWeightCorrection;
+    private float fleeceWeightCorrection;
 
     public FleeceShow(final String showEventKey, final String participantKey, final String animalKey, final boolean present, final int startNumber,
-                      final LocalDate dateOfBirth, final BreedClass breed, final AgeSexClass ageClass, final SexClass sex, final ColorClass color,
+                      final LocalDate dateOfBirth, final BreedClass breed, final SexClass sex, final ColorClass color,
+                      final LocalDate sheerDate, final LocalDate beforeSheerdate, final float fleeceWeight) {
+        super(showEventKey, participantKey, animalKey, present, startNumber, dateOfBirth, breed, sex, color);
+        ageClass = AgeClassService.getAgeClass(sheerDate, dateOfBirth);
+        showClass = ShowClassService.getShowClassCode(breed, ageClass, sex, color);
+        fleeceGrowthInDays = ShowFleeceService.fleeceGrowthInDays(dateOfBirth, sheerDate, beforeSheerdate);
+        fleeceWeightCorrection = ShowFleeceService.fleeceWeightCorrection(dateOfBirth, sheerDate, beforeSheerdate, fleeceWeight);
+        this.sheerDate = sheerDate;
+        this.beforeSheerdate = beforeSheerdate;
+        this.fleeceWeight = fleeceWeight;
+    }
+
+    private FleeceShow(final String showEventKey, final String participantKey, final String animalKey, final boolean present, final int startNumber,
+                      final LocalDate dateOfBirth, final BreedClass breed, final AgeClass ageClass, final SexClass sex, final ColorClass color,
                       final int showClass, final LocalDate sheerDate, final LocalDate beforeSheerdate, final float fleeceWeight,
-                      final int fleeceGrowthInDays, final String fleeceWeightCorrection) {
-        super(showEventKey, participantKey, animalKey, present, startNumber, dateOfBirth, breed, ageClass, sex, color, showClass);
+                      final int fleeceGrowthInDays, final float fleeceWeightCorrection) {
+        super(showEventKey, participantKey, animalKey, present, startNumber, dateOfBirth, breed, sex, color);
+        this.ageClass = ageClass;
+        this.showClass = showClass;
         this.sheerDate = sheerDate;
         this.beforeSheerdate = beforeSheerdate;
         this.fleeceWeight = fleeceWeight;
         this.fleeceGrowthInDays = fleeceGrowthInDays;
         this.fleeceWeightCorrection = fleeceWeightCorrection;
+    }
+
+    public AgeClass getAgeClass() {
+        return ageClass;
+    }
+
+    public int getShowClass() {
+        return showClass;
     }
 
     public LocalDate getSheerDate() {
@@ -45,12 +70,10 @@ public class FleeceShow extends Show {
     }
 
     public int getFleeceGrowthInDays() {
-        fleeceGrowthInDays = ShowFleeceService.fleeceGrowthInDays(getDateOfBirth(), getSheerDate(), getBeforeSheerdate());
         return fleeceGrowthInDays;
     }
 
-    public String getFleeceWeightCorrection() {
-        fleeceWeightCorrection = ShowFleeceService.fleeceWeightCorrection(getDateOfBirth(), getSheerDate(), getBeforeSheerdate(), getFleeceWeight());
+    public float getFleeceWeightCorrection() {
         return fleeceWeightCorrection;
     }
 }

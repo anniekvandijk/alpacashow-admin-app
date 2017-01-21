@@ -1,10 +1,9 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain.showevents;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeSexClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimal;
+import nl.animundo.apps.alpacashowadmin.backend.services.AgeClassService;
+import nl.animundo.apps.alpacashowadmin.backend.services.ShowClassService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,13 +19,11 @@ public class Show {
     private int startNumber;
     private LocalDate dateOfBirth;
     private BreedClass breed;
-    private AgeSexClass ageClass;
     private SexClass sex;
     private ColorClass color;
-    private int showClass;
 
     public Show(final String showEventKey, final String participantKey, final String animalKey, final boolean present, final int startNumber,
-                final LocalDate dateOfBirth, final BreedClass breed, final AgeSexClass ageClass, final SexClass sex, final ColorClass color, final int showClass) {
+                final LocalDate dateOfBirth, final BreedClass breed, final SexClass sex, final ColorClass color) {
         this.showEventKey = showEventKey;
         this.participantKey = participantKey;
         this.animalKey = animalKey;
@@ -34,10 +31,8 @@ public class Show {
         this.startNumber = startNumber;
         this.dateOfBirth = dateOfBirth;
         this.breed = breed;
-        this.ageClass = ageClass;
         this.sex = sex;
         this.color = color;
-        this.showClass = showClass;
     }
 
     public String getShowEventKey() {
@@ -68,20 +63,12 @@ public class Show {
         return breed;
     }
 
-    public AgeSexClass getAgeClass() {
-        return ageClass;
-    }
-
     public SexClass getSex() {
         return sex;
     }
 
     public ColorClass getColor() {
         return color;
-    }
-
-    public int getShowClass() {
-        return showClass;
     }
 }
 

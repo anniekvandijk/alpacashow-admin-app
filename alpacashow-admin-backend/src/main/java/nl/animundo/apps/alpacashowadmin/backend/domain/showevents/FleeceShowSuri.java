@@ -1,9 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain.showevents;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeSexClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimal;
 import nl.animundo.apps.alpacashowadmin.backend.services.ShowFleeceService;
 import org.slf4j.Logger;
@@ -28,9 +25,9 @@ public class FleeceShowSuri extends FleeceShow {
     private float total; // 100
 
     public FleeceShowSuri(final String showEventKey, final String participantKey, final String animalKey, final boolean present, final int startNumber,
-                          final LocalDate dateOfBirth, final BreedClass breed, final AgeSexClass ageClass, final SexClass sex, final ColorClass color,
+                          final LocalDate dateOfBirth, final BreedClass breed, final AgeClass ageClass, final SexClass sex, final ColorClass color,
                           final int showClass, final LocalDate sheerDate, final LocalDate beforeSheerdate, final float fleeceWeight,
-                          final int fleeceGrowthInDays, final String fleeceWeightCorrection, final float finessAndHandle, final float uniformityOfMicron,
+                          final int fleeceGrowthInDays, final float fleeceWeightCorrection, final float finessAndHandle, final float uniformityOfMicron,
                           final float uniformityOfLenght, final float uniformityOfColor, final float styleAndCharacter, final float desity,
                           final float lusture, final float lackOfGuardHair, final float lackOfImpurities, final float cleanFleeceWeight, final float total) {
         super(showEventKey, participantKey, animalKey, present, startNumber, dateOfBirth, breed, ageClass, sex, color,
