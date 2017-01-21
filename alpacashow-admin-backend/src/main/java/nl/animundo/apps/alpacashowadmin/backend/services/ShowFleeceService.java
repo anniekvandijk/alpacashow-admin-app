@@ -1,6 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.helpclasses.FleeceWeightPoints;
@@ -10,10 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Locale;
 
 public class ShowFleeceService {
     private static Logger logger = LoggerFactory.getLogger(FleeceWeightPointsRepository.class);
@@ -25,11 +22,7 @@ public class ShowFleeceService {
         throw new InstantiationException("Instances of this type are forbidden!");
     }
 
-    public static float getCleanFleeceWeightPoints (Animal animal, float fleeceweight) throws IOException {
-
-        LocalDate dateOfBirth = animal.getDateOfBirth();
-        LocalDate sheerDate = animal.getAnimalShowDetail().getSheerDate();
-        BreedClass breed = animal.getBreed();
+    public static float getCleanFleeceWeightPoints (LocalDate dateOfBirth, LocalDate sheerDate, LocalDate beforeSheerDate, BreedClass breed, float fleeceweight) throws IOException {
 
         if (breed.equals(BreedClass.HUACAYA_FLEECE))
         {
@@ -40,7 +33,7 @@ public class ShowFleeceService {
             breed = BreedClass.SURI;
         }
 
-        String cleanFleeceWeight = fleeceWeightCorrection(animal, fleeceweight);
+        String cleanFleeceWeight = fleeceWeightCorrection(dateOfBirth, sheerDate, beforeSheerDate, fleeceweight);
         AgeClass ageClass = AgeClassService.getAgeClass(sheerDate, dateOfBirth);
 
         float weightPoints = 0.0f;
@@ -57,11 +50,7 @@ public class ShowFleeceService {
     }
 
 
-    public static int fleeceGrowthInDays (Animal animal) {
-
-        LocalDate dateOfBirth = animal.getDateOfBirth();
-        LocalDate sheerDate = animal.getAnimalShowDetail().getSheerDate();
-        LocalDate beforeSheerDate = animal.getAnimalShowDetail().getBeforeSheerDate();
+    public static int fleeceGrowthInDays (LocalDate dateOfBirth, LocalDate sheerDate, LocalDate beforeSheerDate) {
 
         if (beforeSheerDate == null) {
             beforeSheerDate = dateOfBirth;
@@ -70,9 +59,9 @@ public class ShowFleeceService {
         return (int) ChronoUnit.DAYS.between(beforeSheerDate, sheerDate);
     }
 
-    public static String fleeceWeightCorrection (Animal animal, float fleeceweight) {
+    public static String fleeceWeightCorrection (LocalDate dateOfBirth, LocalDate sheerDate, LocalDate beforeSheerDate, float fleeceweight) {
 
-        int fleeceGrowthInDays = fleeceGrowthInDays(animal);
+        int fleeceGrowthInDays = fleeceGrowthInDays(dateOfBirth, sheerDate, beforeSheerDate);
         float weightcorrection = (fleeceweight*365)/fleeceGrowthInDays;
 
         // Convert cleanFleeceWeight to String with dot as seperator

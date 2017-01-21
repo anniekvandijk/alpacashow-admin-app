@@ -64,10 +64,7 @@ public class ShowFleeceServiceTest {
         breed = BreedClass.HUACAYA_FLEECE;
         cleanFleeceWeightPoints = 12.5f;
 
-        Animal animal = new Animal("Animal", breed, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth,
-                "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, beforeSheerDate));
-
-        assertEquals(cleanFleeceWeightPoints, ShowFleeceService.getCleanFleeceWeightPoints(animal,fleeceWeight), 0);
+        assertEquals(cleanFleeceWeightPoints, ShowFleeceService.getCleanFleeceWeightPoints(dateOfBirth, sheerDate, beforeSheerDate, breed, fleeceWeight), 0);
     }
 
     @Test
@@ -80,10 +77,7 @@ public class ShowFleeceServiceTest {
         breed = BreedClass.SURI_FLEECE;
         cleanFleeceWeightPoints = 12.0f;
 
-        Animal animal = new Animal("Animal", breed, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth,
-                "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, beforeSheerDate));
-
-        assertEquals(cleanFleeceWeightPoints, ShowFleeceService.getCleanFleeceWeightPoints(animal,fleeceWeight), 0);
+        assertEquals(cleanFleeceWeightPoints, ShowFleeceService.getCleanFleeceWeightPoints(dateOfBirth, sheerDate, beforeSheerDate, breed, fleeceWeight), 0);
     }
 
     @Test
@@ -96,11 +90,7 @@ public class ShowFleeceServiceTest {
         breed = BreedClass.SURI_FLEECE;
         fleeceGrowthInDays = 377;
 
-        Animal animal = new Animal("Animal", breed, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth,
-                "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, beforeSheerDate));
-
-
-        assertEquals(fleeceGrowthInDays,ShowFleeceService.fleeceGrowthInDays(animal));
+        assertEquals(fleeceGrowthInDays,ShowFleeceService.fleeceGrowthInDays(dateOfBirth, sheerDate, beforeSheerDate));
     }
 
     @Test
@@ -113,10 +103,7 @@ public class ShowFleeceServiceTest {
         breed = BreedClass.SURI_FLEECE;
         fleeceGrowthInDays = 275;
 
-        Animal animal = new Animal("Animal", breed, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth,
-                "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, beforeSheerDate));
-
-        assertEquals(fleeceGrowthInDays,ShowFleeceService.fleeceGrowthInDays(animal));
+        assertEquals(fleeceGrowthInDays,ShowFleeceService.fleeceGrowthInDays(dateOfBirth, sheerDate, beforeSheerDate));
     }
 
     @Test
@@ -129,12 +116,7 @@ public class ShowFleeceServiceTest {
         breed = BreedClass.SURI_FLEECE;
         cleanFleeceWeight = "1.6";
 
-        Animal animal = new Animal("Animal", breed, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth,
-                "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, beforeSheerDate));
-
-        fleeceGrowthInDays = ShowFleeceService.fleeceGrowthInDays(animal);
-
-        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(animal, fleeceWeight));
+        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(dateOfBirth, sheerDate, beforeSheerDate, fleeceWeight));
     }
 
     @Test
@@ -147,11 +129,6 @@ public class ShowFleeceServiceTest {
         breed = BreedClass.SURI_FLEECE;
         cleanFleeceWeight = "2.1";
 
-        Animal animal = new Animal("Animal", breed, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth,
-                "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, beforeSheerDate));
-
-        fleeceGrowthInDays = ShowFleeceService.fleeceGrowthInDays(animal);
-
-        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(animal, fleeceWeight));
+        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(dateOfBirth, sheerDate, beforeSheerDate, fleeceWeight));
     }
 }
