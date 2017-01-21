@@ -63,10 +63,6 @@ public class FleeceShowHuacayaTest {
         lackOfGuardHair = 10f;
         lackOfImpurities = 5f;
 
-        // AgeSexClass
-        // cleanFleeceWeight
-        // Total
-
         FleeceShowHuacaya fleeceShowHuacaya = new FleeceShowHuacaya(showEventKey, participantKey, animalKey, present, startNumber, dateOfBirth,
                 breed, sex, color, sheerDate, beforeSheerdate, fleeceWeight, finessAndHandle,
                 uniformityOfMicron, uniformityOfLenght, uniformityOfColor, character, stapleTypeDesity, brightness, lackOfGuardHair, lackOfImpurities);

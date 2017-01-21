@@ -111,11 +111,7 @@ public class FleeceShowHuacaya extends FleeceShow {
         return lackOfImpurities;
     }
 
-    public float getCleanFleeceWeight() {
-        return cleanFleeceWeight;
-    }
+    public float getCleanFleeceWeight() { return cleanFleeceWeight; }
 
-    public float getTotal() {
-        return total;
-    }
+    public float getTotal() { return total; }
 }
