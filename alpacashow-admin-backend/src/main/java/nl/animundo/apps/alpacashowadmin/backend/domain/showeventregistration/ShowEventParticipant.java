@@ -1,4 +1,4 @@
-package nl.animundo.apps.alpacashowadmin.backend.domain;
+package nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

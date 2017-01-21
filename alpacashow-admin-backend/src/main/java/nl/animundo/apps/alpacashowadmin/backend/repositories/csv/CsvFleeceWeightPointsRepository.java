@@ -1,20 +1,15 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
 import com.opencsv.CSVReader;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventAnimal;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.helpclasses.FleeceWeightPoints;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.FleeceWeightPointsRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventAnimalRepository;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.AbstractCollection;
 
 public class CsvFleeceWeightPointsRepository extends FleeceWeightPointsRepository {
 

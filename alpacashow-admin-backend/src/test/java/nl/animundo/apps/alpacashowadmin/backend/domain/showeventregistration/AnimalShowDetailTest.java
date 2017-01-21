@@ -1,5 +1,6 @@
-package nl.animundo.apps.alpacashowadmin.backend.domain;
+package nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration;
 
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.AnimalShowDetail;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

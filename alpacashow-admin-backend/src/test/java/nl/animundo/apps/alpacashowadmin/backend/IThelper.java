@@ -2,6 +2,7 @@ package nl.animundo.apps.alpacashowadmin.backend;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.*;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.AnimalShowDetail;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
 

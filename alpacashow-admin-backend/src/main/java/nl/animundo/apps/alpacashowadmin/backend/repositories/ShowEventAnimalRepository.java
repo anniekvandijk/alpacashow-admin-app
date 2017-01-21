@@ -1,6 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventAnimal;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.*;

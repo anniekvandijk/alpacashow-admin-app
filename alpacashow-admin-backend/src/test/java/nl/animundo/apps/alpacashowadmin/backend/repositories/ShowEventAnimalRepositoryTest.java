@@ -1,7 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventAnimal;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimal;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

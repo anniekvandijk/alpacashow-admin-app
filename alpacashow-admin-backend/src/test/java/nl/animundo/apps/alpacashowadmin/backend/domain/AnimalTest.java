@@ -1,9 +1,9 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.AnimalShowDetail;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

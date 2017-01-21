@@ -1,7 +1,7 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
 import com.opencsv.CSVReader;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventParticipant;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventParticipant;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventParticipantRepository;
 import org.apache.commons.lang3.StringUtils;
 import java.io.IOException;

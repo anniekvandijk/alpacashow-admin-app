@@ -1,13 +1,18 @@
-package nl.animundo.apps.alpacashowadmin.backend.domain;
+package nl.animundo.apps.alpacashowadmin.backend.domain.showevents;
 
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeSexClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AnimalFleeceShowHuacayaPoints {
+import java.time.LocalDate;
+
+public class FleeceShowHuacaya extends FleeceShow {
     private static Logger logger = LoggerFactory.getLogger(ShowEventAnimal.class);
 
-    private String showEventKey;
-    private int startNumber;
     private float finessAndHandle; // 20
     private float uniformityOfMicron; //10
     private float uniformityOfLenght; // 10
@@ -20,13 +25,14 @@ public class AnimalFleeceShowHuacayaPoints {
     private float cleanFleeceWeight; // 15
     private float total; // 100
 
-
-
-    public AnimalFleeceShowHuacayaPoints (final String showEventKey,final int startNumber, final float finessAndHandle, final float uniformityOfMicron,
-                                          final float uniformityOfLenght, final float uniformityOfColor, final float character, final float stapleTypeDesity,
-                                          final float brightness, final float lackOfGuardHair, final float lackOfImpurities, final float cleanFleeceWeight, final float total) {
-        this.showEventKey = showEventKey;
-        this.startNumber = startNumber;
+    public FleeceShowHuacaya(final String showEventKey, final String participantKey, final String animalKey, final boolean present, final int startNumber,
+                             final LocalDate dateOfBirth, final BreedClass breed, final AgeSexClass ageClass, final SexClass sex, final ColorClass color,
+                             final int showClass, final LocalDate sheerDate, final LocalDate beforeSheerdate, final float fleeceWeight,
+                             final int fleeceGrowthInDays, final float fleeceWeightCorrection, final float finessAndHandle, final float uniformityOfMicron,
+                             final float uniformityOfLenght, final float uniformityOfColor, final float character, final float stapleTypeDesity,
+                             final float brightness, final float lackOfGuardHair, final float lackOfImpurities, final float cleanFleeceWeight, final float total) {
+        super(showEventKey, participantKey, animalKey, present, startNumber, dateOfBirth, breed, ageClass, sex, color,
+                showClass, sheerDate, beforeSheerdate, fleeceWeight, fleeceGrowthInDays, fleeceWeightCorrection);
         this.finessAndHandle = finessAndHandle;
         this.uniformityOfMicron = uniformityOfMicron;
         this.uniformityOfLenght = uniformityOfLenght;
@@ -38,14 +44,6 @@ public class AnimalFleeceShowHuacayaPoints {
         this.lackOfImpurities = lackOfImpurities;
         this.cleanFleeceWeight = cleanFleeceWeight;
         this.total = total;
-    }
-
-    public String getShowEventKey() {
-        return showEventKey;
-    }
-
-    public int getStartNumber() {
-        return startNumber;
     }
 
     public float getFinessAndHandle() {

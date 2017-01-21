@@ -1,7 +1,7 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
-import nl.animundo.apps.alpacashowadmin.backend.domain.AnimalShowDetail;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.AnimalShowDetail;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.*;
 import org.junit.Assert;

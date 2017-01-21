@@ -1,6 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEventParticipant;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventParticipant;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventParticipantRepository;
 import org.junit.Rule;
 import org.junit.Test;
