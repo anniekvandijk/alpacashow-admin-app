@@ -27,15 +27,15 @@ public class FleeceShowSuriTest {
     private LocalDate sheerDate;
     private LocalDate beforeSheerdate;
     private float fleeceWeight;
-    private float finessAndHandle; // 20
-    private float uniformityOfMicron; //10
-    private float uniformityOfLenght; // 10
-    private float uniformityOfColor; // 5
-    private float styleAndCharacter; // 10
-    private float desity; // 5
-    private float lusture; // 15
-    private float lackOfGuardHair; // 5
-    private float lackOfImpurities; // 5
+    private float finessAndHandlePoints; // 20
+    private float uniformityOfMicronPoints; //10
+    private float uniformityOfLenghtPoints; // 10
+    private float uniformityOfColorPoints; // 5
+    private float styleAndCharacterPoints; // 10
+    private float desityPoints; // 5
+    private float lusturePoints; // 15
+    private float lackOfGuardHairPoints; // 5
+    private float lackOfImpuritiesPoints; // 5
     private float delta = 0.05f;
 
     @Rule
@@ -56,19 +56,19 @@ public class FleeceShowSuriTest {
         sheerDate = LocalDate.of(2016, 5, 1);
         beforeSheerdate = null;
         fleeceWeight = 7.0f;
-        finessAndHandle = 20f;
-        uniformityOfMicron = 10f;
-        uniformityOfLenght = 10f;
-        uniformityOfColor = 5f;
-        styleAndCharacter = 10f;
-        desity = 5f;
-        lusture = 15f;
-        lackOfGuardHair = 5f;
-        lackOfImpurities = 5f;
+        finessAndHandlePoints = 20f;
+        uniformityOfMicronPoints = 10f;
+        uniformityOfLenghtPoints = 10f;
+        uniformityOfColorPoints = 5f;
+        styleAndCharacterPoints = 10f;
+        desityPoints = 5f;
+        lusturePoints = 15f;
+        lackOfGuardHairPoints = 5f;
+        lackOfImpuritiesPoints = 5f;
 
         FleeceShowSuri fleeceShowSuri = new FleeceShowSuri(showEventKey, participantKey, animalKey, present, startNumber, dateOfBirth,
-                breed, sex, color, sheerDate, beforeSheerdate, fleeceWeight, finessAndHandle,
-                uniformityOfMicron, uniformityOfLenght, uniformityOfColor, styleAndCharacter, desity, lusture, lackOfGuardHair, lackOfImpurities);
+                breed, sex, color, sheerDate, beforeSheerdate, fleeceWeight, finessAndHandlePoints,
+                uniformityOfMicronPoints, uniformityOfLenghtPoints, uniformityOfColorPoints, styleAndCharacterPoints, desityPoints, lusturePoints, lackOfGuardHairPoints, lackOfImpuritiesPoints);
 
         assertEquals(showEventKey, fleeceShowSuri.getShowEventKey());
         assertEquals(participantKey, fleeceShowSuri.getParticipantKey());
@@ -86,16 +86,16 @@ public class FleeceShowSuriTest {
         assertEquals(fleeceWeight, fleeceShowSuri.getFleeceWeight(), delta);
         assertEquals(385, fleeceShowSuri.getFleeceGrowthInDays());
         assertEquals(5f, fleeceShowSuri.getFleeceWeightCorrection(), delta);
-        assertEquals(15.0f, fleeceShowSuri.getCleanFleeceWeight(), delta);
-        assertEquals(finessAndHandle, fleeceShowSuri.getFinessAndHandle(), delta);
-        assertEquals(uniformityOfMicron, fleeceShowSuri.getUniformityOfMicron(), delta);
-        assertEquals(uniformityOfLenght, fleeceShowSuri.getUniformityOfLenght(), delta);
-        assertEquals(uniformityOfColor, fleeceShowSuri.getUniformityOfColor(), delta);
-        assertEquals(styleAndCharacter, fleeceShowSuri.getStyleAndCharacter(), delta);
-        assertEquals(desity, fleeceShowSuri.getDesity(), delta);
-        assertEquals(lusture, fleeceShowSuri.getLusture(), delta);
-        assertEquals(lackOfGuardHair, fleeceShowSuri.getLackOfGuardHair(), delta);
-        assertEquals(lackOfImpurities, fleeceShowSuri.getLackOfImpurities(), delta);
-        assertEquals(100f, fleeceShowSuri.getTotal(), delta);
+        assertEquals(15.0f, fleeceShowSuri.getCleanFleeceWeightPoints(), delta);
+        assertEquals(finessAndHandlePoints, fleeceShowSuri.getFinessAndHandlePoints(), delta);
+        assertEquals(uniformityOfMicronPoints, fleeceShowSuri.getUniformityOfMicronPoints(), delta);
+        assertEquals(uniformityOfLenghtPoints, fleeceShowSuri.getUniformityOfLenghtPoints(), delta);
+        assertEquals(uniformityOfColorPoints, fleeceShowSuri.getUniformityOfColorPoints(), delta);
+        assertEquals(styleAndCharacterPoints, fleeceShowSuri.getStyleAndCharacterPoints(), delta);
+        assertEquals(desityPoints, fleeceShowSuri.getDesityPoints(), delta);
+        assertEquals(lusturePoints, fleeceShowSuri.getLusturePoints(), delta);
+        assertEquals(lackOfGuardHairPoints, fleeceShowSuri.getLackOfGuardHairPoints(), delta);
+        assertEquals(lackOfImpuritiesPoints, fleeceShowSuri.getLackOfImpuritiesPoints(), delta);
+        assertEquals(100f, fleeceShowSuri.getTotalPoints(), delta);
     }
 }

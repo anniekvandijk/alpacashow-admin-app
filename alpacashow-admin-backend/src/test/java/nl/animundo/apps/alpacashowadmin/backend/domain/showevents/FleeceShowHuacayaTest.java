@@ -24,15 +24,15 @@ public class FleeceShowHuacayaTest {
     private LocalDate sheerDate;
     private LocalDate beforeSheerdate;
     private float fleeceWeight;
-    private float finessAndHandle; // 20
-    private float uniformityOfMicron; //10
-    private float uniformityOfLenght; // 10
-    private float uniformityOfColor; // 5
-    private float character; // 10
-    private float stapleTypeDesity; // 5
-    private float brightness; // 10
-    private float lackOfGuardHair; // 10
-    private float lackOfImpurities; // 5
+    private float finessAndHandlePoints; // 20
+    private float uniformityOfMicronPoints; //10
+    private float uniformityOfLenghtPoints; // 10
+    private float uniformityOfColorPoints; // 5
+    private float characterPoints; // 10
+    private float stapleTypeDesityPoints; // 5
+    private float brightnessPoints; // 10
+    private float lackOfGuardHairPoints; // 10
+    private float lackOfImpuritiesPoints; // 5
     private float delta = 0.05f;
 
     @Rule
@@ -53,19 +53,19 @@ public class FleeceShowHuacayaTest {
         sheerDate = LocalDate.of(2016, 5, 1);
         beforeSheerdate = null;
         fleeceWeight = 7.0f;
-        finessAndHandle = 20f;
-        uniformityOfMicron = 10f;
-        uniformityOfLenght = 10f;
-        uniformityOfColor = 5f;
-        character = 10f;
-        stapleTypeDesity = 5f;
-        brightness = 10f;
-        lackOfGuardHair = 10f;
-        lackOfImpurities = 5f;
+        finessAndHandlePoints = 20f;
+        uniformityOfMicronPoints = 10f;
+        uniformityOfLenghtPoints = 10f;
+        uniformityOfColorPoints = 5f;
+        characterPoints = 10f;
+        stapleTypeDesityPoints = 5f;
+        brightnessPoints = 10f;
+        lackOfGuardHairPoints = 10f;
+        lackOfImpuritiesPoints = 5f;
 
         FleeceShowHuacaya fleeceShowHuacaya = new FleeceShowHuacaya(showEventKey, participantKey, animalKey, present, startNumber, dateOfBirth,
-                breed, sex, color, sheerDate, beforeSheerdate, fleeceWeight, finessAndHandle,
-                uniformityOfMicron, uniformityOfLenght, uniformityOfColor, character, stapleTypeDesity, brightness, lackOfGuardHair, lackOfImpurities);
+                breed, sex, color, sheerDate, beforeSheerdate, fleeceWeight, finessAndHandlePoints,
+                uniformityOfMicronPoints, uniformityOfLenghtPoints, uniformityOfColorPoints, characterPoints, stapleTypeDesityPoints, brightnessPoints, lackOfGuardHairPoints, lackOfImpuritiesPoints);
 
         assertEquals(showEventKey, fleeceShowHuacaya.getShowEventKey());
         assertEquals(participantKey, fleeceShowHuacaya.getParticipantKey());
@@ -83,16 +83,16 @@ public class FleeceShowHuacayaTest {
         assertEquals(fleeceWeight, fleeceShowHuacaya.getFleeceWeight(), delta);
         assertEquals(385, fleeceShowHuacaya.getFleeceGrowthInDays());
         assertEquals(5f, fleeceShowHuacaya.getFleeceWeightCorrection(), delta);
-        assertEquals(15.0f, fleeceShowHuacaya.getCleanFleeceWeight(), delta);
-        assertEquals(finessAndHandle, fleeceShowHuacaya.getFinessAndHandle(), delta);
-        assertEquals(uniformityOfMicron, fleeceShowHuacaya.getUniformityOfMicron(), delta);
-        assertEquals(uniformityOfLenght, fleeceShowHuacaya.getUniformityOfLenght(), delta);
-        assertEquals(uniformityOfColor, fleeceShowHuacaya.getUniformityOfColor(), delta);
-        assertEquals(character, fleeceShowHuacaya.getCharacter(), delta);
-        assertEquals(stapleTypeDesity, fleeceShowHuacaya.getStapleTypeDesity(), delta);
-        assertEquals(brightness, fleeceShowHuacaya.getBrightness(), delta);
-        assertEquals(lackOfGuardHair, fleeceShowHuacaya.getLackOfGuardHair(), delta);
-        assertEquals(lackOfImpurities, fleeceShowHuacaya.getLackOfImpurities(), delta);
-        assertEquals(100f, fleeceShowHuacaya.getTotal(), delta);
+        assertEquals(15.0f, fleeceShowHuacaya.getCleanFleeceWeightPoints(), delta);
+        assertEquals(finessAndHandlePoints, fleeceShowHuacaya.getFinessAndHandlePoints(), delta);
+        assertEquals(uniformityOfMicronPoints, fleeceShowHuacaya.getUniformityOfMicronPoints(), delta);
+        assertEquals(uniformityOfLenghtPoints, fleeceShowHuacaya.getUniformityOfLenghtPoints(), delta);
+        assertEquals(uniformityOfColorPoints, fleeceShowHuacaya.getUniformityOfColorPoints(), delta);
+        assertEquals(characterPoints, fleeceShowHuacaya.getCharacterPoints(), delta);
+        assertEquals(stapleTypeDesityPoints, fleeceShowHuacaya.getStapleTypeDesityPoints(), delta);
+        assertEquals(brightnessPoints, fleeceShowHuacaya.getBrightnessPoints(), delta);
+        assertEquals(lackOfGuardHairPoints, fleeceShowHuacaya.getLackOfGuardHairPoints(), delta);
+        assertEquals(lackOfImpuritiesPoints, fleeceShowHuacaya.getLackOfImpuritiesPoints(), delta);
+        assertEquals(100f, fleeceShowHuacaya.getTotalPoints(), delta);
     }
 }

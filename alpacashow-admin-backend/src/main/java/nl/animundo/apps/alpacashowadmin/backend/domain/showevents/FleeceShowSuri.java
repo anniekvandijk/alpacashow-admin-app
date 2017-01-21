@@ -12,106 +12,106 @@ import java.time.LocalDate;
 public class FleeceShowSuri extends FleeceShow {
     private static Logger logger = LoggerFactory.getLogger(ShowEventAnimal.class);
 
-    private float finessAndHandle; // 20
-    private float uniformityOfMicron; //10
-    private float uniformityOfLenght; // 10
-    private float uniformityOfColor; // 5
-    private float styleAndCharacter; // 10
-    private float desity; // 5
-    private float lusture; // 15
-    private float lackOfGuardHair; // 5
-    private float lackOfImpurities; // 5
-    private float cleanFleeceWeight; // 15
-    private float total; // 100
+    private float finessAndHandlePoints; // 20
+    private float uniformityOfMicronPoints; //10
+    private float uniformityOfLenghtPoints; // 10
+    private float uniformityOfColorPoints; // 5
+    private float styleAndCharacterPoints; // 10
+    private float desityPoints; // 5
+    private float lusturePoints; // 15
+    private float lackOfGuardHairPoints; // 5
+    private float lackOfImpuritiesPoints; // 5
+    private float cleanFleeceWeightPoints; // 15
+    private float totalPoints; // 100
 
     public FleeceShowSuri(final String showEventKey, final String participantKey, final String animalKey, final boolean present, final int startNumber,
                           final LocalDate dateOfBirth, final BreedClass breed, final SexClass sex, final ColorClass color,
                           final LocalDate sheerDate, final LocalDate beforeSheerdate, final float fleeceWeight,
-                          final float finessAndHandle, final float uniformityOfMicron,
-                          final float uniformityOfLenght, final float uniformityOfColor, final float styleAndCharacter, final float desity,
-                          final float lusture, final float lackOfGuardHair, final float lackOfImpurities) throws IOException {
+                          final float finessAndHandlePoints, final float uniformityOfMicronPoints,
+                          final float uniformityOfLenghtPoints, final float uniformityOfColorPoints, final float styleAndCharacterPoints, final float desityPoints,
+                          final float lusturePoints, final float lackOfGuardHairPoints, final float lackOfImpuritiesPoints) throws IOException {
         super(showEventKey, participantKey, animalKey, present, startNumber, dateOfBirth, breed, sex, color,
                 sheerDate, beforeSheerdate, fleeceWeight);
-        this.finessAndHandle = finessAndHandle;
-        this.uniformityOfMicron = uniformityOfMicron;
-        this.uniformityOfLenght = uniformityOfLenght;
-        this.uniformityOfColor = uniformityOfColor;
-        this.styleAndCharacter = styleAndCharacter;
-        this.desity = desity;
-        this.lusture = lusture;
-        this.lackOfGuardHair = lackOfGuardHair;
-        this.lackOfImpurities = lackOfImpurities;
-        cleanFleeceWeight = ShowFleeceService.getCleanFleeceWeightPoints(dateOfBirth, sheerDate, beforeSheerdate, breed, fleeceWeight);
-        total = finessAndHandle +
-                uniformityOfMicron +
-                uniformityOfLenght +
-                uniformityOfColor +
-                styleAndCharacter +
-                desity +
-                lusture +
-                lackOfGuardHair +
-                lackOfImpurities +
-                cleanFleeceWeight;
+        this.finessAndHandlePoints = finessAndHandlePoints;
+        this.uniformityOfMicronPoints = uniformityOfMicronPoints;
+        this.uniformityOfLenghtPoints = uniformityOfLenghtPoints;
+        this.uniformityOfColorPoints = uniformityOfColorPoints;
+        this.styleAndCharacterPoints = styleAndCharacterPoints;
+        this.desityPoints = desityPoints;
+        this.lusturePoints = lusturePoints;
+        this.lackOfGuardHairPoints = lackOfGuardHairPoints;
+        this.lackOfImpuritiesPoints = lackOfImpuritiesPoints;
+        cleanFleeceWeightPoints = ShowFleeceService.getCleanFleeceWeightPoints(dateOfBirth, sheerDate, beforeSheerdate, breed, fleeceWeight);
+        totalPoints = finessAndHandlePoints +
+                uniformityOfMicronPoints +
+                uniformityOfLenghtPoints +
+                uniformityOfColorPoints +
+                styleAndCharacterPoints +
+                desityPoints +
+                lusturePoints +
+                lackOfGuardHairPoints +
+                lackOfImpuritiesPoints +
+                cleanFleeceWeightPoints;
     }
 
     private FleeceShowSuri(final String showEventKey, final String participantKey, final String animalKey, final boolean present, final int startNumber,
                           final LocalDate dateOfBirth, final BreedClass breed, final SexClass sex, final ColorClass color,
                           final LocalDate sheerDate, final LocalDate beforeSheerdate, final float fleeceWeight,
-                          final float finessAndHandle, final float uniformityOfMicron,
-                          final float uniformityOfLenght, final float uniformityOfColor, final float styleAndCharacter, final float desity,
-                          final float lusture, final float lackOfGuardHair, final float lackOfImpurities, final float cleanFleeceWeight, final float total) throws IOException {
+                          final float finessAndHandlePoints, final float uniformityOfMicronPoints,
+                          final float uniformityOfLenghtPoints, final float uniformityOfColorPoints, final float styleAndCharacterPoints, final float desityPoints,
+                          final float lusturePoints, final float lackOfGuardHairPoints, final float lackOfImpuritiesPoints, final float cleanFleeceWeightPoints, final float totalPoints) throws IOException {
         super(showEventKey, participantKey, animalKey, present, startNumber, dateOfBirth, breed, sex, color,
                 sheerDate, beforeSheerdate, fleeceWeight);
-        this.finessAndHandle = finessAndHandle;
-        this.uniformityOfMicron = uniformityOfMicron;
-        this.uniformityOfLenght = uniformityOfLenght;
-        this.uniformityOfColor = uniformityOfColor;
-        this.styleAndCharacter = styleAndCharacter;
-        this.desity = desity;
-        this.lusture = lusture;
-        this.lackOfGuardHair = lackOfGuardHair;
-        this.lackOfImpurities = lackOfImpurities;
-        this.cleanFleeceWeight = cleanFleeceWeight;
-        this.total = total;
+        this.finessAndHandlePoints = finessAndHandlePoints;
+        this.uniformityOfMicronPoints = uniformityOfMicronPoints;
+        this.uniformityOfLenghtPoints = uniformityOfLenghtPoints;
+        this.uniformityOfColorPoints = uniformityOfColorPoints;
+        this.styleAndCharacterPoints = styleAndCharacterPoints;
+        this.desityPoints = desityPoints;
+        this.lusturePoints = lusturePoints;
+        this.lackOfGuardHairPoints = lackOfGuardHairPoints;
+        this.lackOfImpuritiesPoints = lackOfImpuritiesPoints;
+        this.cleanFleeceWeightPoints = cleanFleeceWeightPoints;
+        this.totalPoints = totalPoints;
     }
 
-    public float getFinessAndHandle() {
-        return finessAndHandle;
+    public float getFinessAndHandlePoints() {
+        return finessAndHandlePoints;
     }
 
-    public float getUniformityOfMicron() {
-        return uniformityOfMicron;
+    public float getUniformityOfMicronPoints() {
+        return uniformityOfMicronPoints;
     }
 
-    public float getUniformityOfLenght() {
-        return uniformityOfLenght;
+    public float getUniformityOfLenghtPoints() {
+        return uniformityOfLenghtPoints;
     }
 
-    public float getUniformityOfColor() {
-        return uniformityOfColor;
+    public float getUniformityOfColorPoints() {
+        return uniformityOfColorPoints;
     }
 
-    public float getStyleAndCharacter() {
-        return styleAndCharacter;
+    public float getStyleAndCharacterPoints() {
+        return styleAndCharacterPoints;
     }
 
-    public float getDesity() {
-        return desity;
+    public float getDesityPoints() {
+        return desityPoints;
     }
 
-    public float getLusture() {
-        return lusture;
+    public float getLusturePoints() {
+        return lusturePoints;
     }
 
-    public float getLackOfGuardHair() {
-        return lackOfGuardHair;
+    public float getLackOfGuardHairPoints() {
+        return lackOfGuardHairPoints;
     }
 
-    public float getLackOfImpurities() {
-        return lackOfImpurities;
+    public float getLackOfImpuritiesPoints() {
+        return lackOfImpuritiesPoints;
     }
 
-    public float getCleanFleeceWeight() { return cleanFleeceWeight; }
+    public float getCleanFleeceWeightPoints() { return cleanFleeceWeightPoints; }
 
-    public float getTotal() { return total; }
+    public float getTotalPoints() { return totalPoints; }
 }
