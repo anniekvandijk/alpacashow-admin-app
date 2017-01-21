@@ -50,80 +50,40 @@ public class FleeceShowHuacaya extends FleeceShow {
         return finessAndHandle;
     }
 
-    public void setFinessAndHandle(float finessAndHandle) {
-        this.finessAndHandle = finessAndHandle;
-    }
-
     public float getUniformityOfMicron() {
         return uniformityOfMicron;
-    }
-
-    public void setUniformityOfMicron(float uniformityOfMicron) {
-        this.uniformityOfMicron = uniformityOfMicron;
     }
 
     public float getUniformityOfLenght() {
         return uniformityOfLenght;
     }
 
-    public void setUniformityOfLenght(float uniformityOfLenght) {
-        this.uniformityOfLenght = uniformityOfLenght;
-    }
-
     public float getUniformityOfColor() {
         return uniformityOfColor;
-    }
-
-    public void setUniformityOfColor(float uniformityOfColor) {
-        this.uniformityOfColor = uniformityOfColor;
     }
 
     public float getCharacter() {
         return character;
     }
 
-    public void setCharacter(float character) {
-        this.character = character;
-    }
-
     public float getStapleTypeDesity() {
         return stapleTypeDesity;
-    }
-
-    public void setStapleTypeDesity(float stapleTypeDesity) {
-        this.stapleTypeDesity = stapleTypeDesity;
     }
 
     public float getBrightness() {
         return brightness;
     }
 
-    public void setBrightness(float brightness) {
-        this.brightness = brightness;
-    }
-
     public float getLackOfGuardHair() {
         return lackOfGuardHair;
-    }
-
-    public void setLackOfGuardHair(float lackOfGuardHair) {
-        this.lackOfGuardHair = lackOfGuardHair;
     }
 
     public float getLackOfImpurities() {
         return lackOfImpurities;
     }
 
-    public void setLackOfImpurities(float lackOfImpurities) {
-        this.lackOfImpurities = lackOfImpurities;
-    }
-
     public float getCleanFleeceWeight() {
         return cleanFleeceWeight;
-    }
-
-    public void setCleanFleeceWeight(float cleanFleeceWeight) {
-        this.cleanFleeceWeight = cleanFleeceWeight;
     }
 
     public float getTotal() {

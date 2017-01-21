@@ -89,40 +89,69 @@ public class ShowFleeceServiceTest {
     @Test
     public void fleeceGrowthInDays () throws IOException {
 
+        fleeceWeight = 1.567f;
+        dateOfBirth = LocalDate.of(2012, 8, 13);
         sheerDate = LocalDate.of(2013, 5, 25);
         beforeSheerDate = LocalDate.of(2012, 5, 13);
+        breed = BreedClass.SURI_FLEECE;
         fleeceGrowthInDays = 377;
 
-        assertEquals(fleeceGrowthInDays,ShowFleeceService.fleeceGrowthInDays(sheerDate,beforeSheerDate));
+        Animal animal = new Animal("Animal", breed, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth,
+                "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, beforeSheerDate));
+
+
+        assertEquals(fleeceGrowthInDays,ShowFleeceService.fleeceGrowthInDays(animal));
     }
 
     @Test
     public void fleeceGrowthInDays2 () throws IOException {
 
+        fleeceWeight = 1.567f;
+        dateOfBirth = LocalDate.of(2012, 8, 13);
         sheerDate = LocalDate.of(2013, 5, 1);
         beforeSheerDate = LocalDate.of(2012, 7, 30);
+        breed = BreedClass.SURI_FLEECE;
         fleeceGrowthInDays = 275;
 
-        assertEquals(fleeceGrowthInDays,ShowFleeceService.fleeceGrowthInDays(sheerDate,beforeSheerDate));
+        Animal animal = new Animal("Animal", breed, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth,
+                "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, beforeSheerDate));
+
+        assertEquals(fleeceGrowthInDays,ShowFleeceService.fleeceGrowthInDays(animal));
     }
 
     @Test
     public void fleeceWeightCorrection () throws IOException {
 
         fleeceWeight = 1.567f;
-        fleeceGrowthInDays = 377;
-        cleanFleeceWeight = "1.5";
+        dateOfBirth = LocalDate.of(2012, 8, 13);
+        sheerDate = LocalDate.of(2013, 5, 1);
+        beforeSheerDate = LocalDate.of(2012, 4, 30);
+        breed = BreedClass.SURI_FLEECE;
+        cleanFleeceWeight = "1.6";
 
-        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(fleeceGrowthInDays, fleeceWeight));
+        Animal animal = new Animal("Animal", breed, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth,
+                "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, beforeSheerDate));
+
+        fleeceGrowthInDays = ShowFleeceService.fleeceGrowthInDays(animal);
+
+        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(animal, fleeceWeight));
     }
 
     @Test
     public void fleeceWeightCorrection2 () throws IOException {
 
         fleeceWeight = 1.567f;
-        fleeceGrowthInDays = 275;
+        dateOfBirth = LocalDate.of(2012, 8, 13);
+        sheerDate = LocalDate.of(2013, 5, 1);
+        beforeSheerDate = LocalDate.of(2012, 7, 30);
+        breed = BreedClass.SURI_FLEECE;
         cleanFleeceWeight = "2.1";
 
-        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(fleeceGrowthInDays, fleeceWeight));
+        Animal animal = new Animal("Animal", breed, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth,
+                "1", null, "dad", "mom", new AnimalShowDetail(sheerDate, beforeSheerDate));
+
+        fleeceGrowthInDays = ShowFleeceService.fleeceGrowthInDays(animal);
+
+        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(animal, fleeceWeight));
     }
 }

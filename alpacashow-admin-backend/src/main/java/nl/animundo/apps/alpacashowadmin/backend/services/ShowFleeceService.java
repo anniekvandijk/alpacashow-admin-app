@@ -29,7 +29,6 @@ public class ShowFleeceService {
 
         LocalDate dateOfBirth = animal.getDateOfBirth();
         LocalDate sheerDate = animal.getAnimalShowDetail().getSheerDate();
-        LocalDate beforeSheerDate = animal.getAnimalShowDetail().getBeforeSheerDate();
         BreedClass breed = animal.getBreed();
 
         if (breed.equals(BreedClass.HUACAYA_FLEECE))
@@ -41,12 +40,7 @@ public class ShowFleeceService {
             breed = BreedClass.SURI;
         }
 
-        if (beforeSheerDate == null) {
-            beforeSheerDate = dateOfBirth;
-        }
-
-        int fleeceGrowthInDays = fleeceGrowthInDays(sheerDate, beforeSheerDate);
-        String cleanFleeceWeight = fleeceWeightCorrection(fleeceGrowthInDays, fleeceweight);
+        String cleanFleeceWeight = fleeceWeightCorrection(animal, fleeceweight);
         AgeClass ageClass = AgeClassService.getAgeClass(sheerDate, dateOfBirth);
 
         float weightPoints = 0.0f;
@@ -63,12 +57,22 @@ public class ShowFleeceService {
     }
 
 
-    public static int fleeceGrowthInDays (LocalDate sheerDate, LocalDate beforeSheerDateOrDateOfBirth) {
-        return (int) ChronoUnit.DAYS.between(beforeSheerDateOrDateOfBirth, sheerDate);
+    public static int fleeceGrowthInDays (Animal animal) {
+
+        LocalDate dateOfBirth = animal.getDateOfBirth();
+        LocalDate sheerDate = animal.getAnimalShowDetail().getSheerDate();
+        LocalDate beforeSheerDate = animal.getAnimalShowDetail().getBeforeSheerDate();
+
+        if (beforeSheerDate == null) {
+            beforeSheerDate = dateOfBirth;
+        }
+
+        return (int) ChronoUnit.DAYS.between(beforeSheerDate, sheerDate);
     }
 
-    public static String fleeceWeightCorrection (int fleeceGrowthInDays, float fleeceweight) {
+    public static String fleeceWeightCorrection (Animal animal, float fleeceweight) {
 
+        int fleeceGrowthInDays = fleeceGrowthInDays(animal);
         float weightcorrection = (fleeceweight*365)/fleeceGrowthInDays;
 
         // Convert cleanFleeceWeight to String with dot as seperator
