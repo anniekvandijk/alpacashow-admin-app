@@ -5,6 +5,7 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimal;
+import nl.animundo.apps.alpacashowadmin.backend.services.ShowFleeceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,12 +18,12 @@ public class FleeceShow extends Show {
     private LocalDate beforeSheerdate;
     private float fleeceWeight;
     private int fleeceGrowthInDays;
-    private float fleeceWeightCorrection;
+    private String fleeceWeightCorrection;
 
     public FleeceShow(final String showEventKey, final String participantKey, final String animalKey, final boolean present, final int startNumber,
                       final LocalDate dateOfBirth, final BreedClass breed, final AgeSexClass ageClass, final SexClass sex, final ColorClass color,
                       final int showClass, final LocalDate sheerDate, final LocalDate beforeSheerdate, final float fleeceWeight,
-                      final int fleeceGrowthInDays, final float fleeceWeightCorrection) {
+                      final int fleeceGrowthInDays, final String fleeceWeightCorrection) {
         super(showEventKey, participantKey, animalKey, present, startNumber, dateOfBirth, breed, ageClass, sex, color, showClass);
         this.sheerDate = sheerDate;
         this.beforeSheerdate = beforeSheerdate;
@@ -44,11 +45,12 @@ public class FleeceShow extends Show {
     }
 
     public int getFleeceGrowthInDays() {
-        
+        fleeceGrowthInDays = ShowFleeceService.fleeceGrowthInDays(getDateOfBirth(), getSheerDate(), getBeforeSheerdate());
         return fleeceGrowthInDays;
     }
 
-    public float getFleeceWeightCorrection() {
+    public String getFleeceWeightCorrection() {
+        fleeceWeightCorrection = ShowFleeceService.fleeceWeightCorrection(getDateOfBirth(), getSheerDate(), getBeforeSheerdate(), getFleeceWeight());
         return fleeceWeightCorrection;
     }
 }

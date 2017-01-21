@@ -5,9 +5,11 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimal;
+import nl.animundo.apps.alpacashowadmin.backend.services.ShowFleeceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class FleeceShowHuacaya extends FleeceShow {
@@ -28,7 +30,7 @@ public class FleeceShowHuacaya extends FleeceShow {
     public FleeceShowHuacaya(final String showEventKey, final String participantKey, final String animalKey, final boolean present, final int startNumber,
                              final LocalDate dateOfBirth, final BreedClass breed, final AgeSexClass ageClass, final SexClass sex, final ColorClass color,
                              final int showClass, final LocalDate sheerDate, final LocalDate beforeSheerdate, final float fleeceWeight,
-                             final int fleeceGrowthInDays, final float fleeceWeightCorrection, final float finessAndHandle, final float uniformityOfMicron,
+                             final int fleeceGrowthInDays, final String fleeceWeightCorrection, final float finessAndHandle, final float uniformityOfMicron,
                              final float uniformityOfLenght, final float uniformityOfColor, final float character, final float stapleTypeDesity,
                              final float brightness, final float lackOfGuardHair, final float lackOfImpurities, final float cleanFleeceWeight, final float total) {
         super(showEventKey, participantKey, animalKey, present, startNumber, dateOfBirth, breed, ageClass, sex, color,
@@ -82,7 +84,8 @@ public class FleeceShowHuacaya extends FleeceShow {
         return lackOfImpurities;
     }
 
-    public float getCleanFleeceWeight() {
+    public float getCleanFleeceWeight() throws IOException {
+        cleanFleeceWeight = ShowFleeceService.getCleanFleeceWeightPoints(getDateOfBirth(), getSheerDate(), getBeforeSheerdate(), getBreed(), getFleeceWeight());
         return cleanFleeceWeight;
     }
 
