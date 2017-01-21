@@ -34,9 +34,6 @@ public class ShowFleeceService {
 
         float cleanFleeceWeight = fleeceWeightCorrection(dateOfBirth, sheerDate, beforeSheerDate, fleeceweight);
 
-        if (cleanFleeceWeight > 5.0f) {
-            cleanFleeceWeight = 5.0f;
-        }
         // Convert cleanFleeceWeight to String with dot as seperator
         DecimalFormat decimalFormat = new DecimalFormat("#.0");
         String cleanFleeceWeightConvert = decimalFormat.format(cleanFleeceWeight);
@@ -70,6 +67,12 @@ public class ShowFleeceService {
     public static float fleeceWeightCorrection (LocalDate dateOfBirth, LocalDate sheerDate, LocalDate beforeSheerDate, float fleeceweight) {
 
         int fleeceGrowthInDays = fleeceGrowthInDays(dateOfBirth, sheerDate, beforeSheerDate);
-        return (fleeceweight*365)/fleeceGrowthInDays;
+        float cleanFleeceWeight = (fleeceweight*365)/fleeceGrowthInDays;
+
+        if (cleanFleeceWeight > 5.0f) {
+            cleanFleeceWeight = 5.0f;
+        }
+        return cleanFleeceWeight;
+
     }
 }

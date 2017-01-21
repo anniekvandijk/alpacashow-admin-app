@@ -25,13 +25,43 @@ public class FleeceShowSuri extends FleeceShow {
     private float total; // 100
 
     public FleeceShowSuri(final String showEventKey, final String participantKey, final String animalKey, final boolean present, final int startNumber,
-                          final LocalDate dateOfBirth, final BreedClass breed, final AgeClass ageClass, final SexClass sex, final ColorClass color,
-                          final int showClass, final LocalDate sheerDate, final LocalDate beforeSheerdate, final float fleeceWeight,
-                          final int fleeceGrowthInDays, final float fleeceWeightCorrection, final float finessAndHandle, final float uniformityOfMicron,
+                          final LocalDate dateOfBirth, final BreedClass breed, final SexClass sex, final ColorClass color,
+                          final LocalDate sheerDate, final LocalDate beforeSheerdate, final float fleeceWeight,
+                          final float finessAndHandle, final float uniformityOfMicron,
                           final float uniformityOfLenght, final float uniformityOfColor, final float styleAndCharacter, final float desity,
-                          final float lusture, final float lackOfGuardHair, final float lackOfImpurities, final float cleanFleeceWeight, final float total) {
-        super(showEventKey, participantKey, animalKey, present, startNumber, dateOfBirth, breed, ageClass, sex, color,
-                showClass, sheerDate, beforeSheerdate, fleeceWeight, fleeceGrowthInDays, fleeceWeightCorrection);
+                          final float lusture, final float lackOfGuardHair, final float lackOfImpurities) throws IOException {
+        super(showEventKey, participantKey, animalKey, present, startNumber, dateOfBirth, breed, sex, color,
+                sheerDate, beforeSheerdate, fleeceWeight);
+        this.finessAndHandle = finessAndHandle;
+        this.uniformityOfMicron = uniformityOfMicron;
+        this.uniformityOfLenght = uniformityOfLenght;
+        this.uniformityOfColor = uniformityOfColor;
+        this.styleAndCharacter = styleAndCharacter;
+        this.desity = desity;
+        this.lusture = lusture;
+        this.lackOfGuardHair = lackOfGuardHair;
+        this.lackOfImpurities = lackOfImpurities;
+        cleanFleeceWeight = ShowFleeceService.getCleanFleeceWeightPoints(dateOfBirth, sheerDate, beforeSheerdate, breed, fleeceWeight);
+        total = finessAndHandle +
+                uniformityOfMicron +
+                uniformityOfLenght +
+                uniformityOfColor +
+                styleAndCharacter +
+                desity +
+                lusture +
+                lackOfGuardHair +
+                lackOfImpurities +
+                cleanFleeceWeight;
+    }
+
+    private FleeceShowSuri(final String showEventKey, final String participantKey, final String animalKey, final boolean present, final int startNumber,
+                          final LocalDate dateOfBirth, final BreedClass breed, final SexClass sex, final ColorClass color,
+                          final LocalDate sheerDate, final LocalDate beforeSheerdate, final float fleeceWeight,
+                          final float finessAndHandle, final float uniformityOfMicron,
+                          final float uniformityOfLenght, final float uniformityOfColor, final float styleAndCharacter, final float desity,
+                          final float lusture, final float lackOfGuardHair, final float lackOfImpurities, final float cleanFleeceWeight, final float total) throws IOException {
+        super(showEventKey, participantKey, animalKey, present, startNumber, dateOfBirth, breed, sex, color,
+                sheerDate, beforeSheerdate, fleeceWeight);
         this.finessAndHandle = finessAndHandle;
         this.uniformityOfMicron = uniformityOfMicron;
         this.uniformityOfLenght = uniformityOfLenght;
@@ -81,22 +111,11 @@ public class FleeceShowSuri extends FleeceShow {
         return lackOfImpurities;
     }
 
-    public float getCleanFleeceWeight() throws IOException {
-        cleanFleeceWeight = ShowFleeceService.getCleanFleeceWeightPoints(getDateOfBirth(), getSheerDate(), getBeforeSheerdate(), getBreed(), getFleeceWeight());
+    public float getCleanFleeceWeight() {
         return cleanFleeceWeight;
     }
 
     public float getTotal() {
-        total = finessAndHandle +
-                uniformityOfMicron +
-                uniformityOfLenght +
-                uniformityOfColor +
-                styleAndCharacter +
-                desity +
-                lusture +
-                lackOfGuardHair +
-                lackOfImpurities +
-                cleanFleeceWeight;
         return total;
     }
 }
