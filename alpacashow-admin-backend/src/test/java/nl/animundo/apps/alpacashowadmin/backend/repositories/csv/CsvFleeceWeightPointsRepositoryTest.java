@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 public class CsvFleeceWeightPointsRepositoryTest {
 
     final String workingDir = System.getProperty("user.dir");
-    final String testFileDir = "/src/test/resources/csv/helpfiles/";
+    final String testFileDir = "/src/test/resources/csv/json.helpfiles/";
 
 
     @Rule
