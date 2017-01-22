@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 public class JsonFileReaderHelper {
 
     static final String workingDir = System.getProperty("user.dir");
-    static final String testFileDir = "/src/test/resources/json/";
+    static final String testFileDir = "/src/test/resources/testdata/json/";
 
     public static String readJsonfile(String fileName) throws IOException {
         File file = new File(workingDir + testFileDir + fileName);
