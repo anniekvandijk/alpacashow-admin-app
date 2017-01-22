@@ -1,7 +1,7 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain.showevents;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.*;
-import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimal;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalDetail;
 import nl.animundo.apps.alpacashowadmin.backend.services.ShowFleeceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class FleeceShowHuacaya extends FleeceShow {
-    private static Logger logger = LoggerFactory.getLogger(ShowEventAnimal.class);
+    private static Logger logger = LoggerFactory.getLogger(ShowEventAnimalDetail.class);
 
     private float finessAndHandlePoints; // 20
     private float uniformityOfMicronPoints; //10

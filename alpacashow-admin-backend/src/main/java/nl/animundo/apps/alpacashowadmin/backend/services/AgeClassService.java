@@ -24,7 +24,7 @@ public class AgeClassService {
         LocalDate showEventDate = showEvent.getDate();
         ShowType showType = showEvent.getShowType();
         LocalDate dateOfBirth = animal.getDateOfBirth();
-        LocalDate sheerDate = animal.getAnimalShowDetail().getSheerDate();
+        LocalDate sheerDate = animal.getShowEventAnimalDetail().getSheerDate();
 
         if (sheerDate != null) {
             if (sheerDate.isBefore(dateOfBirth)) {
@@ -37,9 +37,11 @@ public class AgeClassService {
         }
         if (sheerDate == null)
         {
-            long yearsBetweenShowAndDateOfBirth = ChronoUnit.YEARS.between(dateOfBirth, showEventDate);
-            if (yearsBetweenShowAndDateOfBirth >= 3) {
-                throw new IllegalArgumentException("Sheerdate must be filled if date of birth is more than 3 years ago");
+            if (ShowType.FLEECESHOW.equals(showEvent.getShowType())) {
+                long yearsBetweenShowAndDateOfBirth = ChronoUnit.YEARS.between(dateOfBirth, showEventDate);
+                if (yearsBetweenShowAndDateOfBirth >= 3) {
+                    throw new IllegalArgumentException("Sheerdate must be filled if date of birth is more than 3 years ago");
+                }
             }
         }
 

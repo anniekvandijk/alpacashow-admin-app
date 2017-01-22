@@ -27,6 +27,8 @@ public class AnimalController {
 
     // TODO: if response != 200, put some information in the response body what went wrong.
 
+    // TODO Don't sent detail with animal. This is for ShowAnimals Only
+
     @GET
     @ApiOperation(value = "Get all animals",
             response = Animal.class,

@@ -10,6 +10,8 @@
   "dam": "Moeder",
   "animalShowDetail": {
     "sheerDate": null,
-    "beforeSheerDate": null
+    "beforeSheerDate": null,
+    "ageClass":null,
+    "showClass":0
   }
 }

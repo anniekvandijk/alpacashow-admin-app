@@ -11,7 +11,9 @@
     "dam": "Moeder",
     "animalShowDetail": {
       "sheerDate": null,
-      "beforeSheerDate": null
+      "beforeSheerDate": null,
+      "ageClass":null,
+      "showClass":0
     }
   },
   {
@@ -26,7 +28,9 @@
     "dam": "Moeder2",
     "animalShowDetail": {
       "sheerDate": null,
-      "beforeSheerDate": null
+      "beforeSheerDate": null,
+      "ageClass":null,
+      "showClass":0
     }
   },
   {
@@ -41,7 +45,9 @@
     "dam": "Moeder",
     "animalShowDetail": {
       "sheerDate": null,
-      "beforeSheerDate": null
+      "beforeSheerDate": null,
+      "ageClass":null,
+      "showClass":0
     }
   },
   {
@@ -49,14 +55,16 @@
     "breed": "Suri",
     "sex": "Male",
     "color": "Fancy",
-    "dateOfBirth": "2016-07-06",
+    "dateOfBirth": "2015-04-06",
     "microchip": "5555",
     "registration": "BAF12346",
     "sire": "Vader2",
     "dam": "Moeder2",
     "animalShowDetail": {
       "sheerDate": null,
-      "beforeSheerDate": null
+      "beforeSheerDate": null,
+      "ageClass":null,
+      "showClass":0
     }
   },
   {
@@ -71,7 +79,9 @@
     "dam": "Moeder2",
     "animalShowDetail": {
       "sheerDate": null,
-      "beforeSheerDate": null
+      "beforeSheerDate": null,
+      "ageClass":null,
+      "showClass":0
     }
   }
 ]

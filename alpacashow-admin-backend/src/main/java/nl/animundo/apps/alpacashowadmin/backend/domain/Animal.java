@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.AnimalShowDetail;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalDetail;
 import nl.animundo.apps.alpacashowadmin.backend.utilities.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
@@ -32,12 +32,13 @@ public class Animal {
     private String registration;
     private String sire;
     private String dam;
-    private AnimalShowDetail animalShowDetail;
+    private ShowEventAnimalDetail showEventAnimalDetail;
 
     public Animal (final String name, final BreedClass breed, final SexClass sex, final ColorClass color, final LocalDate dateOfBirth,
                    final String microchip, final String registration, final String sire, final String dam)
     {
-        this(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, new AnimalShowDetail(null, null));
+        this(name, breed, sex, color, dateOfBirth, microchip,
+                registration, sire, dam, new ShowEventAnimalDetail(null, null, null, null, null, null, 0));
     }
 
     @JsonCreator
@@ -45,7 +46,7 @@ public class Animal {
                   @JsonProperty("sex") final SexClass sex, @JsonProperty("color") final ColorClass color,
                   @JsonProperty("dateOfBirth") final LocalDate dateOfBirth, @JsonProperty("microchip") final String microchip,
                   @JsonProperty("registration") final String registration, @JsonProperty("sire") final String sire,
-                  @JsonProperty("dam") final String dam, @JsonProperty("animalShowDetail") final AnimalShowDetail animalShowDetail) {
+                  @JsonProperty("dam") final String dam, @JsonProperty("showEventAnimalDetail") ShowEventAnimalDetail showEventAnimalDetail) {
 
         final String nameCln = StringUtils.trimToNull(name);
         if (nameCln == null) {
@@ -86,7 +87,7 @@ public class Animal {
         this.registration = registrationCln;
         this.sire = sireCln;
         this.dam = damCln;
-        this.animalShowDetail = animalShowDetail;
+        this.showEventAnimalDetail = showEventAnimalDetail;
     }
 
     public String getName() {
@@ -125,8 +126,11 @@ public class Animal {
         return dam;
     }
 
-    public AnimalShowDetail getAnimalShowDetail() {
-        return animalShowDetail;
+    public ShowEventAnimalDetail getShowEventAnimalDetail() {
+        return showEventAnimalDetail;
     }
 
+    public void setShowEventAnimalDetail(ShowEventAnimalDetail showEventAnimalDetail) {
+        this.showEventAnimalDetail = showEventAnimalDetail;
+    }
 }

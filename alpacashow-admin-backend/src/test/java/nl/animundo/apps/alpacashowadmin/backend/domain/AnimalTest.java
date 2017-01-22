@@ -3,7 +3,7 @@ package nl.animundo.apps.alpacashowadmin.backend.domain;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.AnimalShowDetail;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalDetail;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -23,7 +23,7 @@ public class AnimalTest {
     private String registration;
     private String sire;
     private String dam;
-    private AnimalShowDetail animalShowDetail;
+    private ShowEventAnimalDetail showEventAnimalDetail;
     private LocalDate sheerDate;
     private LocalDate beforeSheerDate;
 
@@ -71,12 +71,12 @@ public class AnimalTest {
         dam                 = "Alpaca mother";
         sheerDate           = LocalDate.of(2016, 5, 1);
         beforeSheerDate     = LocalDate.of(2015, 4, 27);
-        animalShowDetail = new AnimalShowDetail(sheerDate, beforeSheerDate);
+        showEventAnimalDetail = new ShowEventAnimalDetail(sheerDate, beforeSheerDate);
 
-        Animal animal = new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, animalShowDetail);
+        Animal animal = new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam, showEventAnimalDetail);
 
-        assertEquals(sheerDate, animalShowDetail.getSheerDate());
-        assertEquals(beforeSheerDate, animalShowDetail.getBeforeSheerDate());
+        assertEquals(sheerDate, showEventAnimalDetail.getSheerDate());
+        assertEquals(beforeSheerDate, showEventAnimalDetail.getBeforeSheerDate());
     }
 
     @Test

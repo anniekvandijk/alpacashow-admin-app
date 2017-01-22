@@ -1,11 +1,14 @@
 package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.*;
-import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.AnimalShowDetail;
-import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimal;
+import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalDetail;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventParticipant;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventParticipantAnimal;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.*;
+import nl.animundo.apps.alpacashowadmin.backend.services.AgeClassService;
+import nl.animundo.apps.alpacashowadmin.backend.services.ShowClassService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.*;
@@ -20,7 +23,8 @@ public class ApplicationRepositoryService {
     private ParticipantRepository participantRepository;
     private AnimalRepository animalRepository;
     private ShowEventParticipantRepository showEventParticipantRepository;
-    private ShowEventAnimalRepository showEventAnimalRepository;
+    private ShowEventParticipantAnimalRepository showEventParticipantAnimalRepository;
+    private ShowEventAnimalDetailRepository showEventAnimalDetailRepository;
     private FleeceWeightPointsRepository fleeceWeightPointsRepository;
 
     public ShowEventRepository loadShowEventRepository() throws IOException {
@@ -64,14 +68,24 @@ public class ApplicationRepositoryService {
         return showEventParticipantRepository;
     }
 
-    public ShowEventAnimalRepository loadShowEventAnimalRepository() throws IOException {
+    public ShowEventParticipantAnimalRepository loadShowEventParticipantAnimalRepository() throws IOException {
 
-        String csvShowEventAnimalResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS_ANIMALS.csv");
-        FileReader csvReader = new FileReader(String.valueOf(csvShowEventAnimalResource));
-        showEventAnimalRepository = CsvShowEventAnimalRepository.importData(csvReader);
+        String csvShowEventParticipantAnimalResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS_PARTICIPANTS_ANIMALS.csv");
+        FileReader csvReader = new FileReader(String.valueOf(csvShowEventParticipantAnimalResource));
+        showEventParticipantAnimalRepository = CsvShowEventParticipantAnimalRepository.importData(csvReader);
         csvReader.close();
-        logger.info("Imported csvShowEventAnimalRepository");
-        return showEventAnimalRepository;
+        logger.info("Imported csvShowEventParticipantAnimalRepository");
+        return showEventParticipantAnimalRepository;
+    }
+
+    public ShowEventAnimalDetailRepository loadShowEventAnimalDetailRepository() throws IOException {
+
+        String csvShowEventAnimalDetailResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS_ANIMALDETAIL.csv");
+        FileReader csvReader = new FileReader(String.valueOf(csvShowEventAnimalDetailResource));
+        showEventAnimalDetailRepository = CsvShowEventAnimalDetailRepository.importData(csvReader);
+        csvReader.close();
+        logger.info("Imported csvShowEventAnimalDetailRepository");
+        return showEventAnimalDetailRepository;
     }
 
     public FleeceWeightPointsRepository loadFleeceWeightPointsRepository() throws IOException {
@@ -126,14 +140,24 @@ public class ApplicationRepositoryService {
         logger.info("Exported csvShowEventParticipantRepository");
     }
 
-    public void saveShowEventAnimalRepository() throws IOException {
+    public void saveShowEventParticipantAnimalRepository() throws IOException {
 
-        String csvShowEventAnimalResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS_ANIMALS.csv");
-        FileWriter writer = new FileWriter(csvShowEventAnimalResource);
-        CsvShowEventAnimalRepository.exportData(writer, showEventAnimalRepository);
+        String csvShowEventParticipantAnimalResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS_PARTICIPANTS_ANIMALS.csv");
+        FileWriter writer = new FileWriter(csvShowEventParticipantAnimalResource);
+        CsvShowEventParticipantAnimalRepository.exportData(writer, showEventParticipantAnimalRepository);
         writer.flush();
         writer.close();
-        logger.info("Exported csvShowEventAnimalRepository");
+        logger.info("Exported csvShowEventParticipantAnimalRepository");
+    }
+
+    public void saveShowEventAnimalDetailRepository() throws IOException {
+
+        String csvShowEventAnimalDetailResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS_ANIMALDETAIL.csv");
+        FileWriter writer = new FileWriter(csvShowEventAnimalDetailResource);
+        CsvShowEventAnimalDetailRepository.exportData(writer, showEventAnimalDetailRepository);
+        writer.flush();
+        writer.close();
+        logger.info("Exported csvShowEventAnimalDetailRepository");
     }
 
     private void saveCrossRepoForShowEvent(ShowEventRepository showEventRepository) throws IOException {
@@ -146,30 +170,37 @@ public class ApplicationRepositoryService {
                 showEventParticipantRepository.add(part);
                 for (Animal animal : participant.getAnimals()) {
                     String animalKey = animalRepository.add(animal);
-                    ShowEventAnimal showEventAnimal = new ShowEventAnimal(showEventKey, participantKey, animalKey,
-                            animal.getAnimalShowDetail().getSheerDate(), animal.getAnimalShowDetail().getBeforeSheerDate());
+                    ShowEventParticipantAnimal partAni = new ShowEventParticipantAnimal(showEventKey, participantKey, animalKey);
+                    showEventParticipantAnimalRepository.add(partAni);
+                    AgeClass ageclass = AgeClassService.ageClass(showEvent, animal);
+                    int showClass = ShowClassService.getShowClassCode(animal.getBreed(), ageclass, animal.getSex(), animal.getColor());
+                    ShowEventAnimalDetail showEventAnimal = new ShowEventAnimalDetail(showEventKey, participantKey, animalKey, animal.getShowEventAnimalDetail().getSheerDate(),
+                            animal.getShowEventAnimalDetail().getBeforeSheerDate(), ageclass, showClass);
 
-                    showEventAnimalRepository.add(showEventAnimal);
+                    showEventAnimalDetailRepository.add(showEventAnimal);
                 }
             }
         }
         saveShowEventParticipantRepository();
-        saveShowEventAnimalRepository();
+        saveShowEventParticipantAnimalRepository();
+        saveShowEventAnimalDetailRepository();
     }
 
     private void loadCrossRepoForShowEvent() throws IOException {
 
         loadParticipantRepository();
         loadShowEventParticipantRepository();
+        loadShowEventParticipantAnimalRepository();
         loadAnimalRepository();
-        loadShowEventAnimalRepository();
+        loadShowEventAnimalDetailRepository();
 
 
         Set <String> showEventsByKey = showEventRepository.getAllShowEventsByKeySet();
         Set <String> participantsByKey = participantRepository.getAllParticipantsByKeySet();
         Set <String> animalsByKey = animalRepository.getAllAnimalsByKeySet();
         Collection <ShowEventParticipant> showEventParticipants = showEventParticipantRepository.getAllShowEventParticipants();
-        Collection <ShowEventAnimal> showEventAnimals = showEventAnimalRepository.getAllShowEventAnimals();
+        Collection <ShowEventParticipantAnimal> showEventParticipantAnimals = showEventParticipantAnimalRepository.getAllShowEventParticipantAnimals();
+        Collection <ShowEventAnimalDetail> showEventAnimalDetails = showEventAnimalDetailRepository.getAllShowEventAnimalDetails();
 
         // Loop ShowEvents and get details
         for (String showEventKey : showEventsByKey) {
@@ -192,7 +223,7 @@ public class ApplicationRepositoryService {
 
                         // Loop animals and get animals for the participant. Add animal details to participant
                         for (String animalKey : animalsByKey) {
-                            for (ShowEventAnimal showEventAnimal : showEventAnimals) {
+                            for (ShowEventParticipantAnimal showEventAnimal : showEventParticipantAnimals) {
                                 String show = showEventAnimal.getShowEventKey();
                                 String part = showEventAnimal.getParticipantKey();
                                 String ani = showEventAnimal.getAnimalKey();
@@ -200,12 +231,18 @@ public class ApplicationRepositoryService {
                                 if (showEventKey.equals(show) && participantKey.equals(part) && animalKey.equals(ani)) {
                                     Animal animal = animalRepository.getAnimalByKeySet(animalKey);
                                     // If there is showDetail for the animal, add this to the animal
-                                    LocalDate sheerDate = showEventAnimal.getSheerDate();
-                                    LocalDate beforeSheerDate = showEventAnimal.getBeforeSheerDate();
-                                    AnimalShowDetail animalShowDetail = new AnimalShowDetail(sheerDate, beforeSheerDate);
+                                    for (ShowEventAnimalDetail showEventAnimalDetail : showEventAnimalDetails)
+                                        if (animalKey.equals(showEventAnimalDetail.getAnimalKey()))
+                                        {
+                                            LocalDate sheerDate = showEventAnimalDetail.getSheerDate();
+                                            LocalDate beforeSheerDate = showEventAnimalDetail.getBeforeSheerDate();
+                                            AgeClass ageClass = showEventAnimalDetail.getAgeClass();
+                                            int showClass = showEventAnimalDetail.getShowClass();
 
-                                    animals.add(new Animal(animal.getName(), animal.getBreed(), animal.getSex(), animal.getColor(), animal.getDateOfBirth(),
-                                            animal.getMicrochip(), animal.getRegistration(), animal.getSire(), animal.getDam(), animalShowDetail));
+                                            showEventAnimalDetail = new ShowEventAnimalDetail(showEventKey, participantKey, animalKey, sheerDate, beforeSheerDate, ageClass, showClass);
+                                            animals.add(new Animal(animal.getName(), animal.getBreed(), animal.getSex(), animal.getColor(), animal.getDateOfBirth(),
+                                                    animal.getMicrochip(), animal.getRegistration(), animal.getSire(), animal.getDam(), showEventAnimalDetail));
+                                        }
                                 }
                             }
                         }

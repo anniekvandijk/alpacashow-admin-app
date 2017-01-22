@@ -1,8 +1,8 @@
 [
   {
     "name": "ShowEvent zonder deelnemers",
-    "date": "2030-03-15",
-    "closeDate": "2030-01-01",
+    "date": "2017-03-15",
+    "closeDate": "2017-01-01",
     "location": "Breda",
     "judge": "Shirley Bettinson",
     "showType": "Female progeny show",
@@ -10,8 +10,8 @@
   },
   {
     "name": "ShowEvent met deelnemers",
-    "date": "2030-04-01",
-    "closeDate": "2030-03-01",
+    "date": "2017-04-01",
+    "closeDate": "2017-03-01",
     "location": "Breda",
     "judge": "Shirley Bettinson",
     "showType": "Male progeny show",
@@ -42,8 +42,8 @@
   },
   {
     "name": "Fleeceshow ShowEvent met deelnemers en dieren",
-    "date": "2030-06-15",
-    "closeDate": "2030-04-15",
+    "date": "2017-06-15",
+    "closeDate": "2017-04-15",
     "location": "Surhuisterveen",
     "judge": "Test Judge",
     "showType": "Fleeceshow",
@@ -70,7 +70,9 @@
             "dam": "Moeder",
             "animalShowDetail": {
               "sheerDate": "2016-05-01",
-              "beforeSheerDate": null
+              "beforeSheerDate": null,
+              "ageClass": "INTERMEDIATE",
+              "showClass": 124
             }
           },
           {
@@ -78,14 +80,16 @@
             "breed": "Suri",
             "sex": "Male",
             "color": "Fancy",
-            "dateOfBirth": "2016-07-06",
+            "dateOfBirth": "2015-04-06",
             "microchip": "5555",
             "registration": "BAF12346",
             "sire": "Vader2",
             "dam": "Moeder2",
             "animalShowDetail": {
               "sheerDate": "2016-05-01",
-              "beforeSheerDate": null
+              "beforeSheerDate": null,
+              "ageClass": "INTERMEDIATE",
+              "showClass": 235
             }
           }
         ]
@@ -112,7 +116,9 @@
             "dam": "Moeder",
             "animalShowDetail": {
               "sheerDate": "2016-05-01",
-              "beforeSheerDate": null
+              "beforeSheerDate": null,
+              "ageClass": "INTERMEDIATE",
+              "showClass": 124
             }
           },
           {
@@ -127,7 +133,9 @@
             "dam": "Moeder2",
             "animalShowDetail": {
               "sheerDate": "2016-04-01",
-              "beforeSheerDate": "2015-05-01"
+              "beforeSheerDate": "2015-05-01",
+              "ageClass": "INTERMEDIATE",
+              "showClass": 235
             }
           }
         ]
@@ -136,8 +144,8 @@
   },
   {
     "name": "Haltershow ShowEvent met deelnemers en dieren",
-    "date": "2030-08-15",
-    "closeDate": "2030-07-15",
+    "date": "2017-08-15",
+    "closeDate": "2017-07-15",
     "location": "Surhuisterveen",
     "judge": "Test Judge",
     "showType": "Haltershow",
@@ -175,7 +183,9 @@
             "dam": "Moeder",
             "animalShowDetail": {
               "sheerDate": null,
-              "beforeSheerDate": null
+              "beforeSheerDate": null,
+              "ageClass": "ADULT",
+              "showClass": 144
             }
           },
           {
@@ -190,7 +200,9 @@
             "dam": "Moeder2",
             "animalShowDetail": {
               "sheerDate": "2015-04-01",
-              "beforeSheerDate": "2014-05-01"
+              "beforeSheerDate": "2014-05-01",
+              "ageClass": "ADULT",
+              "showClass": 255
             }
           }
         ]

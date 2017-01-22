@@ -17,7 +17,7 @@ public class ApplicationRepositoryServiceTest {
     private ShowEventRepository showEventRepository;
     private ParticipantRepository participantRepository;
     private AnimalRepository animalRepository;
-    private ShowEventAnimalRepository showEventAnimalRepository;
+    private ShowEventAnimalDetailRepository showEventAnimalDetailRepository;
     private FleeceWeightPointsRepository fleeceWeightPointsRepository;
 
     @Before
@@ -34,7 +34,7 @@ public class ApplicationRepositoryServiceTest {
         showEventRepository = service.loadShowEventRepository();
 
         assertEquals(4, showEventRepository.getAllShowEvents().size());
-        assertEquals("Fleeceshow ShowEvent met deelnemers en dieren", showEventRepository.getShowEventByKeySet("2030-06-15_FLEECESHOW").getName());
+        assertEquals("Fleeceshow ShowEvent met deelnemers en dieren", showEventRepository.getShowEventByKeySet("2017-06-15_FLEECESHOW").getName());
 
     }
 
@@ -60,11 +60,11 @@ public class ApplicationRepositoryServiceTest {
     }
 
     @Test
-    public void getShowEventAnimalRepo() throws IOException {
+    public void getShowEventAnimalDetailRepo() throws IOException {
 
-        showEventAnimalRepository = service.loadShowEventAnimalRepository();
+        showEventAnimalDetailRepository = service.loadShowEventAnimalDetailRepository();
 
-        assertEquals(6, showEventAnimalRepository.getAllShowEventAnimals().size());
+        assertEquals(6, showEventAnimalDetailRepository.getAllShowEventAnimalDetails().size());
 
     }
 

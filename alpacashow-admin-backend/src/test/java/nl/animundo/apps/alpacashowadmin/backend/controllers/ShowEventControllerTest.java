@@ -46,8 +46,8 @@ public class ShowEventControllerTest {
 
         ShowEventController controller = new ShowEventController();
 
-        Response resultCode = controller.getShowEventByKey("2030-04-01_MALE_PROGENY_SHOW");
-        String result = (String) controller.getShowEventByKey("2030-04-01_MALE_PROGENY_SHOW").getEntity();
+        Response resultCode = controller.getShowEventByKey("2017-04-01_MALE_PROGENY_SHOW");
+        String result = (String) controller.getShowEventByKey("2017-04-01_MALE_PROGENY_SHOW").getEntity();
         String resultTrim = result.replaceAll("\\s", "");
         String fileName = "get_showeventbykey.json";
         String expected = readJsonfile(fileName);
@@ -127,7 +127,7 @@ public class ShowEventControllerTest {
         ShowEventController controller = new ShowEventController();
 
         String showEvent = readJsonfile("update_showeventWrong.json");
-        Response resultCode = controller.updateShowEvent("2030-04-01_MALE_PROGENY_SHOW", showEvent);
+        Response resultCode = controller.updateShowEvent("2017-04-01_MALE_PROGENY_SHOW", showEvent);
 
         assertEquals(400, resultCode.getStatus());
     }

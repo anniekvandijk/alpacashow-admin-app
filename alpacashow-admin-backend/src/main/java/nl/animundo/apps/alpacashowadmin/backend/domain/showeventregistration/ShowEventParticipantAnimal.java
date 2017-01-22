@@ -2,18 +2,15 @@ package nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.time.LocalDate;
 
-public class ShowEventAnimal {
-    private static Logger logger = LoggerFactory.getLogger(ShowEventAnimal.class);
+public class ShowEventParticipantAnimal {
+    private static Logger logger = LoggerFactory.getLogger(ShowEventParticipantAnimal.class);
 
     private String showEventKey;
     private String participantKey;
     private String animalKey;
-    private LocalDate sheerDate;
-    private LocalDate beforeSheerDate;
 
-    public ShowEventAnimal(final String showEventKey, final String participantKey, final String animalKey, final LocalDate sheerDate, final LocalDate beforeSheerDate)
+    public ShowEventParticipantAnimal(final String showEventKey, final String participantKey, final String animalKey)
     {
         if (showEventKey == null || showEventKey.isEmpty()) {
             throw new IllegalArgumentException("ShowEventKey can not be empty");
@@ -27,8 +24,6 @@ public class ShowEventAnimal {
         this.showEventKey = showEventKey;
         this.participantKey = participantKey;
         this.animalKey = animalKey;
-        this.sheerDate = sheerDate;
-        this.beforeSheerDate = beforeSheerDate;
     }
 
     public String getShowEventKey() {
@@ -41,13 +36,5 @@ public class ShowEventAnimal {
 
     public String getAnimalKey() {
         return animalKey;
-    }
-
-    public LocalDate getSheerDate() {
-        return sheerDate;
-    }
-
-    public LocalDate getBeforeSheerDate() {
-        return beforeSheerDate;
     }
 }
