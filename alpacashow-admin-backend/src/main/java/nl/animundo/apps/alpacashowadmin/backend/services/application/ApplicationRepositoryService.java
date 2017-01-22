@@ -1,14 +1,11 @@
 package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.animundo.apps.alpacashowadmin.backend.domain.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.AnimalShowDetail;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimal;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventParticipant;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.*;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.json.JsonFleeceWeightPointsRepository;
-import org.apache.commons.lang3.time.StopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.*;
@@ -79,26 +76,12 @@ public class ApplicationRepositoryService {
 
     public FleeceWeightPointsRepository loadFleeceWeightPointsRepository() throws IOException {
 
-        String repo = "json";
-
         String csvFleeceWeightPointsResource = fileDirService.getFilePath("csv/helpfiles/FLEECEWEIGHTPOINTS.csv");
-        String jsonFleeceWeightPointsResource = fileDirService.getFilePath("json/helpfiles/fleeceweightpoints.json");
 
-        if ("csv".equals(repo)) {
-
-            FileReader csvReader = new FileReader(String.valueOf(csvFleeceWeightPointsResource));
-            fleeceWeightPointsRepository = CsvFleeceWeightPointsRepository.importData(csvReader);
-            csvReader.close();
-            logger.info("Imported csvFleeceWeightPointsRepository");
-        }
-        if ("json".equals(repo))
-        {
-            File file = new File(jsonFleeceWeightPointsResource);
-            FileReader reader = new FileReader(file);
-            fleeceWeightPointsRepository = JsonFleeceWeightPointsRepository.importData(reader);
-            reader.close();
-            logger.info("Imported jsonFleeceWeightPointsRepository");
-        }
+        FileReader csvReader = new FileReader(String.valueOf(csvFleeceWeightPointsResource));
+        fleeceWeightPointsRepository = CsvFleeceWeightPointsRepository.importData(csvReader);
+        csvReader.close();
+        logger.info("Imported csvFleeceWeightPointsRepository");
         return fleeceWeightPointsRepository;
     }
 

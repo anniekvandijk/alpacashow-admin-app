@@ -1,26 +1,21 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.helpclasses.FleeceWeightPoints;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.FleeceWeightPointsRepository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.io.*;
-import java.time.LocalDate;
 
 import static org.junit.Assert.*;
 
 public class CsvFleeceWeightPointsRepositoryTest {
 
     final String workingDir = System.getProperty("user.dir");
-    final String testFileDir = "/src/test/resources/csv/json.helpfiles/";
+    final String testFileDir = "/src/test/resources/csv/helpfiles/";
 
 
     @Rule
