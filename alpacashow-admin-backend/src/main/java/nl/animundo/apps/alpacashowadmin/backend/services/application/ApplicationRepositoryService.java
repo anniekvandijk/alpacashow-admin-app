@@ -16,7 +16,6 @@ public class ApplicationRepositoryService {
 
     private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
     private static ApplicationFileDirService fileDirService = new ApplicationFileDirService();
-    private static String fileStorage = "csv";
     private ShowEventRepository showEventRepository;
     private ParticipantRepository participantRepository;
     private AnimalRepository animalRepository;
@@ -26,7 +25,7 @@ public class ApplicationRepositoryService {
 
     public ShowEventRepository loadShowEventRepository() throws IOException {
 
-        String csvShowEventsResource = fileDirService.getFilePath(fileStorage + "/showregistration/SHOWEVENTS.csv");
+        String csvShowEventsResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvShowEventsResource));
         showEventRepository = CsvShowEventRepository.importData(csvReader);
         csvReader.close();
@@ -37,7 +36,7 @@ public class ApplicationRepositoryService {
 
     public ParticipantRepository loadParticipantRepository() throws IOException {
 
-        String csvParticipantsResource = fileDirService.getFilePath(fileStorage + "/showregistration/PARTICIPANTS.csv");
+        String csvParticipantsResource = fileDirService.getFilePath("csv/showregistration/PARTICIPANTS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvParticipantsResource));
         participantRepository = CsvParticipantRepository.importData(csvReader);
         csvReader.close();
@@ -47,7 +46,7 @@ public class ApplicationRepositoryService {
 
     public AnimalRepository loadAnimalRepository() throws IOException {
 
-        String csvAnimalsResource = fileDirService.getFilePath(fileStorage + "/showregistration/ANIMALS.csv");
+        String csvAnimalsResource = fileDirService.getFilePath("csv/showregistration/ANIMALS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvAnimalsResource));
         animalRepository = CsvAnimalRepository.importData(csvReader);
         csvReader.close();
@@ -57,7 +56,7 @@ public class ApplicationRepositoryService {
 
     public ShowEventParticipantRepository loadShowEventParticipantRepository() throws IOException {
 
-        String csvShowEventParticipantResource = fileDirService.getFilePath(fileStorage + "/showregistration/SHOWEVENTS_PARTICIPANTS.csv");
+        String csvShowEventParticipantResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS_PARTICIPANTS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvShowEventParticipantResource));
         showEventParticipantRepository = CsvShowEventParticipantRepository.importData(csvReader);
         csvReader.close();
@@ -67,7 +66,7 @@ public class ApplicationRepositoryService {
 
     public ShowEventAnimalRepository loadShowEventAnimalRepository() throws IOException {
 
-        String csvShowEventAnimalResource = fileDirService.getFilePath(fileStorage + "/showregistration/SHOWEVENTS_ANIMALS.csv");
+        String csvShowEventAnimalResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS_ANIMALS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvShowEventAnimalResource));
         showEventAnimalRepository = CsvShowEventAnimalRepository.importData(csvReader);
         csvReader.close();
@@ -77,7 +76,7 @@ public class ApplicationRepositoryService {
 
     public FleeceWeightPointsRepository loadFleeceWeightPointsRepository() throws IOException {
 
-        String csvFleeceWeightPointsResource = fileDirService.getFilePath(fileStorage + "/helpfiles/FLEECEWEIGHTPOINTS.csv");
+        String csvFleeceWeightPointsResource = fileDirService.getFilePath("csv/helpfiles/FLEECEWEIGHTPOINTS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvFleeceWeightPointsResource));
         fleeceWeightPointsRepository = CsvFleeceWeightPointsRepository.importData(csvReader);
         csvReader.close();
@@ -87,7 +86,7 @@ public class ApplicationRepositoryService {
 
     public void saveShowEventRepository() throws IOException {
 
-        String csvShowEventsResource = fileDirService.getFilePath(fileStorage + "/showregistration/SHOWEVENTS.csv");
+        String csvShowEventsResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS.csv");
         FileWriter writer = new FileWriter(csvShowEventsResource);
         CsvShowEventRepository.exportData(writer, showEventRepository);
         saveCrossRepoForShowEvent(showEventRepository);
@@ -98,7 +97,7 @@ public class ApplicationRepositoryService {
 
     public void saveParticipantRepository() throws IOException {
 
-        String csvParticipantsResource = fileDirService.getFilePath(fileStorage + "/showregistration/PARTICIPANTS.csv");
+        String csvParticipantsResource = fileDirService.getFilePath("csv/showregistration/PARTICIPANTS.csv");
         FileWriter writer = new FileWriter(csvParticipantsResource);
         CsvParticipantRepository.exportData(writer, participantRepository);
         writer.flush();
@@ -108,7 +107,7 @@ public class ApplicationRepositoryService {
 
     public void saveAnimalRepository() throws IOException {
 
-        String csvAnimalsResource = fileDirService.getFilePath(fileStorage + "/showregistration/ANIMALS.csv");
+        String csvAnimalsResource = fileDirService.getFilePath("csv/showregistration/ANIMALS.csv");
         FileWriter writer = new FileWriter(csvAnimalsResource);
         CsvAnimalRepository.exportData(writer, animalRepository);
         writer.flush();
@@ -118,7 +117,7 @@ public class ApplicationRepositoryService {
 
     public void saveShowEventParticipantRepository() throws IOException {
 
-        String csvShowEventParticipantResource = fileDirService.getFilePath(fileStorage + "/showregistration/SHOWEVENTS_PARTICIPANTS.csv");
+        String csvShowEventParticipantResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS_PARTICIPANTS.csv");
         FileWriter writer = new FileWriter(csvShowEventParticipantResource);
         CsvShowEventParticipantRepository.exportData(writer, showEventParticipantRepository);
         writer.flush();
@@ -128,7 +127,7 @@ public class ApplicationRepositoryService {
 
     public void saveShowEventAnimalRepository() throws IOException {
 
-        String csvShowEventAnimalResource = fileDirService.getFilePath(fileStorage + "/showregistration/SHOWEVENTS_ANIMALS.csv");
+        String csvShowEventAnimalResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS_ANIMALS.csv");
         FileWriter writer = new FileWriter(csvShowEventAnimalResource);
         CsvShowEventAnimalRepository.exportData(writer, showEventAnimalRepository);
         writer.flush();
