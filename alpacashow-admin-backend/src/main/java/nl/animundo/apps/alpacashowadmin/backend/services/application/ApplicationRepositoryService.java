@@ -3,7 +3,7 @@ package nl.animundo.apps.alpacashowadmin.backend.services.application;
 import nl.animundo.apps.alpacashowadmin.backend.domain.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalDetail;
-import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalFleece;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalSheeringDetail;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventParticipant;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventParticipantAnimal;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
@@ -175,8 +175,8 @@ public class ApplicationRepositoryService {
                     showEventParticipantAnimalRepository.add(partAni);
                     AgeClass ageclass = AgeClassService.ageClass(showEvent, animal);
                     int showClass = ShowClassService.getShowClassCode(animal.getBreed(), ageclass, animal.getSex(), animal.getColor());
-                    ShowEventAnimalDetail showEventAnimal = new ShowEventAnimalDetail(showEventKey, participantKey, animalKey, animal.getShowEventAnimalFleece().getSheerDate(),
-                            animal.getShowEventAnimalFleece().getBeforeSheerDate(), ageclass, showClass);
+                    ShowEventAnimalDetail showEventAnimal = new ShowEventAnimalDetail(showEventKey, participantKey, animalKey, animal.getShowEventAnimalSheeringDetail().getSheerDate(),
+                            animal.getShowEventAnimalSheeringDetail().getBeforeSheerDate(), ageclass, showClass);
 
                     showEventAnimalDetailRepository.add(showEventAnimal);
                 }
@@ -239,10 +239,10 @@ public class ApplicationRepositoryService {
                                             LocalDate beforeSheerDate = showEventAnimalDetail.getBeforeSheerDate();
                                             AgeClass ageClass = showEventAnimalDetail.getAgeClass();
                                             int showClass = showEventAnimalDetail.getShowClass();
-                                            ShowEventAnimalFleece showEventAnimalFleece = new ShowEventAnimalFleece(sheerDate, beforeSheerDate);
+                                            ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail = new ShowEventAnimalSheeringDetail(sheerDate, beforeSheerDate);
                                             showEventAnimalDetail = new ShowEventAnimalDetail(showEventKey, participantKey, animalKey, sheerDate, beforeSheerDate, ageClass, showClass);
                                             animals.add(new Animal(animal.getName(), animal.getBreed(), animal.getSex(), animal.getColor(), animal.getDateOfBirth(),
-                                                    animal.getMicrochip(), animal.getRegistration(), animal.getSire(), animal.getDam(), showEventAnimalFleece));
+                                                    animal.getMicrochip(), animal.getRegistration(), animal.getSire(), animal.getDam(), showEventAnimalSheeringDetail));
                                         }
                                 }
                             }

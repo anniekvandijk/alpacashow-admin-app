@@ -19,7 +19,15 @@ public class ShowEventAnimalDetail {
     public ShowEventAnimalDetail(final String showEventKey, final String participantKey, final String animalKey, final LocalDate sheerDate,
                                  final LocalDate beforeSheerDate)
     {
-
+        if (showEventKey == null || showEventKey.isEmpty()) {
+            throw new IllegalArgumentException("ShowEventKey can not be empty");
+        }
+        if (participantKey == null || participantKey.isEmpty()) {
+            throw new IllegalArgumentException("ParticipantKey can not be empty");
+        }
+        if (animalKey == null || animalKey.isEmpty()) {
+            throw new IllegalArgumentException("AnimalKey can not be empty");
+        }
         this.showEventKey = showEventKey;
         this.participantKey = participantKey;
         this.animalKey = animalKey;

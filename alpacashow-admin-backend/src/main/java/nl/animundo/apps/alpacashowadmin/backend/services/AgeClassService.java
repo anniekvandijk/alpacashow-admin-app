@@ -23,7 +23,7 @@ public class AgeClassService {
         LocalDate showEventDate = showEvent.getDate();
         ShowType showType = showEvent.getShowType();
         LocalDate dateOfBirth = animal.getDateOfBirth();
-        LocalDate sheerDate = animal.getShowEventAnimalFleece().getSheerDate();
+        LocalDate sheerDate = animal.getShowEventAnimalSheeringDetail().getSheerDate();
 
         if (sheerDate != null) {
             if (sheerDate.isBefore(dateOfBirth)) {

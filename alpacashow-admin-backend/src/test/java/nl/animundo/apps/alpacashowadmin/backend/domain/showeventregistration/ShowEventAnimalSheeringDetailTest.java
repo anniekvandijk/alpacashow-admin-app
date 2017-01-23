@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
 
-public class ShowEventAnimalFleeceTest {
+public class ShowEventAnimalSheeringDetailTest {
 
     private LocalDate sheerDate;
     private LocalDate beforeSheerDate;
@@ -25,7 +25,7 @@ public class ShowEventAnimalFleeceTest {
         sheerDate = LocalDate.now();
         beforeSheerDate = null;
 
-        ShowEventAnimalFleece showEventAnimalFleece = new ShowEventAnimalFleece(sheerDate, beforeSheerDate);
+        ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail = new ShowEventAnimalSheeringDetail(sheerDate, beforeSheerDate);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class ShowEventAnimalFleeceTest {
         sheerDate = LocalDate.now().plusMonths(6);
         beforeSheerDate = null;
 
-        ShowEventAnimalFleece showEventAnimalFleece = new ShowEventAnimalFleece(sheerDate, beforeSheerDate);
+        ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail = new ShowEventAnimalSheeringDetail(sheerDate, beforeSheerDate);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class ShowEventAnimalFleeceTest {
         sheerDate = LocalDate.now().minusMonths(6);
         beforeSheerDate = LocalDate.now().minusMonths(6);
 
-        ShowEventAnimalFleece showEventAnimalFleece = new ShowEventAnimalFleece(sheerDate, beforeSheerDate);
+        ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail = new ShowEventAnimalSheeringDetail(sheerDate, beforeSheerDate);
     }
 
     @Test
@@ -61,6 +61,6 @@ public class ShowEventAnimalFleeceTest {
         sheerDate = LocalDate.now().minusMonths(12);
         beforeSheerDate = LocalDate.now().minusMonths(6);
 
-        ShowEventAnimalFleece showEventAnimalFleece = new ShowEventAnimalFleece(sheerDate, beforeSheerDate);
+        ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail = new ShowEventAnimalSheeringDetail(sheerDate, beforeSheerDate);
     }
 }

@@ -2,20 +2,28 @@ package nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
+import nl.animundo.apps.alpacashowadmin.backend.utilities.JsonDateDeserializer;
+import nl.animundo.apps.alpacashowadmin.backend.utilities.JsonDateSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 
-public class ShowEventAnimalFleece {
-    private static Logger logger = LoggerFactory.getLogger(ShowEventAnimalFleece.class);
+public class ShowEventAnimalSheeringDetail {
+    private static Logger logger = LoggerFactory.getLogger(ShowEventAnimalSheeringDetail.class);
 
+    @JsonDeserialize(using = JsonDateDeserializer.class)
+    @JsonSerialize(using = JsonDateSerializer.class)
     private LocalDate sheerDate;
+    @JsonDeserialize(using = JsonDateDeserializer.class)
+    @JsonSerialize(using = JsonDateSerializer.class)
     private LocalDate beforeSheerDate;
 
     @JsonCreator
-    public ShowEventAnimalFleece(@JsonProperty("sheerDate") final LocalDate sheerDate, @JsonProperty("beforeSheerDate") final LocalDate beforeSheerDate) {
+    public ShowEventAnimalSheeringDetail(@JsonProperty("sheerDate") final LocalDate sheerDate, @JsonProperty("beforeSheerDate") final LocalDate beforeSheerDate) {
         if (beforeSheerDate != null && sheerDate == null) {
             throw new IllegalArgumentException("Sheerdate has to be filled when you also have a before sheerdate");
         }

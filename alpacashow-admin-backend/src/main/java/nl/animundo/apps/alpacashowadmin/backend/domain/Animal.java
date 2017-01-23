@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalDetail;
-import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalFleece;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalSheeringDetail;
 import nl.animundo.apps.alpacashowadmin.backend.utilities.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
@@ -33,13 +32,13 @@ public class Animal {
     private String registration;
     private String sire;
     private String dam;
-    private ShowEventAnimalFleece showEventAnimalFleece;
+    private ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail;
 
     public Animal (final String name, final BreedClass breed, final SexClass sex, final ColorClass color, final LocalDate dateOfBirth,
                    final String microchip, final String registration, final String sire, final String dam)
     {
         this(name, breed, sex, color, dateOfBirth, microchip,
-                registration, sire, dam, new ShowEventAnimalFleece(null, null));
+                registration, sire, dam, new ShowEventAnimalSheeringDetail(null, null));
     }
 
     @JsonCreator
@@ -47,7 +46,7 @@ public class Animal {
                   @JsonProperty("sex") final SexClass sex, @JsonProperty("color") final ColorClass color,
                   @JsonProperty("dateOfBirth") final LocalDate dateOfBirth, @JsonProperty("microchip") final String microchip,
                   @JsonProperty("registration") final String registration, @JsonProperty("sire") final String sire,
-                  @JsonProperty("dam") final String dam, @JsonProperty("fleeceDetail") ShowEventAnimalFleece showEventAnimalFleece) {
+                  @JsonProperty("dam") final String dam, @JsonProperty("sheeringDetail") ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail) {
 
         final String nameCln = StringUtils.trimToNull(name);
         if (nameCln == null) {
@@ -88,7 +87,7 @@ public class Animal {
         this.registration = registrationCln;
         this.sire = sireCln;
         this.dam = damCln;
-        this.showEventAnimalFleece = showEventAnimalFleece;
+        this.showEventAnimalSheeringDetail = showEventAnimalSheeringDetail;
     }
 
     public String getName() {
@@ -127,11 +126,11 @@ public class Animal {
         return dam;
     }
 
-    public ShowEventAnimalFleece getShowEventAnimalFleece() {
-        return showEventAnimalFleece;
+    public ShowEventAnimalSheeringDetail getShowEventAnimalSheeringDetail() {
+        return showEventAnimalSheeringDetail;
     }
 
-    public void setShowEventAnimalFleece(ShowEventAnimalFleece showEventAnimalFleece) {
-        this.showEventAnimalFleece = showEventAnimalFleece;
+    public void setShowEventAnimalSheeringDetail(ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail) {
+        this.showEventAnimalSheeringDetail = showEventAnimalSheeringDetail;
     }
 }

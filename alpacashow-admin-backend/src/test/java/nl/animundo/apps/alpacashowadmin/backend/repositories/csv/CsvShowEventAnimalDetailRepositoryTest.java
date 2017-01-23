@@ -56,9 +56,11 @@ public class CsvShowEventAnimalDetailRepositoryTest {
         String animalKey = "8888";
         LocalDate sheerDate = LocalDate.of(2016, 5, 3);
         LocalDate beforeSheerDate = null;
+        AgeClass ageClass = AgeClass.JUNIOR;
+        int showClass = 123;
 
         repo.add(new ShowEventAnimalDetail(showEventKey, participantKey, animalKey,
-                sheerDate, beforeSheerDate));
+                sheerDate, beforeSheerDate, ageClass, showClass));
 
         repo.delete("2017-08-15_HALTERSHOW_Test participant 1_7659");
 
