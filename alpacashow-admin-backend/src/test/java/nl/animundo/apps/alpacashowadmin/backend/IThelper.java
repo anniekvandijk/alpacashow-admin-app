@@ -2,10 +2,9 @@ package nl.animundo.apps.alpacashowadmin.backend;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.*;
-import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalDetail;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalFleece;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
@@ -57,16 +56,16 @@ public class IThelper {
 
         Set<Animal> animals1 = new LinkedHashSet<Animal>();
 
-        ShowEventAnimalDetail showEventAnimalDetail1 = new ShowEventAnimalDetail(LocalDate.of(2016, 5, 1), null);
-        ShowEventAnimalDetail showEventAnimalDetail2 = new ShowEventAnimalDetail(LocalDate.of(2016, 4, 1), LocalDate.of(2015, 5, 1));
-        animals1.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 12), "8765", null, "Vader", "Moeder", showEventAnimalDetail1));
-        animals1.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "4321", "BAF12345", "Vader2", "Moeder2", showEventAnimalDetail2));
+        ShowEventAnimalFleece showEventAnimalFleece1 = new ShowEventAnimalFleece(LocalDate.of(2016, 5, 1), null);
+        ShowEventAnimalFleece showEventAnimalFleece2 = new ShowEventAnimalFleece(LocalDate.of(2016, 4, 1), LocalDate.of(2015, 5, 1));
+        animals1.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 12), "8765", null, "Vader", "Moeder", showEventAnimalFleece1));
+        animals1.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "4321", "BAF12345", "Vader2", "Moeder2", showEventAnimalFleece2));
 
         Set<Animal> animals2 = new LinkedHashSet<Animal>();
-        ShowEventAnimalDetail showEventAnimalDetail3 = new ShowEventAnimalDetail(LocalDate.of(2016, 5, 1), null);
-        ShowEventAnimalDetail showEventAnimalDetail4 = new ShowEventAnimalDetail(LocalDate.of(2016, 5, 1), null);
-        animals2.add(new Animal("Alpaca3", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 13), "4444", null, "Vader", "Moeder", showEventAnimalDetail3));
-        animals2.add(new Animal("Alpaca4", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2015, 4, 6), "5555", "BAF12346", "Vader2", "Moeder2", showEventAnimalDetail4));
+        ShowEventAnimalFleece showEventAnimalFleece3 = new ShowEventAnimalFleece(LocalDate.of(2016, 5, 1), null);
+        ShowEventAnimalFleece showEventAnimalFleece4 = new ShowEventAnimalFleece(LocalDate.of(2016, 5, 1), null);
+        animals2.add(new Animal("Alpaca3", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 13), "4444", null, "Vader", "Moeder", showEventAnimalFleece3));
+        animals2.add(new Animal("Alpaca4", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2015, 4, 6), "5555", "BAF12346", "Vader2", "Moeder2", showEventAnimalFleece4));
 
 
         Set<Participant> participants2 = new LinkedHashSet<Participant>();
@@ -92,9 +91,9 @@ public class IThelper {
         ShowType showType4 = ShowType.HALTERSHOW;
 
         Set<Animal> animals3 = new LinkedHashSet<Animal>();
-        ShowEventAnimalDetail showEventAnimalDetail5 = new ShowEventAnimalDetail(LocalDate.of(2015, 4, 1), LocalDate.of(2014, 5, 1));
+        ShowEventAnimalFleece showEventAnimalFleece5 = new ShowEventAnimalFleece(LocalDate.of(2015, 4, 1), LocalDate.of(2014, 5, 1));
         animals3.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 12), "8765", null, "Vader", "Moeder"));
-        animals3.add(new Animal("Alpaca5", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "7659", "BAF1254", "Vader2", "Moeder2", showEventAnimalDetail5));
+        animals3.add(new Animal("Alpaca5", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "7659", "BAF1254", "Vader2", "Moeder2", showEventAnimalFleece5));
 
         Set<Participant> participants3 = new LinkedHashSet<Participant>();
         participants3.add(new Participant("Test participant 1", "Testfarm 1", "", "", "", "", "", "", animals3));

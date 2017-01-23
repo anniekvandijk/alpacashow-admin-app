@@ -27,7 +27,7 @@ public class ShowEventAnimalDetailRepositoryTest {
         LocalDate sheerDate = LocalDate.of(2016, 5, 15);
         LocalDate beforeSheerDate = LocalDate.of(2015, 4, 15);
 
-        ShowEventAnimalDetail showEventAnimalDetail = new ShowEventAnimalDetail(sheerDate, beforeSheerDate);
+        ShowEventAnimalDetail showEventAnimalDetail = new ShowEventAnimalDetail(showEventKey, participantKey, animalKey, sheerDate, beforeSheerDate);
         ShowEventAnimalDetailRepository showEventAnimalDetailRepository = new ShowEventAnimalDetailRepository();
 
         assertEquals(0, showEventAnimalDetailRepository.getAllShowEventAnimalDetails().size());

@@ -16,49 +16,6 @@ public class ShowEventAnimalDetail {
     private AgeClass ageClass;
     private int showClass;
 
-    // TODO get showEventDate and AnimalInfo to calculate ageClass and showClass
-
-    public ShowEventAnimalDetail(final LocalDate sheerDate, final LocalDate beforeSheerDate) {
-        if (showEventKey == null || showEventKey.isEmpty()) {
-            throw new IllegalArgumentException("ShowEventKey can not be empty");
-        }
-        if (participantKey == null || participantKey.isEmpty()) {
-            throw new IllegalArgumentException("ParticipantKey can not be empty");
-        }
-        if (animalKey == null || animalKey.isEmpty()) {
-            throw new IllegalArgumentException("AnimalKey can not be empty");
-        }
-        if (beforeSheerDate != null && sheerDate == null) {
-            throw new IllegalArgumentException("Sheerdate has to be filled when you also have a before sheerdate");
-        }
-        if (sheerDate != null) {
-            if (sheerDate.isEqual(LocalDate.now()) || sheerDate.isAfter(LocalDate.now())) {
-                throw new IllegalArgumentException("Sheerdate is today or later");
-            }
-        }
-        if (sheerDate != null && beforeSheerDate != null) {
-            if (beforeSheerDate.isEqual(sheerDate)) {
-                throw new IllegalArgumentException("Sheerdate and before sheerdate can not be the same");
-            }
-            if (beforeSheerDate.isAfter(sheerDate)) {
-                throw new IllegalArgumentException("Before sheerdate is after sheerdate");
-            }
-        }
-        this.sheerDate = sheerDate;
-        this.beforeSheerDate = beforeSheerDate;
-    }
-
-    public ShowEventAnimalDetail(final String showEventKey, final String participantKey, final String animalKey, final LocalDate sheerDate,
-                                 final LocalDate beforeSheerDate)
-    {
-
-        this.showEventKey = showEventKey;
-        this.participantKey = participantKey;
-        this.animalKey = animalKey;
-        this.sheerDate = sheerDate;
-        this.beforeSheerDate = beforeSheerDate;
-    }
-
     public ShowEventAnimalDetail(final String showEventKey, final String participantKey, final String animalKey, final LocalDate sheerDate,
                                  final LocalDate beforeSheerDate, final AgeClass ageClass, final int showClass)
     {

@@ -18,13 +18,12 @@ public class AgeClassService {
         throw new InstantiationException("Instances of this type are forbidden!");
     }
 
-    // TODO: split this for showdate or sheerdate
     public static AgeClass ageClass(final ShowEvent showEvent, final Animal animal) {
 
         LocalDate showEventDate = showEvent.getDate();
         ShowType showType = showEvent.getShowType();
         LocalDate dateOfBirth = animal.getDateOfBirth();
-        LocalDate sheerDate = animal.getShowEventAnimalDetail().getSheerDate();
+        LocalDate sheerDate = animal.getShowEventAnimalFleece().getSheerDate();
 
         if (sheerDate != null) {
             if (sheerDate.isBefore(dateOfBirth)) {
