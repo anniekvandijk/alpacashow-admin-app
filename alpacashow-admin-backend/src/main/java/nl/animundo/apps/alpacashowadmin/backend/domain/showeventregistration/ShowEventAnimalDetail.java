@@ -17,6 +17,19 @@ public class ShowEventAnimalDetail {
     private int showClass;
 
     public ShowEventAnimalDetail(final String showEventKey, final String participantKey, final String animalKey, final LocalDate sheerDate,
+                                 final LocalDate beforeSheerDate)
+    {
+
+        this.showEventKey = showEventKey;
+        this.participantKey = participantKey;
+        this.animalKey = animalKey;
+        this.sheerDate = sheerDate;
+        this.beforeSheerDate = beforeSheerDate;
+        this.ageClass = null;
+        this.showClass = 0;
+    }
+
+    public ShowEventAnimalDetail(final String showEventKey, final String participantKey, final String animalKey, final LocalDate sheerDate,
                                  final LocalDate beforeSheerDate, final AgeClass ageClass, final int showClass)
     {
 
