@@ -198,26 +198,19 @@ public class ApplicationRepositoryService {
 
                         // Loop animals and get animals for the participant. Add animal details to participant
                         for (String animalKey : animalsByKey) {
-                            for (ShowEventAnimalDetail showEventAnimal : showEventAnimalDetails) {
-                                String show = showEventAnimal.getShowEventKey();
-                                String part = showEventAnimal.getParticipantKey();
-                                String ani = showEventAnimal.getAnimalKey();
+                            for (ShowEventAnimalDetail showEventAnimalDetail : showEventAnimalDetails) {
+                                String show = showEventAnimalDetail.getShowEventKey();
+                                String part = showEventAnimalDetail.getParticipantKey();
+                                String ani = showEventAnimalDetail.getAnimalKey();
 
                                 if (showEventKey.equals(show) && participantKey.equals(part) && animalKey.equals(ani)) {
                                     Animal animal = animalRepository.getAnimalByKeySet(animalKey);
-                                    // If there is showDetail for the animal, add this to the animal
-                                    for (ShowEventAnimalDetail showEventAnimalDetail : showEventAnimalDetails)
-                                        if (animalKey.equals(showEventAnimalDetail.getAnimalKey()))
-                                        {
-                                            LocalDate sheerDate = showEventAnimalDetail.getSheerDate();
-                                            LocalDate beforeSheerDate = showEventAnimalDetail.getBeforeSheerDate();
-                                            AgeClass ageClass = showEventAnimalDetail.getAgeClass();
-                                            int showClass = showEventAnimalDetail.getShowClass();
-                                            ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail = new ShowEventAnimalSheeringDetail(sheerDate, beforeSheerDate);
-                                            showEventAnimalDetail = new ShowEventAnimalDetail(showEventKey, participantKey, animalKey, sheerDate, beforeSheerDate, ageClass, showClass);
-                                            animals.add(new Animal(animal.getName(), animal.getBreed(), animal.getSex(), animal.getColor(), animal.getDateOfBirth(),
-                                                    animal.getMicrochip(), animal.getRegistration(), animal.getSire(), animal.getDam(), showEventAnimalSheeringDetail));
-                                        }
+                                    LocalDate sheerDate = showEventAnimalDetail.getSheerDate();
+                                    LocalDate beforeSheerDate = showEventAnimalDetail.getBeforeSheerDate();
+                                    ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail = new ShowEventAnimalSheeringDetail(sheerDate, beforeSheerDate);
+                                    animals.add(new Animal(animal.getName(), animal.getBreed(), animal.getSex(), animal.getColor(), animal.getDateOfBirth(),
+                                            animal.getMicrochip(), animal.getRegistration(), animal.getSire(), animal.getDam(), showEventAnimalSheeringDetail));
+
                                 }
                             }
                         }
