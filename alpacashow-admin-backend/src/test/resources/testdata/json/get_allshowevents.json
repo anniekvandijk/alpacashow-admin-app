@@ -68,11 +68,9 @@
             "registration": null,
             "sire": "Vader",
             "dam": "Moeder",
-            "animalShowDetail": {
+            "showEventAnimalSheeringDetail": {
               "sheerDate": "2016-05-01",
-              "beforeSheerDate": null,
-              "ageClass": "INTERMEDIATE",
-              "showClass": 124
+              "beforeSheerDate": null
             }
           },
           {
@@ -85,11 +83,9 @@
             "registration": "BAF12346",
             "sire": "Vader2",
             "dam": "Moeder2",
-            "animalShowDetail": {
+            "showEventAnimalSheeringDetail": {
               "sheerDate": "2016-05-01",
-              "beforeSheerDate": null,
-              "ageClass": "INTERMEDIATE",
-              "showClass": 235
+              "beforeSheerDate": null
             }
           }
         ]
@@ -114,11 +110,9 @@
             "registration": null,
             "sire": "Vader",
             "dam": "Moeder",
-            "animalShowDetail": {
+            "showEventAnimalSheeringDetail": {
               "sheerDate": "2016-05-01",
-              "beforeSheerDate": null,
-              "ageClass": "INTERMEDIATE",
-              "showClass": 124
+              "beforeSheerDate": null
             }
           },
           {
@@ -131,11 +125,9 @@
             "registration": "BAF12345",
             "sire": "Vader2",
             "dam": "Moeder2",
-            "animalShowDetail": {
+            "showEventAnimalSheeringDetail": {
               "sheerDate": "2016-04-01",
-              "beforeSheerDate": "2015-05-01",
-              "ageClass": "INTERMEDIATE",
-              "showClass": 235
+              "beforeSheerDate": "2015-05-01"
             }
           }
         ]
@@ -181,11 +173,9 @@
             "registration": null,
             "sire": "Vader",
             "dam": "Moeder",
-            "animalShowDetail": {
+            "showEventAnimalSheeringDetail": {
               "sheerDate": null,
-              "beforeSheerDate": null,
-              "ageClass": "ADULT",
-              "showClass": 144
+              "beforeSheerDate": null
             }
           },
           {
@@ -198,11 +188,9 @@
             "registration": "BAF1254",
             "sire": "Vader2",
             "dam": "Moeder2",
-            "animalShowDetail": {
+            "showEventAnimalSheeringDetail": {
               "sheerDate": "2015-04-01",
-              "beforeSheerDate": "2014-05-01",
-              "ageClass": "ADULT",
-              "showClass": 255
+              "beforeSheerDate": "2014-05-01"
             }
           }
         ]

@@ -29,7 +29,7 @@ public class Participant {
                        @JsonProperty("email") final String email, @JsonProperty("telephone") final String telephone,
                        @JsonProperty("address") final String address, @JsonProperty("zipCode") final String zipCode,
                        @JsonProperty("city") final String city, @JsonProperty("country") final String country,
-                       @JsonProperty("animals") final Set<Animal> animals) {
+                       @JsonProperty("animals") Set<Animal> animals) {
 
         final String nameCln = StringUtils.trimToNull(name);
         final String farmNameCln = StringUtils.trimToNull(farmName);
@@ -92,4 +92,7 @@ public class Participant {
         return animals;
     }
 
+    public void setAnimals(Set<Animal> animals) {
+        this.animals = animals;
+    }
 }

@@ -24,13 +24,11 @@ public class IThelper {
         ParticipantRepository participantRepository = service.loadParticipantRepository();
         AnimalRepository animalRepository = service.loadAnimalRepository();
         ShowEventParticipantRepository showEventParticipantRepository = service.loadShowEventParticipantRepository();
-        ShowEventParticipantAnimalRepository showEventParticipantAnimalRepository = service.loadShowEventParticipantAnimalRepository();
         ShowEventAnimalDetailRepository showEventAnimalDetailRepository = service.loadShowEventAnimalDetailRepository();
         showEventRepository.deleteAll();
         participantRepository.deleteAll();
         animalRepository.deleteAll();
         showEventParticipantRepository.deleteAll();
-        showEventParticipantAnimalRepository.deleteAll();
         showEventAnimalDetailRepository.deleteAll();
 
         String name1 = "ShowEvent met deelnemers";
@@ -115,7 +113,6 @@ public class IThelper {
         service.saveParticipantRepository();
         service.saveAnimalRepository();
         service.saveShowEventParticipantRepository();
-        service.saveShowEventParticipantAnimalRepository();
         service.saveShowEventAnimalDetailRepository();
     }
 }

@@ -8,7 +8,7 @@
   "registration": null,
   "sire": "Vader",
   "dam": "Moeder",
-  "animalShowDetail": {
+  "showEventAnimalSheeringDetail": {
     "sheerDate": null,
     "beforeSheerDate": null
   }
