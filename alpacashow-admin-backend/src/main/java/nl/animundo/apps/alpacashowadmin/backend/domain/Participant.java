@@ -91,8 +91,4 @@ public class Participant {
     public Set<Animal> getAnimals() {
         return animals;
     }
-
-    public void setAnimals(Set<Animal> animals) {
-        this.animals = animals;
-    }
 }

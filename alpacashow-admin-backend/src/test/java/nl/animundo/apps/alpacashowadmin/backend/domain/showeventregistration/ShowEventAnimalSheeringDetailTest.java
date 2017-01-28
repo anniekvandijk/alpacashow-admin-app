@@ -17,6 +17,18 @@ public class ShowEventAnimalSheeringDetailTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
+    public void OnlyBeforeSheerDate() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Sheerdate has to be filled when you also have a before sheerdate");
+
+        sheerDate = null;
+        beforeSheerDate = LocalDate.now().minusMonths(2);
+
+        ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail = new ShowEventAnimalSheeringDetail(sheerDate, beforeSheerDate);
+    }
+
+    @Test
     public void SheerDateToday() {
 
         exception.expect(IllegalArgumentException.class);

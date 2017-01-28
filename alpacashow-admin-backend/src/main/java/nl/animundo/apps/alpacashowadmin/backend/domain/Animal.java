@@ -130,7 +130,4 @@ public class Animal {
         return showEventAnimalSheeringDetail;
     }
 
-    public void setShowEventAnimalSheeringDetail(ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail) {
-        this.showEventAnimalSheeringDetail = showEventAnimalSheeringDetail;
-    }
 }
