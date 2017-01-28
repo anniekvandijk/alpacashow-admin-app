@@ -5,7 +5,6 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalDetail;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalSheeringDetail;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventParticipant;
-import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventParticipantAnimal;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.*;
 import nl.animundo.apps.alpacashowadmin.backend.services.AgeClassService;
