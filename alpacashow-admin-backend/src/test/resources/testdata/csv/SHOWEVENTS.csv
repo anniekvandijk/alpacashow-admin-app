@@ -1,0 +1,5 @@
+NAME;DATE;CLOSEDATE;LOCATION;JUDGE;SHOWTYPE
+ShowEvent zonder deelnemers;2030-03-15;2030-01-01;Breda;Shirley Bettinson;FEMALE_PROGENY_SHOW
+ShowEvent met deelnemers;2030-04-01;2030-03-01;Breda;Shirley Bettinson;MALE_PROGENY_SHOW
+Fleeceshow ShowEvent met deelnemers en dieren;2030-06-15;2030-04-15;Surhuisterveen;Test Judge;FLEECESHOW
+Haltershow ShowEvent met deelnemers en dieren;2030-08-15;2030-07-15;Surhuisterveen;Test Judge;HALTERSHOW
