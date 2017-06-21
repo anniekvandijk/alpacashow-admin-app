@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
@@ -22,8 +23,14 @@ import java.util.List;
 public class ParticipantController {
 
     private static Logger logger = LoggerFactory.getLogger(ParticipantController.class);
-    private ApplicationRepositoryService service = new ApplicationRepositoryService();
-    private ParticipantRepository participantRepository;
+    private RepositoryContext context;
+    private ApplicationRepositoryService service;
+
+    public ParticipantController (RepositoryContext context)
+    {
+        this.context = context;
+        service  = new ApplicationRepositoryService(context);
+    }
 
     // TODO: if response != 200, put some information in the response body what went wrong.
 
@@ -34,7 +41,7 @@ public class ParticipantController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getParticipants() throws IOException {
         loadRepository();
-        List<Participant> listOfParticipants = participantRepository.getAllParticipantsSorted();
+        List<Participant> listOfParticipants = context.participantRepository.getAllParticipantsSorted();
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfParticipants);
         Response response = Response
                 .status(Response.Status.OK)
@@ -46,14 +53,14 @@ public class ParticipantController {
     }
 
     @GET
-    @Path("/{key}")
-    @ApiOperation(value = "Get participant by key")
+    @Path("/{id}")
+    @ApiOperation(value = "Get participant by id")
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "Participant not found") })
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getParticipantByKey(@PathParam("key") String key) throws IOException {
+    public Response getParticipantByKey(@PathParam("id") String id) throws IOException {
         loadRepository();
-        Participant participant = participantRepository.getParticipantById(key);
+        Participant participant = context.participantRepository.getParticipantById(id);
 
         if (participant != null) {
             return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(participant)).build();
@@ -81,7 +88,7 @@ public class ParticipantController {
         }
 
         if (event != null) {
-            participantRepository.add(event);
+            context.participantRepository.add(event);
             saveRepository();
             return Response.status(Response.Status.OK).build();
         } else {
@@ -90,16 +97,16 @@ public class ParticipantController {
     }
 
     @PUT
-    @ApiOperation(value = "Update participant by key")
+    @ApiOperation(value = "Update participant by id")
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "Participant not found"),
             @ApiResponse(code = 400, message = "Bad request")})
-    @Path("/{key}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateParticipant(@PathParam("key") String key, String participant) throws IOException {
+    public Response updateParticipant(@PathParam("id") String id, String participant) throws IOException {
         loadRepository();
-        String participantDelete = participantRepository.delete(key);
+        String participantDelete = context.participantRepository.delete(id);
         if (participantDelete == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
@@ -112,7 +119,7 @@ public class ParticipantController {
             }
 
             if (event != null) {
-                participantRepository.add(event);
+                context.participantRepository.add(event);
                 saveRepository();
                 return Response.status(Response.Status.OK).build();
             } else {
@@ -122,14 +129,14 @@ public class ParticipantController {
     }
 
     @DELETE
-    @ApiOperation(value = "Delete participant by key")
+    @ApiOperation(value = "Delete participant by id")
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "Participant not found") })
-    @Path("/{key}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteParticipant(@PathParam("key") String key) throws IOException {
+    public Response deleteParticipant(@PathParam("id") String id) throws IOException {
         loadRepository();
-        String participantDelete = participantRepository.delete(key);
+        String participantDelete = context.participantRepository.delete(id);
         if (participantDelete != null) {
             saveRepository();
             return Response.status(Response.Status.OK).build();
@@ -141,7 +148,7 @@ public class ParticipantController {
 
     private void loadRepository() throws IOException {
 
-        participantRepository = service.loadParticipantRepository();
+        context.participantRepository = service.loadParticipantRepository();
     }
 
     private void saveRepository() throws IOException {

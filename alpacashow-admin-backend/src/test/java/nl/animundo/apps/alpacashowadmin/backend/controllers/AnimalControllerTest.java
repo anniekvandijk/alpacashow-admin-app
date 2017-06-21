@@ -1,6 +1,7 @@
 package nl.animundo.apps.alpacashowadmin.backend.controllers;
 
 import nl.animundo.apps.alpacashowadmin.backend.IThelper;
+import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.AnimalRepository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
@@ -15,9 +16,15 @@ import static org.junit.Assert.assertEquals;
 
 public class AnimalControllerTest {
 
-    private ApplicationRepositoryService service = new ApplicationRepositoryService();
+    private RepositoryContext context;
+    private ApplicationRepositoryService service;
     private IThelper helper = new IThelper(service);
-    private AnimalRepository animalRepository;
+
+    public AnimalControllerTest(RepositoryContext context)
+    {
+        this.context = context;
+        service = new ApplicationRepositoryService(context);
+    }
 
     @Before
     public void AddShowEvents () throws IOException {
@@ -27,7 +34,7 @@ public class AnimalControllerTest {
     @Test
     public void getAllAnimals() throws IOException {
 
-        AnimalController controller = new AnimalController();
+        AnimalController controller = new AnimalController(context);
 
         String result = (String)controller.getAnimals().getEntity();
         String resultTrim = result.replaceAll("\\s", "");
@@ -41,7 +48,7 @@ public class AnimalControllerTest {
     @Test
     public void getAnimalByKey() throws IOException {
 
-        AnimalController controller = new AnimalController();
+        AnimalController controller = new AnimalController(context);
 
         Response resultCode = controller.getAnimalByKey("4444");
         String result = (String) controller.getAnimalByKey("4444").getEntity();
@@ -58,25 +65,25 @@ public class AnimalControllerTest {
     public void addDeleteUpdateAnimal() throws IOException {
 
         loadRepository();
-        assertEquals(5, animalRepository.getAllAnimals().size());
+        assertEquals(5, context.animalRepository.getAllAnimals().size());
 
-        AnimalController controller = new AnimalController();
+        AnimalController controller = new AnimalController(context);
 
         String file = readJsonfile("add_animal.json");
         controller.addAnimal(file);
 
         loadRepository();
 
-        assertEquals(6, animalRepository.getAllAnimals().size());
+        assertEquals(6, context.animalRepository.getAllAnimals().size());
 
-        Animal animal = animalRepository.getAnimalById("chippie");
+        Animal animal = context.animalRepository.getAnimalById("chippie");
         assertEquals("SURI", animal.getBreed().toString());
 
         String file2 = readJsonfile("update_animal.json");
         controller.updateAnimal("chippie", file2);
 
         loadRepository();
-        Animal animal2 = animalRepository.getAnimalById("chippie");
+        Animal animal2 = context.animalRepository.getAnimalById("chippie");
         assertEquals("HUACAYA", animal2.getBreed().toString());
 
         controller.deleteAnimal("chippie");
@@ -86,7 +93,7 @@ public class AnimalControllerTest {
     @Test
     public void getAnimalByNotExistingKey() throws IOException {
 
-        AnimalController controller = new AnimalController();
+        AnimalController controller = new AnimalController(context);
 
         Response resultCode = controller.getAnimalByKey("Some not known animal");
         assertEquals(404, resultCode.getStatus());
@@ -97,7 +104,7 @@ public class AnimalControllerTest {
 
         loadRepository();
 
-        AnimalController controller = new AnimalController();
+        AnimalController controller = new AnimalController(context);
 
         String file = readJsonfile("add_animalWrong.json");
         Response resultCode = controller.addAnimal(file);
@@ -110,7 +117,7 @@ public class AnimalControllerTest {
     public void updateAnimalWithWrongKey() throws IOException {
 
         loadRepository();
-        AnimalController controller = new AnimalController();
+        AnimalController controller = new AnimalController(context);
 
         String file = readJsonfile("update_animal.json");
         Response resultCode = controller.updateAnimal("not known chip", file);
@@ -122,7 +129,7 @@ public class AnimalControllerTest {
     public void updateAnimalWithWrongData() throws IOException {
 
         loadRepository();
-        AnimalController controller = new AnimalController();
+        AnimalController controller = new AnimalController(context);
 
         String file = readJsonfile("update_animalWrong.json");
         Response resultCode = controller.updateAnimal("5555", file);
@@ -135,7 +142,7 @@ public class AnimalControllerTest {
 
         loadRepository();
 
-        AnimalController controller = new AnimalController();
+        AnimalController controller = new AnimalController(context);
         Response resultCode = controller.deleteAnimal("Animal X");
 
         assertEquals(404, resultCode.getStatus());
@@ -144,6 +151,6 @@ public class AnimalControllerTest {
 
     private void loadRepository() throws IOException {
 
-        animalRepository = service.loadAnimalRepository();
+        context.animalRepository = service.loadAnimalRepository();
     }
 }

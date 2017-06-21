@@ -28,30 +28,12 @@ public class ShowFleeceServiceTest {
     float cleanFleeceWeight;
     float cleanFleeceWeightPoints;
 
+    ShowFleeceService showFleeceService = new ShowFleeceService();
+
     float delta = 0.05f;
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
-
-    @Test
-    public void noInstanceTest() throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
-
-        exception.expect(InstantiationException.class);
-        exception.expectMessage("Instances of this type are forbidden!");
-
-        Constructor<ShowFleeceService> constructor = ShowFleeceService.class.getDeclaredConstructor();
-        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
-        constructor.setAccessible(true);
-
-        try {
-            constructor.newInstance();
-        } catch (InvocationTargetException e) {
-            throw (InstantiationException) e.getTargetException();
-        }
-
-        constructor.setAccessible(false);
-
-    }
 
     @Test
     public void getCleanFleeceWeightPointsWithoutBeforeSheerDate () throws IOException {
@@ -63,7 +45,7 @@ public class ShowFleeceServiceTest {
         breed = BreedClass.HUACAYA_FLEECE;
         cleanFleeceWeightPoints = 12.5f;
 
-        assertEquals(cleanFleeceWeightPoints, ShowFleeceService.getCleanFleeceWeightPoints(dateOfBirth, sheerDate, beforeSheerDate, breed, fleeceWeight), 0);
+        assertEquals(cleanFleeceWeightPoints, showFleeceService.getCleanFleeceWeightPoints(dateOfBirth, sheerDate, beforeSheerDate, breed, fleeceWeight), 0);
     }
 
     @Test
@@ -76,7 +58,7 @@ public class ShowFleeceServiceTest {
         breed = BreedClass.SURI_FLEECE;
         cleanFleeceWeightPoints = 12.0f;
 
-        assertEquals(cleanFleeceWeightPoints, ShowFleeceService.getCleanFleeceWeightPoints(dateOfBirth, sheerDate, beforeSheerDate, breed, fleeceWeight), 0);
+        assertEquals(cleanFleeceWeightPoints, showFleeceService.getCleanFleeceWeightPoints(dateOfBirth, sheerDate, beforeSheerDate, breed, fleeceWeight), 0);
     }
 
     @Test
@@ -89,7 +71,7 @@ public class ShowFleeceServiceTest {
         breed = BreedClass.SURI_FLEECE;
         fleeceGrowthInDays = 377;
 
-        assertEquals(fleeceGrowthInDays,ShowFleeceService.fleeceGrowthInDays(dateOfBirth, sheerDate, beforeSheerDate));
+        assertEquals(fleeceGrowthInDays,showFleeceService.fleeceGrowthInDays(dateOfBirth, sheerDate, beforeSheerDate));
     }
 
     @Test
@@ -102,7 +84,7 @@ public class ShowFleeceServiceTest {
         breed = BreedClass.SURI_FLEECE;
         fleeceGrowthInDays = 275;
 
-        assertEquals(fleeceGrowthInDays,ShowFleeceService.fleeceGrowthInDays(dateOfBirth, sheerDate, beforeSheerDate));
+        assertEquals(fleeceGrowthInDays,showFleeceService.fleeceGrowthInDays(dateOfBirth, sheerDate, beforeSheerDate));
     }
 
     @Test
@@ -115,7 +97,7 @@ public class ShowFleeceServiceTest {
         breed = BreedClass.SURI_FLEECE;
         cleanFleeceWeight = 1.6f;
 
-        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(dateOfBirth, sheerDate, beforeSheerDate, fleeceWeight), 0.05f);
+        assertEquals(cleanFleeceWeight, showFleeceService.fleeceWeightCorrection(dateOfBirth, sheerDate, beforeSheerDate, fleeceWeight), 0.05f);
     }
 
     @Test
@@ -128,6 +110,6 @@ public class ShowFleeceServiceTest {
         breed = BreedClass.SURI_FLEECE;
         cleanFleeceWeight = 2.1f;
 
-        assertEquals(cleanFleeceWeight, ShowFleeceService.fleeceWeightCorrection(dateOfBirth, sheerDate, beforeSheerDate, fleeceWeight), 0.05f);
+        assertEquals(cleanFleeceWeight, showFleeceService.fleeceWeightCorrection(dateOfBirth, sheerDate, beforeSheerDate, fleeceWeight), 0.05f);
     }
 }

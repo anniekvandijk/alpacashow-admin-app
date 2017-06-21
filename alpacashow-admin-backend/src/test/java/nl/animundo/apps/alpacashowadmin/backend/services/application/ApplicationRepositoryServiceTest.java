@@ -1,6 +1,7 @@
 package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
 import nl.animundo.apps.alpacashowadmin.backend.IThelper;
+import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
@@ -12,13 +13,9 @@ import static org.junit.Assert.assertEquals;
  */
 public class ApplicationRepositoryServiceTest {
 
-    private ApplicationRepositoryService service = new ApplicationRepositoryService();
+    private RepositoryContext context;
+    private ApplicationRepositoryService service = new ApplicationRepositoryService(context);
     private IThelper helper = new IThelper(service);
-    private ShowEventRepository showEventRepository;
-    private ParticipantRepository participantRepository;
-    private AnimalRepository animalRepository;
-    private ShowEventAnimalDetailRepository showEventAnimalDetailRepository;
-    private FleeceWeightPointsRepository fleeceWeightPointsRepository;
 
     @Before
     public void AddShowEvents() throws IOException {
@@ -31,49 +28,49 @@ public class ApplicationRepositoryServiceTest {
     @Test
     public void getShowEventRepo() throws IOException {
 
-        showEventRepository = service.loadShowEventRepository();
+        context.showEventRepository = service.loadShowEventRepository();
 
-        assertEquals(4, showEventRepository.getAllShowEvents().size());
-        assertEquals("Haltershow ShowEvent met deelnemers en dieren", showEventRepository.getShowEventById("2a88e547-d63b-4ec0-8344-7be454701b28").getName());
+        assertEquals(4, context.showEventRepository.getAllShowEvents().size());
+        assertEquals("Haltershow ShowEvent met deelnemers en dieren", context.showEventRepository.getShowEventById("2a88e547-d63b-4ec0-8344-7be454701b28").getName());
 
     }
 
     @Test
     public void getParticipantRepo() throws IOException {
 
-        participantRepository = service.loadParticipantRepository();
+        context.participantRepository = service.loadParticipantRepository();
 
-        assertEquals(5, participantRepository.getAllParticipants().size());
-        assertEquals("Test participant 2", participantRepository.getParticipantById("947e95f8-3506-42b4-818c-cfff3435aa17").getName());
-        assertEquals("Testfarm 2", participantRepository.getParticipantById("947e95f8-3506-42b4-818c-cfff3435aa17").getFarmName());
+        assertEquals(5, context.participantRepository.getAllParticipants().size());
+        assertEquals("Test participant 2", context.participantRepository.getParticipantById("947e95f8-3506-42b4-818c-cfff3435aa17").getName());
+        assertEquals("Testfarm 2", context.participantRepository.getParticipantById("947e95f8-3506-42b4-818c-cfff3435aa17").getFarmName());
 
     }
 
     @Test
     public void getAnimalRepo() throws IOException {
 
-        animalRepository = service.loadAnimalRepository();
+        context.animalRepository = service.loadAnimalRepository();
 
-        assertEquals(5, animalRepository.getAllAnimals().size());
-        assertEquals("Alpaca1", animalRepository.getAnimalById("869c1d60-d0f0-4f6a-b4d0-4326a7165b12").getName());
+        assertEquals(5, context.animalRepository.getAllAnimals().size());
+        assertEquals("Alpaca1", context.animalRepository.getAnimalById("869c1d60-d0f0-4f6a-b4d0-4326a7165b12").getName());
 
     }
 
     @Test
     public void getShowEventAnimalDetailRepo() throws IOException {
 
-        showEventAnimalDetailRepository = service.loadShowEventAnimalDetailRepository();
+        context.showEventAnimalDetailRepository = service.loadShowEventAnimalDetailRepository();
 
-        assertEquals(6, showEventAnimalDetailRepository.getAllShowEventAnimalDetails().size());
+        assertEquals(6, context.showEventAnimalDetailRepository.getAllShowEventAnimalDetails().size());
 
     }
 
     @Test
     public void getFleeceWeightPointsRepo() throws IOException {
 
-        fleeceWeightPointsRepository = service.loadFleeceWeightPointsRepository();
+        context.fleeceWeightPointsRepository = service.loadFleeceWeightPointsRepository();
 
-       assertEquals(450, fleeceWeightPointsRepository.getAllFleeceWeightPointsByKeySet().size());
-       assertEquals(450, fleeceWeightPointsRepository.getAllFleeceWeightPoints().size());
+       assertEquals(450, context.fleeceWeightPointsRepository.getAllFleeceWeightPointsByKeySet().size());
+       assertEquals(450, context.fleeceWeightPointsRepository.getAllFleeceWeightPoints().size());
     }
 }

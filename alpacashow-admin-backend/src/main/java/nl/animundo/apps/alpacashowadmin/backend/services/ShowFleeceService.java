@@ -1,5 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.services;
 
+import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.helpclasses.FleeceWeightPoints;
@@ -14,14 +15,11 @@ import java.time.temporal.ChronoUnit;
 
 public class ShowFleeceService {
     private static Logger logger = LoggerFactory.getLogger(FleeceWeightPointsRepository.class);
+    private RepositoryContext context;
 
-    private static ApplicationRepositoryService service = new ApplicationRepositoryService();
+    private ApplicationRepositoryService service = new ApplicationRepositoryService(context);
 
-    private ShowFleeceService() throws InstantiationException {
-        throw new InstantiationException("Instances of this type are forbidden!");
-    }
-
-    public static float getCleanFleeceWeightPoints (LocalDate dateOfBirth, LocalDate sheerDate, LocalDate beforeSheerDate, BreedClass breed, float fleeceweight) throws IOException {
+    public float getCleanFleeceWeightPoints(LocalDate dateOfBirth, LocalDate sheerDate, LocalDate beforeSheerDate, BreedClass breed, float fleeceweight) throws IOException {
 
         if (breed.equals(BreedClass.HUACAYA_FLEECE))
         {

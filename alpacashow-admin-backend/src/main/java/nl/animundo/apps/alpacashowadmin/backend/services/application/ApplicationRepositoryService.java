@@ -1,5 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
+import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
 import nl.animundo.apps.alpacashowadmin.backend.domain.*;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.AgeClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalDetail;
@@ -19,62 +20,62 @@ public class ApplicationRepositoryService {
 
     private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
     private static ApplicationFileDirService fileDirService = new ApplicationFileDirService();
-    private ShowEventRepository showEventRepository;
-    private ParticipantRepository participantRepository;
-    private AnimalRepository animalRepository;
-    private ShowEventParticipantRepository showEventParticipantRepository;
-    private ShowEventAnimalDetailRepository showEventAnimalDetailRepository;
-    private FleeceWeightPointsRepository fleeceWeightPointsRepository;
+    private RepositoryContext context;
+
+    public ApplicationRepositoryService(RepositoryContext context)
+    {
+        this.context = context;
+    }
 
     public ShowEventRepository loadShowEventRepository() throws IOException {
 
         String csvShowEventsResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvShowEventsResource));
-        showEventRepository = CsvShowEventRepository.importData(csvReader);
+        context.showEventRepository = CsvShowEventRepository.importData(csvReader);
         csvReader.close();
         loadCrossRepoForShowEvent();
         logger.info("Imported csvShowEventRepository");
-        return showEventRepository;
+        return context.showEventRepository;
     }
 
     public ParticipantRepository loadParticipantRepository() throws IOException {
 
         String csvParticipantsResource = fileDirService.getFilePath("csv/showregistration/PARTICIPANTS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvParticipantsResource));
-        participantRepository = CsvParticipantRepository.importData(csvReader);
+        context.participantRepository = CsvParticipantRepository.importData(csvReader);
         csvReader.close();
         logger.info("Imported csvParticipantRepository");
-        return participantRepository;
+        return context.participantRepository;
     }
 
     public AnimalRepository loadAnimalRepository() throws IOException {
 
         String csvAnimalsResource = fileDirService.getFilePath("csv/showregistration/ANIMALS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvAnimalsResource));
-        animalRepository = CsvAnimalRepository.importData(csvReader);
+        context.animalRepository = CsvAnimalRepository.importData(csvReader);
         csvReader.close();
         logger.info("Imported csvAnimalRepository");
-        return animalRepository;
+        return context.animalRepository;
     }
 
     public ShowEventParticipantRepository loadShowEventParticipantRepository() throws IOException {
 
         String csvShowEventParticipantResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS_PARTICIPANTS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvShowEventParticipantResource));
-        showEventParticipantRepository = CsvShowEventParticipantRepository.importData(csvReader);
+        context.showEventParticipantRepository = CsvShowEventParticipantRepository.importData(csvReader);
         csvReader.close();
         logger.info("Imported csvShowEventParticipantRepository");
-        return showEventParticipantRepository;
+        return context.showEventParticipantRepository;
     }
 
     public ShowEventAnimalDetailRepository loadShowEventAnimalDetailRepository() throws IOException {
 
         String csvShowEventAnimalDetailResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS_ANIMALDETAIL.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvShowEventAnimalDetailResource));
-        showEventAnimalDetailRepository = CsvShowEventAnimalDetailRepository.importData(csvReader);
+        context.showEventAnimalDetailRepository = CsvShowEventAnimalDetailRepository.importData(csvReader);
         csvReader.close();
         logger.info("Imported csvShowEventAnimalDetailRepository");
-        return showEventAnimalDetailRepository;
+        return context.showEventAnimalDetailRepository;
     }
 
     public FleeceWeightPointsRepository loadFleeceWeightPointsRepository() throws IOException {
@@ -82,18 +83,18 @@ public class ApplicationRepositoryService {
         String csvFleeceWeightPointsResource = fileDirService.getFilePath("csv/helpfiles/FLEECEWEIGHTPOINTS.csv");
 
         FileReader csvReader = new FileReader(String.valueOf(csvFleeceWeightPointsResource));
-        fleeceWeightPointsRepository = CsvFleeceWeightPointsRepository.importData(csvReader);
+        context.fleeceWeightPointsRepository = CsvFleeceWeightPointsRepository.importData(csvReader);
         csvReader.close();
         logger.info("Imported csvFleeceWeightPointsRepository");
-        return fleeceWeightPointsRepository;
+        return context.fleeceWeightPointsRepository;
     }
 
     public void saveShowEventRepository() throws IOException {
 
         String csvShowEventsResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS.csv");
         FileWriter writer = new FileWriter(csvShowEventsResource);
-        CsvShowEventRepository.exportData(writer, showEventRepository);
-        saveCrossRepoForShowEvent(showEventRepository);
+        CsvShowEventRepository.exportData(writer, context.showEventRepository);
+        saveCrossRepoForShowEvent(context.showEventRepository);
         writer.flush();
         writer.close();
         logger.info("Exported csvShowEventRepository");
@@ -103,7 +104,7 @@ public class ApplicationRepositoryService {
 
         String csvParticipantsResource = fileDirService.getFilePath("csv/showregistration/PARTICIPANTS.csv");
         FileWriter writer = new FileWriter(csvParticipantsResource);
-        CsvParticipantRepository.exportData(writer, participantRepository);
+        CsvParticipantRepository.exportData(writer, context.participantRepository);
         writer.flush();
         writer.close();
         logger.info("Exported csvParticipantRepository");
@@ -113,7 +114,7 @@ public class ApplicationRepositoryService {
 
         String csvAnimalsResource = fileDirService.getFilePath("csv/showregistration/ANIMALS.csv");
         FileWriter writer = new FileWriter(csvAnimalsResource);
-        CsvAnimalRepository.exportData(writer, animalRepository);
+        CsvAnimalRepository.exportData(writer, context.animalRepository);
         writer.flush();
         writer.close();
         logger.info("Exported csvAnimalRepository");
@@ -123,7 +124,7 @@ public class ApplicationRepositoryService {
 
         String csvShowEventParticipantResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS_PARTICIPANTS.csv");
         FileWriter writer = new FileWriter(csvShowEventParticipantResource);
-        CsvShowEventParticipantRepository.exportData(writer, showEventParticipantRepository);
+        CsvShowEventParticipantRepository.exportData(writer, context.showEventParticipantRepository);
         writer.flush();
         writer.close();
         logger.info("Exported csvShowEventParticipantRepository");
@@ -133,7 +134,7 @@ public class ApplicationRepositoryService {
 
         String csvShowEventAnimalDetailResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS_ANIMALDETAIL.csv");
         FileWriter writer = new FileWriter(csvShowEventAnimalDetailResource);
-        CsvShowEventAnimalDetailRepository.exportData(writer, showEventAnimalDetailRepository);
+        CsvShowEventAnimalDetailRepository.exportData(writer, context.showEventAnimalDetailRepository);
         writer.flush();
         writer.close();
         logger.info("Exported csvShowEventAnimalDetailRepository");
@@ -144,17 +145,17 @@ public class ApplicationRepositoryService {
         for (String showEventKey : showEventRepository.getAllShowEventsById()) {
             ShowEvent showEvent = showEventRepository.getShowEventById(showEventKey);
             for (Participant participant : showEvent.getParticipants()) {
-                String participantKey = participantRepository.add(participant);
+                String participantKey = context.participantRepository.add(participant);
                 ShowEventParticipant part = new ShowEventParticipant(showEventKey, participantKey);
-                showEventParticipantRepository.add(part);
+                context.showEventParticipantRepository.add(part);
                 for (Animal animal : participant.getAnimals()) {
-                    String animalKey = animalRepository.add(animal);
+                    String animalKey = context.animalRepository.add(animal);
                     AgeClass ageclass = AgeClassService.ageClass(showEvent, animal);
                     int showClass = ShowClassService.getShowClassCode(animal.getBreed(), ageclass, animal.getSex(), animal.getColor());
                     ShowEventAnimalDetail showEventAnimal = new ShowEventAnimalDetail(showEventKey, participantKey, animalKey, animal.getShowEventAnimalSheeringDetail().getSheerDate(),
                             animal.getShowEventAnimalSheeringDetail().getBeforeSheerDate(), ageclass, showClass);
 
-                    showEventAnimalDetailRepository.add(showEventAnimal);
+                    context.showEventAnimalDetailRepository.add(showEventAnimal);
                 }
             }
         }
@@ -170,15 +171,15 @@ public class ApplicationRepositoryService {
         loadShowEventAnimalDetailRepository();
 
 
-        Set <String> showEventsByKey = showEventRepository.getAllShowEventsById();
-        Set <String> participantsByKey = participantRepository.getAllParticipantsById();
-        Set <String> animalsById = animalRepository.getAllAnimalsById();
-        Collection <ShowEventParticipant> showEventParticipants = showEventParticipantRepository.getAllShowEventParticipants();
-        Collection <ShowEventAnimalDetail> showEventAnimalDetails = showEventAnimalDetailRepository.getAllShowEventAnimalDetails();
+        Set <String> showEventsByKey = context.showEventRepository.getAllShowEventsById();
+        Set <String> participantsByKey = context.participantRepository.getAllParticipantsById();
+        Set <String> animalsById = context.animalRepository.getAllAnimalsById();
+        Collection <ShowEventParticipant> showEventParticipants = context.showEventParticipantRepository.getAllShowEventParticipants();
+        Collection <ShowEventAnimalDetail> showEventAnimalDetails = context.showEventAnimalDetailRepository.getAllShowEventAnimalDetails();
 
         // Loop ShowEvents and get details
         for (String id : showEventsByKey) {
-            ShowEvent showEvent = showEventRepository.getShowEventById(id);
+            ShowEvent showEvent = context.showEventRepository.getShowEventById(id);
 
             Set<Participant> participants = new LinkedHashSet<Participant>();
 
@@ -191,7 +192,7 @@ public class ApplicationRepositoryService {
                     if (id.equals(showKey) && participantKey.equals(partKey))
                     {
 
-                        Participant participant = participantRepository.getParticipantById(participantKey);
+                        Participant participant = context.participantRepository.getParticipantById(participantKey);
 
                         Set<Animal> animals = new LinkedHashSet<Animal>();
 
@@ -203,7 +204,7 @@ public class ApplicationRepositoryService {
                                 String ani = showEventAnimalDetail.getAnimalKey();
 
                                 if (id.equals(show) && participantKey.equals(part) && id.equals(ani)) {
-                                    Animal animal = animalRepository.getAnimalById(id);
+                                    Animal animal = context.animalRepository.getAnimalById(id);
                                     LocalDate sheerDate = showEventAnimalDetail.getSheerDate();
                                     LocalDate beforeSheerDate = showEventAnimalDetail.getBeforeSheerDate();
                                     ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail = new ShowEventAnimalSheeringDetail(sheerDate, beforeSheerDate);

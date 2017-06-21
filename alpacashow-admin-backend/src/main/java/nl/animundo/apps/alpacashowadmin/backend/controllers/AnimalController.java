@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.AnimalRepository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
@@ -22,12 +23,19 @@ import java.util.List;
 public class AnimalController {
 
     private static Logger logger = LoggerFactory.getLogger(AnimalController.class);
-    private ApplicationRepositoryService service = new ApplicationRepositoryService();
-    private AnimalRepository animalRepository;
+    private RepositoryContext context;
+    private ApplicationRepositoryService service;
 
     // TODO: if response != 200, put some information in the response body what went wrong.
 
     // TODO Don't sent detail with animal. This is for ShowAnimals Only
+
+    public AnimalController(RepositoryContext context)
+    {
+        this.context = context;
+        service = new ApplicationRepositoryService(context);
+    }
+
 
     @GET
     @ApiOperation(value = "Get all animals",
@@ -36,7 +44,7 @@ public class AnimalController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAnimals() throws IOException {
         loadRepository();
-        List<Animal> listOfAnimals = animalRepository.getAllAnimalsSorted();
+        List<Animal> listOfAnimals = context.animalRepository.getAllAnimalsSorted();
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfAnimals);
         Response response = Response
                 .status(Response.Status.OK)
@@ -55,7 +63,7 @@ public class AnimalController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAnimalByKey(@PathParam("id") String id) throws IOException {
         loadRepository();
-        Animal animal = animalRepository.getAnimalById(id);
+        Animal animal = context.animalRepository.getAnimalById(id);
 
         if (animal != null) {
             return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(animal)).build();
@@ -83,7 +91,7 @@ public class AnimalController {
         }
 
         if (event != null) {
-            animalRepository.add(event);
+            context.animalRepository.add(event);
             saveRepository();
             return Response.status(Response.Status.OK).build();
         } else {
@@ -92,16 +100,16 @@ public class AnimalController {
     }
 
     @PUT
-    @ApiOperation(value = "Update animal by key")
+    @ApiOperation(value = "Update animal by id")
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "Animal not found"),
             @ApiResponse(code = 400, message = "Bad request")})
-    @Path("/{key}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateAnimal(@PathParam("key") String key, String animal) throws IOException {
+    public Response updateAnimal(@PathParam("id") String id, String animal) throws IOException {
         loadRepository();
-        String animalDelete = animalRepository.delete(key);
+        String animalDelete = context.animalRepository.delete(id);
         if (animalDelete == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
@@ -114,7 +122,7 @@ public class AnimalController {
             }
 
             if (event != null) {
-                animalRepository.add(event);
+                context.animalRepository.add(event);
                 saveRepository();
                 return Response.status(Response.Status.OK).build();
             } else {
@@ -124,14 +132,14 @@ public class AnimalController {
     }
 
     @DELETE
-    @ApiOperation(value = "Delete animal by key")
+    @ApiOperation(value = "Delete animal by id")
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "Animal not found") })
-    @Path("/{key}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteAnimal(@PathParam("key") String key) throws IOException {
+    public Response deleteAnimal(@PathParam("id") String id) throws IOException {
         loadRepository();
-        String animalDelete = animalRepository.delete(key);
+        String animalDelete = context.animalRepository.delete(id);
         if (animalDelete != null) {
             saveRepository();
             return Response.status(Response.Status.OK).build();
@@ -143,7 +151,7 @@ public class AnimalController {
 
     private void loadRepository() throws IOException {
 
-        animalRepository = service.loadAnimalRepository();
+        context.animalRepository = service.loadAnimalRepository();
     }
 
     private void saveRepository() throws IOException {

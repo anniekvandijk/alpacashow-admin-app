@@ -1,6 +1,7 @@
 package nl.animundo.apps.alpacashowadmin.backend.controllers;
 
 import nl.animundo.apps.alpacashowadmin.backend.IThelper;
+import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
@@ -15,9 +16,15 @@ import static org.junit.Assert.assertEquals;
 
 public class ParticipantControllerTest {
 
-    private ParticipantRepository participantRepository;
-    private ApplicationRepositoryService service = new ApplicationRepositoryService();
+    private RepositoryContext context;
+    private ApplicationRepositoryService service;
     private IThelper helper = new IThelper(service);
+
+    public ParticipantControllerTest(RepositoryContext context)
+    {
+        this.context = context;
+        service  = new ApplicationRepositoryService(context);
+    }
 
     @Before
     public void AddShowEvents () throws IOException {
@@ -27,7 +34,7 @@ public class ParticipantControllerTest {
     @Test
     public void getAllParticipants() throws IOException {
 
-        ParticipantController controller = new ParticipantController();
+        ParticipantController controller = new ParticipantController(context);
 
         String result = (String)controller.getParticipants().getEntity();
         String resultTrim = result.replaceAll("\\s", "");
@@ -41,7 +48,7 @@ public class ParticipantControllerTest {
     @Test
     public void getParticipantByKey() throws IOException {
 
-        ParticipantController controller = new ParticipantController();
+        ParticipantController controller = new ParticipantController(context);
 
         Response resultCode = controller.getParticipantByKey("Deelnemer 2");
         String result = (String) controller.getParticipantByKey("Deelnemer 2").getEntity();
@@ -58,24 +65,24 @@ public class ParticipantControllerTest {
     public void addDeleteUpdateParticipant() throws IOException {
 
         loadRepository();
-        assertEquals(5, participantRepository.getAllParticipants().size());
+        assertEquals(5, context.participantRepository.getAllParticipants().size());
 
-        ParticipantController controller = new ParticipantController();
+        ParticipantController controller = new ParticipantController(context);
 
         String file = readJsonfile("add_participant.json");
         controller.addParticipant(file);
 
         loadRepository();
-        assertEquals(6, participantRepository.getAllParticipants().size());
+        assertEquals(6, context.participantRepository.getAllParticipants().size());
 
-        Participant participant = participantRepository.getParticipantById("Deelnemer 3");
+        Participant participant = context.participantRepository.getParticipantById("Deelnemer 3");
         assertEquals("Grun", participant.getCity());
 
         String file2 = readJsonfile("update_participant.json");
         controller.updateParticipant("Deelnemer 3", file2);
 
         loadRepository();
-        Participant participant12 = participantRepository.getParticipantById("Deelnemer 3");
+        Participant participant12 = context.participantRepository.getParticipantById("Deelnemer 3");
         assertEquals("Groningen", participant12.getCity());
 
         controller.deleteParticipant("Deelnemer 3");
@@ -85,7 +92,7 @@ public class ParticipantControllerTest {
     @Test
     public void getParticipantByNotExistingKey() throws IOException {
 
-        ParticipantController controller = new ParticipantController();
+        ParticipantController controller = new ParticipantController(context);
 
         Response resultCode = controller.getParticipantByKey("Deelnemer 4");
         assertEquals(404, resultCode.getStatus());
@@ -96,7 +103,7 @@ public class ParticipantControllerTest {
 
         loadRepository();
 
-        ParticipantController controller = new ParticipantController();
+        ParticipantController controller = new ParticipantController(context);
 
         String file = readJsonfile("add_participantWrong.json");
         Response resultCode = controller.addParticipant(file);
@@ -109,7 +116,7 @@ public class ParticipantControllerTest {
     public void updateParticipantWithWrongKey() throws IOException {
 
         loadRepository();
-        ParticipantController controller = new ParticipantController();
+        ParticipantController controller = new ParticipantController(context);
 
         String file = readJsonfile("update_participant.json");
         Response resultCode = controller.updateParticipant("Deelnemer X", file);
@@ -121,7 +128,7 @@ public class ParticipantControllerTest {
     public void updateParticipantWithWrongData() throws IOException {
 
         loadRepository();
-        ParticipantController controller = new ParticipantController();
+        ParticipantController controller = new ParticipantController(context);
 
         String file = readJsonfile("update_participantWrong.json");
         Response resultCode = controller.updateParticipant("Deelnemer 2", file);
@@ -134,7 +141,7 @@ public class ParticipantControllerTest {
 
         loadRepository();
 
-        ParticipantController controller = new ParticipantController();
+        ParticipantController controller = new ParticipantController(context);
         Response resultCode = controller.deleteParticipant("Deelnemer X");
 
         assertEquals(404, resultCode.getStatus());
@@ -143,6 +150,6 @@ public class ParticipantControllerTest {
 
     private void loadRepository() throws IOException {
 
-        participantRepository = service.loadParticipantRepository();
+        context.participantRepository = service.loadParticipantRepository();
     }
 }

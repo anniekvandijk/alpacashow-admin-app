@@ -11,6 +11,7 @@ import java.time.LocalDate;
 
 public class FleeceShowSuri extends FleeceShow {
     private static Logger logger = LoggerFactory.getLogger(ShowEventAnimalDetail.class);
+    private ShowFleeceService showFleeceService = new ShowFleeceService();
 
     private float finessAndHandlePoints; // 20
     private float uniformityOfMicronPoints; //10
@@ -41,7 +42,7 @@ public class FleeceShowSuri extends FleeceShow {
         this.lusturePoints = lusturePoints;
         this.lackOfGuardHairPoints = lackOfGuardHairPoints;
         this.lackOfImpuritiesPoints = lackOfImpuritiesPoints;
-        cleanFleeceWeightPoints = ShowFleeceService.getCleanFleeceWeightPoints(dateOfBirth, sheerDate, beforeSheerdate, breed, fleeceWeight);
+        cleanFleeceWeightPoints = showFleeceService.getCleanFleeceWeightPoints(dateOfBirth, sheerDate, beforeSheerdate, breed, fleeceWeight);
         totalPoints = finessAndHandlePoints +
                 uniformityOfMicronPoints +
                 uniformityOfLenghtPoints +
