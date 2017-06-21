@@ -68,14 +68,14 @@ public class ParticipantControllerTest {
         loadRepository();
         assertEquals(6, participantRepository.getAllParticipants().size());
 
-        Participant participant = participantRepository.getParticipantByKeySet("Deelnemer 3");
+        Participant participant = participantRepository.getParticipantById("Deelnemer 3");
         assertEquals("Grun", participant.getCity());
 
         String file2 = readJsonfile("update_participant.json");
         controller.updateParticipant("Deelnemer 3", file2);
 
         loadRepository();
-        Participant participant12 = participantRepository.getParticipantByKeySet("Deelnemer 3");
+        Participant participant12 = participantRepository.getParticipantById("Deelnemer 3");
         assertEquals("Groningen", participant12.getCity());
 
         controller.deleteParticipant("Deelnemer 3");

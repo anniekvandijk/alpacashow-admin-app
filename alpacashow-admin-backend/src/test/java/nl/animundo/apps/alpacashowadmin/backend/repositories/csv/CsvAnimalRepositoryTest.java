@@ -44,7 +44,7 @@ public class CsvAnimalRepositoryTest {
         assertEquals(3, repo.getAllAnimals().size());
 
         String key = "12346";
-        Animal animal = repo.getAnimalByKeySet(key);
+        Animal animal = repo.getAnimalById(key);
         assertNotNull(animal);
         assertEquals("My Alpaca 2", animal.getName());
         assertEquals("HUACAYA", animal.getBreed().toString());
@@ -55,6 +55,7 @@ public class CsvAnimalRepositoryTest {
         assertEquals("My father", animal.getSire());
         assertEquals("My mothertoo", animal.getDam());
 
+        String id              = "6be3ab7c-fcc8-424e-a04b-2f7e497565de";
         String name            = "Alpie";
         BreedClass breed       = BreedClass.HUACAYA;
         SexClass sex           = SexClass.FEMALE;
@@ -65,7 +66,7 @@ public class CsvAnimalRepositoryTest {
         String sire            = "Alpaca father";
         String dam             = "Alpaca mother";
 
-        repo.add(new Animal(name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam));
+        repo.add(new Animal(id, name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam));
         assertEquals(4, repo.getAllAnimals().size());
 
         repo.delete("12345");
@@ -87,7 +88,7 @@ public class CsvAnimalRepositoryTest {
         assertEquals(3, newRepo.getAllAnimals().size());
 
         String key2 = "982000123169930";
-        Animal animal2 = newRepo.getAnimalByKeySet(key2);
+        Animal animal2 = newRepo.getAnimalById(key2);
         assertNotNull(animal2);
         assertEquals("BAF12345", animal2.getRegistration());
 

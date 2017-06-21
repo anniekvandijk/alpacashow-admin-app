@@ -53,7 +53,7 @@ public class ParticipantController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getParticipantByKey(@PathParam("key") String key) throws IOException {
         loadRepository();
-        Participant participant = participantRepository.getParticipantByKeySet(key);
+        Participant participant = participantRepository.getParticipantById(key);
 
         if (participant != null) {
             return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(participant)).build();

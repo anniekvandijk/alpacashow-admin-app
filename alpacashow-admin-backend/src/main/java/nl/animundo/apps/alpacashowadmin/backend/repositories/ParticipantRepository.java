@@ -13,24 +13,19 @@ public class ParticipantRepository {
 
     public String add(final Participant participant) {
 
-        String participantKey = participant.getName();
-        if (getParticipantByKeySet(participantKey) != null) {
-            participants.remove(participantKey);
-            participants.put(participantKey, participant);
-            logger.info("Updated participant '" + participantKey + "' to participantRepo");
-        } else {
-            participants.put(participantKey, participant);
-            logger.info("Added participant '" + participantKey + "' to participantRepo");
-        }
-        return participantKey;
+        String id = UUID.randomUUID().toString();
+        participant.setId(id);
+            participants.put(id, participant);
+            logger.info("Updated participant '" + id + "' to participantRepo");
+        return id;
     }
 
-    public String delete(final String participantKey) {
+    public String delete(final String id) {
 
-        Participant participantToDelete = getParticipantByKeySet(participantKey);
+        Participant participantToDelete = getParticipantById(id);
         if (participantToDelete != null) {
-            participants.remove(participantKey);
-            logger.info("Deleted participant '" + participantKey + "' from participantRepo");
+            participants.remove(id);
+            logger.info("Deleted participant '" + id + "' from participantRepo");
             return participantToDelete.getName();
         } else {
             return null;
@@ -41,7 +36,7 @@ public class ParticipantRepository {
             participants.clear();
     }
 
-    public Set<String> getAllParticipantsByKeySet() {
+    public Set<String> getAllParticipantsById() {
         return participants.keySet();
     }
 
@@ -57,8 +52,8 @@ public class ParticipantRepository {
         return participantList;
     }
 
-    public Participant getParticipantByKeySet(final String keySet) {
-        return participants.get(keySet);
+    public Participant getParticipantById(final String id) {
+        return participants.get(id);
     }
 
 }

@@ -16,14 +16,15 @@ import java.time.format.DateTimeFormatter;
 
 public class CsvParticipantRepository extends ParticipantRepository {
 
-    private static final int COL_NAME = 0;
-    private static final int COL_FARMNAME= 1;
-    private static final int COL_EMAIL = 2;
-    private static final int COL_TELEPHONE = 3;
-    private static final int COL_ADDRESS = 4;
-    private static final int COL_ZIPCODE = 5;
-    private static final int COL_CITY = 6;
-    private static final int COL_COUNTRY = 7;
+    private static final int COL_ID = 0;
+    private static final int COL_NAME = 1;
+    private static final int COL_FARMNAME= 2;
+    private static final int COL_EMAIL = 3;
+    private static final int COL_TELEPHONE = 4;
+    private static final int COL_ADDRESS = 5;
+    private static final int COL_ZIPCODE = 6;
+    private static final int COL_CITY = 7;
+    private static final int COL_COUNTRY = 8;
 
     public static ParticipantRepository importData(Reader reader) throws IOException {
 
@@ -33,7 +34,8 @@ public class CsvParticipantRepository extends ParticipantRepository {
     }
 
     public static void exportData(final Writer writer, final ParticipantRepository participantRepo) throws IOException {
-        writer  .append("NAME").append(";")
+        writer  .append("ID").append(";")
+                .append("NAME").append(";")
                 .append("FARMNAME").append(";")
                 .append("EMAIL").append(";")
                 .append("TELEPHONE").append(";")
@@ -42,8 +44,9 @@ public class CsvParticipantRepository extends ParticipantRepository {
                 .append("CITY").append(";")
                 .append("COUNTRY").append("\n");
 
-        for (String participant : participantRepo.getAllParticipantsByKeySet()) {
-            Participant part = participantRepo.getParticipantByKeySet(participant);
+        for (String id : participantRepo.getAllParticipantsById()) {
+            Participant part = participantRepo.getParticipantById(id);
+            writer.append(part.getId()).append(";");
             writer.append(part.getName()).append(";");
             writer.append(part.getFarmName()).append(";");
             if (part.getEmail() != null) {
@@ -81,6 +84,7 @@ public class CsvParticipantRepository extends ParticipantRepository {
 
         while ((nextLine = csvReader.readNext()) != null) {
 
+            String idCln = StringUtils.trimToNull(nextLine[COL_ID]);
             String nameCln = StringUtils.trimToNull(nextLine[COL_NAME]);
             String farmNameCln = StringUtils.trimToNull(nextLine[COL_FARMNAME]);
             String emailCln = StringUtils.trimToNull(nextLine[COL_EMAIL]);
@@ -90,7 +94,7 @@ public class CsvParticipantRepository extends ParticipantRepository {
             String cityCln = StringUtils.trimToNull(nextLine[COL_CITY]);
             String countryCln = StringUtils.trimToNull(nextLine[COL_COUNTRY]);
 
-            add(new Participant(nameCln, farmNameCln, emailCln, telephoneCln, addressCln, zipCodeCln, cityCln, countryCln));
+            add(new Participant(idCln, nameCln, farmNameCln, emailCln, telephoneCln, addressCln, zipCodeCln, cityCln, countryCln));
         }
         csvReader.close();
     }

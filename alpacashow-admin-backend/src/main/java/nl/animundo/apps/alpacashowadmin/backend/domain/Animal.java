@@ -15,6 +15,7 @@ import java.time.LocalDate;
 
 public class Animal {
 
+    private String id;
     private String name;
     @JsonDeserialize(using = JsonBreedClassDeserializer.class)
     @JsonSerialize(using = JsonBreedClassSerializer.class)
@@ -34,20 +35,24 @@ public class Animal {
     private String dam;
     private ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail;
 
-    public Animal (final String name, final BreedClass breed, final SexClass sex, final ColorClass color, final LocalDate dateOfBirth,
+    public Animal (final String id, final String name, final BreedClass breed, final SexClass sex, final ColorClass color, final LocalDate dateOfBirth,
                    final String microchip, final String registration, final String sire, final String dam)
     {
-        this(name, breed, sex, color, dateOfBirth, microchip,
+        this(id, name, breed, sex, color, dateOfBirth, microchip,
                 registration, sire, dam, new ShowEventAnimalSheeringDetail(null, null));
     }
 
     @JsonCreator
-    public Animal(@JsonProperty("name") final String name, @JsonProperty("breed") final BreedClass breed,
+    public Animal(@JsonProperty("id") final String id, @JsonProperty("name") final String name, @JsonProperty("breed") final BreedClass breed,
                   @JsonProperty("sex") final SexClass sex, @JsonProperty("color") final ColorClass color,
                   @JsonProperty("dateOfBirth") final LocalDate dateOfBirth, @JsonProperty("microchip") final String microchip,
                   @JsonProperty("registration") final String registration, @JsonProperty("sire") final String sire,
                   @JsonProperty("dam") final String dam, @JsonProperty("sheeringDetail") ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail) {
 
+        final String idCln = StringUtils.trimToNull(id);
+        if (idCln == null) {
+            throw new IllegalArgumentException("Field id can not be empty");
+        }
         final String nameCln = StringUtils.trimToNull(name);
         if (nameCln == null) {
             throw new IllegalArgumentException("Field name can not be empty");
@@ -78,6 +83,7 @@ public class Animal {
             throw new IllegalArgumentException("Field dam can not be empty");
         }
 
+        this.id = idCln;
         this.name = nameCln;
         this.breed = breed;
         this.sex = sex;
@@ -88,6 +94,18 @@ public class Animal {
         this.sire = sireCln;
         this.dam = damCln;
         this.showEventAnimalSheeringDetail = showEventAnimalSheeringDetail;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        final String idCln = StringUtils.trimToNull(id);
+        if (idCln == null) {
+            throw new IllegalArgumentException("Field id can not be empty");
+        }
+        this.id = idCln;
     }
 
     public String getName() {

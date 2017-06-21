@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 
 public class ShowEventTest {
 
+    private String id;
     private String name;
     private LocalDate date;
     private LocalDate closeDate;
@@ -26,6 +27,7 @@ public class ShowEventTest {
     @Test
     public void newShowEventWithTrim() {
 
+        id = "c6947908-830d-4c10-ac0a-042f044f7a40   ";
         name = "Test showEvent    ";
         date = LocalDate.now().plusMonths(8);
         closeDate = LocalDate.now().plusMonths(6);
@@ -33,8 +35,9 @@ public class ShowEventTest {
         judge = " Test Judge ";
         showType = ShowType.FLEECESHOW;
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
 
+        assertEquals("c6947908-830d-4c10-ac0a-042f044f7a40", showEvent.getId());
         assertEquals("Test showEvent", showEvent.getName());
         assertEquals(LocalDate.now().plusMonths(8), showEvent.getDate());
         assertEquals(LocalDate.now().plusMonths(6), showEvent.getCloseDate());
@@ -46,6 +49,7 @@ public class ShowEventTest {
     @Test
     public void newShowEventWithParticipants() {
 
+        id = "c6947908-830d-4c10-ac0a-042f044f7a40";
         name = "Test showEvent";
         date = LocalDate.now().plusMonths(8);
         closeDate = LocalDate.now().plusMonths(6);
@@ -53,12 +57,46 @@ public class ShowEventTest {
         judge = "Test Judge ";
         showType = ShowType.HALTERSHOW;
         participants = new LinkedHashSet<>();
-        participants.add(new Participant("Test participant", "farm 1", "", "", "", "", "", ""));
-        participants.add(new Participant("Test participant2", "farm 2", "", "", "", "", "", ""));
+        participants.add(new Participant("a00b6108-cdd8-44f4-a5f4-b5a520f1f38a","Test participant", "farm 1", "", "", "", "", "", ""));
+        participants.add(new Participant("a00b6108-cdd8-44f4-a5f4-b5a520f1f381","Test participant2", "farm 2", "", "", "", "", "", ""));
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType, participants);
+        ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType, participants);
 
         assertEquals(participants, showEvent.getParticipants());
+    }
+
+    @Test
+    public void showIdNotNull() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field id can not be empty");
+
+        id = null;
+        name = "Show";
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
+        location = "  Surhuisterveen ";
+        judge = "   Test Judge";
+        showType = ShowType.HALTERSHOW;
+
+        ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
+    }
+
+    @Test
+    public void showIdNotEmpty() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field id can not be empty");
+
+        id = " ";
+        name = "Show";
+        date = LocalDate.now().plusMonths(8);
+        closeDate = LocalDate.now().plusMonths(6);
+        location = "  Surhuisterveen ";
+        judge = "   Test Judge";
+        showType = ShowType.HALTERSHOW;
+
+        ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
     }
 
     @Test
@@ -67,6 +105,7 @@ public class ShowEventTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field name can not be empty");
 
+        id = "c6947908-830d-4c10-ac0a-042f044f7a40";
         name = null;
         date = LocalDate.now().plusMonths(8);
         closeDate = LocalDate.now().plusMonths(6);
@@ -74,7 +113,7 @@ public class ShowEventTest {
         judge = "   Test Judge";
         showType = ShowType.HALTERSHOW;
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
     }
 
     @Test
@@ -83,6 +122,7 @@ public class ShowEventTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field name can not be empty");
 
+        id = "c6947908-830d-4c10-ac0a-042f044f7a40";
         name = "";
         date = LocalDate.now().plusMonths(8);
         closeDate = LocalDate.now().plusMonths(6);
@@ -90,7 +130,7 @@ public class ShowEventTest {
         judge = "Test Judge";
         showType = ShowType.HALTERSHOW;
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
     }
 
     @Test
@@ -99,6 +139,7 @@ public class ShowEventTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field date can not be empty");
 
+        id = "c6947908-830d-4c10-ac0a-042f044f7a40";
         name = "Test showEvent";
         date = null;
         closeDate = LocalDate.now().plusMonths(6);
@@ -106,7 +147,7 @@ public class ShowEventTest {
         judge = "Test Judge";
         showType = ShowType.HALTERSHOW;
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
     }
 
     @Test
@@ -115,6 +156,7 @@ public class ShowEventTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field closeDate can not be empty");
 
+        id = "c6947908-830d-4c10-ac0a-042f044f7a40";
         name = "Test showEvent";
         date = LocalDate.now().plusMonths(8);
         closeDate = null;
@@ -122,7 +164,7 @@ public class ShowEventTest {
         judge = "Test Judge";
         showType = ShowType.HALTERSHOW;
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
     }
 
     @Test
@@ -131,6 +173,7 @@ public class ShowEventTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Date show before or same as close date subscriptions");
 
+        id = "c6947908-830d-4c10-ac0a-042f044f7a40";
         name = "Test showEvent";
         date = LocalDate.now().plusMonths(8);
         closeDate = LocalDate.now().plusMonths(9);
@@ -138,7 +181,7 @@ public class ShowEventTest {
         judge = "Test Judge";
         showType = ShowType.HALTERSHOW;
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
 
     }
 
@@ -148,6 +191,7 @@ public class ShowEventTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Date show before or same as close date subscriptions");
 
+        id = "c6947908-830d-4c10-ac0a-042f044f7a40";
         name = "Test showEvent";
         date = LocalDate.now().plusMonths(8);
         closeDate = LocalDate.now().plusMonths(8);
@@ -155,7 +199,7 @@ public class ShowEventTest {
         judge = "Test Judge";
         showType = ShowType.HALTERSHOW;
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
 
     }
 
@@ -165,6 +209,7 @@ public class ShowEventTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field location can not be empty");
 
+        id = "c6947908-830d-4c10-ac0a-042f044f7a40";
         name = "Test showEvent";
         date = LocalDate.now().plusMonths(8);
         closeDate = LocalDate.now().plusMonths(6);
@@ -172,7 +217,7 @@ public class ShowEventTest {
         judge = "Test Judge";
         showType = ShowType.HALTERSHOW;
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
     }
 
     @Test
@@ -181,6 +226,7 @@ public class ShowEventTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field location can not be empty");
 
+        id = "c6947908-830d-4c10-ac0a-042f044f7a40";
         name = "Test showEvent";
         date = LocalDate.now().plusMonths(8);
         closeDate = LocalDate.now().plusMonths(6);
@@ -188,7 +234,7 @@ public class ShowEventTest {
         judge = "Test Judge";
         showType = ShowType.HALTERSHOW;
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
     }
 
     @Test
@@ -197,6 +243,7 @@ public class ShowEventTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field judge can not be empty");
 
+        id = "c6947908-830d-4c10-ac0a-042f044f7a40";
         name = "Test showEvent";
         date = LocalDate.now().plusMonths(8);
         closeDate = LocalDate.now().plusMonths(6);
@@ -204,7 +251,7 @@ public class ShowEventTest {
         judge = "  ";
         showType = ShowType.HALTERSHOW;
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
     }
 
     @Test
@@ -213,6 +260,7 @@ public class ShowEventTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field judge can not be empty");
 
+        id = "c6947908-830d-4c10-ac0a-042f044f7a40";
         name = "Test showEvent";
         date = LocalDate.now().plusMonths(8);
         closeDate = LocalDate.now().plusMonths(6);
@@ -220,7 +268,7 @@ public class ShowEventTest {
         judge = null;
         showType = ShowType.HALTERSHOW;
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
     }
 
     @Test
@@ -229,6 +277,7 @@ public class ShowEventTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field showType can not be empty");
 
+        id = "c6947908-830d-4c10-ac0a-042f044f7a40";
         name = "Test showEvent";
         date = LocalDate.now().plusMonths(8);
         closeDate = LocalDate.now().plusMonths(6);
@@ -236,6 +285,6 @@ public class ShowEventTest {
         judge = "Test Judge";
         showType = null;
 
-        new ShowEvent(name, date, closeDate, location, judge, showType);
+        new ShowEvent(id, name, date, closeDate, location, judge, showType);
     }
 }

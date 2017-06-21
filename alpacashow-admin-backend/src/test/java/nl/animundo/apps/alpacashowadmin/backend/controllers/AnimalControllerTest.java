@@ -69,14 +69,14 @@ public class AnimalControllerTest {
 
         assertEquals(6, animalRepository.getAllAnimals().size());
 
-        Animal animal = animalRepository.getAnimalByKeySet("chippie");
+        Animal animal = animalRepository.getAnimalById("chippie");
         assertEquals("SURI", animal.getBreed().toString());
 
         String file2 = readJsonfile("update_animal.json");
         controller.updateAnimal("chippie", file2);
 
         loadRepository();
-        Animal animal2 = animalRepository.getAnimalByKeySet("chippie");
+        Animal animal2 = animalRepository.getAnimalById("chippie");
         assertEquals("HUACAYA", animal2.getBreed().toString());
 
         controller.deleteAnimal("chippie");

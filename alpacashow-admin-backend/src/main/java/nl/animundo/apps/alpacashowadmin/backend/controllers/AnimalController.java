@@ -48,14 +48,14 @@ public class AnimalController {
     }
 
     @GET
-    @Path("/{key}")
-    @ApiOperation(value = "Get animal by key")
+    @Path("/{id}")
+    @ApiOperation(value = "Get animal by id")
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "Animal not found") })
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAnimalByKey(@PathParam("key") String key) throws IOException {
+    public Response getAnimalByKey(@PathParam("id") String id) throws IOException {
         loadRepository();
-        Animal animal = animalRepository.getAnimalByKeySet(key);
+        Animal animal = animalRepository.getAnimalById(id);
 
         if (animal != null) {
             return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(animal)).build();

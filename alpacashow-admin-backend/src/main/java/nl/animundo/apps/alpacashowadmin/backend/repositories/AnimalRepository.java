@@ -13,24 +13,19 @@ public class AnimalRepository {
 
     public String add(final Animal animal) {
 
-        String animalKey = animal.getMicrochip();
-        if (getAnimalByKeySet(animalKey) != null) {
-            animals.remove(animalKey);
-            animals.put(animalKey, animal);
-            logger.info("Updated animal '" + animalKey + "' to animalRepo");
-        } else {
-            animals.put(animalKey, animal);
-            logger.info("Added animal '" + animalKey + "' to animalRepo");
-        }
-        return animalKey;
+        String id = UUID.randomUUID().toString();
+        animal.setId(id);
+            animals.put(id, animal);
+            logger.info("Updated animal '" + id + "' to animalRepo");
+        return id;
     }
 
-    public String delete(final String animalKey) {
+    public String delete(final String id) {
 
-        Animal animalToDelete = getAnimalByKeySet(animalKey);
+        Animal animalToDelete = getAnimalById(id);
         if (animalToDelete != null) {
-            animals.remove(animalKey);
-            logger.info("Deleted animal '" + animalKey + "' from animalRepo");
+            animals.remove(id);
+            logger.info("Deleted animal '" + id + "' from animalRepo");
             return animalToDelete.getMicrochip();
         } else {
             return null;
@@ -41,7 +36,7 @@ public class AnimalRepository {
             animals.clear();
     }
 
-    public Set<String> getAllAnimalsByKeySet() {
+    public Set<String> getAllAnimalsById() {
         return animals.keySet();
     }
 
@@ -57,8 +52,8 @@ public class AnimalRepository {
         return AnimalList;
     }
 
-    public Animal getAnimalByKeySet(final String keySet) {
-        return animals.get(keySet);
+    public Animal getAnimalById(final String id) {
+        return animals.get(id);
     }
 
 }

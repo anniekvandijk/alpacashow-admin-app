@@ -35,7 +35,7 @@ public class CsvParticipantRepositoryTest {
         assertEquals(3, repo.getAllParticipants().size());
 
         String key = "Deelnemer 1";
-        Participant participant = repo.getParticipantByKeySet(key);
+        Participant participant = repo.getParticipantById(key);
         assertNotNull(participant);
         assertEquals("Alpacafarm 1", participant.getFarmName());
         assertEquals("farmnaam@iets.nl", participant.getEmail());
@@ -45,6 +45,7 @@ public class CsvParticipantRepositoryTest {
         assertEquals("Surhuisterveen", participant.getCity());
         assertEquals("Nederland", participant.getCountry());
 
+        String id = "5c492ade-412d-4d6f-9d5d-8f9aedb37a0a";
         String name = "Test participant";
         String farmName = "farm";
         String email = "farm@farm.nl";
@@ -54,7 +55,7 @@ public class CsvParticipantRepositoryTest {
         String city = "some City";
         String country = "Netherlands";
 
-        repo.add(new Participant(name, farmName, email, telephone, address, zipCode, city, country));
+        repo.add(new Participant(id, name, farmName, email, telephone, address, zipCode, city, country));
         assertEquals(4, repo.getAllParticipants().size());
 
         File newExportFile = new File(workingDir + testFileDir + "PARTICIPANTS_export.csv");
@@ -73,7 +74,7 @@ public class CsvParticipantRepositoryTest {
         assertEquals(4, newRepo.getAllParticipants().size());
 
         String key2 = "Test participant";
-        Participant participant2 = newRepo.getParticipantByKeySet(key2);
+        Participant participant2 = newRepo.getParticipantById(key2);
         assertNotNull(participant2);
         assertEquals("some City", participant2.getCity());
 

@@ -352,9 +352,9 @@ public class AgeClassServiceTest {
         dateOfBirth         = LocalDate.now().minusYears(1);
         LocalDate sheerDate = LocalDate.now().minusMonths(2);
 
-        ShowEvent showEvent1 = new ShowEvent("Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType1);
-        ShowEvent showEvent2 = new ShowEvent("Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType2);
-        Animal animal = new Animal("Animal", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth, "1", null, "dad", "mom", new ShowEventAnimalSheeringDetail(sheerDate, null));
+        ShowEvent showEvent1 = new ShowEvent("d84bc24f-5ebb-413b-8889-14666183fc71", "Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType1);
+        ShowEvent showEvent2 = new ShowEvent("d84bc24f-5ebb-413b-8889-14666183fc72", "Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType2);
+        Animal animal = new Animal("d584d57a-b8d9-408d-9502-5268e844ff3f", "Animal", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth, "1", null, "dad", "mom", new ShowEventAnimalSheeringDetail(sheerDate, null));
 
         AgeClass ageClassFleeceShow = AgeClassService.ageClass(showEvent1, animal);
         assertEquals(AgeClass.JUNIOR, ageClassFleeceShow);
@@ -374,8 +374,8 @@ public class AgeClassServiceTest {
         dateOfBirth = LocalDate.now().minusYears(1);
         LocalDate sheerDate = LocalDate.now().minusYears(2);
 
-        ShowEvent showEvent = new ShowEvent("Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType);
-        Animal animal = new Animal("Animal", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth, "1", null, "dad", "mom", new ShowEventAnimalSheeringDetail(sheerDate, null));
+        ShowEvent showEvent = new ShowEvent("d84bc24f-5ebb-413b-8889-14666183fc73", "Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType);
+        Animal animal = new Animal("d584d57a-b8d9-408d-9502-5268e844ff31", "Animal", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth, "1", null, "dad", "mom", new ShowEventAnimalSheeringDetail(sheerDate, null));
 
         AgeClassService.ageClass(showEvent, animal);
 
@@ -392,8 +392,8 @@ public class AgeClassServiceTest {
         dateOfBirth = LocalDate.now().minusYears(6);
         LocalDate sheerDate = LocalDate.now().minusYears(3);
 
-        ShowEvent showEvent = new ShowEvent("Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType);
-        Animal animal = new Animal("Animal", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth, "1", null, "dad", "mom", new ShowEventAnimalSheeringDetail(sheerDate, null));
+        ShowEvent showEvent = new ShowEvent("d84bc24f-5ebb-413b-8889-14666183fc74", "Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType);
+        Animal animal = new Animal("d584d57a-b8d9-408d-9502-5268e844ff32", "Animal", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth, "1", null, "dad", "mom", new ShowEventAnimalSheeringDetail(sheerDate, null));
 
         AgeClassService.ageClass(showEvent, animal);
 
@@ -410,8 +410,8 @@ public class AgeClassServiceTest {
         dateOfBirth = LocalDate.now().minusYears(3);
         LocalDate sheerDate = null;
 
-        ShowEvent showEvent = new ShowEvent("Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType);
-        Animal animal = new Animal("Animal", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth, "1", null, "dad", "mom", new ShowEventAnimalSheeringDetail(sheerDate, null));
+        ShowEvent showEvent = new ShowEvent("d84bc24f-5ebb-413b-8889-14666183fc76", "Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType);
+        Animal animal = new Animal("d584d57a-b8d9-408d-9502-5268e844ff33", "Animal", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth, "1", null, "dad", "mom", new ShowEventAnimalSheeringDetail(sheerDate, null));
 
         AgeClassService.ageClass(showEvent, animal);
 
@@ -429,8 +429,8 @@ public class AgeClassServiceTest {
         LocalDate sheerDate = null;
         ;
 
-        ShowEvent showEvent = new ShowEvent("Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType);
-        Animal animal = new Animal("Animal", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth, "1", null, "dad", "mom", new ShowEventAnimalSheeringDetail(sheerDate, null));
+        ShowEvent showEvent = new ShowEvent("d84bc24f-5ebb-413b-8889-14666183fc77", "Show", showDate, LocalDate.now().minusMonths(6), "somewhere", "judge", showType);
+        Animal animal = new Animal("d584d57a-b8d9-408d-9502-5268e844ff34", "Animal", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.WHITE, dateOfBirth, "1", null, "dad", "mom", new ShowEventAnimalSheeringDetail(sheerDate, null));
 
         AgeClassService.ageClass(showEvent, animal);
     }

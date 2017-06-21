@@ -1,6 +1,5 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories;
 
-import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,22 +14,19 @@ public class ShowEventRepository  {
 
     public String add(final ShowEvent showEvent) throws IOException {
 
-        String showEventKey = showEvent.getDate() + "_" + showEvent.getShowType();
-        if (getShowEventByKeySet(showEventKey) == null) {
-            showEvents.put(showEventKey, showEvent);
-            logger.info("Added showEvent '" + showEventKey + "' to showEventRepo");
-            return showEventKey;
-        } else {
-            throw new IllegalArgumentException("Showevent with same date and showtype already exists");
-        }
+        String id = UUID.randomUUID().toString();
+        showEvent.setId(id);
+        showEvents.put(id, showEvent);
+        logger.info("Added showEvent '" + id + "' to showEventRepo");
+        return id;
     }
 
-    public String delete(final String showEventKey) throws IOException {
+    public String delete(final String id) throws IOException {
 
-        ShowEvent showEventToDelete = getShowEventByKeySet(showEventKey);
+        ShowEvent showEventToDelete = getShowEventById(id);
         if (showEventToDelete != null) {
-            showEvents.remove(showEventKey);
-            logger.info("Deleted showEvent '" + showEventKey + "' from showEventRepo");
+            showEvents.remove(id);
+            logger.info("Deleted showEvent '" + id + "' from showEventRepo");
             return showEventToDelete.getName();
         } else {
             return null;
@@ -41,7 +37,7 @@ public class ShowEventRepository  {
             showEvents.clear();
     }
 
-    public Set<String> getAllShowEventsByKeySet() {
+    public Set<String> getAllShowEventsById() {
         return showEvents.keySet();
     }
 
@@ -57,8 +53,8 @@ public class ShowEventRepository  {
         return showEventList;
     }
 
-    public ShowEvent getShowEventByKeySet(final String keySet) {
-        return showEvents.get(keySet);
+    public ShowEvent getShowEventById(final String id) {
+        return showEvents.get(id);
     }
 
 }

@@ -26,6 +26,7 @@ public class AnimalRepositoryTest {
     @Test
     public void addAnimal() {
 
+        String id              = "1f7eb2e8-69b0-42f2-ac25-950e14465b16";
         String name            = "Animal";
         BreedClass breedClass  = BreedClass.SURI;
         SexClass sexClass      = SexClass.MALE;
@@ -36,43 +37,19 @@ public class AnimalRepositoryTest {
         String sire            = "father";
         String dam             = "mother";
 
-        Animal animal = new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        Animal animal = new Animal(id, name,breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
         AnimalRepository animalRepository = new AnimalRepository();
 
         animalRepository.add(animal);
 
         String key = "123456789";
-        assertEquals("SURI", animalRepository.getAnimalByKeySet(key).getBreed().toString());
-    }
-
-    @Test
-    public void AddAnimalWithSameKey() {
-
-        String name            = "Animal";
-        BreedClass breedClass  = BreedClass.SURI;
-        SexClass sexClass      = SexClass.MALE;
-        ColorClass colorClass1  = ColorClass.BROWN;
-        ColorClass colorClass2  = ColorClass.FAWN;
-        LocalDate dateOfBirth  = LocalDate.of(2014, 6, 12);
-        String microchip       = "123456789";
-        String registration    = "BAF12345";
-        String sire            = "father";
-        String dam             = "mother";
-
-        Animal animal1 = new Animal(name, breedClass, sexClass, colorClass1, dateOfBirth, microchip, registration, sire, dam);
-        Animal animal2 = new Animal(name, breedClass, sexClass, colorClass2, dateOfBirth, microchip, registration, sire, dam);
-        AnimalRepository animalRepository = new AnimalRepository();
-
-        animalRepository.add(animal1);
-        animalRepository.add(animal2);
-
-        String key = "123456789";
-        assertEquals("FAWN", animalRepository.getAnimalByKeySet(key).getColor().toString());
+        assertEquals("SURI", animalRepository.getAnimalById(key).getBreed().toString());
     }
 
     @Test
     public void deleteAnimal() {
 
+        String id              = "1f7eb2e8-69b0-42f2-ac25-950e14465b16";
         String name            = "Animal to delete";
         BreedClass breedClass  = BreedClass.SURI;
         SexClass sexClass      = SexClass.MALE;
@@ -83,14 +60,14 @@ public class AnimalRepositoryTest {
         String sire            = "father";
         String dam             = "mother";
 
-        Animal animal = new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        Animal animal = new Animal(id, name,breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
         AnimalRepository animalRepository = new AnimalRepository();
 
         animalRepository.add(animal);
 
         assertEquals(1, animalRepository.getAllAnimals().size());
         String key = "123456789";
-        assertEquals("Animal to delete", animalRepository.getAnimalByKeySet(key).getName());
+        assertEquals("Animal to delete", animalRepository.getAnimalById(key).getName());
 
         animalRepository.delete(key);
 
@@ -102,6 +79,7 @@ public class AnimalRepositoryTest {
 
         exception.expect(NullPointerException.class);
 
+        String id              = "1f7eb2e8-69b0-42f2-ac25-950e14465b16";
         String name            = "Animal to delete";
         BreedClass breedClass  = BreedClass.SURI;
         SexClass sexClass      = SexClass.MALE;
@@ -112,7 +90,7 @@ public class AnimalRepositoryTest {
         String sire            = "father";
         String dam             = "mother";
 
-        Animal animal = new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        Animal animal = new Animal(id, name,breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
         AnimalRepository animalRepository = new AnimalRepository();
 
         animalRepository.add(animal);
@@ -132,6 +110,7 @@ public class AnimalRepositoryTest {
 
         exception.expect(NullPointerException.class);
 
+        String id              = "1f7eb2e8-69b0-42f2-ac25-950e14465b16";
         String name            = "Animal to delete";
         BreedClass breedClass  = BreedClass.SURI;
         SexClass sexClass      = SexClass.MALE;
@@ -142,19 +121,20 @@ public class AnimalRepositoryTest {
         String sire            = "father";
         String dam             = "mother";
 
-        Animal animal = new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        Animal animal = new Animal(id, name,breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
         AnimalRepository animalRepository = new AnimalRepository();
 
         animalRepository.add(animal);
 
         String key = "98754";
 
-        animalRepository.getAnimalByKeySet(key).getName();
+        animalRepository.getAnimalById(key).getName();
     }
 
     @Test
-    public void getAllAnimalsByKeySet() {
+    public void getAllAnimalsById() {
 
+        String id              = "1f7eb2e8-69b0-42f2-ac25-950e14465b16";
         String name            = "Animal";
         BreedClass breedClass  = BreedClass.SURI;
         SexClass sexClass      = SexClass.MALE;
@@ -166,16 +146,16 @@ public class AnimalRepositoryTest {
         String sire            = "father";
         String dam             = "mother";
 
-        Animal animal1 = new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip1, registration, sire, dam);
-        Animal animal2 = new Animal(name, breedClass, sexClass, colorClass, dateOfBirth, microchip2, registration, sire, dam);
+        Animal animal1 = new Animal(id, name,breedClass, sexClass, colorClass, dateOfBirth, microchip1, registration, sire, dam);
+        Animal animal2 = new Animal(id, name,breedClass, sexClass, colorClass, dateOfBirth, microchip2, registration, sire, dam);
         AnimalRepository animalRepository = new AnimalRepository();
 
         animalRepository.add(animal1);
         animalRepository.add(animal2);
 
-        assertEquals(2, animalRepository.getAllAnimalsByKeySet().size());
-        assertTrue(animalRepository.getAllAnimalsByKeySet().contains("123456789"));
-        assertTrue(animalRepository.getAllAnimalsByKeySet().contains("987654321"));
+        assertEquals(2, animalRepository.getAllAnimalsById().size());
+        assertTrue(animalRepository.getAllAnimalsById().contains("123456789"));
+        assertTrue(animalRepository.getAllAnimalsById().contains("987654321"));
     }
 }
 

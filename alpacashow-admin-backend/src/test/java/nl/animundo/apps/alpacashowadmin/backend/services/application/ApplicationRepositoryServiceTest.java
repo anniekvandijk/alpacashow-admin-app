@@ -34,7 +34,7 @@ public class ApplicationRepositoryServiceTest {
         showEventRepository = service.loadShowEventRepository();
 
         assertEquals(4, showEventRepository.getAllShowEvents().size());
-        assertEquals("Fleeceshow ShowEvent met deelnemers en dieren", showEventRepository.getShowEventByKeySet("2017-06-15_FLEECESHOW").getName());
+        assertEquals("Fleeceshow ShowEvent met deelnemers en dieren", showEventRepository.getShowEventById("2017-06-15_FLEECESHOW").getName());
 
     }
 
@@ -44,8 +44,8 @@ public class ApplicationRepositoryServiceTest {
         participantRepository = service.loadParticipantRepository();
 
         assertEquals(5, participantRepository.getAllParticipants().size());
-        assertEquals("Test participant 2", participantRepository.getParticipantByKeySet("Test participant 2").getName());
-        assertEquals("Testfarm 2", participantRepository.getParticipantByKeySet("Test participant 2").getFarmName());
+        assertEquals("Test participant 2", participantRepository.getParticipantById("Test participant 2").getName());
+        assertEquals("Testfarm 2", participantRepository.getParticipantById("Test participant 2").getFarmName());
 
     }
 
@@ -55,7 +55,7 @@ public class ApplicationRepositoryServiceTest {
         animalRepository = service.loadAnimalRepository();
 
         assertEquals(5, animalRepository.getAllAnimals().size());
-        assertEquals("Alpaca3", animalRepository.getAnimalByKeySet("4444").getName());
+        assertEquals("Alpaca3", animalRepository.getAnimalById("4444").getName());
 
     }
 

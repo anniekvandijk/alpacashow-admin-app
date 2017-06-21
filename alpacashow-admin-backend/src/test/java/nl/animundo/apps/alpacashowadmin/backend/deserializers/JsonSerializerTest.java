@@ -17,6 +17,7 @@ public class JsonSerializerTest {
     @Test
     public void ObjectToJson() throws IOException {
 
+        String id = "c6947908-830d-4c10-ac0a-042f044f7a41";
         String name = "Test showEvent to Json";
         LocalDate date = LocalDate.of(2017, 5, 1);
         LocalDate closeDate = LocalDate.of(2017, 3, 15);
@@ -24,7 +25,7 @@ public class JsonSerializerTest {
         String judge = "Test Judge";
         ShowType showType = ShowType.FLEECESHOW;
 
-        ShowEvent showEvent = new ShowEvent(name, date, closeDate, location, judge, showType);
+        ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
 
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(showEvent);
         String jsonTrim = json.replaceAll("\\s", "");

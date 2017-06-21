@@ -47,14 +47,14 @@ public class ShowEventController {
     }
 
     @GET
-    @Path("/{key}")
-    @ApiOperation(value = "Get showevent by key")
+    @Path("/{id}")
+    @ApiOperation(value = "Get showevent by id")
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "Show not found") })
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getShowEventByKey(@PathParam("key") String key) throws IOException {
+    public Response getShowEventById(@PathParam("id") String id) throws IOException {
         loadRepository();
-        ShowEvent event = showEventRepository.getShowEventByKeySet(key);
+        ShowEvent event = showEventRepository.getShowEventById(id);
 
         if (event != null) {
             return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(event)).build();
@@ -81,9 +81,9 @@ public class ShowEventController {
             e.printStackTrace();
         }
         if (event != null) {
-            String showEventKey = showEventRepository.add(event);
+            String showEventId = showEventRepository.add(event);
             saveRepository();
-            return Response.status(Response.Status.OK).entity("Added showevent with key '" + showEventKey + "'").build();
+            return Response.status(Response.Status.OK).entity("Added showevent with id '" + showEventId + "'").build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }

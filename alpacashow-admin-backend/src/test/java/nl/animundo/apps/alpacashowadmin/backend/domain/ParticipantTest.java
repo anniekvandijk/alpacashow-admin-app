@@ -14,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ParticipantTest {
 
+    private String id;
     private String name;
     private String farmName;
     private String email;
@@ -29,6 +30,7 @@ public class ParticipantTest {
     @Test
     public void newParticipantWithTrim() {
 
+        id          = "965d2976-1a82-4610-a18b-c30c44a55e18";
         name        = " New Participant";
         farmName    = "farm";
         email       = " farm@farm.nl ";
@@ -38,7 +40,7 @@ public class ParticipantTest {
         city        = "some City";
         country     = "Netherlands   ";
 
-        Participant participant = new Participant(name, farmName, email, telephone, address, zipCode, city, country);
+        Participant participant = new Participant(id, name, farmName, email, telephone, address, zipCode, city, country);
 
         assertEquals("New Participant", participant.getName());
         assertEquals("farm", participant.getFarmName());
@@ -51,8 +53,9 @@ public class ParticipantTest {
     }
 
     @Test
-    public void newParticipantWithAnimals() {
-
+    public void newParticipantWithAnimals()
+    {
+        id          = "965d2976-1a82-4610-a18b-c30c44a55e18";
         name        = "New Participant";
         farmName    = "farm";
         email       = "farm@farm.nl";
@@ -63,10 +66,10 @@ public class ParticipantTest {
         country     = "Netherlands";
 
         Set<Animal> animals = new LinkedHashSet<Animal>();
-        animals.add(new Animal("Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.now().minusYears(1), "123456789", null, "Vader", "Moeder"));
-        animals.add(new Animal("Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.now().minusYears(2), "987654321", "BAF12345", "Vader2", "Moeder2"));
+        animals.add(new Animal("869c1d60-d0f0-4f6a-b4d0-4326a7165b19", "Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.now().minusYears(1), "123456789", null, "Vader", "Moeder"));
+        animals.add(new Animal("869c1d60-d0f0-4f6a-b4d0-4326a7165b18", "Alpaca2", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.now().minusYears(2), "987654321", "BAF12345", "Vader2", "Moeder2"));
 
-        Participant participant = new Participant(name, farmName, email, telephone, address, zipCode, city, country, animals);
+        Participant participant = new Participant(id, name, farmName, email, telephone, address, zipCode, city, country, animals);
 
         assertEquals(animals, participant.getAnimals());
     }
@@ -77,6 +80,7 @@ public class ParticipantTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field participant can not be empty");
 
+        id          = "965d2976-1a82-4610-a18b-c30c44a55e18";
         name        = "  ";
         farmName    = "farm";
         email       = "farm@farm.nl";
@@ -86,7 +90,7 @@ public class ParticipantTest {
         city        = "some City";
         country     = "Netherlands";
 
-        new Participant(name, farmName, email, telephone, address, zipCode, city, country);
+        new Participant(id, name, farmName, email, telephone, address, zipCode, city, country);
     }
 
     @Test
@@ -95,6 +99,7 @@ public class ParticipantTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field participant can not be empty");
 
+        id          = "965d2976-1a82-4610-a18b-c30c44a55e18";
         name        = null;
         farmName    = "farm";
         email       = "farm@farm.nl";
@@ -104,7 +109,7 @@ public class ParticipantTest {
         city        = "some City";
         country     = "Netherlands";
 
-        new Participant(name, farmName, email, telephone, address, zipCode, city, country);
+        new Participant(id, name, farmName, email, telephone, address, zipCode, city, country);
     }
 
     @Test
@@ -113,6 +118,7 @@ public class ParticipantTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field farmName can not be empty");
 
+        id          = "965d2976-1a82-4610-a18b-c30c44a55e18";
         name        = "Participant";
         farmName    = "";
         email       = "farm@farm.nl";
@@ -122,7 +128,7 @@ public class ParticipantTest {
         city        = "some City";
         country     = "Netherlands";
 
-        new Participant(name, farmName, email, telephone, address, zipCode, city, country);
+        new Participant(id, name, farmName, email, telephone, address, zipCode, city, country);
     }
 
     @Test
@@ -131,6 +137,7 @@ public class ParticipantTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Field farmName can not be empty");
 
+        id          = "965d2976-1a82-4610-a18b-c30c44a55e18";
         name        = "Participant";
         farmName    = null;
         email       = "farm@farm.nl";
@@ -140,6 +147,6 @@ public class ParticipantTest {
         city        = "some City";
         country     = "Netherlands";
 
-        new Participant(name, farmName, email, telephone, address, zipCode, city, country);
+        new Participant(id, name, farmName, email, telephone, address, zipCode, city, country);
     }
 }

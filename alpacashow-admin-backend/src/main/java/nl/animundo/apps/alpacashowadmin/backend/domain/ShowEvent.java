@@ -21,6 +21,7 @@ import java.util.TreeSet;
 public class ShowEvent {
     private static Logger logger = LoggerFactory.getLogger(ShowEvent.class);
 
+    private String id;
     private String name;
     @JsonDeserialize(using = JsonDateDeserializer.class)
     @JsonSerialize(using = JsonDateSerializer.class)
@@ -35,21 +36,25 @@ public class ShowEvent {
     private ShowType showType;
     private Set<Participant> participants;
 
-    public ShowEvent(final String name, final LocalDate date, final LocalDate closeDate,
+    public ShowEvent(final String id, final String name, final LocalDate date, final LocalDate closeDate,
                      final String location, final String judge, final ShowType showType)
     {
-        this(name, date, closeDate, location, judge, showType, new LinkedHashSet<Participant>());
+        this(id, name, date, closeDate, location, judge, showType, new LinkedHashSet<Participant>());
     }
 
     @JsonCreator
-    public ShowEvent(@JsonProperty("name") final String name, @JsonProperty("date") final LocalDate date,
+    public ShowEvent(@JsonProperty("id") final String id, @JsonProperty("name") final String name, @JsonProperty("date") final LocalDate date,
                      @JsonProperty("closeDate") final LocalDate closeDate, @JsonProperty("location") final String location,
                      @JsonProperty("judge") final String judge, @JsonProperty("showType") final ShowType showType,
                      @JsonProperty("participants") final Set<Participant> participants ) {
 
+        final String idCln = StringUtils.trimToNull(id);
         final String nameCln = StringUtils.trimToNull(name);
         final String locationCln = StringUtils.trimToNull(location);
         final String judgeCln = StringUtils.trimToNull(judge);
+        if (idCln == null) {
+            throw new IllegalArgumentException("Field id can not be empty");
+        }
         if (nameCln == null) {
             throw new IllegalArgumentException("Field name can not be empty");
         }
@@ -71,6 +76,7 @@ public class ShowEvent {
         if (showType == null) {
             throw new IllegalArgumentException("Field showType can not be empty");
         }
+        this.id = idCln;
         this.name = nameCln;
         this.date = date;
         this.closeDate = closeDate;
@@ -78,6 +84,16 @@ public class ShowEvent {
         this.judge = judgeCln;
         this.showType = showType;
         this.participants = participants;
+    }
+
+    public String getId() { return id; }
+
+    public void setId(String id) {
+        final String idCln = StringUtils.trimToNull(id);
+        if (idCln == null) {
+            throw new IllegalArgumentException("Field id can not be empty");
+        }
+        this.id = idCln;
     }
 
     public String getName() {

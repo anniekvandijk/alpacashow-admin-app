@@ -16,15 +16,16 @@ import java.time.format.DateTimeFormatter;
 
 public class CsvAnimalRepository extends AnimalRepository {
 
-    private static final int COL_NAME = 0;
-    private static final int COL_BREED = 1;
-    private static final int COL_SEX = 2;
-    private static final int COL_COLOR = 3;
-    private static final int COL_DATEOFBIRTH = 4;
-    private static final int COL_MICROCHIP = 5;
-    private static final int COL_REGISTRATION = 6;
-    private static final int COL_SIRE = 7;
-    private static final int COL_DAM = 8;
+    private static final int COL_ID = 0;
+    private static final int COL_NAME = 1;
+    private static final int COL_BREED = 2;
+    private static final int COL_SEX = 3;
+    private static final int COL_COLOR = 4;
+    private static final int COL_DATEOFBIRTH = 5;
+    private static final int COL_MICROCHIP = 6;
+    private static final int COL_REGISTRATION = 7;
+    private static final int COL_SIRE = 8;
+    private static final int COL_DAM = 9;
 
     public static AnimalRepository importData(Reader reader) throws IOException {
 
@@ -34,7 +35,8 @@ public class CsvAnimalRepository extends AnimalRepository {
     }
 
     public static void exportData(final Writer writer, final AnimalRepository animalRepo) throws IOException {
-        writer  .append("NAME").append(";")
+        writer  .append("ID").append(";")
+                .append("NAME").append(";")
                 .append("BREED").append(";")
                 .append("SEX").append(";")
                 .append("COLOR").append(";")
@@ -44,9 +46,10 @@ public class CsvAnimalRepository extends AnimalRepository {
                 .append("SIRE").append(";")
                 .append("DAM").append("\n");
 
-        for (String animal : animalRepo.getAllAnimalsByKeySet()) {
-            Animal ani = animalRepo.getAnimalByKeySet(animal);
-            writer  .append(ani.getName()).append(";")
+        for (String id : animalRepo.getAllAnimalsById()) {
+            Animal ani = animalRepo.getAnimalById(id);
+            writer  .append(ani.getId()).append(";")
+                    .append(ani.getName()).append(";")
                     .append(ani.getBreed().toString()).append(";")
                     .append(ani.getSex().toString()).append(";")
                     .append(ani.getColor().toString()).append(";")
@@ -69,6 +72,7 @@ public class CsvAnimalRepository extends AnimalRepository {
 
         while ((nextLine = csvReader.readNext()) != null) {
 
+            String idCln = StringUtils.trimToNull(nextLine[COL_ID]);
             String nameCln = StringUtils.trimToNull(nextLine[COL_NAME]);
             BreedClass breedCln = BreedClass.valueOf(StringUtils.trimToNull(nextLine[COL_BREED]));
             SexClass sexCln = SexClass.valueOf(StringUtils.trimToNull(nextLine[COL_SEX]));
@@ -81,7 +85,7 @@ public class CsvAnimalRepository extends AnimalRepository {
             String sireCln = StringUtils.trimToNull(nextLine[COL_SIRE]);
             String damCln = StringUtils.trimToNull(nextLine[COL_DAM]);
 
-            add(new Animal(nameCln, breedCln, sexCln, colorCln, dateOfBirth, microchipCln, registrationCln, sireCln, damCln));
+            add(new Animal(idCln, nameCln, breedCln, sexCln, colorCln, dateOfBirth, microchipCln, registrationCln, sireCln, damCln));
         }
         csvReader.close();
     }

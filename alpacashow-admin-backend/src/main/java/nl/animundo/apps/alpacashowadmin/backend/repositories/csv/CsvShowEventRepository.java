@@ -13,12 +13,13 @@ import java.time.format.DateTimeFormatter;
 
 public class CsvShowEventRepository extends ShowEventRepository {
 
-    private static final int COL_NAME = 0;
-    private static final int COL_DATE= 1;
-    private static final int COL_CLOSEDATE = 2;
-    private static final int COL_LOCATION = 3;
-    private static final int COL_JUDGE = 4;
-    private static final int COL_SHOWTYPE = 5;
+    private static final int COL_ID = 0;
+    private static final int COL_NAME = 1;
+    private static final int COL_DATE= 2;
+    private static final int COL_CLOSEDATE = 3;
+    private static final int COL_LOCATION = 4;
+    private static final int COL_JUDGE = 5;
+    private static final int COL_SHOWTYPE = 6;
 
     public static ShowEventRepository importData(Reader reader) throws IOException {
 
@@ -28,16 +29,18 @@ public class CsvShowEventRepository extends ShowEventRepository {
     }
 
     public static void exportData(final Writer writer, final ShowEventRepository showEventRepo) throws IOException {
-        writer  .append("NAME").append(";")
+        writer  .append("ID").append(";")
+                .append("NAME").append(";")
                 .append("DATE").append(";")
                 .append("CLOSEDATE").append(";")
                 .append("LOCATION").append(";")
                 .append("JUDGE").append(";")
                 .append("SHOWTYPE").append("\n");
 
-        for (String showEvent : showEventRepo.getAllShowEventsByKeySet()) {
-            ShowEvent show = showEventRepo.getShowEventByKeySet(showEvent);
-            writer  .append(show.getName()).append(";")
+        for (String id : showEventRepo.getAllShowEventsById()) {
+            ShowEvent show = showEventRepo.getShowEventById(id);
+            writer  .append(show.getId()).append(";")
+                    .append(show.getName()).append(";")
                     .append(show.getDate().toString()).append(";")
                     .append(show.getCloseDate().toString()).append(";")
                     .append(show.getLocation()).append(";")
@@ -55,6 +58,7 @@ public class CsvShowEventRepository extends ShowEventRepository {
 
         while ((nextLine = csvReader.readNext()) != null) {
 
+            String id = StringUtils.trimToNull(nextLine[COL_ID]);
             String nameCln = StringUtils.trimToNull(nextLine[COL_NAME]);
             String dateCln = StringUtils.trimToNull(nextLine[COL_DATE]);
             String closeDateCln = StringUtils.trimToNull(nextLine[COL_CLOSEDATE]);
@@ -65,7 +69,7 @@ public class CsvShowEventRepository extends ShowEventRepository {
             String judgeCln = StringUtils.trimToNull(nextLine[COL_JUDGE]);
             ShowType showTypeCln = ShowType.valueOf(StringUtils.trimToNull(nextLine[COL_SHOWTYPE]));
 
-            add(new ShowEvent(nameCln, date, closeDate, locationCln, judgeCln, showTypeCln));
+            add(new ShowEvent(id, nameCln, date, closeDate, locationCln, judgeCln, showTypeCln));
         }
         csvReader.close();
     }

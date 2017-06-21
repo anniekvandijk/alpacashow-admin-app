@@ -141,8 +141,8 @@ public class ApplicationRepositoryService {
 
     private void saveCrossRepoForShowEvent(ShowEventRepository showEventRepository) throws IOException {
 
-        for (String showEventKey : showEventRepository.getAllShowEventsByKeySet()) {
-            ShowEvent showEvent = showEventRepository.getShowEventByKeySet(showEventKey);
+        for (String showEventKey : showEventRepository.getAllShowEventsById()) {
+            ShowEvent showEvent = showEventRepository.getShowEventById(showEventKey);
             for (Participant participant : showEvent.getParticipants()) {
                 String participantKey = participantRepository.add(participant);
                 ShowEventParticipant part = new ShowEventParticipant(showEventKey, participantKey);
@@ -170,15 +170,15 @@ public class ApplicationRepositoryService {
         loadShowEventAnimalDetailRepository();
 
 
-        Set <String> showEventsByKey = showEventRepository.getAllShowEventsByKeySet();
-        Set <String> participantsByKey = participantRepository.getAllParticipantsByKeySet();
-        Set <String> animalsByKey = animalRepository.getAllAnimalsByKeySet();
+        Set <String> showEventsByKey = showEventRepository.getAllShowEventsById();
+        Set <String> participantsByKey = participantRepository.getAllParticipantsById();
+        Set <String> animalsById = animalRepository.getAllAnimalsById();
         Collection <ShowEventParticipant> showEventParticipants = showEventParticipantRepository.getAllShowEventParticipants();
         Collection <ShowEventAnimalDetail> showEventAnimalDetails = showEventAnimalDetailRepository.getAllShowEventAnimalDetails();
 
         // Loop ShowEvents and get details
-        for (String showEventKey : showEventsByKey) {
-            ShowEvent showEvent = showEventRepository.getShowEventByKeySet(showEventKey);
+        for (String id : showEventsByKey) {
+            ShowEvent showEvent = showEventRepository.getShowEventById(id);
 
             Set<Participant> participants = new LinkedHashSet<Participant>();
 
@@ -188,32 +188,32 @@ public class ApplicationRepositoryService {
                 {
                     String showKey = showEventParticipant.getShowEventKey();
                     String partKey = showEventParticipant.getParticipantKey();
-                    if (showEventKey.equals(showKey) && participantKey.equals(partKey))
+                    if (id.equals(showKey) && participantKey.equals(partKey))
                     {
 
-                        Participant participant = participantRepository.getParticipantByKeySet(participantKey);
+                        Participant participant = participantRepository.getParticipantById(participantKey);
 
                         Set<Animal> animals = new LinkedHashSet<Animal>();
 
                         // Loop animals and get animals for the participant. Add animal details to participant
-                        for (String animalKey : animalsByKey) {
+                        for (String animalId : animalsById) {
                             for (ShowEventAnimalDetail showEventAnimalDetail : showEventAnimalDetails) {
                                 String show = showEventAnimalDetail.getShowEventKey();
                                 String part = showEventAnimalDetail.getParticipantKey();
                                 String ani = showEventAnimalDetail.getAnimalKey();
 
-                                if (showEventKey.equals(show) && participantKey.equals(part) && animalKey.equals(ani)) {
-                                    Animal animal = animalRepository.getAnimalByKeySet(animalKey);
+                                if (id.equals(show) && participantKey.equals(part) && id.equals(ani)) {
+                                    Animal animal = animalRepository.getAnimalById(id);
                                     LocalDate sheerDate = showEventAnimalDetail.getSheerDate();
                                     LocalDate beforeSheerDate = showEventAnimalDetail.getBeforeSheerDate();
                                     ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail = new ShowEventAnimalSheeringDetail(sheerDate, beforeSheerDate);
-                                    animals.add(new Animal(animal.getName(), animal.getBreed(), animal.getSex(), animal.getColor(), animal.getDateOfBirth(),
+                                    animals.add(new Animal(animal.getId(),animal.getName(), animal.getBreed(), animal.getSex(), animal.getColor(), animal.getDateOfBirth(),
                                             animal.getMicrochip(), animal.getRegistration(), animal.getSire(), animal.getDam(), showEventAnimalSheeringDetail));
 
                                 }
                             }
                         }
-                        participants.add(new Participant(participant.getName(), participant.getFarmName(), participant.getEmail(), participant.getTelephone(),
+                        participants.add(new Participant(participant.getId(),participant.getName(), participant.getFarmName(), participant.getEmail(), participant.getTelephone(),
                                     participant.getAddress(), participant.getZipCode(), participant.getCity(), participant.getCountry(), animals));
                     }
                 }
