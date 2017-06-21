@@ -71,7 +71,7 @@ public class ShowEventRepositoryTest {
     }
 
     @Test
-    public void deleteShowEventWithNotKnownKey() throws IOException {
+    public void deleteShowEventWithNotKnownId() throws IOException {
 
         exception.expect(NullPointerException.class);
 
@@ -89,7 +89,7 @@ public class ShowEventRepositoryTest {
 
         assertEquals(1, showEventRepository.getAllShowEvents().size());
 
-        String key = "2030-06-15_MALE_PROGENY_SHOW";
+        String key = "12345";
         showEventRepository.delete(key);
 
         assertEquals(1, showEventRepository.getAllShowEvents().size());
@@ -114,8 +114,8 @@ public class ShowEventRepositoryTest {
 
         showEventRepository.add(showEvent);
 
-        String id2 = "2030-06-14_FLEECESHOW";
-        showEventRepository.getShowEventById(id).getName();
+        String id2 = "12345";
+        showEventRepository.getShowEventById(id2).getName();
 
     }
 
@@ -141,8 +141,8 @@ public class ShowEventRepositoryTest {
         showEventRepository.add(showEvent2);
 
         assertEquals(2, showEventRepository.getAllShowEventsById().size());
-        assertTrue(showEventRepository.getAllShowEventsById().contains("2030-06-15_HALTERSHOW"));
-        assertTrue(showEventRepository.getAllShowEventsById().contains("2030-06-15_FLEECESHOW"));
+        assertTrue(showEventRepository.getAllShowEventsById().contains("dceef758-011f-421b-8933-73cec9beca75"));
+        assertTrue(showEventRepository.getAllShowEventsById().contains("dceef758-011f-421b-8933-73cec9beca76"));
 
     }
 }

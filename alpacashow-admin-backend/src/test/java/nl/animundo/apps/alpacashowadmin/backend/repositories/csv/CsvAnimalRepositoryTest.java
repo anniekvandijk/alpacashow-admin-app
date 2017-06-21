@@ -43,8 +43,8 @@ public class CsvAnimalRepositoryTest {
         reader.close();
         assertEquals(3, repo.getAllAnimals().size());
 
-        String key = "12346";
-        Animal animal = repo.getAnimalById(key);
+        String getId = "65ec47a5-a459-47ea-b97f-2d456a109a8d";
+        Animal animal = repo.getAnimalById(getId);
         assertNotNull(animal);
         assertEquals("My Alpaca 2", animal.getName());
         assertEquals("HUACAYA", animal.getBreed().toString());
@@ -69,7 +69,7 @@ public class CsvAnimalRepositoryTest {
         repo.add(new Animal(id, name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam));
         assertEquals(4, repo.getAllAnimals().size());
 
-        repo.delete("12345");
+        repo.delete("bac5c1c4-e021-40e6-83e3-64c895c5e016");
         assertEquals(3, repo.getAllAnimals().size());
 
         File newExportFile = new File(workingDir + testFileDir + "ANIMALS_export.csv");
@@ -87,7 +87,7 @@ public class CsvAnimalRepositoryTest {
         reader.close();
         assertEquals(3, newRepo.getAllAnimals().size());
 
-        String key2 = "982000123169930";
+        String key2 = "6be3ab7c-fcc8-424e-a04b-2f7e497565de";
         Animal animal2 = newRepo.getAnimalById(key2);
         assertNotNull(animal2);
         assertEquals("BAF12345", animal2.getRegistration());

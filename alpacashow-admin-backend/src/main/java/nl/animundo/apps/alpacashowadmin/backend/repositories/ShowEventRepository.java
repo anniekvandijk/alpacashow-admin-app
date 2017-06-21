@@ -14,8 +14,11 @@ public class ShowEventRepository  {
 
     public String add(final ShowEvent showEvent) throws IOException {
 
-        String id = UUID.randomUUID().toString();
-        showEvent.setId(id);
+        String id = showEvent.getId();
+        if (id == null) {
+            id = UUID.randomUUID().toString();
+            showEvent.setId(id);
+        }
         showEvents.put(id, showEvent);
         logger.info("Added showEvent '" + id + "' to showEventRepo");
         return id;

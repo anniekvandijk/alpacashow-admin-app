@@ -13,8 +13,11 @@ public class AnimalRepository {
 
     public String add(final Animal animal) {
 
-        String id = UUID.randomUUID().toString();
-        animal.setId(id);
+        String id = animal.getId();
+        if (id == null) {
+            id = UUID.randomUUID().toString();
+            animal.setId(id);
+        }
             animals.put(id, animal);
             logger.info("Updated animal '" + id + "' to animalRepo");
         return id;

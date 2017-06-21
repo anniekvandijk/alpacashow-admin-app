@@ -94,11 +94,11 @@ public class IThelper {
 
         Set<Animal> animals3 = new LinkedHashSet<Animal>();
         ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail5 = new ShowEventAnimalSheeringDetail(LocalDate.of(2015, 4, 1), LocalDate.of(2014, 5, 1));
-        animals3.add(new Animal("869c1d60-d0f0-4f6a-b4d0-4326a7165b14", "Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 12), "8765", null, "Vader", "Moeder"));
+        animals3.add(new Animal("869c1d60-d0f0-4f6a-b4d0-4326a7165b12", "Alpaca1", BreedClass.HUACAYA, SexClass.FEMALE, ColorClass.BLACK, LocalDate.of(2015, 4, 12), "8765", null, "Vader", "Moeder"));
         animals3.add(new Animal("869c1d60-d0f0-4f6a-b4d0-4326a7165b15", "Alpaca5", BreedClass.SURI, SexClass.MALE, ColorClass.FANCY, LocalDate.of(2014, 4, 29), "7659", "BAF1254", "Vader2", "Moeder2", showEventAnimalSheeringDetail5));
 
         Set<Participant> participants3 = new LinkedHashSet<Participant>();
-        participants3.add(new Participant("947e95f8-3506-42b4-818c-cfff3435aa18", "Test participant 1", "Testfarm 1", "", "", "", "", "", "", animals3));
+        participants3.add(new Participant("947e95f8-3506-42b4-818c-cfff3435aa16", "Test participant 1", "Testfarm 1", "", "", "", "", "", "", animals3));
         participants3.add(new Participant("947e95f8-3506-42b4-818c-cfff3435aa19","Test participant 3", "Testfarm 3", "", "", "", "", "", ""));
 
         ShowEvent showEvent4 = new ShowEvent(id4, name4, date4, closeDate4, location4, judge4, showType4, participants3);

@@ -13,8 +13,11 @@ public class ParticipantRepository {
 
     public String add(final Participant participant) {
 
-        String id = UUID.randomUUID().toString();
-        participant.setId(id);
+        String id = participant.getId();
+        if (id == null) {
+            id = UUID.randomUUID().toString();
+            participant.setId(id);
+        }
             participants.put(id, participant);
             logger.info("Updated participant '" + id + "' to participantRepo");
         return id;

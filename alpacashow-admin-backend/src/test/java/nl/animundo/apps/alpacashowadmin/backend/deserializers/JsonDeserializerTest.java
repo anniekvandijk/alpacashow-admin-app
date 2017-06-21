@@ -17,6 +17,7 @@ public class JsonDeserializerTest {
     public void jsonToObject() throws IOException {
 
         String json = "{"
+                + "   \"id\": \"ce736ea4-5bc3-46c5-8f12-21e2d149eab3\",     "
                 + "   \"name\": \"Test showEvent to Json\",     "
                 + "   \"date\": \"2017-05-01\",                 "
                 + "   \"closeDate\": \"2017-03-15\",            "

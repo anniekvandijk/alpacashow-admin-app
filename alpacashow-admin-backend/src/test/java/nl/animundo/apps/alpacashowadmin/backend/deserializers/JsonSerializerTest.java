@@ -31,6 +31,7 @@ public class JsonSerializerTest {
         String jsonTrim = json.replaceAll("\\s", "");
 
         String expectedJson = "{"
+                + "   \"id\": \"c6947908-830d-4c10-ac0a-042f044f7a41\",     "
                 + "   \"name\": \"Test showEvent to Json\",     "
                 + "   \"date\": \"2017-05-01\",                 "
                 + "   \"closeDate\": \"2017-03-15\",            "

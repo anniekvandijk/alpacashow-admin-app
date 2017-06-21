@@ -33,8 +33,7 @@ public class ParticipantsRepositoryTest {
 
         participantRepository.add(participant);
 
-        String key = "Test participant";
-        assertEquals(key, participantRepository.getParticipantById(key).getName());
+        assertEquals(name, participantRepository.getParticipantById(id).getName());
 
     }
 
@@ -56,16 +55,14 @@ public class ParticipantsRepositoryTest {
         participantRepository.add(participant);
 
         assertEquals(1, participantRepository.getAllParticipants().size());
-        String key = "Test participant to delete";
-        assertEquals(key, participantRepository.getParticipantById(key).getName());
 
-        participantRepository.delete(key);
+        participantRepository.delete(id);
 
         assertEquals(0, participantRepository.getAllParticipants().size());
     }
 
     @Test
-    public void deleteParticipantWithNotKnownKey() {
+    public void deleteParticipantWithNotKnownId() {
 
         exception.expect(NullPointerException.class);
 
@@ -85,11 +82,11 @@ public class ParticipantsRepositoryTest {
 
         assertEquals(1, participantRepository.getAllParticipants().size());
 
-        String key = "Not known participant";
-        participantRepository.delete(key);
+        String id2 = "12345";
+        participantRepository.delete(id2);
 
         assertEquals(1, participantRepository.getAllParticipants().size());
-        assertEquals(null, participantRepository.delete(key).toString());
+        assertEquals(null, participantRepository.delete(id2).toString());
 
     }
 
@@ -113,9 +110,9 @@ public class ParticipantsRepositoryTest {
 
         participantRepository.add(participant);
 
-        String key = "Andere participant";
+        String id2 = "12345";
 
-        participantRepository.getParticipantById(key).getName();
+        participantRepository.getParticipantById(id2).getName();
     }
 
     @Test
@@ -141,8 +138,8 @@ public class ParticipantsRepositoryTest {
         participantRepository.add(participant2);
 
         assertEquals(2, participantRepository.getAllParticipantsById().size());
-        assertTrue(participantRepository.getAllParticipantsById().contains("Test participant"));
-        assertTrue(participantRepository.getAllParticipantsById().contains("Test participant nummer 2"));
+        assertTrue(participantRepository.getAllParticipantsById().contains("582fc7a6-aa85-41cf-96b8-3981f5df0093"));
+        assertTrue(participantRepository.getAllParticipantsById().contains("582fc7a6-aa85-41cf-96b8-3981f5df0094"));
     }
 
 

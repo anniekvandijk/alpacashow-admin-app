@@ -39,8 +39,8 @@ public class CsvShowEventRepositoryTest {
         reader.close();
         assertEquals(2, repo.getAllShowEvents().size());
 
-        String id = "2030-04-24_MALE_PROGENY_SHOW";
-        ShowEvent showEvent = repo.getShowEventById(id);
+        String getId = "524cace0-65b5-4db4-88da-b3f1960d3ca8";
+        ShowEvent showEvent = repo.getShowEventById(getId);
         assertNotNull(showEvent);
         assertEquals("Hapert 2017", showEvent.getName());
         assertEquals("2030-04-24", showEvent.getDate().toString());
@@ -49,6 +49,7 @@ public class CsvShowEventRepositoryTest {
         assertEquals("Judge X", showEvent.getJudge());
         assertEquals("MALE_PROGENY_SHOW", showEvent.getShowType().toString());
 
+        String id = "65c8f84d-7920-4387-879e-addc2f95f8d4";
         String name = "Test showEvent";
         LocalDate date = LocalDate.of(2030, 7, 1);
         LocalDate closeDate = LocalDate.of(2030, 5, 15);
@@ -74,7 +75,7 @@ public class CsvShowEventRepositoryTest {
         reader.close();
         assertEquals(3, newRepo.getAllShowEvents().size());
 
-        String key2 = "2030-07-01_FLEECESHOW";
+        String key2 = "65c8f84d-7920-4387-879e-addc2f95f8d4";
         ShowEvent showEvent2 = newRepo.getShowEventById(key2);
         assertNotNull(showEvent2);
         assertEquals("Surhuisterveen", showEvent2.getLocation());

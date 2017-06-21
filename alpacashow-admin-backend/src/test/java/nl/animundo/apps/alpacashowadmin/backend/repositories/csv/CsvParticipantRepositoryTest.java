@@ -34,8 +34,8 @@ public class CsvParticipantRepositoryTest {
         reader.close();
         assertEquals(3, repo.getAllParticipants().size());
 
-        String key = "Deelnemer 1";
-        Participant participant = repo.getParticipantById(key);
+        String getId = "90a4dbdc-a580-40c8-8429-d90c15446951";
+        Participant participant = repo.getParticipantById(getId);
         assertNotNull(participant);
         assertEquals("Alpacafarm 1", participant.getFarmName());
         assertEquals("farmnaam@iets.nl", participant.getEmail());
@@ -73,7 +73,7 @@ public class CsvParticipantRepositoryTest {
         reader.close();
         assertEquals(4, newRepo.getAllParticipants().size());
 
-        String key2 = "Test participant";
+        String key2 = "5c492ade-412d-4d6f-9d5d-8f9aedb37a0a";
         Participant participant2 = newRepo.getParticipantById(key2);
         assertNotNull(participant2);
         assertEquals("some City", participant2.getCity());

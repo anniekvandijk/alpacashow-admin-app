@@ -42,8 +42,7 @@ public class AnimalRepositoryTest {
 
         animalRepository.add(animal);
 
-        String key = "123456789";
-        assertEquals("SURI", animalRepository.getAnimalById(key).getBreed().toString());
+        assertEquals("SURI", animalRepository.getAnimalById(id).getBreed().toString());
     }
 
     @Test
@@ -66,16 +65,16 @@ public class AnimalRepositoryTest {
         animalRepository.add(animal);
 
         assertEquals(1, animalRepository.getAllAnimals().size());
-        String key = "123456789";
-        assertEquals("Animal to delete", animalRepository.getAnimalById(key).getName());
 
-        animalRepository.delete(key);
+        assertEquals("Animal to delete", animalRepository.getAnimalById(id).getName());
+
+        animalRepository.delete(id);
 
         assertEquals(0, animalRepository.getAllAnimals().size());
     }
 
     @Test
-    public void deleteAnimalWithNotKnownKey() {
+    public void deleteAnimalWithNotKnownId() {
 
         exception.expect(NullPointerException.class);
 
@@ -134,7 +133,8 @@ public class AnimalRepositoryTest {
     @Test
     public void getAllAnimalsById() {
 
-        String id              = "1f7eb2e8-69b0-42f2-ac25-950e14465b16";
+        String id1              = "1f7eb2e8-69b0-42f2-ac25-950e14465b16";
+        String id2              = "1f7eb2e8-69b0-42f2-ac25-950e14465b17";
         String name            = "Animal";
         BreedClass breedClass  = BreedClass.SURI;
         SexClass sexClass      = SexClass.MALE;
@@ -146,16 +146,16 @@ public class AnimalRepositoryTest {
         String sire            = "father";
         String dam             = "mother";
 
-        Animal animal1 = new Animal(id, name,breedClass, sexClass, colorClass, dateOfBirth, microchip1, registration, sire, dam);
-        Animal animal2 = new Animal(id, name,breedClass, sexClass, colorClass, dateOfBirth, microchip2, registration, sire, dam);
+        Animal animal1 = new Animal(id1, name,breedClass, sexClass, colorClass, dateOfBirth, microchip1, registration, sire, dam);
+        Animal animal2 = new Animal(id2, name,breedClass, sexClass, colorClass, dateOfBirth, microchip2, registration, sire, dam);
         AnimalRepository animalRepository = new AnimalRepository();
 
         animalRepository.add(animal1);
         animalRepository.add(animal2);
 
         assertEquals(2, animalRepository.getAllAnimalsById().size());
-        assertTrue(animalRepository.getAllAnimalsById().contains("123456789"));
-        assertTrue(animalRepository.getAllAnimalsById().contains("987654321"));
+        assertTrue(animalRepository.getAllAnimalsById().contains("1f7eb2e8-69b0-42f2-ac25-950e14465b16"));
+        assertTrue(animalRepository.getAllAnimalsById().contains("1f7eb2e8-69b0-42f2-ac25-950e14465b17"));
     }
 }
 
