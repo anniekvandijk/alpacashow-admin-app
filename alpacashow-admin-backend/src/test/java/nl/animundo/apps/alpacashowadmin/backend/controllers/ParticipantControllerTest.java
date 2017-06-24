@@ -14,23 +14,19 @@ import java.io.IOException;
 import static nl.animundo.apps.alpacashowadmin.backend.controllers.JsonFileReaderHelper.readJsonfile;
 import static org.junit.Assert.assertEquals;
 
+@Ignore
 public class ParticipantControllerTest {
 
     private RepositoryContext context;
-    private ApplicationRepositoryService service;
     private ParticipantController controller;
-    private IThelper helper = new IThelper(context, service);
-
-    public ParticipantControllerTest(RepositoryContext context)
-    {
-        this.context = context;
-        controller = new ParticipantController(context);
-        service  = new ApplicationRepositoryService();
-    }
+    private ApplicationRepositoryService service;
 
     @Before
-    public void AddShowEvents () throws IOException {
-        helper.AddCompleteShowEvent();
+    public void before() throws IOException {
+        context = new RepositoryContext();
+        service = new ApplicationRepositoryService();
+        context.participantRepository = service.loadParticipantRepository();
+        controller = new ParticipantController(context);
     }
 
     @Test

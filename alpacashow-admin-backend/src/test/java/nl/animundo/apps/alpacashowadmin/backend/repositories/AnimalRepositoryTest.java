@@ -46,6 +46,28 @@ public class AnimalRepositoryTest {
     }
 
     @Test
+    public void updateAnimal()
+    {
+        String id              = "1f7eb2e8-69b0-42f2-ac25-950e14465b16";
+        String name            = "Animal";
+        BreedClass breedClass  = BreedClass.SURI;
+        SexClass sexClass      = SexClass.MALE;
+        ColorClass colorClass  = ColorClass.BROWN;
+        LocalDate dateOfBirth  = LocalDate.of(2014, 6, 12);
+        String microchip       = "1234567890";
+        String registration    = "BAF12345";
+        String sire            = "father";
+        String dam             = "mother";
+
+        Animal animal = new Animal(id, name,breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
+        AnimalRepository animalRepository = new AnimalRepository();
+
+        animalRepository.update(id, animal);
+
+        assertEquals("1234567890", animalRepository.getAnimalById(id).getMicrochip().toString());
+    }
+
+    @Test
     public void deleteAnimal() {
 
         String id              = "1f7eb2e8-69b0-42f2-ac25-950e14465b16";

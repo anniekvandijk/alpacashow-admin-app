@@ -35,6 +35,14 @@ public class AnimalRepository {
         }
     }
 
+    public String update(final String id, final Animal animal)
+    {
+        delete(id);
+        add(animal);
+        animal.setId(id);
+        return id;
+    }
+
     public void deleteAll () {
             animals.clear();
     }

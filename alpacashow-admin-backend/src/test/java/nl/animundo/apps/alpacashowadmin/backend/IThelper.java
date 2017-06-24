@@ -23,16 +23,12 @@ public class IThelper {
 
     public void AddCompleteShowEvent () throws IOException {
 
-          service.loadShowEventRepository();
-//        ParticipantRepository participantRepository = service.loadParticipantRepository();
-//        AnimalRepository animalRepository = service.loadAnimalRepository();
-//        ShowEventParticipantRepository showEventParticipantRepository = service.loadShowEventParticipantRepository();
-//        ShowEventAnimalDetailRepository showEventAnimalDetailRepository = service.loadShowEventAnimalDetailRepository();
-//        context.showEventRepository.deleteAll();
-//        participantRepository.deleteAll();
-//        animalRepository.deleteAll();
-//        showEventParticipantRepository.deleteAll();
-//        showEventAnimalDetailRepository.deleteAll();
+        context.showEventRepository = service.loadShowEventRepository();
+        context.participantRepository = service.loadParticipantRepository();
+        context.animalRepository = service.loadAnimalRepository();
+        context.showEventRepository.deleteAll();
+        context.participantRepository.deleteAll();
+        context.animalRepository.deleteAll();
 
         String id = "2a88e547-d63b-4ec0-8344-7be454701b25";
         String name1 = "ShowEvent met deelnemers";
@@ -115,11 +111,5 @@ public class IThelper {
         for (ShowEvent showEvent : set) {
             context.showEventRepository.add(showEvent);
         }
-
-        service.saveShowEventRepository();
-        service.saveParticipantRepository();
-        service.saveAnimalRepository();
-        service.saveShowEventParticipantRepository();
-        service.saveShowEventAnimalDetailRepository();
     }
 }

@@ -17,23 +17,19 @@ import static nl.animundo.apps.alpacashowadmin.backend.controllers.JsonFileReade
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@Ignore
 public class ShowEventControllerTest {
 
     private RepositoryContext context;
-    private ApplicationRepositoryService service;
     private ShowEventController controller;
-    private IThelper helper = new IThelper(context, service);
-
-    public ShowEventControllerTest(RepositoryContext context)
-    {
-        this.context = context;
-        controller = new ShowEventController(context);
-        service = new ApplicationRepositoryService();
-    }
+    private ApplicationRepositoryService service;
 
     @Before
-    public void AddShowEvents () throws IOException {
-        helper.AddCompleteShowEvent();
+    public void before() throws IOException {
+        context = new RepositoryContext();
+        service = new ApplicationRepositoryService();
+        context.showEventRepository = service.loadShowEventRepository();
+        controller = new ShowEventController(context);
     }
 
     @Test

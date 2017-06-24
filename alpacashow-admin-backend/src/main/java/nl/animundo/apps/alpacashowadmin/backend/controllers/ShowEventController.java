@@ -1,6 +1,7 @@
 package nl.animundo.apps.alpacashowadmin.backend.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.jersey.api.core.InjectParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -29,7 +31,8 @@ public class ShowEventController {
     private RepositoryContext context;
     private ApplicationRepositoryService service;
 
-    public ShowEventController(RepositoryContext context)
+    @Inject
+    public ShowEventController(@InjectParam RepositoryContext context)
     {
         this.context = context;
         service = new ApplicationRepositoryService();
