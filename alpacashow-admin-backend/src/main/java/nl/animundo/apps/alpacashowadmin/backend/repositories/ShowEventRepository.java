@@ -23,6 +23,13 @@ public class ShowEventRepository  {
         return id;
     }
 
+    public String update(final String id, final ShowEvent showEvent) throws IOException {
+        delete(id);
+        add(showEvent);
+        showEvent.setId(id);
+        return id;
+    }
+
     public String delete(final String id) throws IOException {
 
         ShowEvent showEventToDelete = getShowEventById(id);

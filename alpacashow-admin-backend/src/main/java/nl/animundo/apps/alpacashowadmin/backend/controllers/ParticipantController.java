@@ -44,7 +44,6 @@ public class ParticipantController {
             responseContainer = "List")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getParticipants() throws IOException {
-        loadRepository();
         List<Participant> listOfParticipants = context.participantRepository.getAllParticipantsSorted();
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfParticipants);
         Response response = Response
@@ -63,9 +62,7 @@ public class ParticipantController {
             @ApiResponse(code = 404, message = "Participant not found") })
     @Produces(MediaType.APPLICATION_JSON)
     public Response getParticipantByKey(@PathParam("id") String id) throws IOException {
-        loadRepository();
         Participant participant = context.participantRepository.getParticipantById(id);
-
         if (participant != null) {
             return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(participant)).build();
         } else {
@@ -82,7 +79,6 @@ public class ParticipantController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addParticipant(String participant) throws IOException {
-        loadRepository();
         ObjectMapper mapper = new ObjectMapper();
         Participant event = null;
         try {
@@ -109,21 +105,20 @@ public class ParticipantController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateParticipant(@PathParam("id") String id, String participant) throws IOException {
-        loadRepository();
-        String participantDelete = context.participantRepository.delete(id);
-        if (participantDelete == null) {
+        Participant getParticipantToUpdate = context.participantRepository.getParticipantById(id);
+        if (getParticipantToUpdate == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
             ObjectMapper mapper = new ObjectMapper();
-            Participant event = null;
+            Participant participantToUpdate = null;
             try {
-                event = mapper.readValue(participant, Participant.class);
+                participantToUpdate = mapper.readValue(participant, Participant.class);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            if (event != null) {
-                context.participantRepository.add(event);
+            if (participantToUpdate != null) {
+                context.participantRepository.update(id, participantToUpdate);
                 saveRepository();
                 return Response.status(Response.Status.OK).build();
             } else {
@@ -139,20 +134,15 @@ public class ParticipantController {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteParticipant(@PathParam("id") String id) throws IOException {
-        loadRepository();
-        String participantDelete = context.participantRepository.delete(id);
-        if (participantDelete != null) {
+        Participant getParticipantDelete = context.participantRepository.getParticipantById(id);
+        if (getParticipantDelete != null) {
+            context.participantRepository.delete(id);
             saveRepository();
             return Response.status(Response.Status.OK).build();
         }
         else {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-    }
-
-    private void loadRepository() throws IOException {
-
-        context.participantRepository = service.loadParticipantRepository();
     }
 
     private void saveRepository() throws IOException {

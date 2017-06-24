@@ -136,6 +136,7 @@ public class AnimalController {
     public Response deleteAnimal(@PathParam("id") String id) throws IOException {
         Animal getAnimalDelete = context.animalRepository.getAnimalById(id);
         if (getAnimalDelete != null) {
+            context.animalRepository.delete(id);
             saveRepository();
             return Response.status(Response.Status.OK).build();
         }

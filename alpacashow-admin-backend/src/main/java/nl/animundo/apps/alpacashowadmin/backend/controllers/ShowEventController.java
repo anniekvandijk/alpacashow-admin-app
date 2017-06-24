@@ -44,7 +44,6 @@ public class ShowEventController {
             responseContainer = "List")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShowEvents() throws IOException {
-        loadRepository();
         List<ShowEvent> listOfShowEvents=context.showEventRepository.getAllShowEventsSorted();
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfShowEvents);
         Response response = Response
@@ -63,9 +62,7 @@ public class ShowEventController {
             @ApiResponse(code = 404, message = "Show not found") })
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShowEventById(@PathParam("id") String id) throws IOException {
-        loadRepository();
         ShowEvent event = context.showEventRepository.getShowEventById(id);
-
         if (event != null) {
             return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(event)).build();
         } else {
@@ -82,7 +79,6 @@ public class ShowEventController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addShowEvent(String showEvent) throws IOException {
-        loadRepository();
         ObjectMapper mapper = new ObjectMapper();
         ShowEvent event = null;
         try {
@@ -108,21 +104,20 @@ public class ShowEventController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateShowEvent(@PathParam("id") String id, String showEvent) throws IOException {
-        loadRepository();
-        String showDelete = context.showEventRepository.delete(id);
-        if (showDelete == null) {
+        ShowEvent getShowEventToUpdate = context.showEventRepository.getShowEventById(id);
+        if (getShowEventToUpdate == null) {
             return Response.status(Response.Status.NOT_FOUND).entity("Showevent with id '" + id + "' not found").build();
         } else {
             ObjectMapper mapper = new ObjectMapper();
-            ShowEvent event = null;
+            ShowEvent showEventToUpdate = null;
             try {
-                event = mapper.readValue(showEvent, ShowEvent.class);
+                showEventToUpdate = mapper.readValue(showEvent, ShowEvent.class);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            if (event != null) {
-                String showEventKey = context.showEventRepository.add(event);
+            if (showEventToUpdate != null) {
+                String showEventKey = context.showEventRepository.update(id, showEventToUpdate);
                 saveRepository();
                 return Response.status(Response.Status.OK).entity("Updated showevent with id '" + showEventKey + "'").build();
             } else {
@@ -138,19 +133,15 @@ public class ShowEventController {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteShowEvent(@PathParam("id") String id) throws IOException {
-        loadRepository();
-        String showDelete = context.showEventRepository.delete(id);
-        if (showDelete != null) {
+        ShowEvent getShowEventToDelete = context.showEventRepository.getShowEventById(id);
+        if (getShowEventToDelete != null) {
+            context.showEventRepository.delete(id);
             saveRepository();
             return Response.status(Response.Status.OK).entity("Deleted showevent with id '" + id + "'").build();
         }
         else {
             return Response.status(Response.Status.NOT_FOUND).entity("Showevent with id '" + id + "' not found").build();
         }
-    }
-
-    private void loadRepository() throws IOException {
-        context.showEventRepository = service.loadShowEventRepository();
     }
 
     private void saveRepository() throws IOException {

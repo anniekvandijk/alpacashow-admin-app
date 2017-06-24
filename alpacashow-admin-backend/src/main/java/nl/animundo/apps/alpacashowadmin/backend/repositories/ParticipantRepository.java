@@ -3,6 +3,8 @@ package nl.animundo.apps.alpacashowadmin.backend.repositories;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 import java.util.*;
 
 import static java.util.Comparator.comparing;
@@ -20,6 +22,13 @@ public class ParticipantRepository {
         }
             participants.put(id, participant);
             logger.info("Updated participant '" + id + "' to participantRepo");
+        return id;
+    }
+
+    public String update(final String id, final Participant participant) throws IOException {
+        delete(id);
+        add(participant);
+        participant.setId(id);
         return id;
     }
 
