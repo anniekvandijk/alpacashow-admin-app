@@ -23,8 +23,14 @@ import java.util.List;
 public class ParticipantController {
 
     private static Logger logger = LoggerFactory.getLogger(ParticipantController.class);
-    private RepositoryContext context = new RepositoryContext();
-    private ApplicationRepositoryService service = new ApplicationRepositoryService(context);
+    private RepositoryContext context;
+    private ApplicationRepositoryService service;
+
+    public ParticipantController(RepositoryContext context)
+    {
+        this.context = context;
+        service = new ApplicationRepositoryService();
+    }
 
     // TODO: if response != 200, put some information in the response body what went wrong.
 

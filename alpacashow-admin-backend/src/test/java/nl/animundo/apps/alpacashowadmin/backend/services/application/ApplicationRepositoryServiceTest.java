@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 public class ApplicationRepositoryServiceTest {
 
     private RepositoryContext context;
-    private ApplicationRepositoryService service = new ApplicationRepositoryService(context);
+    private ApplicationRepositoryService service = new ApplicationRepositoryService();
     private IThelper helper = new IThelper(context, service);
 
     @Before

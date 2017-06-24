@@ -23,8 +23,14 @@ import java.util.List;
 public class AnimalController {
 
     private static Logger logger = LoggerFactory.getLogger(AnimalController.class);
-    private RepositoryContext context = new RepositoryContext();
-    private ApplicationRepositoryService service = new ApplicationRepositoryService(context);
+    private RepositoryContext context;
+    private ApplicationRepositoryService service;
+
+    public AnimalController(RepositoryContext context)
+    {
+        this.context = context;
+        service = new ApplicationRepositoryService();
+    }
 
     @GET
     @ApiOperation(value = "Get all animals",

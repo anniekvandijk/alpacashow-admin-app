@@ -26,8 +26,14 @@ public class ShowEventController {
     // This can not be validated in the ShowEvent class, because you then can't handle histroic data.
 
     private static Logger logger = LoggerFactory.getLogger(ShowEventController.class);
-    private RepositoryContext context = new RepositoryContext();
-    private ApplicationRepositoryService service = new ApplicationRepositoryService(context);
+    private RepositoryContext context;
+    private ApplicationRepositoryService service;
+
+    public ShowEventController(RepositoryContext context)
+    {
+        this.context = context;
+        service = new ApplicationRepositoryService();
+    }
 
     @GET
     @ApiOperation(value = "Get all showevents",
