@@ -23,19 +23,8 @@ import java.util.List;
 public class AnimalController {
 
     private static Logger logger = LoggerFactory.getLogger(AnimalController.class);
-    private RepositoryContext context;
-    private ApplicationRepositoryService service;
-
-    // TODO: if response != 200, put some information in the response body what went wrong.
-
-    // TODO Don't sent detail with animal. This is for ShowAnimals Only
-
-    public AnimalController(RepositoryContext context)
-    {
-        this.context = context;
-        service = new ApplicationRepositoryService(context);
-    }
-
+    private RepositoryContext context = new RepositoryContext();
+    private ApplicationRepositoryService service = new ApplicationRepositoryService(context);
 
     @GET
     @ApiOperation(value = "Get all animals",

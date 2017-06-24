@@ -25,15 +25,9 @@ public class ShowEventController {
     // Todo: check if new or changed showevent data is after today.
     // This can not be validated in the ShowEvent class, because you then can't handle histroic data.
 
-    private RepositoryContext context;
     private static Logger logger = LoggerFactory.getLogger(ShowEventController.class);
-    private ApplicationRepositoryService service;
-
-    public ShowEventController(RepositoryContext context)
-    {
-        this.context = context;
-        service = new ApplicationRepositoryService(context);
-    }
+    private RepositoryContext context = new RepositoryContext();
+    private ApplicationRepositoryService service = new ApplicationRepositoryService(context);
 
     @GET
     @ApiOperation(value = "Get all showevents",

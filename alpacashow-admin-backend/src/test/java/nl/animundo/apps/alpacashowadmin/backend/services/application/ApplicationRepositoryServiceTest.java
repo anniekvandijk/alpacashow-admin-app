@@ -15,7 +15,7 @@ public class ApplicationRepositoryServiceTest {
 
     private RepositoryContext context;
     private ApplicationRepositoryService service = new ApplicationRepositoryService(context);
-    private IThelper helper = new IThelper(service);
+    private IThelper helper = new IThelper(context, service);
 
     @Before
     public void AddShowEvents() throws IOException {
