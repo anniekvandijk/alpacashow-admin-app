@@ -19,7 +19,7 @@ public class AnimalRepository {
             animal.setId(id);
         }
             animals.put(id, animal);
-            logger.info("Updated animal '" + id + "' to animalRepo");
+            logger.info("Add animal '" + id + "' to animalRepo");
         return id;
     }
 

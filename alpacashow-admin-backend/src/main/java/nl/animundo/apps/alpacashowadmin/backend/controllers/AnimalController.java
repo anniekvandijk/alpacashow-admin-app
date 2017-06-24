@@ -1,6 +1,7 @@
 package nl.animundo.apps.alpacashowadmin.backend.controllers;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.core.InjectParam;
 import io.swagger.annotations.Api;
@@ -86,7 +87,6 @@ public class AnimalController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         if (animalToAdd != null) {
             context.animalRepository.add(animalToAdd);
             saveRepository();
