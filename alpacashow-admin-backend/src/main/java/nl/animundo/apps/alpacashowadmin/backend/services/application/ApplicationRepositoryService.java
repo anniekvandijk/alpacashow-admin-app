@@ -142,85 +142,85 @@ public class ApplicationRepositoryService {
 
     private void saveCrossRepoForShowEvent(ShowEventRepository showEventRepository) throws IOException {
 
-        for (String showEventKey : showEventRepository.getAllShowEventsById()) {
-            ShowEvent showEvent = showEventRepository.getShowEventById(showEventKey);
-            for (Participant participant : showEvent.getParticipants()) {
-                String participantKey = context.participantRepository.add(participant);
-                ShowEventParticipant part = new ShowEventParticipant(showEventKey, participantKey);
-                context.showEventParticipantRepository.add(part);
-                for (Animal animal : participant.getAnimals()) {
-                    String animalKey = context.animalRepository.add(animal);
-                    AgeClass ageclass = AgeClassService.ageClass(showEvent, animal);
-                    int showClass = ShowClassService.getShowClassCode(animal.getBreed(), ageclass, animal.getSex(), animal.getColor());
-                    ShowEventAnimalDetail showEventAnimal = new ShowEventAnimalDetail(showEventKey, participantKey, animalKey, animal.getShowEventAnimalSheeringDetail().getSheerDate(),
-                            animal.getShowEventAnimalSheeringDetail().getBeforeSheerDate(), ageclass, showClass);
-
-                    context.showEventAnimalDetailRepository.add(showEventAnimal);
-                }
-            }
-        }
-        saveShowEventParticipantRepository();
-        saveShowEventAnimalDetailRepository();
+//        for (String showEventKey : showEventRepository.getAllShowEventsById()) {
+//            ShowEvent showEvent = showEventRepository.getShowEventById(showEventKey);
+//            for (Participant participant : showEvent.getParticipants()) {
+//                Participant participant = context.participantRepository.add(participant);
+//                ShowEventParticipant part = new ShowEventParticipant(showEventKey, participantKey);
+//                context.showEventParticipantRepository.add(part);
+//                for (Animal animal : participant.getAnimals()) {
+//                    String animalKey = context.animalRepository.add(animal);
+//                    AgeClass ageclass = AgeClassService.ageClass(showEvent, animal);
+//                    int showClass = ShowClassService.getShowClassCode(animal.getBreed(), ageclass, animal.getSex(), animal.getColor());
+//                    ShowEventAnimalDetail showEventAnimal = new ShowEventAnimalDetail(showEventKey, participantKey, animalKey, animal.getShowEventAnimalSheeringDetail().getSheerDate(),
+//                            animal.getShowEventAnimalSheeringDetail().getBeforeSheerDate(), ageclass, showClass);
+//
+//                    context.showEventAnimalDetailRepository.add(showEventAnimal);
+//                }
+//            }
+//        }
+//        saveShowEventParticipantRepository();
+//        saveShowEventAnimalDetailRepository();
     }
 
     private void loadCrossRepoForShowEvent() throws IOException {
 
-        loadParticipantRepository();
-        loadShowEventParticipantRepository();
-        loadAnimalRepository();
-        loadShowEventAnimalDetailRepository();
-
-
-        Set <String> showEventsByKey = context.showEventRepository.getAllShowEventsById();
-        Set <String> participantsByKey = context.participantRepository.getAllParticipantsById();
-        Set <String> animalsById = context.animalRepository.getAllAnimalsById();
-        Collection <ShowEventParticipant> showEventParticipants = context.showEventParticipantRepository.getAllShowEventParticipants();
-        Collection <ShowEventAnimalDetail> showEventAnimalDetails = context.showEventAnimalDetailRepository.getAllShowEventAnimalDetails();
-
-        // Loop ShowEvents and get details
-        for (String id : showEventsByKey) {
-            ShowEvent showEvent = context.showEventRepository.getShowEventById(id);
-
-            Set<Participant> participants = new LinkedHashSet<Participant>();
-
-            // Loop participants and get participants for the show. Add participant details to show
-            for (String participantKey : participantsByKey) {
-                for (ShowEventParticipant showEventParticipant : showEventParticipants)
-                {
-                    String showKey = showEventParticipant.getShowEventKey();
-                    String partKey = showEventParticipant.getParticipantKey();
-                    if (id.equals(showKey) && participantKey.equals(partKey))
-                    {
-
-                        Participant participant = context.participantRepository.getParticipantById(participantKey);
-
-                        Set<Animal> animals = new LinkedHashSet<Animal>();
-
-                        // Loop animals and get animals for the participant. Add animal details to participant
-                        for (String animalId : animalsById) {
-                            for (ShowEventAnimalDetail showEventAnimalDetail : showEventAnimalDetails) {
-                                String show = showEventAnimalDetail.getShowEventKey();
-                                String part = showEventAnimalDetail.getParticipantKey();
-                                String ani = showEventAnimalDetail.getAnimalKey();
-
-                                if (id.equals(show) && participantKey.equals(part) && id.equals(ani)) {
-                                    Animal animal = context.animalRepository.getAnimalById(id);
-                                    LocalDate sheerDate = showEventAnimalDetail.getSheerDate();
-                                    LocalDate beforeSheerDate = showEventAnimalDetail.getBeforeSheerDate();
-                                    ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail = new ShowEventAnimalSheeringDetail(sheerDate, beforeSheerDate);
-                                    animals.add(new Animal(animal.getId(),animal.getName(), animal.getBreed(), animal.getSex(), animal.getColor(), animal.getDateOfBirth(),
-                                            animal.getMicrochip(), animal.getRegistration(), animal.getSire(), animal.getDam(), showEventAnimalSheeringDetail));
-
-                                }
-                            }
-                        }
-                        participants.add(new Participant(participant.getId(),participant.getName(), participant.getFarmName(), participant.getEmail(), participant.getTelephone(),
-                                    participant.getAddress(), participant.getZipCode(), participant.getCity(), participant.getCountry(), animals));
-                    }
-                }
-            }
-            showEvent.setParticipants(participants);
-        }
+//        loadParticipantRepository();
+//        loadShowEventParticipantRepository();
+//        loadAnimalRepository();
+//        loadShowEventAnimalDetailRepository();
+//
+//
+//        Set <String> showEventsByKey = context.showEventRepository.getAllShowEventsById();
+//        Set <String> participantsByKey = context.participantRepository.getAllParticipantsById();
+//        Set <String> animalsById = context.animalRepository.getAllAnimalsById();
+//        Collection <ShowEventParticipant> showEventParticipants = context.showEventParticipantRepository.getAllShowEventParticipants();
+//        Collection <ShowEventAnimalDetail> showEventAnimalDetails = context.showEventAnimalDetailRepository.getAllShowEventAnimalDetails();
+//
+//        // Loop ShowEvents and get details
+//        for (String id : showEventsByKey) {
+//            ShowEvent showEvent = context.showEventRepository.getShowEventById(id);
+//
+//            Set<Participant> participants = new LinkedHashSet<Participant>();
+//
+//            // Loop participants and get participants for the show. Add participant details to show
+//            for (String participantKey : participantsByKey) {
+//                for (ShowEventParticipant showEventParticipant : showEventParticipants)
+//                {
+//                    String showKey = showEventParticipant.getShowEventKey();
+//                    String partKey = showEventParticipant.getParticipantKey();
+//                    if (id.equals(showKey) && participantKey.equals(partKey))
+//                    {
+//
+//                        Participant participant = context.participantRepository.getParticipantById(participantKey);
+//
+//                        Set<Animal> animals = new LinkedHashSet<Animal>();
+//
+//                        // Loop animals and get animals for the participant. Add animal details to participant
+//                        for (String animalId : animalsById) {
+//                            for (ShowEventAnimalDetail showEventAnimalDetail : showEventAnimalDetails) {
+//                                String show = showEventAnimalDetail.getShowEventKey();
+//                                String part = showEventAnimalDetail.getParticipantKey();
+//                                String ani = showEventAnimalDetail.getAnimalKey();
+//
+//                                if (id.equals(show) && participantKey.equals(part) && id.equals(ani)) {
+//                                    Animal animal = context.animalRepository.getAnimalById(id);
+//                                    LocalDate sheerDate = showEventAnimalDetail.getSheerDate();
+//                                    LocalDate beforeSheerDate = showEventAnimalDetail.getBeforeSheerDate();
+//                                    ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail = new ShowEventAnimalSheeringDetail(sheerDate, beforeSheerDate);
+//                                    animals.add(new Animal(animal.getId(),animal.getName(), animal.getBreed(), animal.getSex(), animal.getColor(), animal.getDateOfBirth(),
+//                                            animal.getMicrochip(), animal.getRegistration(), animal.getSire(), animal.getDam(), showEventAnimalSheeringDetail));
+//
+//                                }
+//                            }
+//                        }
+//                        participants.add(new Participant(participant.getId(),participant.getName(), participant.getFarmName(), participant.getEmail(), participant.getTelephone(),
+//                                    participant.getAddress(), participant.getZipCode(), participant.getCity(), participant.getCountry(), animals));
+//                    }
+//                }
+//            }
+//            showEvent.setParticipants(participants);
+//        }
     }
 }
 

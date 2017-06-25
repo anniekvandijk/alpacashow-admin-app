@@ -88,9 +88,9 @@ public class ParticipantController {
         }
 
         if (event != null) {
-            context.participantRepository.add(event);
+            Participant addedParticipant = context.participantRepository.add(event);
             saveRepository();
-            return Response.status(Response.Status.OK).build();
+            return Response.status(Response.Status.OK).entity(addedParticipant).build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
@@ -118,9 +118,9 @@ public class ParticipantController {
             }
 
             if (participantToUpdate != null) {
-                context.participantRepository.update(id, participantToUpdate);
+                Participant updatedParticipant = context.participantRepository.update(id, participantToUpdate);
                 saveRepository();
-                return Response.status(Response.Status.OK).build();
+                return Response.status(Response.Status.OK).entity(updatedParticipant).build();
             } else {
                 return Response.status(Response.Status.BAD_REQUEST).build();
             }
@@ -136,9 +136,9 @@ public class ParticipantController {
     public Response deleteParticipant(@PathParam("id") String id) throws IOException {
         Participant getParticipantDelete = context.participantRepository.getParticipantById(id);
         if (getParticipantDelete != null) {
-            context.participantRepository.delete(id);
+            String deletedParticipant = context.participantRepository.delete(id);
             saveRepository();
-            return Response.status(Response.Status.OK).build();
+            return Response.status(Response.Status.OK).entity(deletedParticipant).build();
         }
         else {
             return Response.status(Response.Status.NOT_FOUND).build();

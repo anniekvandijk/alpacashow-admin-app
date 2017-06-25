@@ -13,7 +13,7 @@ public class ParticipantRepository {
     private static Logger logger = LoggerFactory.getLogger(ParticipantRepository.class);
     private Map<String, Participant> participants = new HashMap<>();
 
-    public String add(final Participant participant) {
+    public Participant add(final Participant participant) {
 
         String id = participant.getId();
         if (id == null) {
@@ -21,15 +21,16 @@ public class ParticipantRepository {
             participant.setId(id);
         }
             participants.put(id, participant);
-            logger.info("Updated participant '" + id + "' to participantRepo");
-        return id;
+            logger.info("Added participant '" + id + "' to participantRepo");
+        return participant;
     }
 
-    public String update(final String id, final Participant participant) throws IOException {
+    public Participant update(final String id, final Participant participant) throws IOException {
         delete(id);
         add(participant);
         participant.setId(id);
-        return id;
+        logger.info("Updated participant '" + id + "' from participantRepo");
+        return participant;
     }
 
     public String delete(final String id) {
@@ -38,7 +39,7 @@ public class ParticipantRepository {
         if (participantToDelete != null) {
             participants.remove(id);
             logger.info("Deleted participant '" + id + "' from participantRepo");
-            return participantToDelete.getName();
+            return participantToDelete.getId();
         } else {
             return null;
         }

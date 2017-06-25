@@ -87,9 +87,9 @@ public class ShowEventController {
             e.printStackTrace();
         }
         if (event != null) {
-            String showEventId = context.showEventRepository.add(event);
+            ShowEvent addedShowEvent = context.showEventRepository.add(event);
             saveRepository();
-            return Response.status(Response.Status.OK).entity("Added showevent with id '" + showEventId + "'").build();
+            return Response.status(Response.Status.OK).entity(addedShowEvent).build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
@@ -117,9 +117,9 @@ public class ShowEventController {
             }
 
             if (showEventToUpdate != null) {
-                String showEventKey = context.showEventRepository.update(id, showEventToUpdate);
+                ShowEvent updatedshowEvent = context.showEventRepository.update(id, showEventToUpdate);
                 saveRepository();
-                return Response.status(Response.Status.OK).entity("Updated showevent with id '" + showEventKey + "'").build();
+                return Response.status(Response.Status.OK).entity(updatedshowEvent).build();
             } else {
                 return Response.status(Response.Status.BAD_REQUEST).build();
             }
@@ -135,9 +135,9 @@ public class ShowEventController {
     public Response deleteShowEvent(@PathParam("id") String id) throws IOException {
         ShowEvent getShowEventToDelete = context.showEventRepository.getShowEventById(id);
         if (getShowEventToDelete != null) {
-            context.showEventRepository.delete(id);
+            String deletedShowEvent = context.showEventRepository.delete(id);
             saveRepository();
-            return Response.status(Response.Status.OK).entity("Deleted showevent with id '" + id + "'").build();
+            return Response.status(Response.Status.OK).entity(deletedShowEvent).build();
         }
         else {
             return Response.status(Response.Status.NOT_FOUND).entity("Showevent with id '" + id + "' not found").build();

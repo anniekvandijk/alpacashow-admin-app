@@ -11,7 +11,7 @@ public class AnimalRepository {
     private Map<String, Animal> animals = new HashMap<>();
 
 
-    public String add(final Animal animal) {
+    public Animal add(final Animal animal) {
 
         String id = animal.getId();
         if (id == null) {
@@ -20,7 +20,7 @@ public class AnimalRepository {
         }
             animals.put(id, animal);
             logger.info("Add animal '" + id + "' to animalRepo");
-        return id;
+        return animal;
     }
 
     public String delete(final String id) {
@@ -29,18 +29,19 @@ public class AnimalRepository {
         if (animalToDelete != null) {
             animals.remove(id);
             logger.info("Deleted animal '" + id + "' from animalRepo");
-            return animalToDelete.getMicrochip();
+            return animalToDelete.getId();
         } else {
             return null;
         }
     }
 
-    public String update(final String id, final Animal animal)
+    public Animal update(final String id, final Animal animal)
     {
         delete(id);
         add(animal);
         animal.setId(id);
-        return id;
+        logger.info("Updated animal '" + id + "' from animalRepo");
+        return animal;
     }
 
     public void deleteAll () {

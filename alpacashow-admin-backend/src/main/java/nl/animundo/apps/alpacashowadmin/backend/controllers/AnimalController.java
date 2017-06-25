@@ -88,9 +88,9 @@ public class AnimalController {
             e.printStackTrace();
         }
         if (animalToAdd != null) {
-            context.animalRepository.add(animalToAdd);
+            Animal addedAnimal = context.animalRepository.add(animalToAdd);
             saveRepository();
-            return Response.status(Response.Status.OK).build();
+            return Response.status(Response.Status.OK).entity(addedAnimal).build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
@@ -118,9 +118,9 @@ public class AnimalController {
             }
 
             if (animalToUpdate != null) {
-                context.animalRepository.update(id, animalToUpdate);
+                Animal updatedAnimal = context.animalRepository.update(id, animalToUpdate);
                 saveRepository();
-                return Response.status(Response.Status.OK).build();
+                return Response.status(Response.Status.OK).entity(updatedAnimal).build();
             } else {
                 return Response.status(Response.Status.BAD_REQUEST).build();
             }
@@ -136,9 +136,9 @@ public class AnimalController {
     public Response deleteAnimal(@PathParam("id") String id) throws IOException {
         Animal getAnimalDelete = context.animalRepository.getAnimalById(id);
         if (getAnimalDelete != null) {
-            context.animalRepository.delete(id);
+            String deletedId = context.animalRepository.delete(id);
             saveRepository();
-            return Response.status(Response.Status.OK).build();
+            return Response.status(Response.Status.OK).entity(deletedId).build();
         }
         else {
             return Response.status(Response.Status.NOT_FOUND).build();
