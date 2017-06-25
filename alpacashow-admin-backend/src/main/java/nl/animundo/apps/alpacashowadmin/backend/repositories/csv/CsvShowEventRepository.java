@@ -4,6 +4,7 @@ import com.opencsv.CSVReader;
 import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.Repository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import org.apache.commons.lang3.StringUtils;
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.io.Writer;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class CsvShowEventRepository extends ShowEventRepository {
+public class CsvShowEventRepository extends Repository<ShowEvent> {
 
     private static final int COL_ID = 0;
     private static final int COL_NAME = 1;
@@ -22,14 +23,14 @@ public class CsvShowEventRepository extends ShowEventRepository {
     private static final int COL_JUDGE = 5;
     private static final int COL_SHOWTYPE = 6;
 
-    public static ShowEventRepository importData(Reader reader) throws IOException {
+    public static Repository<ShowEvent> importData(Reader reader) throws IOException {
 
         CsvShowEventRepository repo = new CsvShowEventRepository();
         repo.read(reader);
         return repo;
     }
 
-    public static void exportData(final Writer writer, final ShowEventRepository showEventRepo) throws IOException {
+    public static void exportData(final Writer writer, final Repository<ShowEvent> showEventRepo) throws IOException {
         writer  .append("ID").append(";")
                 .append("NAME").append(";")
                 .append("DATE").append(";")
@@ -38,8 +39,8 @@ public class CsvShowEventRepository extends ShowEventRepository {
                 .append("JUDGE").append(";")
                 .append("SHOWTYPE").append("\n");
 
-        for (String id : showEventRepo.getAllShowEventsById()) {
-            ShowEvent show = showEventRepo.getShowEventById(id);
+        for (String id : showEventRepo.getAllById()) {
+            ShowEvent show = showEventRepo.getById(id);
             writer  .append(show.getId()).append(";")
                     .append(show.getName()).append(";")
                     .append(show.getDate().toString()).append(";")

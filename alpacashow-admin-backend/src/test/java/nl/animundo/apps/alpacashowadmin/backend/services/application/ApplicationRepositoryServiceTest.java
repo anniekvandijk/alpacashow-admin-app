@@ -2,6 +2,7 @@ package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
 import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
+import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.Repository;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
@@ -12,14 +13,16 @@ public class ApplicationRepositoryServiceTest {
 
     private RepositoryContext context;
     private ApplicationRepositoryService service;
+    private Repository<ShowEvent> showEventRepo;
+    private Repository<Animal> animalRepo;
 
     @Before
     public void before() throws IOException {
         this.context = new RepositoryContext();
         service = new ApplicationRepositoryService(context);
-        context.showEventRepository = service.loadShowEventRepository();
+        showEventRepo = service.loadShowEventRepository();
         context.participantRepository = service.loadParticipantRepository();
-        Repository<Animal> animalRepo = service.loadAnimalRepository();
+        animalRepo = service.loadAnimalRepository();
         context.showEventAnimalDetailRepository = service.loadShowEventAnimalDetailRepository();
         context.fleeceWeightPointsRepository = service.loadFleeceWeightPointsRepository();
     }
@@ -30,8 +33,8 @@ public class ApplicationRepositoryServiceTest {
     @Test
     public void getShowEventRepo() throws IOException {
 
-        assertEquals(4, context.showEventRepository.getAllShowEvents().size());
-        assertEquals("Haltershow ShowEvent met deelnemers en dieren", context.showEventRepository.getShowEventById("e794e4cc-35fc-4370-8e22-b9ef15580ff8").getName());
+        assertEquals(4, showEventRepo.getAll().size());
+        assertEquals("Haltershow ShowEvent met deelnemers en dieren", showEventRepo.getById("e794e4cc-35fc-4370-8e22-b9ef15580ff8").getName());
     }
 
     @Test
@@ -44,8 +47,8 @@ public class ApplicationRepositoryServiceTest {
     @Test
     public void getAnimalRepo() throws IOException {
 
-        assertEquals(5, context.animalRepository.getAllAnimals().size());
-        assertEquals("Alpaca1", context.animalRepository.getAnimalById("a1d81f18-e47e-4f0a-b7f5-28b9eb42fa8e").getName());
+        assertEquals(5, animalRepo.getAll().size());
+        assertEquals("Alpaca1", animalRepo.getById("a1d81f18-e47e-4f0a-b7f5-28b9eb42fa8e").getName());
     }
 
     @Test

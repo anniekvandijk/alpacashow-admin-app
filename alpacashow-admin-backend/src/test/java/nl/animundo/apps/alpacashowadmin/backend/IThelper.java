@@ -23,7 +23,7 @@ public class IThelper {
 
     public void AddCompleteShowEvent () throws IOException {
 
-        context.showEventRepository = service.loadShowEventRepository();
+        Repository<ShowEvent> showEventRepo = service.loadShowEventRepository();
         context.participantRepository = service.loadParticipantRepository();
         Repository<Animal> animalRepo = service.loadAnimalRepository();
         context.showEventRepository.deleteAll();

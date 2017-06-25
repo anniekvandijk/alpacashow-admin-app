@@ -2,6 +2,7 @@ package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.Repository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import org.junit.Rule;
 import org.junit.Test;
@@ -35,12 +36,12 @@ public class CsvShowEventRepositoryTest {
         assertTrue(importFile.isFile() && importFile.exists() && importFile.canRead());
         Reader reader = new FileReader(importFile) ;
 
-        ShowEventRepository repo = CsvShowEventRepository.importData(reader);
+        Repository<ShowEvent> repo = CsvShowEventRepository.importData(reader);
         reader.close();
-        assertEquals(2, repo.getAllShowEvents().size());
+        assertEquals(2, repo.getAll().size());
 
         String getId = "524cace0-65b5-4db4-88da-b3f1960d3ca8";
-        ShowEvent showEvent = repo.getShowEventById(getId);
+        ShowEvent showEvent = repo.getById(getId);
         assertNotNull(showEvent);
         assertEquals("Hapert 2017", showEvent.getName());
         assertEquals("2030-04-24", showEvent.getDate().toString());
@@ -58,7 +59,7 @@ public class CsvShowEventRepositoryTest {
         ShowType showType = ShowType.FLEECESHOW;
 
         repo.add(id, new ShowEvent(id, name, date, closeDate, location, judge, showType));
-        assertEquals(3, repo.getAllShowEvents().size());
+        assertEquals(3, repo.getAll().size());
 
         File newExportFile = new File(workingDir + testFileDir + "SHOWEVENTS_export.csv");
         FileWriter writer = new FileWriter(newExportFile);
@@ -71,12 +72,12 @@ public class CsvShowEventRepositoryTest {
         assertTrue(newImportFile.isFile() && newImportFile.exists() && newImportFile.canRead());
         reader = new FileReader(newImportFile) ;
 
-        ShowEventRepository newRepo = CsvShowEventRepository.importData(reader);
+        Repository <ShowEvent> newRepo = CsvShowEventRepository.importData(reader);
         reader.close();
-        assertEquals(3, newRepo.getAllShowEvents().size());
+        assertEquals(3, newRepo.getAll().size());
 
         String key2 = "65c8f84d-7920-4387-879e-addc2f95f8d4";
-        ShowEvent showEvent2 = newRepo.getShowEventById(key2);
+        ShowEvent showEvent2 = newRepo.getById(key2);
         assertNotNull(showEvent2);
         assertEquals("Surhuisterveen", showEvent2.getLocation());
 

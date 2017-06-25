@@ -22,21 +22,22 @@ public class ApplicationRepositoryService {
     private static ApplicationFileDirService fileDirService = new ApplicationFileDirService();
     private RepositoryContext context;
     private Repository <Animal> animalRepo;
+    private Repository <ShowEvent> showEventRepo;
 
     public ApplicationRepositoryService (RepositoryContext context)
     {
         this.context = context;
     }
 
-    public ShowEventRepository loadShowEventRepository() throws IOException {
+    public Repository <ShowEvent> loadShowEventRepository() throws IOException {
 
         String csvShowEventsResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvShowEventsResource));
-        context.showEventRepository = CsvShowEventRepository.importData(csvReader);
+        showEventRepo = CsvShowEventRepository.importData(csvReader);
         csvReader.close();
         loadCrossRepoForShowEvent();
         logger.info("Imported csvShowEventRepository");
-        return context.showEventRepository;
+        return showEventRepo;
     }
 
     public ParticipantRepository loadParticipantRepository() throws IOException {
@@ -95,8 +96,8 @@ public class ApplicationRepositoryService {
 
         String csvShowEventsResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS.csv");
         FileWriter writer = new FileWriter(csvShowEventsResource);
-        CsvShowEventRepository.exportData(writer, context.showEventRepository);
-        saveCrossRepoForShowEvent(context.showEventRepository);
+        CsvShowEventRepository.exportData(writer, showEventRepo);
+        saveCrossRepoForShowEvent(showEventRepo);
         writer.flush();
         writer.close();
         logger.info("Exported csvShowEventRepository");
@@ -142,7 +143,7 @@ public class ApplicationRepositoryService {
         logger.info("Exported csvShowEventAnimalDetailRepository");
     }
 
-    private void saveCrossRepoForShowEvent(ShowEventRepository showEventRepository) throws IOException {
+    private void saveCrossRepoForShowEvent(Repository <ShowEvent> showEventRepository) throws IOException {
 
 //        for (String showEventKey : showEventRepository.getAllShowEventsById()) {
 //            ShowEvent showEvent = showEventRepository.getShowEventById(showEventKey);

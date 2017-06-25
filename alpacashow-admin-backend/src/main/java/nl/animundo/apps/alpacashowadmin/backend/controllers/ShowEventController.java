@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.Repository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
 import org.slf4j.Logger;
@@ -31,12 +32,13 @@ public class ShowEventController {
     private static Logger logger = LoggerFactory.getLogger(AnimalController.class);
     private RepositoryContext context;
     private ApplicationRepositoryService service;
+    private Repository<ShowEvent> showEventRepo;
 
     @Inject
     public ShowEventController() throws IOException {
         context = new RepositoryContext();
         service = new ApplicationRepositoryService(context);
-        service.loadShowEventRepository();
+        showEventRepo = service.loadShowEventRepository();
     }
 
     @GET
@@ -45,7 +47,7 @@ public class ShowEventController {
             responseContainer = "List")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShowEvents() throws IOException {
-        List<ShowEvent> listOfShowEvents=context.showEventRepository.getAllShowEventsSorted();
+        Collection<ShowEvent> listOfShowEvents=showEventRepo.getAll();
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfShowEvents);
         Response response = Response
                 .status(Response.Status.OK)
@@ -63,7 +65,7 @@ public class ShowEventController {
             @ApiResponse(code = 404, message = "Show not found") })
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShowEventById(@PathParam("id") String id) throws IOException {
-        ShowEvent event = context.showEventRepository.getShowEventById(id);
+        ShowEvent event = showEventRepo.getById(id);
         if (event != null) {
             return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(event)).build();
         } else {
@@ -90,7 +92,7 @@ public class ShowEventController {
         if (showEventToAdd != null) {
             String id = UUID.randomUUID().toString();
             showEventToAdd.setId(id);
-            ShowEvent addedShowEvent = context.showEventRepository.add(id, showEventToAdd);
+            ShowEvent addedShowEvent = showEventRepo.add(id, showEventToAdd);
             saveRepository();
             return Response.status(Response.Status.OK).entity(addedShowEvent).build();
         } else {
@@ -107,7 +109,7 @@ public class ShowEventController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateShowEvent(@PathParam("id") String id, String showEvent) throws IOException {
-        ShowEvent getShowEventToUpdate = context.showEventRepository.getShowEventById(id);
+        ShowEvent getShowEventToUpdate = showEventRepo.getById(id);
         if (getShowEventToUpdate == null) {
             return Response.status(Response.Status.NOT_FOUND).entity("Showevent with id '" + id + "' not found").build();
         } else {
@@ -120,7 +122,7 @@ public class ShowEventController {
             }
 
             if (showEventToUpdate != null) {
-                ShowEvent updatedshowEvent = context.showEventRepository.update(id, showEventToUpdate);
+                ShowEvent updatedshowEvent = showEventRepo.update(id, showEventToUpdate);
                 saveRepository();
                 return Response.status(Response.Status.OK).entity(updatedshowEvent).build();
             } else {
@@ -136,9 +138,9 @@ public class ShowEventController {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteShowEvent(@PathParam("id") String id) throws IOException {
-        ShowEvent getShowEventToDelete = context.showEventRepository.getShowEventById(id);
+        ShowEvent getShowEventToDelete = showEventRepo.getById(id);
         if (getShowEventToDelete != null) {
-            String deletedShowEvent = context.showEventRepository.delete(id);
+            String deletedShowEvent = showEventRepo.delete(id);
             saveRepository();
             return Response.status(Response.Status.OK).entity(deletedShowEvent).build();
         }
