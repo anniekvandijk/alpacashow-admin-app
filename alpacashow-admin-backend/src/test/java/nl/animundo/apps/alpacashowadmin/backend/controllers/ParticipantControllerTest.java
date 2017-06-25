@@ -1,139 +1,128 @@
 package nl.animundo.apps.alpacashowadmin.backend.controllers;
 
-import nl.animundo.apps.alpacashowadmin.backend.IThelper;
-import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
-import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
-import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.util.List;
+
 import static nl.animundo.apps.alpacashowadmin.backend.controllers.JsonFileReaderHelper.readJsonfile;
 import static org.junit.Assert.assertEquals;
 
-@Ignore
 public class ParticipantControllerTest {
 
-    private RepositoryContext context;
     private ParticipantController controller;
-    private ApplicationRepositoryService service;
+    private ObjectMapper mapper;
 
     @Before
     public void before() throws IOException {
-        context = new RepositoryContext();
-        service = new ApplicationRepositoryService();
-        context.participantRepository = service.loadParticipantRepository();
-        controller = new ParticipantController(context);
+        controller = new ParticipantController();
+        mapper = new ObjectMapper();
     }
 
     @Test
     public void getAllParticipants() throws IOException {
 
-        String result = (String)controller.getParticipants().getEntity();
-        String resultTrim = result.replaceAll("\\s", "");
-        String fileName = "get_allparticipants.json";
-        String expected = readJsonfile(fileName);
-        String expectedTrim = expected.replaceAll("\\s", "");
+        Response response = controller.getParticipants();
+        assertEquals(200, response.getStatus());
 
-        assertEquals(expectedTrim, resultTrim);
+        List<Participant> list = mapper.readValue(response.getEntity().toString(),
+                TypeFactory.defaultInstance().constructCollectionType(List.class, Participant.class));
+        assertEquals(5, list.size());
     }
 
     @Test
-    public void getParticipantByKey() throws IOException {
+    public void getParticipantById() throws IOException {
 
-        Response resultCode = controller.getParticipantByKey("Deelnemer 2");
-        String result = (String) controller.getParticipantByKey("Deelnemer 2").getEntity();
-        String resultTrim = result.replaceAll("\\s", "");
-        String fileName = "get_participantbykey.json";
-        String expected = readJsonfile(fileName);
-        String expectedTrim = expected.replaceAll("\\s", "");
+        Response response = controller.getParticipantById("e8919da0-92bc-426b-a125-ed0311fbe2eb");
+        assertEquals(200, response.getStatus());
 
-        assertEquals(expectedTrim, resultTrim);
-        assertEquals(200, resultCode.getStatus());
+        Participant participant = mapper.readValue(response.getEntity().toString(), Participant.class);
+        assertEquals("e8919da0-92bc-426b-a125-ed0311fbe2eb", participant.getId());
     }
 
     @Test
-    public void addDeleteUpdateParticipant() throws IOException {
-
-        loadRepository();
-        assertEquals(5, context.participantRepository.getAllParticipants().size());
+    public void addDeleteParticipant() throws IOException {
 
         String file = readJsonfile("add_participant.json");
-        controller.addParticipant(file);
+        Response response1 = controller.addParticipant(file);
+        assertEquals(200, response1.getStatus());
 
-        loadRepository();
-        assertEquals(6, context.participantRepository.getAllParticipants().size());
+        Response response2 = controller.getParticipants();
+        List<Participant> list = mapper.readValue(response2.getEntity().toString(),
+                TypeFactory.defaultInstance().constructCollectionType(List.class, Participant.class));
+        assertEquals(6, list.size());
 
-        Participant participant = context.participantRepository.getParticipantById("Deelnemer 3");
-        assertEquals("Grun", participant.getCity());
+        String participantId = null;
+        for (Participant participant: list)
+        {
 
-        String file2 = readJsonfile("update_participant.json");
-        controller.updateParticipant("Deelnemer 3", file2);
+            if (participant.getName().equals("Deelnemer 3"))
+            {
+                participantId = participant.getId();
+            }
+        }
 
-        loadRepository();
-        Participant participant12 = context.participantRepository.getParticipantById("Deelnemer 3");
-        assertEquals("Groningen", participant12.getCity());
+        Response response3 = controller.deleteParticipant(participantId);
+        assertEquals(200, response3.getStatus());
+        Response response4 = controller.getParticipants();
+        List<Participant> list2 = mapper.readValue(response4.getEntity().toString(),
+                TypeFactory.defaultInstance().constructCollectionType(List.class, Participant.class));
+        assertEquals(5, list2.size());
 
-        controller.deleteParticipant("Deelnemer 3");
+    }
 
+    @Test
+    public void updateParticipant() throws IOException {
+        String file = readJsonfile("update_participant.json");
+        Response response = controller.updateParticipant("ed272dd0-a59d-4674-ac07-343e3fb9a61b", file);
+        assertEquals(200, response.getStatus());
     }
 
     @Test
     public void getParticipantByNotExistingKey() throws IOException {
 
-        Response resultCode = controller.getParticipantByKey("Deelnemer 4");
-        assertEquals(404, resultCode.getStatus());
+        Response response = controller.getParticipantById("Some not known");
+        assertEquals(404, response.getStatus());
     }
 
     @Test
     public void addParticipantWithWrongData() throws IOException {
 
-        loadRepository();
-
         String file = readJsonfile("add_participantWrong.json");
-        Response resultCode = controller.addParticipant(file);
+        Response response = controller.addParticipant(file);
 
-        assertEquals(400, resultCode.getStatus());
+        assertEquals(400, response.getStatus());
 
     }
 
     @Test
     public void updateParticipantWithWrongKey() throws IOException {
 
-        loadRepository();
         String file = readJsonfile("update_participant.json");
-        Response resultCode = controller.updateParticipant("Deelnemer X", file);
+        Response response = controller.updateParticipant("not known chip", file);
 
-        assertEquals(404, resultCode.getStatus());
+        assertEquals(404, response.getStatus());
     }
 
     @Test
     public void updateParticipantWithWrongData() throws IOException {
 
-        loadRepository();
-
         String file = readJsonfile("update_participantWrong.json");
-        Response resultCode = controller.updateParticipant("Deelnemer 2", file);
+        Response response = controller.updateParticipant("1d1bb925-ed76-432a-bd07-554040000a31", file);
 
-        assertEquals(400, resultCode.getStatus());
+        assertEquals(400, response.getStatus());
     }
 
     @Test
     public void deleteParticipantWithWrongKey() throws IOException {
 
-        loadRepository();
+        Response response = controller.deleteParticipant("Participant X");
 
-        Response resultCode = controller.deleteParticipant("Deelnemer X");
+        assertEquals(404, response.getStatus());
 
-        assertEquals(404, resultCode.getStatus());
-
-    }
-
-    private void loadRepository() throws IOException {
-
-        context.participantRepository = service.loadParticipantRepository();
     }
 }

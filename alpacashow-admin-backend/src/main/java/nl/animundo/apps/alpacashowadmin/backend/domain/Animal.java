@@ -50,10 +50,15 @@ public class Animal {
                   @JsonProperty("dam") final String dam, @JsonProperty("sheeringDetail") ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail) {
 
         final String idCln = StringUtils.trimToNull(id);
-        if (idCln == null) {
-            throw new IllegalArgumentException("Field id can not be empty");
-        }
         final String nameCln = StringUtils.trimToNull(name);
+        final String microchipCln = StringUtils.trimToNull(microchip);
+        final String registrationCln = StringUtils.trimToNull(registration);
+        final String sireCln = StringUtils.trimToNull(sire);
+        final String damCln = StringUtils.trimToNull(dam);
+//        if (idCln == null) {
+//            throw new IllegalArgumentException("Field id can not be empty");
+//        }
+
         if (nameCln == null) {
             throw new IllegalArgumentException("Field name can not be empty");
         }
@@ -69,16 +74,12 @@ public class Animal {
         if (dateOfBirth == null) {
             throw new IllegalArgumentException("Field date of birth can not be empty");
         }
-        final String microchipCln = StringUtils.trimToNull(microchip);
         if (microchipCln == null) {
             throw new IllegalArgumentException("Field microchip can not be empty");
         }
-        final String registrationCln = StringUtils.trimToNull(registration);
-        final String sireCln = StringUtils.trimToNull(sire);
         if (sireCln == null) {
             throw new IllegalArgumentException("Field sire can not be empty");
         }
-        final String damCln = StringUtils.trimToNull(dam);
         if (damCln == null) {
             throw new IllegalArgumentException("Field dam can not be empty");
         }

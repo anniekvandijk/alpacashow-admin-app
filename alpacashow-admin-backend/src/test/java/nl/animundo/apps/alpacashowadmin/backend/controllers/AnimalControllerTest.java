@@ -2,32 +2,24 @@ package nl.animundo.apps.alpacashowadmin.backend.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
-import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.List;
-
 import static nl.animundo.apps.alpacashowadmin.backend.controllers.JsonFileReaderHelper.readJsonfile;
 import static org.junit.Assert.assertEquals;
 
-@Ignore
 public class AnimalControllerTest {
 
-    private RepositoryContext context;
     private AnimalController controller;
-    private ApplicationRepositoryService service;
+    private ObjectMapper mapper;
 
     @Before
     public void before() throws IOException {
-        this.context = new RepositoryContext();
-        service = new ApplicationRepositoryService();
-        context.animalRepository = service.loadAnimalRepository();
-        controller = new AnimalController(context);
+        controller = new AnimalController();
+        mapper = new ObjectMapper();
     }
 
     @Test
@@ -36,7 +28,6 @@ public class AnimalControllerTest {
         Response response = controller.getAnimals();
         assertEquals(200, response.getStatus());
 
-        ObjectMapper mapper = new ObjectMapper();
         List<Animal> list = mapper.readValue(response.getEntity().toString(),
                 TypeFactory.defaultInstance().constructCollectionType(List.class, Animal.class));
         assertEquals(5, list.size());
@@ -45,53 +36,65 @@ public class AnimalControllerTest {
     @Test
     public void getAnimalById() throws IOException {
 
-        Response response = controller.getAnimalByKey("869c1d60-d0f0-4f6a-b4d0-4326a7165b13");
+        Response response = controller.getAnimalById("a1d81f18-e47e-4f0a-b7f5-28b9eb42fa8e");
         assertEquals(200, response.getStatus());
 
-        ObjectMapper mapper = new ObjectMapper();
         Animal animal = mapper.readValue(response.getEntity().toString(), Animal.class);
-        assertEquals("869c1d60-d0f0-4f6a-b4d0-4326a7165b13", animal.getId());
+        assertEquals("a1d81f18-e47e-4f0a-b7f5-28b9eb42fa8e", animal.getId());
     }
 
     @Test
-    public void addDeleteUpdateAnimal() throws IOException {
-
-        assertEquals(5, context.animalRepository.getAllAnimals().size());
+    public void addDeleteAnimal() throws IOException {
 
         String file = readJsonfile("add_animal.json");
         Response response1 = controller.addAnimal(file);
         assertEquals(200, response1.getStatus());
 
-        assertEquals(6, context.animalRepository.getAllAnimals().size());
+        Response response2 = controller.getAnimals();
+        List<Animal> list = mapper.readValue(response2.getEntity().toString(),
+                TypeFactory.defaultInstance().constructCollectionType(List.class, Animal.class));
+        assertEquals(6, list.size());
 
-        Animal animal = context.animalRepository.getAnimalById("chippie");
-        assertEquals("SURI", animal.getBreed().toString());
+        String animalId = null;
+        for (Animal animal: list)
+        {
 
-        String file2 = readJsonfile("update_animal.json");
-        Response response2 = controller.updateAnimal("chippie", file2);
-        assertEquals(200, response2.getStatus());
+            if (animal.getName().equals("My English alpaca"))
+            {
+                animalId = animal.getId();
+            }
+        }
 
-        Animal animal2 = context.animalRepository.getAnimalById("chippie");
-        assertEquals("HUACAYA", animal2.getBreed().toString());
+        Response response3 = controller.deleteAnimal(animalId);
+        assertEquals(200, response3.getStatus());
+        Response response4 = controller.getAnimals();
+        List<Animal> list2 = mapper.readValue(response4.getEntity().toString(),
+                TypeFactory.defaultInstance().constructCollectionType(List.class, Animal.class));
+        assertEquals(5, list2.size());
 
-        controller.deleteAnimal("chippie");
+    }
 
+    @Test
+    public void updateAnimal() throws IOException {
+        String file = readJsonfile("update_animal.json");
+        Response response = controller.updateAnimal("96a801d5-dd4b-40a4-a2a7-e7ecff35aefb", file);
+        assertEquals(200, response.getStatus());
     }
 
     @Test
     public void getAnimalByNotExistingKey() throws IOException {
 
-        Response resultCode = controller.getAnimalByKey("Some not known animal");
-        assertEquals(404, resultCode.getStatus());
+        Response response = controller.getAnimalById("Some not known animal");
+        assertEquals(404, response.getStatus());
     }
 
     @Test
     public void addAnimalWithWrongData() throws IOException {
 
         String file = readJsonfile("add_animalWrong.json");
-        Response resultCode = controller.addAnimal(file);
+        Response response = controller.addAnimal(file);
 
-        assertEquals(400, resultCode.getStatus());
+        assertEquals(400, response.getStatus());
 
     }
 
@@ -99,26 +102,26 @@ public class AnimalControllerTest {
     public void updateAnimalWithWrongKey() throws IOException {
 
         String file = readJsonfile("update_animal.json");
-        Response resultCode = controller.updateAnimal("not known chip", file);
+        Response response = controller.updateAnimal("not known chip", file);
 
-        assertEquals(404, resultCode.getStatus());
+        assertEquals(404, response.getStatus());
     }
 
     @Test
     public void updateAnimalWithWrongData() throws IOException {
 
         String file = readJsonfile("update_animalWrong.json");
-        Response resultCode = controller.updateAnimal("5555", file);
+        Response response = controller.updateAnimal("6b82f05a-aabf-482b-a6f9-25816413294d", file);
 
-        assertEquals(400, resultCode.getStatus());
+        assertEquals(400, response.getStatus());
     }
 
     @Test
     public void deleteAnimalWithWrongKey() throws IOException {
 
-        Response resultCode = controller.deleteAnimal("Animal X");
+        Response response = controller.deleteAnimal("Animal X");
 
-        assertEquals(404, resultCode.getStatus());
+        assertEquals(404, response.getStatus());
 
     }
 }

@@ -41,9 +41,9 @@ public class Participant {
         final String zipCodeCln = StringUtils.trimToNull(zipCode);
         final String cityCln = StringUtils.trimToNull(city);
         final String countryCln = StringUtils.trimToNull(country);
-        if (idCln == null) {
-            throw new IllegalArgumentException("Field id can not be empty");
-        }
+//        if (idCln == null) {
+//            throw new IllegalArgumentException("Field id can not be empty");
+//        }
         if (nameCln == null) {
             throw new IllegalArgumentException("Field participant can not be empty");
         }

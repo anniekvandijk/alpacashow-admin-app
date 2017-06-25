@@ -52,9 +52,9 @@ public class ShowEvent {
         final String nameCln = StringUtils.trimToNull(name);
         final String locationCln = StringUtils.trimToNull(location);
         final String judgeCln = StringUtils.trimToNull(judge);
-        if (idCln == null) {
-            throw new IllegalArgumentException("Field id can not be empty");
-        }
+//        if (idCln == null) {
+//            throw new IllegalArgumentException("Field id can not be empty");
+//        }
         if (nameCln == null) {
             throw new IllegalArgumentException("Field name can not be empty");
         }

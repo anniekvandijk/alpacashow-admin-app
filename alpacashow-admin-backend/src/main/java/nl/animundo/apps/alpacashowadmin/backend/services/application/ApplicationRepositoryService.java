@@ -20,7 +20,12 @@ public class ApplicationRepositoryService {
 
     private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
     private static ApplicationFileDirService fileDirService = new ApplicationFileDirService();
-    private RepositoryContext context = new RepositoryContext();
+    private RepositoryContext context;
+
+    public ApplicationRepositoryService (RepositoryContext context)
+    {
+        this.context = context;
+    }
 
     public ShowEventRepository loadShowEventRepository() throws IOException {
 

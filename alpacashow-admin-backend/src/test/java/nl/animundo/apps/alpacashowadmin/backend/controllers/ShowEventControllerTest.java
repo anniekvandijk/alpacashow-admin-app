@@ -1,135 +1,127 @@
 package nl.animundo.apps.alpacashowadmin.backend.controllers;
 
-import nl.animundo.apps.alpacashowadmin.backend.IThelper;
-import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
-import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
-import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-
 import javax.ws.rs.core.Response;
 import java.io.*;
-
+import java.util.List;
 import static nl.animundo.apps.alpacashowadmin.backend.controllers.JsonFileReaderHelper.readJsonfile;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
-@Ignore
 public class ShowEventControllerTest {
 
-    private RepositoryContext context;
     private ShowEventController controller;
-    private ApplicationRepositoryService service;
+    private ObjectMapper mapper;
 
     @Before
     public void before() throws IOException {
-        context = new RepositoryContext();
-        service = new ApplicationRepositoryService();
-        context.showEventRepository = service.loadShowEventRepository();
-        controller = new ShowEventController(context);
+        controller = new ShowEventController();
+        mapper = new ObjectMapper();
     }
 
     @Test
     public void getAllShowEvents() throws IOException {
 
-        String result = (String)controller.getShowEvents().getEntity();
-        String resultTrim = result.replaceAll("\\s", "");
-        String fileName = "get_allshowevents.json";
-        String expected = readJsonfile(fileName);
-        String expectedTrim = expected.replaceAll("\\s", "");
+        Response response = controller.getShowEvents();
+        assertEquals(200, response.getStatus());
 
-        assertEquals(expectedTrim, resultTrim);
+        List<ShowEvent> list = mapper.readValue(response.getEntity().toString(),
+                TypeFactory.defaultInstance().constructCollectionType(List.class, ShowEvent.class));
+        assertEquals(4, list.size());
     }
 
     @Test
-    public void getShowEventByKey() throws IOException {
+    public void getShowEventById() throws IOException {
 
-        Response resultCode = controller.getShowEventById("2017-04-01_MALE_PROGENY_SHOW");
-        String result = (String) controller.getShowEventById("2017-04-01_MALE_PROGENY_SHOW").getEntity();
-        String resultTrim = result.replaceAll("\\s", "");
-        String fileName = "get_showeventbykey.json";
-        String expected = readJsonfile(fileName);
-        String expectedTrim = expected.replaceAll("\\s", "");
+        Response response = controller.getShowEventById("5a3f5b84-cb3f-4ebc-b73a-9d411cb4109b");
+        assertEquals(200, response.getStatus());
 
-        assertEquals(expectedTrim, resultTrim);
-        assertEquals(200, resultCode.getStatus());
+        ShowEvent participant = mapper.readValue(response.getEntity().toString(), ShowEvent.class);
+        assertEquals("5a3f5b84-cb3f-4ebc-b73a-9d411cb4109b", participant.getId());
     }
 
     @Test
-    public void addDeleteUpdateShowEvent() throws IOException {
+    public void addDeleteShowEvent() throws IOException {
 
-        String showEvent = readJsonfile("add_showevent.json");
-        controller.addShowEvent(showEvent);
+        String file = readJsonfile("add_showevent.json");
+        Response response1 = controller.addShowEvent(file);
+        assertEquals(200, response1.getStatus());
 
-        String result = (String) controller.getShowEventById("2017-03-01_HALTERSHOW").getEntity();
-        String resultTrim = result.replaceAll("\\s", "");
-        String fileName = "add_showevent.json";
-        String expected = readJsonfile(fileName);
-        String expectedTrim = expected.replaceAll("\\s", "");
-        assertEquals(expectedTrim, resultTrim);
+        Response response2 = controller.getShowEvents();
+        List<ShowEvent> list = mapper.readValue(response2.getEntity().toString(),
+                TypeFactory.defaultInstance().constructCollectionType(List.class, ShowEvent.class));
+        assertEquals(5, list.size());
 
-        String showEvent2 = readJsonfile("update_showevent.json");
-        controller.updateShowEvent("2017-03-01_HALTERSHOW", showEvent2);
+        String showEventId = null;
+        for (ShowEvent showEvent: list)
+        {
 
-        String result2 = (String) controller.getShowEventById("2017-03-01_HALTERSHOW").getEntity();
-        String resultTrim2 = result2.replaceAll("\\s", "");
-        String fileName2 = "update_showevent.json";
-        String expected2 = readJsonfile(fileName2);
-        String expectedTrim2 = expected2.replaceAll("\\s", "");
-        assertEquals(expectedTrim2, resultTrim2);
+            if (showEvent.getName().equals("Test 2017"))
+            {
+                showEventId = showEvent.getId();
+            }
+        }
 
-        controller.deleteShowEvent("2017-03-01_HALTERSHOW");
+        Response response3 = controller.deleteShowEvent(showEventId);
+        assertEquals(200, response3.getStatus());
+        Response response4 = controller.getShowEvents();
+        List<ShowEvent> list2 = mapper.readValue(response4.getEntity().toString(),
+                TypeFactory.defaultInstance().constructCollectionType(List.class, ShowEvent.class));
+        assertEquals(4, list2.size());
 
-        Response response = controller.getShowEventById("2017-03-01_HALTERSHOW");
-        assertEquals(404, response.getStatus());
+    }
 
-
+    @Test
+    public void updateShowEvent() throws IOException {
+        String file = readJsonfile("update_showevent.json");
+        Response response = controller.updateShowEvent("5a3f5b84-cb3f-4ebc-b73a-9d411cb4109b", file);
+        assertEquals(200, response.getStatus());
     }
 
     @Test
     public void getShowEventByNotExistingKey() throws IOException {
 
-        Response resultCode = controller.getShowEventById("2017-04-01_HALTERSHOW");
-        assertEquals(404, resultCode.getStatus());
+        Response response = controller.getShowEventById("Some not known");
+        assertEquals(404, response.getStatus());
     }
 
     @Test
     public void addShowEventWithWrongData() throws IOException {
 
-        String showEvent = readJsonfile("add_showeventWrong.json");
-        Response resultCode = controller.addShowEvent(showEvent);
+        String file = readJsonfile("add_showeventWrong.json");
+        Response response = controller.addShowEvent(file);
 
-        assertEquals(400, resultCode.getStatus());
+        assertEquals(400, response.getStatus());
 
     }
 
     @Test
     public void updateShowEventWithWrongKey() throws IOException {
 
-        String showEvent = readJsonfile("update_showevent.json");
-        Response resultCode = controller.updateShowEvent("Breda 2017_2018-04-01", showEvent);
+        String file = readJsonfile("update_showevent.json");
+        Response response = controller.updateShowEvent("not known chip", file);
 
-        assertEquals(404, resultCode.getStatus());
+        assertEquals(404, response.getStatus());
     }
 
     @Test
     public void updateShowEventWithWrongData() throws IOException {
 
-        String showEvent = readJsonfile("update_showeventWrong.json");
-        Response resultCode = controller.updateShowEvent("2017-04-01_MALE_PROGENY_SHOW", showEvent);
+        String file = readJsonfile("update_showeventWrong.json");
+        Response response = controller.updateShowEvent("cbef0073-5bc3-493e-99da-0e9ef967b3d9", file);
 
-        assertEquals(400, resultCode.getStatus());
+        assertEquals(400, response.getStatus());
     }
 
     @Test
     public void deleteShowEventWithWrongKey() throws IOException {
 
-        Response resultCode = controller.deleteShowEvent("2017-03-01_HALTERSHO");
+        Response response = controller.deleteShowEvent("ShowEvent X");
 
-        assertEquals(404, resultCode.getStatus());
+        assertEquals(404, response.getStatus());
 
     }
 }

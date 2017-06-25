@@ -25,15 +25,15 @@ import java.util.List;
 @Path("participants")
 public class ParticipantController {
 
-    private static Logger logger = LoggerFactory.getLogger(ParticipantController.class);
+    private static Logger logger = LoggerFactory.getLogger(AnimalController.class);
     private RepositoryContext context;
     private ApplicationRepositoryService service;
 
     @Inject
-    public ParticipantController(@InjectParam RepositoryContext context)
-    {
-        this.context = context;
-        service = new ApplicationRepositoryService();
+    public ParticipantController() throws IOException {
+        context = new RepositoryContext();
+        service = new ApplicationRepositoryService(context);
+        service.loadParticipantRepository();
     }
 
     // TODO: if response != 200, put some information in the response body what went wrong.
@@ -61,7 +61,7 @@ public class ParticipantController {
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "Participant not found") })
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getParticipantByKey(@PathParam("id") String id) throws IOException {
+    public Response getParticipantById(@PathParam("id") String id) throws IOException {
         Participant participant = context.participantRepository.getParticipantById(id);
         if (participant != null) {
             return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(participant)).build();

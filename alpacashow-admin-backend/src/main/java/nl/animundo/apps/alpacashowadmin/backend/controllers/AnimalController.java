@@ -32,10 +32,10 @@ public class AnimalController {
     private ApplicationRepositoryService service;
 
     @Inject
-    public AnimalController(@InjectParam RepositoryContext context)
-    {
-        this.context = context;
-        service = new ApplicationRepositoryService();
+    public AnimalController() throws IOException {
+        context = new RepositoryContext();
+        service = new ApplicationRepositoryService(context);
+        service.loadAnimalRepository();
     }
 
     @GET
@@ -61,7 +61,7 @@ public class AnimalController {
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "Animal not found") })
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAnimalByKey(@PathParam("id") String id) throws IOException {
+    public Response getAnimalById(@PathParam("id") String id) throws IOException {
         Animal animal = context.animalRepository.getAnimalById(id);
 
         if (animal != null) {

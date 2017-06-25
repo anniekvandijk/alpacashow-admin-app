@@ -27,15 +27,15 @@ public class ShowEventController {
     // Todo: check if new or changed showevent data is after today.
     // This can not be validated in the ShowEvent class, because you then can't handle histroic data.
 
-    private static Logger logger = LoggerFactory.getLogger(ShowEventController.class);
+    private static Logger logger = LoggerFactory.getLogger(AnimalController.class);
     private RepositoryContext context;
     private ApplicationRepositoryService service;
 
     @Inject
-    public ShowEventController(@InjectParam RepositoryContext context)
-    {
-        this.context = context;
-        service = new ApplicationRepositoryService();
+    public ShowEventController() throws IOException {
+        context = new RepositoryContext();
+        service = new ApplicationRepositoryService(context);
+        service.loadShowEventRepository();
     }
 
     @GET

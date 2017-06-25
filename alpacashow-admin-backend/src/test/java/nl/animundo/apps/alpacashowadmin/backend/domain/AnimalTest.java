@@ -4,6 +4,7 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventAnimalSheeringDetail;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -82,7 +83,7 @@ public class AnimalTest {
         assertEquals(beforeSheerDate, showEventAnimalSheeringDetail.getBeforeSheerDate());
     }
 
-    @Test
+    @Test @Ignore
     public void idNotEmpty() {
 
         exception.expect(IllegalArgumentException.class);
@@ -102,7 +103,7 @@ public class AnimalTest {
         new Animal(id, name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam);
     }
 
-    @Test
+    @Test @Ignore
     public void idNotNull() {
 
         exception.expect(IllegalArgumentException.class);
