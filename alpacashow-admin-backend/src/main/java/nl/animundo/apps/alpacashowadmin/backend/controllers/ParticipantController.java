@@ -1,25 +1,21 @@
 package nl.animundo.apps.alpacashowadmin.backend.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.jersey.api.core.InjectParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 
 @Api (value="Participants")
@@ -45,7 +41,7 @@ public class ParticipantController {
             responseContainer = "List")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getParticipants() throws IOException {
-        List<Participant> listOfParticipants = context.participantRepository.getAllParticipantsSorted();
+        Collection<Participant> listOfParticipants = context.participantRepo.getAll();
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfParticipants);
         Response response = Response
                 .status(Response.Status.OK)
@@ -63,7 +59,7 @@ public class ParticipantController {
             @ApiResponse(code = 404, message = "Participant not found") })
     @Produces(MediaType.APPLICATION_JSON)
     public Response getParticipantById(@PathParam("id") String id) throws IOException {
-        Participant participant = context.participantRepository.getParticipantById(id);
+        Participant participant = context.participantRepo.getById(id);
         if (participant != null) {
             return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(participant)).build();
         } else {
@@ -91,7 +87,7 @@ public class ParticipantController {
         if (participantToAdd != null) {
             String id = UUID.randomUUID().toString();
             participantToAdd.setId(id);
-            Participant addedParticipant = context.participantRepository.add(id, participantToAdd);
+            Participant addedParticipant = context.participantRepo.add(id, participantToAdd);
             saveRepository();
             return Response.status(Response.Status.OK).entity(addedParticipant).build();
         } else {
@@ -108,7 +104,7 @@ public class ParticipantController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateParticipant(@PathParam("id") String id, String participant) throws IOException {
-        Participant getParticipantToUpdate = context.participantRepository.getParticipantById(id);
+        Participant getParticipantToUpdate = context.participantRepo.getById(id);
         if (getParticipantToUpdate == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
@@ -121,7 +117,7 @@ public class ParticipantController {
             }
 
             if (participantToUpdate != null) {
-                Participant updatedParticipant = context.participantRepository.update(id, participantToUpdate);
+                Participant updatedParticipant = context.participantRepo.update(id, participantToUpdate);
                 saveRepository();
                 return Response.status(Response.Status.OK).entity(updatedParticipant).build();
             } else {
@@ -137,9 +133,9 @@ public class ParticipantController {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteParticipant(@PathParam("id") String id) throws IOException {
-        Participant getParticipantDelete = context.participantRepository.getParticipantById(id);
+        Participant getParticipantDelete = context.participantRepo.getById(id);
         if (getParticipantDelete != null) {
-            String deletedParticipant = context.participantRepository.delete(id);
+            String deletedParticipant = context.participantRepo.delete(id);
             saveRepository();
             return Response.status(Response.Status.OK).entity(deletedParticipant).build();
         }

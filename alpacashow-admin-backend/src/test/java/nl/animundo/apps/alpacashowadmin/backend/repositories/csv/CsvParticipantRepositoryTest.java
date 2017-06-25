@@ -2,6 +2,7 @@ package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.Repository;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -30,12 +31,12 @@ public class CsvParticipantRepositoryTest {
         assertTrue(importFile.isFile() && importFile.exists() && importFile.canRead());
         Reader reader = new FileReader(importFile) ;
 
-        ParticipantRepository repo = CsvParticipantRepository.importData(reader);
+        Repository<Participant> repo = CsvParticipantRepository.importData(reader);
         reader.close();
-        assertEquals(3, repo.getAllParticipants().size());
+        assertEquals(3, repo.getAll().size());
 
         String getId = "90a4dbdc-a580-40c8-8429-d90c15446951";
-        Participant participant = repo.getParticipantById(getId);
+        Participant participant = repo.getById(getId);
         assertNotNull(participant);
         assertEquals("Alpacafarm 1", participant.getFarmName());
         assertEquals("farmnaam@iets.nl", participant.getEmail());
@@ -56,7 +57,7 @@ public class CsvParticipantRepositoryTest {
         String country = "Netherlands";
 
         repo.add(id, new Participant(id, name, farmName, email, telephone, address, zipCode, city, country));
-        assertEquals(4, repo.getAllParticipants().size());
+        assertEquals(4, repo.getAll().size());
 
         File newExportFile = new File(workingDir + testFileDir + "PARTICIPANTS_export.csv");
         FileWriter writer = new FileWriter(newExportFile);
@@ -69,12 +70,12 @@ public class CsvParticipantRepositoryTest {
         assertTrue(newImportFile.isFile() && newImportFile.exists() && newImportFile.canRead());
         reader = new FileReader(newImportFile) ;
 
-        ParticipantRepository newRepo = CsvParticipantRepository.importData(reader);
+        Repository<Participant> newRepo = CsvParticipantRepository.importData(reader);
         reader.close();
-        assertEquals(4, newRepo.getAllParticipants().size());
+        assertEquals(4, newRepo.getAll().size());
 
         String key2 = "5c492ade-412d-4d6f-9d5d-8f9aedb37a0a";
-        Participant participant2 = newRepo.getParticipantById(key2);
+        Participant participant2 = newRepo.getById(key2);
         assertNotNull(participant2);
         assertEquals("some City", participant2.getCity());
 

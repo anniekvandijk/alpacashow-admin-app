@@ -27,14 +27,12 @@ public class AnimalController {
     private static Logger logger = LoggerFactory.getLogger(AnimalController.class);
     private RepositoryContext context;
     private ApplicationRepositoryService service;
-    private Repository<Animal> animalRepo;
 
     @Inject
     public AnimalController() throws IOException {
         context = new RepositoryContext();
         service = new ApplicationRepositoryService(context);
-        animalRepo = service.loadAnimalRepository();
-
+        service.loadAnimalRepository();
     }
 
     @GET
@@ -43,7 +41,7 @@ public class AnimalController {
             responseContainer = "List")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAnimals() throws IOException {
-        Collection<Animal> listOfAnimals = animalRepo.getAll();
+        Collection<Animal> listOfAnimals = context.animalRepo.getAll();
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfAnimals);
         Response response = Response
                 .status(Response.Status.OK)
@@ -61,7 +59,7 @@ public class AnimalController {
             @ApiResponse(code = 404, message = "Animal not found") })
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAnimalById(@PathParam("id") String id) throws IOException {
-        Animal animal = animalRepo.getById(id);
+        Animal animal = context.animalRepo.getById(id);
 
         if (animal != null) {
             return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(animal)).build();
@@ -89,7 +87,7 @@ public class AnimalController {
         if (animalToAdd != null) {
             String id = UUID.randomUUID().toString();
             animalToAdd.setId(id);
-            Animal addedAnimal = animalRepo.add(id, animalToAdd);
+            Animal addedAnimal = context.animalRepo.add(id, animalToAdd);
             saveRepository();
             return Response.status(Response.Status.OK).entity(addedAnimal).build();
         } else {
@@ -106,7 +104,7 @@ public class AnimalController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateAnimal(@PathParam("id") String id, String animal) throws IOException {
-        Animal getAnimalToUpdate = animalRepo.getById(id);
+        Animal getAnimalToUpdate = context.animalRepo.getById(id);
         if (getAnimalToUpdate == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
@@ -119,7 +117,7 @@ public class AnimalController {
             }
 
             if (animalToUpdate != null) {
-                Animal updatedAnimal = animalRepo.update(id, animalToUpdate);
+                Animal updatedAnimal = context.animalRepo.update(id, animalToUpdate);
                 saveRepository();
                 return Response.status(Response.Status.OK).entity(updatedAnimal).build();
             } else {
@@ -135,9 +133,9 @@ public class AnimalController {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteAnimal(@PathParam("id") String id) throws IOException {
-        Animal getAnimalDelete = animalRepo.getById(id);
+        Animal getAnimalDelete = context.animalRepo.getById(id);
         if (getAnimalDelete != null) {
-            String deletedId = animalRepo.delete(id);
+            String deletedId = context.animalRepo.delete(id);
             saveRepository();
             return Response.status(Response.Status.OK).entity(deletedId).build();
         }

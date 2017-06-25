@@ -21,8 +21,6 @@ public class ApplicationRepositoryService {
     private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
     private static ApplicationFileDirService fileDirService = new ApplicationFileDirService();
     private RepositoryContext context;
-    private Repository <Animal> animalRepo;
-    private Repository <ShowEvent> showEventRepo;
 
     public ApplicationRepositoryService (RepositoryContext context)
     {
@@ -33,21 +31,21 @@ public class ApplicationRepositoryService {
 
         String csvShowEventsResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvShowEventsResource));
-        showEventRepo = CsvShowEventRepository.importData(csvReader);
+        context.showEventRepo = CsvShowEventRepository.importData(csvReader);
         csvReader.close();
         loadCrossRepoForShowEvent();
         logger.info("Imported csvShowEventRepository");
-        return showEventRepo;
+        return context.showEventRepo;
     }
 
-    public ParticipantRepository loadParticipantRepository() throws IOException {
+    public Repository<Participant> loadParticipantRepository() throws IOException {
 
         String csvParticipantsResource = fileDirService.getFilePath("csv/showregistration/PARTICIPANTS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvParticipantsResource));
-        context.participantRepository = CsvParticipantRepository.importData(csvReader);
+        context.participantRepo = CsvParticipantRepository.importData(csvReader);
         csvReader.close();
         logger.info("Imported csvParticipantRepository");
-        return context.participantRepository;
+        return context.participantRepo;
     }
 
     public Repository <Animal> loadAnimalRepository() throws IOException {
@@ -55,10 +53,10 @@ public class ApplicationRepositoryService {
         String csvAnimalsResource = fileDirService.getFilePath("csv/showregistration/ANIMALS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvAnimalsResource));
        // context.animalRepository = CsvAnimalRepository.importData(csvReader);
-        animalRepo = CsvAnimalRepository.importData(csvReader);
+        context.animalRepo = CsvAnimalRepository.importData(csvReader);
         csvReader.close();
         logger.info("Imported csvAnimalRepository");
-        return animalRepo;
+        return context.animalRepo;
     }
 
     public ShowEventParticipantRepository loadShowEventParticipantRepository() throws IOException {
@@ -96,8 +94,8 @@ public class ApplicationRepositoryService {
 
         String csvShowEventsResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS.csv");
         FileWriter writer = new FileWriter(csvShowEventsResource);
-        CsvShowEventRepository.exportData(writer, showEventRepo);
-        saveCrossRepoForShowEvent(showEventRepo);
+        CsvShowEventRepository.exportData(writer, context.showEventRepo);
+        saveCrossRepoForShowEvent(context.showEventRepo);
         writer.flush();
         writer.close();
         logger.info("Exported csvShowEventRepository");
@@ -107,7 +105,7 @@ public class ApplicationRepositoryService {
 
         String csvParticipantsResource = fileDirService.getFilePath("csv/showregistration/PARTICIPANTS.csv");
         FileWriter writer = new FileWriter(csvParticipantsResource);
-        CsvParticipantRepository.exportData(writer, context.participantRepository);
+        CsvParticipantRepository.exportData(writer, context.participantRepo);
         writer.flush();
         writer.close();
         logger.info("Exported csvParticipantRepository");
@@ -117,7 +115,7 @@ public class ApplicationRepositoryService {
 
         String csvAnimalsResource = fileDirService.getFilePath("csv/showregistration/ANIMALS.csv");
         FileWriter writer = new FileWriter(csvAnimalsResource);
-        CsvAnimalRepository.exportData(writer, animalRepo);
+        CsvAnimalRepository.exportData(writer, context.animalRepo);
         writer.flush();
         writer.close();
         logger.info("Exported csvAnimalRepository");

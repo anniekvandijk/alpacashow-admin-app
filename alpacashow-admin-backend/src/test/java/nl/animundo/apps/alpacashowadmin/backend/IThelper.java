@@ -23,12 +23,12 @@ public class IThelper {
 
     public void AddCompleteShowEvent () throws IOException {
 
-        Repository<ShowEvent> showEventRepo = service.loadShowEventRepository();
-        context.participantRepository = service.loadParticipantRepository();
-        Repository<Animal> animalRepo = service.loadAnimalRepository();
-        context.showEventRepository.deleteAll();
-        context.participantRepository.deleteAll();
-        context.animalRepository.deleteAll();
+        context.showEventRepo = service.loadShowEventRepository();
+        context.participantRepo = service.loadParticipantRepository();
+        context.animalRepo = service.loadAnimalRepository();
+        context.showEventRepo.deleteAll();
+        context.participantRepo.deleteAll();
+        context.animalRepo.deleteAll();
 
         String id = "2a88e547-d63b-4ec0-8344-7be454701b25";
         String name1 = "ShowEvent met deelnemers";
@@ -109,7 +109,7 @@ public class IThelper {
         set.add(showEvent4);
 
         for (ShowEvent showEvent : set) {
-            context.showEventRepository.add(showEvent.getId(), showEvent);
+            context.showEventRepo.add(showEvent.getId(), showEvent);
         }
     }
 }

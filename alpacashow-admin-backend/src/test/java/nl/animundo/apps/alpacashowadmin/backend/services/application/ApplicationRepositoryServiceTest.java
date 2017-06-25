@@ -13,16 +13,14 @@ public class ApplicationRepositoryServiceTest {
 
     private RepositoryContext context;
     private ApplicationRepositoryService service;
-    private Repository<ShowEvent> showEventRepo;
-    private Repository<Animal> animalRepo;
 
     @Before
     public void before() throws IOException {
         this.context = new RepositoryContext();
         service = new ApplicationRepositoryService(context);
-        showEventRepo = service.loadShowEventRepository();
-        context.participantRepository = service.loadParticipantRepository();
-        animalRepo = service.loadAnimalRepository();
+        context.showEventRepo = service.loadShowEventRepository();
+        context.participantRepo = service.loadParticipantRepository();
+        context.animalRepo = service.loadAnimalRepository();
         context.showEventAnimalDetailRepository = service.loadShowEventAnimalDetailRepository();
         context.fleeceWeightPointsRepository = service.loadFleeceWeightPointsRepository();
     }
@@ -33,22 +31,22 @@ public class ApplicationRepositoryServiceTest {
     @Test
     public void getShowEventRepo() throws IOException {
 
-        assertEquals(4, showEventRepo.getAll().size());
-        assertEquals("Haltershow ShowEvent met deelnemers en dieren", showEventRepo.getById("e794e4cc-35fc-4370-8e22-b9ef15580ff8").getName());
+        assertEquals(4, context.showEventRepo.getAll().size());
+        assertEquals("Haltershow ShowEvent met deelnemers en dieren", context.showEventRepo.getById("e794e4cc-35fc-4370-8e22-b9ef15580ff8").getName());
     }
 
     @Test
     public void getParticipantRepo() throws IOException {
 
-        assertEquals(5, context.participantRepository.getAllParticipants().size());
-        assertEquals("Test participant 2", context.participantRepository.getParticipantById("6226e9be-ca68-4dac-99df-100a88e6bb05").getName());
+        assertEquals(5, context.participantRepo.getAll().size());
+        assertEquals("Test participant 2", context.participantRepo.getById("6226e9be-ca68-4dac-99df-100a88e6bb05").getName());
      }
 
     @Test
     public void getAnimalRepo() throws IOException {
 
-        assertEquals(5, animalRepo.getAll().size());
-        assertEquals("Alpaca1", animalRepo.getById("a1d81f18-e47e-4f0a-b7f5-28b9eb42fa8e").getName());
+        assertEquals(5, context.animalRepo.getAll().size());
+        assertEquals("Alpaca1", context.animalRepo.getById("a1d81f18-e47e-4f0a-b7f5-28b9eb42fa8e").getName());
     }
 
     @Test

@@ -5,6 +5,7 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
 import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.Repository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import org.apache.commons.lang3.StringUtils;
 
@@ -14,7 +15,7 @@ import java.io.Writer;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class CsvParticipantRepository extends ParticipantRepository {
+public class CsvParticipantRepository extends Repository<Participant> {
 
     private static final int COL_ID = 0;
     private static final int COL_NAME = 1;
@@ -26,14 +27,14 @@ public class CsvParticipantRepository extends ParticipantRepository {
     private static final int COL_CITY = 7;
     private static final int COL_COUNTRY = 8;
 
-    public static ParticipantRepository importData(Reader reader) throws IOException {
+    public static Repository<Participant> importData(Reader reader) throws IOException {
 
         CsvParticipantRepository repo = new CsvParticipantRepository();
         repo.read(reader);
         return repo;
     }
 
-    public static void exportData(final Writer writer, final ParticipantRepository participantRepo) throws IOException {
+    public static void exportData(final Writer writer, final Repository<Participant> participantRepo) throws IOException {
         writer  .append("ID").append(";")
                 .append("NAME").append(";")
                 .append("FARMNAME").append(";")
@@ -44,8 +45,8 @@ public class CsvParticipantRepository extends ParticipantRepository {
                 .append("CITY").append(";")
                 .append("COUNTRY").append("\n");
 
-        for (String id : participantRepo.getAllParticipantsById()) {
-            Participant part = participantRepo.getParticipantById(id);
+        for (String id : participantRepo.getAllById()) {
+            Participant part = participantRepo.getById(id);
             writer.append(part.getId()).append(";");
             writer.append(part.getName()).append(";");
             writer.append(part.getFarmName()).append(";");
