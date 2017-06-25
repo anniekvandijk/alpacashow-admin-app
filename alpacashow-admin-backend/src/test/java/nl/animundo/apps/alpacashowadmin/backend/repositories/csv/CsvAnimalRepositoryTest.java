@@ -66,7 +66,7 @@ public class CsvAnimalRepositoryTest {
         String sire            = "Alpaca father";
         String dam             = "Alpaca mother";
 
-        repo.add(new Animal(id, name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam));
+        repo.add(id, new Animal(id, name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam));
         assertEquals(4, repo.getAllAnimals().size());
 
         repo.delete("bac5c1c4-e021-40e6-83e3-64c895c5e016");

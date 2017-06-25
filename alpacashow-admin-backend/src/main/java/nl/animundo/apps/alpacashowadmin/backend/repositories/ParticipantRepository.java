@@ -13,22 +13,17 @@ public class ParticipantRepository {
     private static Logger logger = LoggerFactory.getLogger(ParticipantRepository.class);
     private Map<String, Participant> participants = new HashMap<>();
 
-    public Participant add(final Participant participant) {
+    public Participant add(final String id, final Participant participant) {
 
-        String id = participant.getId();
-        if (id == null) {
-            id = UUID.randomUUID().toString();
-            participant.setId(id);
-        }
-            participants.put(id, participant);
-            logger.info("Added participant '" + id + "' to participantRepo");
+        participants.put(id, participant);
+        logger.info("Added participant '" + id + "' to participantRepo");
         return participant;
     }
 
     public Participant update(final String id, final Participant participant) throws IOException {
+
         delete(id);
-        add(participant);
-        participant.setId(id);
+        add(id, participant);
         logger.info("Updated participant '" + id + "' from participantRepo");
         return participant;
     }

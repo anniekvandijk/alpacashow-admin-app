@@ -42,7 +42,7 @@ public class ShowEventRepositoryTest {
 
         assertEquals(0, showEventRepository.getAllShowEvents().size());
 
-        showEventRepository.add(showEvent);
+        showEventRepository.add(id, showEvent);
         assertEquals(1, showEventRepository.getAllShowEvents().size());
         assertEquals(name, showEventRepository.getShowEventById(id).getName());
     }
@@ -60,7 +60,7 @@ public class ShowEventRepositoryTest {
 
         ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
         ShowEventRepository showEventRepository = new ShowEventRepository();
-        showEventRepository.add(showEvent);
+        showEventRepository.add(id, showEvent);
 
         assertEquals(1, showEventRepository.getAllShowEvents().size());
         assertEquals("Test showEvent to delete", showEventRepository.getShowEventById(id).getName());
@@ -85,7 +85,7 @@ public class ShowEventRepositoryTest {
 
         ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
         ShowEventRepository showEventRepository = new ShowEventRepository();
-        showEventRepository.add(showEvent);
+        showEventRepository.add(id, showEvent);
 
         assertEquals(1, showEventRepository.getAllShowEvents().size());
 
@@ -112,7 +112,7 @@ public class ShowEventRepositoryTest {
         ShowEvent showEvent = new ShowEvent(id, name, date, closeDate, location, judge, showType);
         ShowEventRepository showEventRepository = new ShowEventRepository();
 
-        showEventRepository.add(showEvent);
+        showEventRepository.add(id, showEvent);
 
         String id2 = "12345";
         showEventRepository.getShowEventById(id2).getName();
@@ -137,8 +137,8 @@ public class ShowEventRepositoryTest {
         ShowEvent showEvent1 = new ShowEvent(id1, name, date, closeDate, location, judge, showType1);
         ShowEvent showEvent2 = new ShowEvent(id2, name, date, closeDate, location, judge, showType2);
 
-        showEventRepository.add(showEvent1);
-        showEventRepository.add(showEvent2);
+        showEventRepository.add(id1, showEvent1);
+        showEventRepository.add(id2, showEvent2);
 
         assertEquals(2, showEventRepository.getAllShowEventsById().size());
         assertTrue(showEventRepository.getAllShowEventsById().contains("dceef758-011f-421b-8933-73cec9beca75"));

@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -80,14 +81,16 @@ public class ShowEventController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addShowEvent(String showEvent) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        ShowEvent event = null;
+        ShowEvent showEventToAdd = null;
         try {
-            event = mapper.readValue(showEvent, ShowEvent.class);
+            showEventToAdd = mapper.readValue(showEvent, ShowEvent.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (event != null) {
-            ShowEvent addedShowEvent = context.showEventRepository.add(event);
+        if (showEventToAdd != null) {
+            String id = UUID.randomUUID().toString();
+            showEventToAdd.setId(id);
+            ShowEvent addedShowEvent = context.showEventRepository.add(id, showEventToAdd);
             saveRepository();
             return Response.status(Response.Status.OK).entity(addedShowEvent).build();
         } else {

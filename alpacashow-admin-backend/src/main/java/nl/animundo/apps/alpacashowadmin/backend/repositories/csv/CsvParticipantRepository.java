@@ -94,7 +94,7 @@ public class CsvParticipantRepository extends ParticipantRepository {
             String cityCln = StringUtils.trimToNull(nextLine[COL_CITY]);
             String countryCln = StringUtils.trimToNull(nextLine[COL_COUNTRY]);
 
-            add(new Participant(idCln, nameCln, farmNameCln, emailCln, telephoneCln, addressCln, zipCodeCln, cityCln, countryCln));
+            add(idCln, new Participant(idCln, nameCln, farmNameCln, emailCln, telephoneCln, addressCln, zipCodeCln, cityCln, countryCln));
         }
         csvReader.close();
     }

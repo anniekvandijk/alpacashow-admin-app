@@ -109,7 +109,7 @@ public class IThelper {
         set.add(showEvent4);
 
         for (ShowEvent showEvent : set) {
-            context.showEventRepository.add(showEvent);
+            context.showEventRepository.add(showEvent.getId(), showEvent);
         }
     }
 }

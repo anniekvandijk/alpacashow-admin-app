@@ -20,6 +20,7 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Api (value="Participants")
 @Path("participants")
@@ -80,15 +81,17 @@ public class ParticipantController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addParticipant(String participant) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        Participant event = null;
+        Participant participantToAdd = null;
         try {
-            event = mapper.readValue(participant, Participant.class);
+            participantToAdd = mapper.readValue(participant, Participant.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        if (event != null) {
-            Participant addedParticipant = context.participantRepository.add(event);
+        if (participantToAdd != null) {
+            String id = UUID.randomUUID().toString();
+            participantToAdd.setId(id);
+            Participant addedParticipant = context.participantRepository.add(id, participantToAdd);
             saveRepository();
             return Response.status(Response.Status.OK).entity(addedParticipant).build();
         } else {

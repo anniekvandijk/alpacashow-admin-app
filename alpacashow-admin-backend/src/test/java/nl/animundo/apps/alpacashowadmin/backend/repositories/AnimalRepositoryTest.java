@@ -40,7 +40,7 @@ public class AnimalRepositoryTest {
         Animal animal = new Animal(id, name,breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
         AnimalRepository animalRepository = new AnimalRepository();
 
-        animalRepository.add(animal);
+        animalRepository.add(id, animal);
 
         assertEquals("SURI", animalRepository.getAnimalById(id).getBreed().toString());
     }
@@ -84,7 +84,7 @@ public class AnimalRepositoryTest {
         Animal animal = new Animal(id, name,breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
         AnimalRepository animalRepository = new AnimalRepository();
 
-        animalRepository.add(animal);
+        animalRepository.add(id, animal);
 
         assertEquals(1, animalRepository.getAllAnimals().size());
 
@@ -114,7 +114,7 @@ public class AnimalRepositoryTest {
         Animal animal = new Animal(id, name,breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
         AnimalRepository animalRepository = new AnimalRepository();
 
-        animalRepository.add(animal);
+        animalRepository.add(id, animal);
 
         assertEquals(1, animalRepository.getAllAnimals().size());
 
@@ -145,7 +145,7 @@ public class AnimalRepositoryTest {
         Animal animal = new Animal(id, name,breedClass, sexClass, colorClass, dateOfBirth, microchip, registration, sire, dam);
         AnimalRepository animalRepository = new AnimalRepository();
 
-        animalRepository.add(animal);
+        animalRepository.add(id, animal);
 
         String key = "98754";
 
@@ -172,8 +172,8 @@ public class AnimalRepositoryTest {
         Animal animal2 = new Animal(id2, name,breedClass, sexClass, colorClass, dateOfBirth, microchip2, registration, sire, dam);
         AnimalRepository animalRepository = new AnimalRepository();
 
-        animalRepository.add(animal1);
-        animalRepository.add(animal2);
+        animalRepository.add(id1, animal1);
+        animalRepository.add(id2, animal2);
 
         assertEquals(2, animalRepository.getAllAnimalsById().size());
         assertTrue(animalRepository.getAllAnimalsById().contains("1f7eb2e8-69b0-42f2-ac25-950e14465b16"));

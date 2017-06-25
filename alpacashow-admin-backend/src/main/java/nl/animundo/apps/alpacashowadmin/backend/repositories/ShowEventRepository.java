@@ -11,22 +11,17 @@ public class ShowEventRepository  {
     private static Logger logger = LoggerFactory.getLogger(ShowEventRepository.class);
     private Map<String, ShowEvent> showEvents = new HashMap<>();
 
-    public ShowEvent add(final ShowEvent showEvent) throws IOException {
+    public ShowEvent add(final String id, final ShowEvent showEvent) throws IOException {
 
-        String id = showEvent.getId();
-        if (id == null) {
-            id = UUID.randomUUID().toString();
-            showEvent.setId(id);
-        }
         showEvents.put(id, showEvent);
         logger.info("Added showEvent '" + id + "' to showEventRepo");
         return showEvent;
     }
 
     public ShowEvent update(final String id, final ShowEvent showEvent) throws IOException {
+
         delete(id);
-        add(showEvent);
-        showEvent.setId(id);
+        add(id, showEvent);
         logger.info("Updated showevent '" + id + "' from participantRepo");
         return showEvent;
     }

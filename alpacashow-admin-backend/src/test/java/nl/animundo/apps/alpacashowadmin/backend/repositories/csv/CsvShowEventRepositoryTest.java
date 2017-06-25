@@ -57,7 +57,7 @@ public class CsvShowEventRepositoryTest {
         String judge = " Test Judge ";
         ShowType showType = ShowType.FLEECESHOW;
 
-        repo.add(new ShowEvent(id, name, date, closeDate, location, judge, showType));
+        repo.add(id, new ShowEvent(id, name, date, closeDate, location, judge, showType));
         assertEquals(3, repo.getAllShowEvents().size());
 
         File newExportFile = new File(workingDir + testFileDir + "SHOWEVENTS_export.csv");

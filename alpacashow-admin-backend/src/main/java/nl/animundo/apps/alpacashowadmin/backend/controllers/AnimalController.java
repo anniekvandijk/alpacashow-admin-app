@@ -22,6 +22,7 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Api (value="Animals")
 @Path("animals")
@@ -88,7 +89,9 @@ public class AnimalController {
             e.printStackTrace();
         }
         if (animalToAdd != null) {
-            Animal addedAnimal = context.animalRepository.add(animalToAdd);
+            String id = UUID.randomUUID().toString();
+            animalToAdd.setId(id);
+            Animal addedAnimal = context.animalRepository.add(id, animalToAdd);
             saveRepository();
             return Response.status(Response.Status.OK).entity(addedAnimal).build();
         } else {

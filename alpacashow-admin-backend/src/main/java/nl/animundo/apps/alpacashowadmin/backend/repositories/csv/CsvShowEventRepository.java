@@ -59,7 +59,7 @@ public class CsvShowEventRepository extends ShowEventRepository {
 
         while ((nextLine = csvReader.readNext()) != null) {
 
-            String id = StringUtils.trimToNull(nextLine[COL_ID]);
+            String idCln = StringUtils.trimToNull(nextLine[COL_ID]);
             String nameCln = StringUtils.trimToNull(nextLine[COL_NAME]);
             String dateCln = StringUtils.trimToNull(nextLine[COL_DATE]);
             String closeDateCln = StringUtils.trimToNull(nextLine[COL_CLOSEDATE]);
@@ -70,7 +70,7 @@ public class CsvShowEventRepository extends ShowEventRepository {
             String judgeCln = StringUtils.trimToNull(nextLine[COL_JUDGE]);
             ShowType showTypeCln = ShowType.valueOf(StringUtils.trimToNull(nextLine[COL_SHOWTYPE]));
 
-            add(new ShowEvent(id, nameCln, date, closeDate, locationCln, judgeCln, showTypeCln));
+            add(idCln, new ShowEvent(idCln, nameCln, date, closeDate, locationCln, judgeCln, showTypeCln));
         }
         csvReader.close();
     }

@@ -85,7 +85,7 @@ public class CsvAnimalRepository extends AnimalRepository {
             String sireCln = StringUtils.trimToNull(nextLine[COL_SIRE]);
             String damCln = StringUtils.trimToNull(nextLine[COL_DAM]);
 
-            add(new Animal(idCln, nameCln, breedCln, sexCln, colorCln, dateOfBirth, microchipCln, registrationCln, sireCln, damCln));
+            add(idCln, new Animal(idCln, nameCln, breedCln, sexCln, colorCln, dateOfBirth, microchipCln, registrationCln, sireCln, damCln));
         }
         csvReader.close();
     }

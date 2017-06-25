@@ -31,7 +31,7 @@ public class ParticipantsRepositoryTest {
         Participant participant = new Participant(id, name, farmName, email, telephone, address, zipCode, city, country);
         ParticipantRepository participantRepository = new ParticipantRepository();
 
-        participantRepository.add(participant);
+        participantRepository.add(id, participant);
 
         assertEquals(name, participantRepository.getParticipantById(id).getName());
 
@@ -52,7 +52,7 @@ public class ParticipantsRepositoryTest {
 
         Participant participant = new Participant(id, name, farmName, email, telephone, address, zipCode, city, country);
         ParticipantRepository participantRepository = new ParticipantRepository();
-        participantRepository.add(participant);
+        participantRepository.add(id, participant);
 
         assertEquals(1, participantRepository.getAllParticipants().size());
 
@@ -78,7 +78,7 @@ public class ParticipantsRepositoryTest {
 
         Participant participant = new Participant(id, name, farmName, email, telephone, address, zipCode, city, country);
         ParticipantRepository participantRepository = new ParticipantRepository();
-        participantRepository.add(participant);
+        participantRepository.add(id, participant);
 
         assertEquals(1, participantRepository.getAllParticipants().size());
 
@@ -108,7 +108,7 @@ public class ParticipantsRepositoryTest {
         Participant participant = new Participant(id, name, farmName, email, telephone, address, zipCode, city, country);
         ParticipantRepository participantRepository = new ParticipantRepository();
 
-        participantRepository.add(participant);
+        participantRepository.add(id, participant);
 
         String id2 = "12345";
 
@@ -134,8 +134,8 @@ public class ParticipantsRepositoryTest {
         Participant participant2 = new Participant(id2, name2, farmName, email, telephone, address, zipCode, city, country);
         ParticipantRepository participantRepository = new ParticipantRepository();
 
-        participantRepository.add(participant1);
-        participantRepository.add(participant2);
+        participantRepository.add(id1, participant1);
+        participantRepository.add(id2, participant2);
 
         assertEquals(2, participantRepository.getAllParticipantsById().size());
         assertTrue(participantRepository.getAllParticipantsById().contains("582fc7a6-aa85-41cf-96b8-3981f5df0093"));

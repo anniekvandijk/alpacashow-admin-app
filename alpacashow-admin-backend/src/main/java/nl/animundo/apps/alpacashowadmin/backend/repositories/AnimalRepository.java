@@ -11,15 +11,18 @@ public class AnimalRepository {
     private Map<String, Animal> animals = new HashMap<>();
 
 
-    public Animal add(final Animal animal) {
+    public Animal add(final String id, final Animal animal) {
 
-        String id = animal.getId();
-        if (id == null) {
-            id = UUID.randomUUID().toString();
-            animal.setId(id);
-        }
-            animals.put(id, animal);
-            logger.info("Add animal '" + id + "' to animalRepo");
+        animals.put(id, animal);
+        logger.info("Added animal '" + id + "' to animalRepo");
+        return animal;
+    }
+
+    public Animal update(final String id, final Animal animal)
+    {
+        delete(id);
+        add(id, animal);
+        logger.info("Updated animal '" + id + "' from animalRepo");
         return animal;
     }
 
@@ -33,15 +36,6 @@ public class AnimalRepository {
         } else {
             return null;
         }
-    }
-
-    public Animal update(final String id, final Animal animal)
-    {
-        delete(id);
-        add(animal);
-        animal.setId(id);
-        logger.info("Updated animal '" + id + "' from animalRepo");
-        return animal;
     }
 
     public void deleteAll () {

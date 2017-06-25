@@ -55,7 +55,7 @@ public class CsvParticipantRepositoryTest {
         String city = "some City";
         String country = "Netherlands";
 
-        repo.add(new Participant(id, name, farmName, email, telephone, address, zipCode, city, country));
+        repo.add(id, new Participant(id, name, farmName, email, telephone, address, zipCode, city, country));
         assertEquals(4, repo.getAllParticipants().size());
 
         File newExportFile = new File(workingDir + testFileDir + "PARTICIPANTS_export.csv");
