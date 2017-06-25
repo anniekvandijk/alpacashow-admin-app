@@ -25,7 +25,7 @@ public class IThelper {
 
         context.showEventRepository = service.loadShowEventRepository();
         context.participantRepository = service.loadParticipantRepository();
-        context.animalRepository = service.loadAnimalRepository();
+        Repository<Animal> animalRepo = service.loadAnimalRepository();
         context.showEventRepository.deleteAll();
         context.participantRepository.deleteAll();
         context.animalRepository.deleteAll();

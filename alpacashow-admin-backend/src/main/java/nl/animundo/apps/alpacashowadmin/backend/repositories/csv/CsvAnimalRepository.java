@@ -5,7 +5,7 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.AnimalRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.Repository;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ import java.io.Writer;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class CsvAnimalRepository extends AnimalRepository {
+public class CsvAnimalRepository extends Repository<Animal> {
 
     private static final int COL_ID = 0;
     private static final int COL_NAME = 1;
@@ -27,14 +27,14 @@ public class CsvAnimalRepository extends AnimalRepository {
     private static final int COL_SIRE = 8;
     private static final int COL_DAM = 9;
 
-    public static AnimalRepository importData(Reader reader) throws IOException {
+    public static Repository<Animal> importData(Reader reader) throws IOException {
 
         CsvAnimalRepository repo = new CsvAnimalRepository();
         repo.read(reader);
         return repo;
     }
 
-    public static void exportData(final Writer writer, final AnimalRepository animalRepo) throws IOException {
+    public static void exportData(final Writer writer, final Repository<Animal> animalRepo) throws IOException {
         writer  .append("ID").append(";")
                 .append("NAME").append(";")
                 .append("BREED").append(";")
@@ -46,8 +46,8 @@ public class CsvAnimalRepository extends AnimalRepository {
                 .append("SIRE").append(";")
                 .append("DAM").append("\n");
 
-        for (String id : animalRepo.getAllAnimalsById()) {
-            Animal ani = animalRepo.getAnimalById(id);
+        for (String id : animalRepo.getAllById()) {
+            Animal ani = animalRepo.getById(id);
             writer  .append(ani.getId()).append(";")
                     .append(ani.getName()).append(";")
                     .append(ani.getBreed().toString()).append(";")

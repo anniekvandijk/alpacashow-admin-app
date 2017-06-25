@@ -1,20 +1,16 @@
 package nl.animundo.apps.alpacashowadmin.backend.controllers;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.jersey.api.core.InjectParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.AnimalRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.Repository;
 import nl.animundo.apps.alpacashowadmin.backend.services.application.ApplicationRepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -31,12 +27,14 @@ public class AnimalController {
     private static Logger logger = LoggerFactory.getLogger(AnimalController.class);
     private RepositoryContext context;
     private ApplicationRepositoryService service;
+    private Repository<Animal> animalRepo;
 
     @Inject
     public AnimalController() throws IOException {
         context = new RepositoryContext();
         service = new ApplicationRepositoryService(context);
-        service.loadAnimalRepository();
+        animalRepo = service.loadAnimalRepository();
+
     }
 
     @GET
@@ -45,7 +43,7 @@ public class AnimalController {
             responseContainer = "List")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAnimals() throws IOException {
-        List<Animal> listOfAnimals = context.animalRepository.getAllAnimalsSorted();
+        Collection<Animal> listOfAnimals = animalRepo.getAll();
         String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfAnimals);
         Response response = Response
                 .status(Response.Status.OK)
@@ -63,7 +61,7 @@ public class AnimalController {
             @ApiResponse(code = 404, message = "Animal not found") })
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAnimalById(@PathParam("id") String id) throws IOException {
-        Animal animal = context.animalRepository.getAnimalById(id);
+        Animal animal = animalRepo.getById(id);
 
         if (animal != null) {
             return Response.status(Response.Status.OK).entity(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(animal)).build();
@@ -91,7 +89,7 @@ public class AnimalController {
         if (animalToAdd != null) {
             String id = UUID.randomUUID().toString();
             animalToAdd.setId(id);
-            Animal addedAnimal = context.animalRepository.add(id, animalToAdd);
+            Animal addedAnimal = animalRepo.add(id, animalToAdd);
             saveRepository();
             return Response.status(Response.Status.OK).entity(addedAnimal).build();
         } else {
@@ -108,7 +106,7 @@ public class AnimalController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateAnimal(@PathParam("id") String id, String animal) throws IOException {
-        Animal getAnimalToUpdate = context.animalRepository.getAnimalById(id);
+        Animal getAnimalToUpdate = animalRepo.getById(id);
         if (getAnimalToUpdate == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
@@ -121,7 +119,7 @@ public class AnimalController {
             }
 
             if (animalToUpdate != null) {
-                Animal updatedAnimal = context.animalRepository.update(id, animalToUpdate);
+                Animal updatedAnimal = animalRepo.update(id, animalToUpdate);
                 saveRepository();
                 return Response.status(Response.Status.OK).entity(updatedAnimal).build();
             } else {
@@ -137,9 +135,9 @@ public class AnimalController {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteAnimal(@PathParam("id") String id) throws IOException {
-        Animal getAnimalDelete = context.animalRepository.getAnimalById(id);
+        Animal getAnimalDelete = animalRepo.getById(id);
         if (getAnimalDelete != null) {
-            String deletedId = context.animalRepository.delete(id);
+            String deletedId = animalRepo.delete(id);
             saveRepository();
             return Response.status(Response.Status.OK).entity(deletedId).build();
         }

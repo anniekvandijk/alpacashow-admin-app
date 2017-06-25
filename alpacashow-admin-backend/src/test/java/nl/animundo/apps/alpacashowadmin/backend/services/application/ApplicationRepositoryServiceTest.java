@@ -1,6 +1,8 @@
 package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
 import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
+import nl.animundo.apps.alpacashowadmin.backend.domain.Animal;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.Repository;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 import java.io.IOException;
@@ -17,7 +19,7 @@ public class ApplicationRepositoryServiceTest {
         service = new ApplicationRepositoryService(context);
         context.showEventRepository = service.loadShowEventRepository();
         context.participantRepository = service.loadParticipantRepository();
-        context.animalRepository = service.loadAnimalRepository();
+        Repository<Animal> animalRepo = service.loadAnimalRepository();
         context.showEventAnimalDetailRepository = service.loadShowEventAnimalDetailRepository();
         context.fleeceWeightPointsRepository = service.loadFleeceWeightPointsRepository();
     }

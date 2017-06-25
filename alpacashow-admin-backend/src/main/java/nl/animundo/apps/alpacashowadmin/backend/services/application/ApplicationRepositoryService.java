@@ -21,6 +21,7 @@ public class ApplicationRepositoryService {
     private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
     private static ApplicationFileDirService fileDirService = new ApplicationFileDirService();
     private RepositoryContext context;
+    private Repository <Animal> animalRepo;
 
     public ApplicationRepositoryService (RepositoryContext context)
     {
@@ -48,14 +49,15 @@ public class ApplicationRepositoryService {
         return context.participantRepository;
     }
 
-    public AnimalRepository loadAnimalRepository() throws IOException {
+    public Repository <Animal> loadAnimalRepository() throws IOException {
 
         String csvAnimalsResource = fileDirService.getFilePath("csv/showregistration/ANIMALS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvAnimalsResource));
-        context.animalRepository = CsvAnimalRepository.importData(csvReader);
+       // context.animalRepository = CsvAnimalRepository.importData(csvReader);
+        animalRepo = CsvAnimalRepository.importData(csvReader);
         csvReader.close();
         logger.info("Imported csvAnimalRepository");
-        return context.animalRepository;
+        return animalRepo;
     }
 
     public ShowEventParticipantRepository loadShowEventParticipantRepository() throws IOException {
@@ -114,7 +116,7 @@ public class ApplicationRepositoryService {
 
         String csvAnimalsResource = fileDirService.getFilePath("csv/showregistration/ANIMALS.csv");
         FileWriter writer = new FileWriter(csvAnimalsResource);
-        CsvAnimalRepository.exportData(writer, context.animalRepository);
+        CsvAnimalRepository.exportData(writer, animalRepo);
         writer.flush();
         writer.close();
         logger.info("Exported csvAnimalRepository");

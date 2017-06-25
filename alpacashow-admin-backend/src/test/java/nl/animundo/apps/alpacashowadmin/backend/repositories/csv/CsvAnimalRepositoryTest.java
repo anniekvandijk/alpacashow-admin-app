@@ -7,6 +7,7 @@ import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.AnimalRepository;
+import nl.animundo.apps.alpacashowadmin.backend.repositories.Repository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import org.junit.Rule;
 import org.junit.Test;
@@ -39,12 +40,12 @@ public class CsvAnimalRepositoryTest {
         assertTrue(importFile.isFile() && importFile.exists() && importFile.canRead());
         Reader reader = new FileReader(importFile) ;
 
-        AnimalRepository repo = CsvAnimalRepository.importData(reader);
+        Repository <Animal> repo = CsvAnimalRepository.importData(reader);
         reader.close();
-        assertEquals(3, repo.getAllAnimals().size());
+        assertEquals(3, repo.getAll().size());
 
         String getId = "65ec47a5-a459-47ea-b97f-2d456a109a8d";
-        Animal animal = repo.getAnimalById(getId);
+        Animal animal = repo.getById(getId);
         assertNotNull(animal);
         assertEquals("My Alpaca 2", animal.getName());
         assertEquals("HUACAYA", animal.getBreed().toString());
@@ -67,10 +68,10 @@ public class CsvAnimalRepositoryTest {
         String dam             = "Alpaca mother";
 
         repo.add(id, new Animal(id, name, breed, sex, color, dateOfBirth, microchip, registration, sire, dam));
-        assertEquals(4, repo.getAllAnimals().size());
+        assertEquals(4, repo.getAll().size());
 
         repo.delete("bac5c1c4-e021-40e6-83e3-64c895c5e016");
-        assertEquals(3, repo.getAllAnimals().size());
+        assertEquals(3, repo.getAll().size());
 
         File newExportFile = new File(workingDir + testFileDir + "ANIMALS_export.csv");
         FileWriter writer = new FileWriter(newExportFile);
@@ -83,12 +84,12 @@ public class CsvAnimalRepositoryTest {
         assertTrue(newImportFile.isFile() && newImportFile.exists() && newImportFile.canRead());
         reader = new FileReader(newImportFile) ;
 
-        AnimalRepository newRepo = CsvAnimalRepository.importData(reader);
+        Repository <Animal> newRepo = CsvAnimalRepository.importData(reader);
         reader.close();
-        assertEquals(3, newRepo.getAllAnimals().size());
+        assertEquals(3, newRepo.getAll().size());
 
         String key2 = "6be3ab7c-fcc8-424e-a04b-2f7e497565de";
-        Animal animal2 = newRepo.getAnimalById(key2);
+        Animal animal2 = newRepo.getById(key2);
         assertNotNull(animal2);
         assertEquals("BAF12345", animal2.getRegistration());
 
