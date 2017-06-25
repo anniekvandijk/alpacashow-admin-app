@@ -15,8 +15,7 @@ import java.time.temporal.ChronoUnit;
 
 public class ShowFleeceService {
     private static Logger logger = LoggerFactory.getLogger(FleeceWeightPointsRepository.class);
-    private RepositoryContext context;
-
+    private RepositoryContext context = new RepositoryContext();
     private ApplicationRepositoryService service = new ApplicationRepositoryService(context);
 
     public float getCleanFleeceWeightPoints(LocalDate dateOfBirth, LocalDate sheerDate, LocalDate beforeSheerDate, BreedClass breed, float fleeceweight) throws IOException {
