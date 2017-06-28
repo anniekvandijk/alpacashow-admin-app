@@ -11,7 +11,7 @@ public class RepositoryContext {
     public Repository<ShowEvent> showEventRepo;
     public Repository<Participant> participantRepo;
     public Repository<Animal> animalRepo;
-    public Repository<ShowEventParticipantAnimal> showEventParticipantAnimalRepo;
+    public ShowEventParticipantAnimalRepository showEventParticipantAnimalRepo;
     public ShowEventAnimalDetailRepository showEventAnimalDetailRepository;
     public FleeceWeightPointsRepository fleeceWeightPointsRepository;
 

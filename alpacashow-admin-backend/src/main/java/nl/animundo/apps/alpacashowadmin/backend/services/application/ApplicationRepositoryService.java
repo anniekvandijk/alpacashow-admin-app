@@ -51,7 +51,7 @@ public class ApplicationRepositoryService {
         return context.animalRepo;
     }
 
-    public Repository<ShowEventParticipantAnimal> loadShowEventParticipantAnimalRepository() throws IOException {
+    public ShowEventParticipantAnimalRepository loadShowEventParticipantAnimalRepository() throws IOException {
 
         String csvShowEventParticipantResource = fileDirService.getFilePath("csv/showregistration/SHOWEVENTS_PARTICIPANTS_ANIMALS.csv");
         FileReader csvReader = new FileReader(String.valueOf(csvShowEventParticipantResource));
