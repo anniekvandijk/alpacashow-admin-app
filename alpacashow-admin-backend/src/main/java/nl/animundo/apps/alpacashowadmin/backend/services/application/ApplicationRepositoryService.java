@@ -8,6 +8,8 @@ import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class ApplicationRepositoryService {
 
@@ -159,58 +161,25 @@ public class ApplicationRepositoryService {
     private void loadCrossRepoForShowEvent() throws IOException {
 
 //        loadParticipantRepository();
-//        loadShowEventParticipantRepository();
 //        loadAnimalRepository();
-//        loadShowEventAnimalDetailRepository();
+//        loadShowEventParticipantAnimalRepository();
 //
 //
-//        Set <String> showEventsByKey = context.showEventRepository.getAllShowEventsById();
-//        Set <String> participantsByKey = context.participantRepository.getAllParticipantsById();
-//        Set <String> animalsById = context.animalRepository.getAllAnimalsById();
-//        Collection <ShowEventParticipantAnimal> showEventParticipants = context.showEventParticipantRepository.getAllShowEventParticipants();
-//        Collection <ShowEventAnimalDetail> showEventAnimalDetails = context.showEventAnimalDetailRepository.getAllShowEventAnimalDetails();
+//        Set<String> showEventsById = context.showEventRepo.getAllById();
+//        Set<String> participantsById = context.participantRepo.getAllById();
+//        Set<String> animalsById = context.participantRepo.getAllById();
 //
 //        // Loop ShowEvents and get details
-//        for (String id : showEventsByKey) {
-//            ShowEvent showEvent = context.showEventRepository.getShowEventById(id);
+//        for (String showEventId : showEventsById) {
+//            ShowEvent showEvent = context.showEventRepo.getById(showEventId);
 //
 //            Set<Participant> participants = new LinkedHashSet<Participant>();
 //
 //            // Loop participants and get participants for the show. Add participant details to show
-//            for (String participantKey : participantsByKey) {
-//                for (ShowEventParticipantAnimal showEventParticipant : showEventParticipants)
-//                {
-//                    String showKey = showEventParticipant.getShowEventKey();
-//                    String partKey = showEventParticipant.getParticipantKey();
-//                    if (id.equals(showKey) && participantKey.equals(partKey))
-//                    {
+//            for (String participantId : participantsById) {
 //
-//                        Participant participant = context.participantRepository.getParticipantById(participantKey);
+//            //    if (participantId.equals(context.showEventParticipantAnimalRepo.GetParticipantsForShowEvent(showEventId, participantId)))
 //
-//                        Set<Animal> animals = new LinkedHashSet<Animal>();
-//
-//                        // Loop animals and get animals for the participant. Add animal details to participant
-//                        for (String animalId : animalsById) {
-//                            for (ShowEventAnimalDetail showEventAnimalDetail : showEventAnimalDetails) {
-//                                String show = showEventAnimalDetail.getShowEventKey();
-//                                String part = showEventAnimalDetail.getParticipantKey();
-//                                String ani = showEventAnimalDetail.getAnimalKey();
-//
-//                                if (id.equals(show) && participantKey.equals(part) && id.equals(ani)) {
-//                                    Animal animal = context.animalRepository.getAnimalById(id);
-//                                    LocalDate sheerDate = showEventAnimalDetail.getSheerDate();
-//                                    LocalDate beforeSheerDate = showEventAnimalDetail.getBeforeSheerDate();
-//                                    ShowEventAnimalSheeringDetail showEventAnimalSheeringDetail = new ShowEventAnimalSheeringDetail(sheerDate, beforeSheerDate);
-//                                    animals.add(new Animal(animal.getId(),animal.getName(), animal.getBreed(), animal.getSex(), animal.getColor(), animal.getDateOfBirth(),
-//                                            animal.getMicrochip(), animal.getRegistration(), animal.getSire(), animal.getDam(), showEventAnimalSheeringDetail));
-//
-//                                }
-//                            }
-//                        }
-//                        participants.add(new Participant(participant.getId(),participant.getName(), participant.getFarmName(), participant.getEmail(), participant.getTelephone(),
-//                                    participant.getAddress(), participant.getZipCode(), participant.getCity(), participant.getCountry(), animals));
-//                    }
-//                }
 //            }
 //            showEvent.setParticipants(participants);
 //        }

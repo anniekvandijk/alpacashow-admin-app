@@ -1,11 +1,14 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.*;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Participant {
     private static Logger logger = LoggerFactory.getLogger(Participant.class);
 

@@ -1,6 +1,8 @@
 package nl.animundo.apps.alpacashowadmin.backend.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -13,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Animal {
 
     private String id;

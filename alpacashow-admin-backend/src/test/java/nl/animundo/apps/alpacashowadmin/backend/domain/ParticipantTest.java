@@ -3,6 +3,7 @@ package nl.animundo.apps.alpacashowadmin.backend.domain;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.BreedClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ColorClass;
 import nl.animundo.apps.alpacashowadmin.backend.domain.enums.SexClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -72,6 +73,44 @@ public class ParticipantTest {
         Participant participant = new Participant(id, name, farmName, email, telephone, address, zipCode, city, country, animals);
 
         assertEquals(animals, participant.getAnimals());
+    }
+
+    @Test @Ignore
+    public void idNotEmpty() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field id can not be empty");
+
+        id          = "";
+        name        = "bla";
+        farmName    = "farm";
+        email       = "farm@farm.nl";
+        telephone   = "06-12345678";
+        address     = "some address";
+        zipCode     = "1234 AA";
+        city        = "some City";
+        country     = "Netherlands";
+
+        new Participant(id, name, farmName, email, telephone, address, zipCode, city, country);
+    }
+
+    @Test @Ignore
+    public void idNotNull() {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Field id can not be empty");
+
+        id          = null;
+        name        = "bla";
+        farmName    = "farm";
+        email       = "farm@farm.nl";
+        telephone   = "06-12345678";
+        address     = "some address";
+        zipCode     = "1234 AA";
+        city        = "some City";
+        country     = "Netherlands";
+
+        new Participant(id, name, farmName, email, telephone, address, zipCode, city, country);
     }
 
     @Test

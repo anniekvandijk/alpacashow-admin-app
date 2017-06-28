@@ -37,8 +37,7 @@ public class JsonSerializerTest {
                 + "   \"closeDate\": \"2017-03-15\",            "
                 + "   \"location\": \"Surhuisterveen\",         "
                 + "   \"judge\": \"Test Judge\",                "
-                + "   \"showType\": \"Fleeceshow\",             "
-                + "   \"participants\": []                      "
+                + "   \"showType\": \"Fleeceshow\"             "
                 + "   }                                         ";
         String expectedJsonTrim = expectedJson.replaceAll("\\s", "");
 
