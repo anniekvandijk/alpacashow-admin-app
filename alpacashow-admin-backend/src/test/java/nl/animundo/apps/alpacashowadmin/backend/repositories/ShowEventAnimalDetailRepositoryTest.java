@@ -136,33 +136,6 @@ public class ShowEventAnimalDetailRepositoryTest {
         showEventAnimalDetailRepository.getShowEventAnimalDetailByKeySet(key).getAnimalKey();
 
     }
-
-    @Test
-    public void getAllShowEventAnimalDetailsByKeySet() {
-
-        ShowEventRepository showEventRepository = new ShowEventRepository();
-
-        String showEventKey1 = "2030-05-01_HALTERSHOW";
-        String showEventKey2 = "2030-05-01_FLEECESHOW";
-        String participantKey = "Deelnemer 1";
-        String animalKey = "12345";
-        LocalDate sheerDate = LocalDate.of(2016, 5, 15);
-        LocalDate beforeSheerDate = LocalDate.of(2015, 4, 15);
-
-        ShowEventAnimalDetail showEventAnimalDetail1 = new ShowEventAnimalDetail(showEventKey1, participantKey, animalKey,
-                sheerDate, beforeSheerDate);
-        ShowEventAnimalDetail showEventAnimalDetail2 = new ShowEventAnimalDetail(showEventKey2, participantKey, animalKey,
-                sheerDate, beforeSheerDate);;
-        ShowEventAnimalDetailRepository showEventAnimalDetailRepository = new ShowEventAnimalDetailRepository();
-
-        showEventAnimalDetailRepository.add(showEventAnimalDetail1);
-        showEventAnimalDetailRepository.add(showEventAnimalDetail2);
-
-        assertEquals(2, showEventAnimalDetailRepository.getAllShowEventAnimalDetailsByKeySet().size());
-        assertTrue(showEventAnimalDetailRepository.getAllShowEventAnimalDetailsByKeySet().contains("2030-05-01_HALTERSHOW_Deelnemer 1_12345"));
-        assertTrue(showEventAnimalDetailRepository.getAllShowEventAnimalDetailsByKeySet().contains("2030-05-01_FLEECESHOW_Deelnemer 1_12345"));
-
-    }
 }
 
 

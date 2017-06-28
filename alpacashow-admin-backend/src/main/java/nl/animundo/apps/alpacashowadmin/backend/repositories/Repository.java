@@ -37,6 +37,7 @@ public class Repository<T> {
 
     public void deleteAll () {
             objects.clear();
+        logger.info("Deleted all records from Repo");
     }
 
     public Set<String> getAllById() {

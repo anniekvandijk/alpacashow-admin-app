@@ -1,7 +1,6 @@
 package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
 import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.Repository;
 import org.junit.Rule;
 import org.junit.Test;

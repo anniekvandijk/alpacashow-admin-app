@@ -2,11 +2,7 @@ package nl.animundo.apps.alpacashowadmin.backend.repositories.csv;
 
 import com.opencsv.CSVReader;
 import nl.animundo.apps.alpacashowadmin.backend.domain.Participant;
-import nl.animundo.apps.alpacashowadmin.backend.domain.ShowEvent;
-import nl.animundo.apps.alpacashowadmin.backend.domain.enums.ShowType;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ParticipantRepository;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.Repository;
-import nl.animundo.apps.alpacashowadmin.backend.repositories.ShowEventRepository;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
