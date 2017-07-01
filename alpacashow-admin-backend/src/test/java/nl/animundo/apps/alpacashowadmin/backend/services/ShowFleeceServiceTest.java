@@ -35,6 +35,9 @@ public class ShowFleeceServiceTest {
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
+    public ShowFleeceServiceTest() throws IOException {
+    }
+
     @Test
     public void getCleanFleeceWeightPointsWithoutBeforeSheerDate () throws IOException {
 

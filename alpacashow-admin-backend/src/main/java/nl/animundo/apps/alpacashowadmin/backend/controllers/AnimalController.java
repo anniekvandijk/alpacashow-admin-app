@@ -31,7 +31,6 @@ public class AnimalController {
     public AnimalController() throws IOException {
         context = new RepositoryContext();
         service = new ApplicationRepositoryService(context);
-        service.loadAnimalRepository();
     }
 
     @GET

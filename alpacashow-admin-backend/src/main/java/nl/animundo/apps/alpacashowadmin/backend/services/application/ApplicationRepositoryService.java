@@ -2,24 +2,33 @@ package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
 import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
 import nl.animundo.apps.alpacashowadmin.backend.domain.*;
-import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventParticipantAnimal;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 public class ApplicationRepositoryService {
 
     private static Logger logger = LoggerFactory.getLogger(ApplicationRepositoryService.class);
     private static ApplicationFileDirService fileDirService = new ApplicationFileDirService();
     private RepositoryContext context;
+    private String repoType = "csv";
 
-    public ApplicationRepositoryService (RepositoryContext context)
-    {
+    public ApplicationRepositoryService (RepositoryContext context) throws IOException {
         this.context = context;
+
+        if(repoType.equals("csv"))
+        {
+            loadRepositories();
+        }
+    }
+
+    public void loadRepositories() throws IOException {
+        loadShowEventRepository();
+        loadParticipantRepository();
+        loadAnimalRepository();
+      //  loadShowEventParticipantAnimalRepository();
     }
 
     public Repository <ShowEvent> loadShowEventRepository() throws IOException {

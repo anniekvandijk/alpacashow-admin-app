@@ -18,6 +18,9 @@ public class ShowFleeceService {
     private RepositoryContext context = new RepositoryContext();
     private ApplicationRepositoryService service = new ApplicationRepositoryService(context);
 
+    public ShowFleeceService() throws IOException {
+    }
+
     public float getCleanFleeceWeightPoints(LocalDate dateOfBirth, LocalDate sheerDate, LocalDate beforeSheerDate, BreedClass breed, float fleeceweight) throws IOException {
 
         if (breed.equals(BreedClass.HUACAYA_FLEECE))

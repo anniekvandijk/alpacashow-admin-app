@@ -30,7 +30,6 @@ public class ParticipantController {
     public ParticipantController() throws IOException {
         context = new RepositoryContext();
         service = new ApplicationRepositoryService(context);
-        service.loadParticipantRepository();
     }
 
     // TODO: if response != 200, put some information in the response body what went wrong.
