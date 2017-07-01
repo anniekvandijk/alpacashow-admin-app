@@ -40,8 +40,9 @@ public class CsvShowEventParticipantAnimalRepositoryTest {
 
         String showEventId2 = "82b051b7-c52a-4457-93fa-6af4a47f371b";
         String participantId2 = "d70b5bf6-a23e-410a-9be0-d450e1a73f31";
+        String animalId2 = "1260c523-f7cc-4a05-8671-8fee42f8904a";
 
-        repo.add(new ShowEventParticipantAnimal(showEventId2, participantId2));
+        repo.add(new ShowEventParticipantAnimal(showEventId2, participantId2, animalId2));
 
         String showEventId3 = "82b051b7-c52a-4457-93fa-6af4a47f371b";
         String participantId3 = "d70b5bf6-a23e-410a-9be0-d450e1a73f31";
