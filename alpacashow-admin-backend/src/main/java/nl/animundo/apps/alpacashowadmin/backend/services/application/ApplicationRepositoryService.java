@@ -28,7 +28,7 @@ public class ApplicationRepositoryService {
         loadShowEventRepository();
         loadParticipantRepository();
         loadAnimalRepository();
-      //  loadShowEventParticipantAnimalRepository();
+        loadShowEventParticipantAnimalRepository();
     }
 
     public Repository <ShowEvent> loadShowEventRepository() throws IOException {

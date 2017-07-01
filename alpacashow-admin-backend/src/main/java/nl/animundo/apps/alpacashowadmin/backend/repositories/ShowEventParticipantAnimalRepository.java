@@ -8,7 +8,7 @@ import java.util.*;
 
 public class ShowEventParticipantAnimalRepository {
     private static Logger logger = LoggerFactory.getLogger(ShowEventParticipantAnimalRepository.class);
-    private List<ShowEventParticipantAnimal> showEventParticipantAnimals;
+    private Collection<ShowEventParticipantAnimal> showEventParticipantAnimals = new ArrayList<>();
 
     public ShowEventParticipantAnimal add(final ShowEventParticipantAnimal showEventParticipantAnimal) {
 
@@ -16,8 +16,6 @@ public class ShowEventParticipantAnimalRepository {
         logger.info("Added '" + showEventParticipantAnimal.getShowEventId() + "' to repo");
         return showEventParticipantAnimal;
     }
-
-
 
     public void deleteAll () {
             showEventParticipantAnimals.clear();
