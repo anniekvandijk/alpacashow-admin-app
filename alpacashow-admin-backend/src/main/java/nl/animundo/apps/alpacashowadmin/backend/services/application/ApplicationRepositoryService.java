@@ -2,11 +2,16 @@ package nl.animundo.apps.alpacashowadmin.backend.services.application;
 
 import nl.animundo.apps.alpacashowadmin.backend.context.RepositoryContext;
 import nl.animundo.apps.alpacashowadmin.backend.domain.*;
+import nl.animundo.apps.alpacashowadmin.backend.domain.showeventregistration.ShowEventParticipantAnimal;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.*;
 import nl.animundo.apps.alpacashowadmin.backend.repositories.csv.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ApplicationRepositoryService {
 
@@ -28,7 +33,6 @@ public class ApplicationRepositoryService {
         loadShowEventRepository();
         loadParticipantRepository();
         loadAnimalRepository();
-        loadShowEventParticipantAnimalRepository();
     }
 
     public Repository <ShowEvent> loadShowEventRepository() throws IOException {
@@ -169,29 +173,29 @@ public class ApplicationRepositoryService {
 
     private void loadCrossRepoForShowEvent() throws IOException {
 
-//        loadParticipantRepository();
-//        loadAnimalRepository();
-//        loadShowEventParticipantAnimalRepository();
-//
-//
-//        Set<String> showEventsById = context.showEventRepo.getAllById();
-//        Set<String> participantsById = context.participantRepo.getAllById();
-//        Set<String> animalsById = context.participantRepo.getAllById();
-//
-//        // Loop ShowEvents and get details
-//        for (String showEventId : showEventsById) {
-//            ShowEvent showEvent = context.showEventRepo.getById(showEventId);
-//
-//            Set<Participant> participants = new LinkedHashSet<Participant>();
-//
-//            // Loop participants and get participants for the show. Add participant details to show
-//            for (String participantId : participantsById) {
-//
-//            //    if (participantId.equals(context.showEventParticipantAnimalRepo.GetParticipantsForShowEvent(showEventId, participantId)))
-//
-//            }
-//            showEvent.setParticipants(participants);
-//        }
+        loadShowEventParticipantAnimalRepository();
+        loadParticipantRepository();
+        loadAnimalRepository();
+
+
+        Set<Animal> ani = new HashSet<>();
+
+        // Loop ShowEvents and get details
+        for (String showEventId : context.showEventRepo.getAllById())
+        {
+            ShowEvent showEvent = context.showEventRepo.getById(showEventId);
+
+            Set<Participant> part = new HashSet<>();
+
+            for (ShowEventParticipantAnimal crossTable : context.showEventParticipantAnimalRepo.getAll())
+                if (showEventId.equals(crossTable.getShowEventId())) {
+                    // get participants for showEvent
+                    String participantId = crossTable.getParticipantId();
+                    Participant participant = context.participantRepo.getById(participantId);
+                    part.add(participant);
+                }
+            showEvent.setParticipants(part);
+        }
     }
 }
 

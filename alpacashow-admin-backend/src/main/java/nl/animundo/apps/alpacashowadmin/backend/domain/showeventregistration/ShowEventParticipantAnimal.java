@@ -27,6 +27,9 @@ public class ShowEventParticipantAnimal {
         if (participantIdCln == null) {
             throw new IllegalArgumentException("ParticipantId can not be empty");
         }
+        if (animalIdCln == null) {
+            throw new IllegalArgumentException("AnimalId can not be empty");
+        }
         this.showEventid = showEventidCln;
         this.participantid = participantIdCln;
         this.animalId = animalIdCln;
@@ -44,6 +47,9 @@ public class ShowEventParticipantAnimal {
 
     public void setAnimalId(String animalId) {
         final String animalIdCln = StringUtils.trimToNull(animalId);
+        if (animalIdCln == null) {
+            throw new IllegalArgumentException("AnimalId can not be empty");
+        }
         this.animalId = animalIdCln;
     }
 }
