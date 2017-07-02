@@ -8,7 +8,7 @@ import java.util.*;
 
 public class ShowEventParticipantAnimalRepository {
     private static Logger logger = LoggerFactory.getLogger(ShowEventParticipantAnimalRepository.class);
-    private Collection<ShowEventParticipantAnimal> showEventParticipantAnimals = new ArrayList<>();
+    private Set<ShowEventParticipantAnimal> showEventParticipantAnimals = new HashSet<>();
 
     public ShowEventParticipantAnimal add(final ShowEventParticipantAnimal showEventParticipantAnimal) {
 

@@ -12,7 +12,6 @@ import java.util.Collection;
 
 import static org.junit.Assert.*;
 
-@Ignore
 public class CsvShowEventParticipantAnimalRepositoryTest {
 
     final String workingDir = System.getProperty("user.dir");

@@ -177,25 +177,51 @@ public class ApplicationRepositoryService {
         loadParticipantRepository();
         loadAnimalRepository();
 
-
-        Set<Animal> ani = new HashSet<>();
-
         // Loop ShowEvents and get details
-        for (String showEventId : context.showEventRepo.getAllById())
-        {
+        for (String showEventId : context.showEventRepo.getAllById()) {
             ShowEvent showEvent = context.showEventRepo.getById(showEventId);
-
-            Set<Participant> part = new HashSet<>();
-
-            for (ShowEventParticipantAnimal crossTable : context.showEventParticipantAnimalRepo.getAll())
-                if (showEventId.equals(crossTable.getShowEventId())) {
-                    // get participants for showEvent
-                    String participantId = crossTable.getParticipantId();
-                    Participant participant = context.participantRepo.getById(participantId);
-                    part.add(participant);
-                }
-            showEvent.setParticipants(part);
+            ShowEvent showEventWithParticipants = AddParticipantsToShowEvent(showEvent);
+            ShowEvent showEventWithParticipantsAndAnimals = AddAnimalsToShowEventParticipants (showEventWithParticipants);
         }
     }
+
+    private ShowEvent AddParticipantsToShowEvent(ShowEvent showEvent) {
+
+        Set<Participant> participants = new HashSet<>();
+
+        for (ShowEventParticipantAnimal crossTable : context.showEventParticipantAnimalRepo.getAll()) {
+            if (showEvent.getId().equals(crossTable.getShowEventId())) {
+                // get participants for showEvent
+                String participantId = crossTable.getParticipantId();
+                Participant participant = context.participantRepo.getById(participantId);
+                participants.add(participant);
+            }
+        }
+        showEvent.setParticipants(participants);
+        return showEvent;
+    }
+
+    private ShowEvent AddAnimalsToShowEventParticipants(ShowEvent showEvent)
+    {
+        Set<Participant> participants = showEvent.getParticipants();
+        for (Participant part : participants) {
+
+            Set<Animal> animals = new HashSet<>();
+            for (ShowEventParticipantAnimal crossTable : context.showEventParticipantAnimalRepo.getAll())
+            {
+
+                if (showEvent.getId().equals(crossTable.getShowEventId()) && part.getId().equals(crossTable.getParticipantId()))
+                {
+                    String animalId = crossTable.getAnimalId();
+                    Animal animal = context.animalRepo.getById(animalId);
+                    animals.add(animal);
+                }
+            }
+            part.setAnimals(animals);
+        }
+        showEvent.setParticipants(participants);
+        return showEvent;
+    }
 }
+
 
