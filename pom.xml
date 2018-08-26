@@ -15,9 +15,7 @@
     </organization>
 
     <modules>
-        <module>alpacashow-admin-frontend</module>
         <module>alpacashow-admin-backend</module>
-        <module>alpacashow-admin-it</module>
     </modules>
 
     <properties>
