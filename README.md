@@ -28,11 +28,3 @@ For the practice with Java, this is an application which brings my love for alpa
 #### Helpers
 * [X] Services to calculate showclasses
 * [ ] Handle Sorting of rings
-
-### Frontend
-* [ ] Webclients to access backend
-* [ ] View and manage registrations
-* [ ] Import showdata from file?
-* [ ] Manage showring sort
-* [ ] Manage rings and prizes
-* [ ] Print documents 
